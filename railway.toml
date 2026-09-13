@@ -12,6 +12,11 @@ watchPatterns = [
 	"components/**",
 	"lib/**",
 	"public/**",
+	# The Dockerfile's gates run from here (icons, links, seo, bundle checks) — a change
+	# to one of them changes what a deploy accepts, so it must trigger a rebuild.
+	"scripts/**",
+	# Decides what enters the build context (it is what keeps .env out of the image).
+	".dockerignore",
 	"next.config.ts",
 	"postcss.config.mjs",
 	"tsconfig.json",
