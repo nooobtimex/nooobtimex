@@ -22,6 +22,13 @@ function ghHeaders(): Record<string, string> {
 	return headers
 }
 
+/**
+ * Normalises a `?year=` value to what `getContributions` accepts. Home is always the
+ * trailing year; only the dedicated page honours a selected calendar year.
+ */
+export const resolveGithubYear = (variant: 'home' | 'page', year?: string): string =>
+	variant === 'page' && year && /^\d{4}$/.test(year) ? year : 'last'
+
 // `year` is 'last' (trailing 12 months) or a 4-digit calendar year.
 export async function getContributions(year: string): Promise<{ total: number; days: ContributionDay[] } | null> {
 	try {

@@ -4,10 +4,18 @@ import Link from 'next/link'
 import Container from '@/components/cyber/Container'
 import CyberIcon from '@/components/cyber/CyberIcon'
 import NeonPanel from '@/components/cyber/NeonPanel'
-import SectionHeader from '@/components/cyber/SectionHeader'
 import ContributionHeatmap from '@/components/github/ContributionHeatmap'
 import GithubInsights from '@/components/github/GithubInsights'
-import { type ContributionDay, type RepoSummary, USERNAME, getContributions, getProfile, getRepos } from '@/lib/github'
+import GithubIntro from '@/components/github/GithubIntro'
+import {
+	type ContributionDay,
+	type RepoSummary,
+	USERNAME,
+	getContributions,
+	getProfile,
+	getRepos,
+	resolveGithubYear
+} from '@/lib/github'
 import { cn } from '@/lib/utils'
 
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
@@ -72,11 +80,50 @@ function computeStreaks(days: ContributionDay[]) {
 
 const fmt = (n: number) => n.toLocaleString('en-US')
 
-const GithubStats = async ({ variant = 'page', year = 'last' }: { variant?: 'home' | 'page'; year?: string }) => {
-	// Home is always the trailing year; only the dedicated page honors a selected calendar year.
-	const selectedYear = variant === 'page' && /^\d{4}$/.test(year) ? year : 'last'
+/** Placeholder for `/github`'s Suspense boundary — same footprint as the resolved stats. */
+export const GithubStatsSkeleton: React.FC = () => (
+	<div aria-busy='true'>
+		<span className='sr-only'>Loading contribution activity…</span>
+		<div className='mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6'>
+			{Array.from({ length: 6 }, (_, i) => (
+				<NeonPanel key={i} className='clip-notch-sm h-[5.25rem] animate-pulse' />
+			))}
+		</div>
+		<NeonPanel className='mt-5 h-40 animate-pulse' />
+	</div>
+)
+
+/**
+ * `/github` when the contributions API fails. Home simply omits its section, but this
+ * page's `<main>` would otherwise hold a heading over nothing — a screen that reads as
+ * unfinished to a visitor and as empty to a reviewer.
+ */
+const GithubUnavailable: React.FC = () => (
+	<NeonPanel className='mt-8 flex flex-col items-start gap-3 p-6'>
+		<span className='text-cyber-magenta font-mono text-xs tracking-[0.3em] uppercase'>// Feed offline</span>
+		<p className='text-muted-foreground max-w-2xl leading-relaxed'>
+			GitHub&apos;s contribution data didn&apos;t come back for this request, so there is nothing to chart right now. It
+			refreshes daily — check back later, or read the activity straight from the profile.
+		</p>
+		<a
+			href={`https://github.com/${USERNAME}`}
+			target='_blank'
+			rel='noopener noreferrer'
+			className='text-cyber-cyan hover:text-cyber-yellow inline-flex items-center gap-1.5 font-mono text-xs tracking-widest uppercase transition-colors'>
+			<CyberIcon icon='simple-icons:github' className='size-4' /> github.com/{USERNAME}
+		</a>
+	</NeonPanel>
+)
+
+/**
+ * On home this renders the whole section, intro included. On `/github` it renders only
+ * the data: the page draws `GithubIntro` itself, outside the Suspense boundary around
+ * this component, so the heading and prose never stream behind the numbers.
+ */
+const GithubStats = async ({ variant = 'page', year }: { variant?: 'home' | 'page'; year?: string }) => {
+	const selectedYear = resolveGithubYear(variant, year)
 	const contrib = await getContributions(selectedYear)
-	if (!contrib) return null // omit the section entirely if core data is unavailable
+	if (!contrib) return variant === 'home' ? null : <GithubUnavailable />
 
 	const [profile, repos] = await Promise.all([getProfile(), getRepos()])
 	const { current, longest } = computeStreaks(contrib.days)
@@ -113,47 +160,8 @@ const GithubStats = async ({ variant = 'page', year = 'last' }: { variant?: 'hom
 	// Home keeps the four activity-focused cards; the full repos/followers set lives on /github.
 	const stats = variant === 'home' ? allStats.filter(s => !s.homeHidden) : allStats
 
-	return (
-		<Container as='section' className={variant === 'home' ? 'mt-20 pb-4' : 'py-12 md:py-16'}>
-			{/* On home the hero owns the h1; only the standalone /github page promotes this. */}
-			<SectionHeader
-				as={variant === 'home' ? 'h2' : 'h1'}
-				code='04'
-				title='GitHub'
-				subtitle={
-					selectedYear === 'last' ?
-						'Live contribution activity, refreshed daily.'
-					:	`Contribution activity in ${selectedYear}.`
-				}
-				action={
-					variant === 'home' ?
-						<Link
-							href='/github'
-							className='text-cyber-cyan hover:text-cyber-yellow hidden items-center gap-1.5 font-mono text-xs tracking-widest uppercase transition-colors md:inline-flex'>
-							View activity <CyberIcon icon='mdi:arrow-right' className='size-4' />
-						</Link>
-					:	<a
-							href={`https://github.com/${USERNAME}`}
-							target='_blank'
-							rel='noopener noreferrer'
-							className='text-cyber-cyan hover:text-cyber-yellow hidden items-center gap-1.5 font-mono text-xs tracking-widest uppercase transition-colors md:inline-flex'>
-							<CyberIcon icon='simple-icons:github' className='size-4' /> @{USERNAME}
-						</a>
-				}
-			/>
-
-			{/* Server-rendered framing. Everything below this point is numbers pulled from the
-			    GitHub API, so without it the standalone page ships almost no prose — a crawler
-			    saw a heading, some digits and a heatmap of empty cells. */}
-			{variant === 'page' && (
-				<p className='text-muted-foreground mt-6 max-w-3xl text-base leading-relaxed'>
-					A running record of what actually gets shipped: commits, pull requests and issues across public repositories,
-					refreshed daily. Most of the work behind the projects on this site lives in private repositories, so treat
-					this as a floor rather than a total. Pick a year to see how the shape of the work changed — the heatmap below
-					reads left to right, one column per week.
-				</p>
-			)}
-
+	const data = (
+		<>
 			{variant === 'page' && (
 				<div className='mt-6 flex flex-wrap gap-2'>
 					{years.map(y => {
@@ -195,6 +203,15 @@ const GithubStats = async ({ variant = 'page', year = 'last' }: { variant?: 'hom
 			</NeonPanel>
 
 			{variant === 'page' && <GithubInsights data={buildInsights(contrib.days, repos)} />}
+		</>
+	)
+
+	if (variant === 'page') return data
+
+	return (
+		<Container as='section' className='mt-20 pb-4'>
+			<GithubIntro variant='home' year={selectedYear} />
+			{data}
 		</Container>
 	)
 }

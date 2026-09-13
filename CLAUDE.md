@@ -24,16 +24,17 @@ scripts/icons/     # generates that subset · the ONLY place @iconify-json/* may
 
 ## Commands
 
-| Task   | Command                   | Notes                                                                    |
-| ------ | ------------------------- | ------------------------------------------------------------------------ |
-| Dev    | `bun run dev`             | serves on **port 1000**                                                  |
-| Build  | `bun run build`           | the type-check gate. `icons:check` → `next build` → `links:check`        |
-| Lint   | `bun run lint`            | `eslint . --fix && prettier . --write`                                   |
-| Icons  | `bun run icons:generate`  | after any `icon:` change in `common/data` — commit the artifact          |
-| Links  | `bun run links:check`     | post-build gate: every internal `href` must resolve. Needs a build first |
-| Images | `bun run images:optimize` | after adding anything to `public/` — idempotent, commit the result       |
-| LLMs   | `bun run llms:generate`   | regenerates `public/llms.txt` from `common/` — commit the artifact       |
-| Cites  | `bun run links:external`  | fetches every blog citation. Run before shipping a post; NOT in `build`  |
+| Task   | Command                   | Notes                                                                                   |
+| ------ | ------------------------- | --------------------------------------------------------------------------------------- |
+| Dev    | `bun run dev`             | serves on **port 1000**                                                                 |
+| Build  | `bun run build`           | the type-check gate. `icons:check` → `next build` → `links:check` → `seo:check`         |
+| Lint   | `bun run lint`            | `eslint . --fix && prettier . --write`                                                  |
+| Icons  | `bun run icons:generate`  | after any `icon:` change in `common/data` — commit the artifact                         |
+| Links  | `bun run links:check`     | post-build gate: every internal `href` must resolve. Needs a build first                |
+| SEO    | `bun run seo:check`       | post-build gate: no prerendered content hidden in a streamed segment. Needs a build too |
+| Images | `bun run images:optimize` | after adding anything to `public/` — idempotent, commit the result                      |
+| LLMs   | `bun run llms:generate`   | regenerates `public/llms.txt` from `common/` — commit the artifact                      |
+| Cites  | `bun run links:external`  | fetches every blog citation. Run before shipping a post; NOT in `build`                 |
 
 **Definition of done for any code change: `bun run lint` then `bun run build`, both
 green.** Run them before declaring work complete.
@@ -43,10 +44,13 @@ green.** Run them before declaring work complete.
 **Railway is the only deploy target.** It uses `railway.toml` (config-as-code, overrides
 the dashboard) + the root `Dockerfile`, mirroring `rs-trophy.com`:
 
-- **bun builds, node serves.** Stages 1–2 run install and build on `oven/bun:1-slim`;
-  stage 3 serves on `node:26-slim`. Serving on Bun is deliberately avoided — the Next
-  standalone server leaks RSS under Bun's Node-compat HTTP layer (oven-sh/bun#27514),
-  which on a long-lived container reads as a slow OOM.
+- **bun installs, node builds and serves.** Stage 1 installs on `oven/bun:1-slim`; stage 2
+  builds on `node:26-slim` with the bun binary copied in, which runs the same gates as
+  `bun run build` (`icons:check`, then `links:check` + `seo:check` after `next build`) —
+  there is no CI, so a failing gate fails the deploy. Stage 3 serves on `node:26-slim`.
+  Serving on Bun is deliberately avoided — the Next standalone server leaks RSS under
+  Bun's Node-compat HTTP layer (oven-sh/bun#27514), which on a long-lived container reads
+  as a slow OOM.
 - `output: 'standalone'` in `next.config.ts` is what makes stage 3 install-free.
 - **The runtime never loads sharp.** `images: { unoptimized: true }` — the site uses
   plain `<img>`, so there is no `/_next/image` route — and `lib/og-assets.ts` imports
@@ -80,7 +84,7 @@ docker build -t nooobtimex . && docker run --rm -e PORT=7788 -p 7788:7788 nooobt
   `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`
   Only commit/push when asked; branch first if on `main` and unsure.
 
-## SEO — four invariants the build depends on
+## SEO — five invariants the build depends on
 
 These encode bugs that were live on nooobtimex.me and produced **no error anywhere**.
 
@@ -91,11 +95,12 @@ These encode bugs that were live on nooobtimex.me and produced **no error anywhe
    every route calls. It also omits `openGraph.images` on purpose so the file-convention
    `opengraph-image.tsx` still resolves per segment.
 
-2. **Every `[...id]` route needs `export const dynamicParams = false`.** `app/loading.tsx`
-   streams a shell for any matched route, which flushes response headers at **200**; a
-   later `notFound()` then renders 404 UI inside an already-committed 200. Without
-   `dynamicParams = false`, every mistyped slug is an indexable soft-404 titled "… Not
-   Found".
+2. **Every `[...id]` route needs `export const dynamicParams = false`.** It rejects an
+   unknown slug at the routing layer, before anything renders. A page's own `notFound()`
+   is not enough: any Suspense boundary above the page flushes response headers at **200**
+   first, so the 404 UI lands inside an already-committed 200. The old root
+   `app/loading.tsx` did exactly that, and every mistyped slug became an indexable
+   soft-404 titled "… Not Found".
 
 3. **A post that shows code cites at least two sources.** `resolvePost` fails the build
    otherwise, and `bun run links:external` fetches every one of them — because
@@ -109,6 +114,17 @@ These encode bugs that were live on nooobtimex.me and produced **no error anywhe
    the sitemap_ pointed at a 200-status "Skill Not Found" page.
    [`scripts/links/check.ts`](scripts/links/check.ts) now fails the build on any internal
    href the build did not emit.
+
+5. **No Suspense boundary may wrap page content — so no route-level `loading.tsx`.** React
+   19.2 _outlines_ any completed boundary larger than 500 B once the response passes
+   12,800 B: the fallback is written in place and the real content moves into a
+   `<div hidden id="S:0">` that an inline script swaps in after parse. Nothing has to
+   suspend. The root `app/loading.tsx` did this to 123 of 126 prerendered pages, so
+   anything reading the HTML without JavaScript saw one word, "Loading…", on every URL —
+   while AdSense rated the site "Low value content". Scope a boundary to something whose
+   absence from the HTML costs nothing (the `/github` stats), never to a page.
+   [`scripts/seo/check.ts`](scripts/seo/check.ts) fails the build on any prerendered page
+   with readable text inside such a segment.
 
 ## Conventions live in skills
 

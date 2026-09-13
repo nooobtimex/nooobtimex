@@ -6,7 +6,7 @@
 		"node": ">=26"
 	},
 	"scripts": {
-		"build": "bun run icons:check && next build && bun run links:check",
+		"build": "bun run icons:check && next build && bun run links:check && bun run seo:check",
 		"dev": "next dev -p 1000",
 		"icons:check": "bun run scripts/icons/check.ts",
 		"icons:generate": "bun run scripts/icons/generate.ts",
@@ -16,6 +16,7 @@
 		"images:optimize": "bun run scripts/images/optimize.ts",
 		"lint": "eslint . --fix && prettier . --write",
 		"readme:assets": "bun run scripts/readme/generate.ts",
+		"seo:check": "bun run scripts/seo/check.ts",
 		"start": "next start -p 1000"
 	},
 	"dependencies": {

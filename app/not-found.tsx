@@ -5,10 +5,10 @@ import GlitchText from '@/components/cyber/GlitchText'
 import { NAV_LINKS } from '@/components/navigation/links'
 
 /**
- * A 404 is now a real 404 — `dynamicParams = false` on the `[...id]` routes stopped
- * unknown slugs from streaming a 200 through `app/loading.tsx`. That makes this page
- * the actual destination for every mistyped or stale inbound link, so it carries
- * recovery links rather than a single "Return Home" and a dead end.
+ * A 404 is a real 404 — `dynamicParams = false` on the `[...id]` routes stopped unknown
+ * slugs from streaming a 200 through the old root `app/loading.tsx` (since deleted). That
+ * makes this page the actual destination for every mistyped or stale inbound link, so it
+ * carries recovery links rather than a single "Return Home" and a dead end.
  */
 export const metadata: Metadata = {
 	title: 'Not Found',

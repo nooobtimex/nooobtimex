@@ -5,10 +5,10 @@
  *
  * It exists because that class of bug used to be invisible. `Skill.id` for Vue.js is
  * `vue`, but five call sites built the URL with `slugify(skill.name)` → `vue-js`.
- * Nothing broke loudly: `app/loading.tsx` streams a shell for any matched route, which
- * flushes response headers at 200, so `/skills/vue-js` returned **HTTP 200** with the
- * title "Skill Not Found" — and `app/sitemap.ts` submitted that URL to Google. No build,
- * lint or type check said a word.
+ * Nothing broke loudly: the root `app/loading.tsx` (since deleted) streamed a shell for
+ * any matched route, which flushed response headers at 200, so `/skills/vue-js` returned
+ * **HTTP 200** with the title "Skill Not Found" — and `app/sitemap.ts` submitted that URL
+ * to Google. No build, lint or type check said a word.
  *
  * `dynamicParams = false` on the `[...id]` routes turned those into real 404s, which at
  * least makes the failure visible — but only once a human or a crawler clicks. This

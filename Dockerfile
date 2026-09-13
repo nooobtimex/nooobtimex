@@ -22,8 +22,10 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Run icon check via Bun, and Next.js build via Node.js
-RUN bun run icons:check && npx next build
+# Bun runs the gates, Node runs the Next.js build. Same sequence as `bun run build`: the
+# repo has no CI, so this is the only place the post-build gates are guaranteed to run —
+# a broken internal link or content hidden in a streamed segment fails the deploy.
+RUN bun run icons:check && npx next build && bun run links:check && bun run seo:check
 
 # ─── Stage 3: Runtime ────────────────────────────────────────────────────────
 FROM node:26-slim AS runner

@@ -19,11 +19,12 @@ export async function generateStaticParams() {
 /**
  * Unknown slugs must 404 at the routing layer, not render.
  *
- * `app/loading.tsx` streams a shell for any matched route, which flushes response
- * headers at 200 — so a later `notFound()` renders 404 UI inside an already-committed
- * 200. That turned every mistyped detail slug into an indexable soft-404 titled
- * "… Not Found". With `generateStaticParams` above and `dynamicParams` false, Next
- * never enters the segment for an unknown param.
+ * A page's own `notFound()` is only a real 404 while nothing above the page streams —
+ * any Suspense boundary flushes response headers at 200 first. The old root
+ * `app/loading.tsx` did exactly that and turned every mistyped detail slug into an
+ * indexable soft-404 titled "… Not Found". With `generateStaticParams` above and
+ * `dynamicParams` false, Next never enters the segment for an unknown param, so the
+ * status no longer depends on what wraps the page.
  */
 export const dynamicParams = false
 
