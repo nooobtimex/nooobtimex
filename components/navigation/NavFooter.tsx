@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Container from '@/components/cyber/Container'
 import CyberIcon from '@/components/cyber/CyberIcon'
-import { FOOTER_LINKS } from '@/components/navigation/links'
+import { FOOTER_LINKS, LEGAL_LINKS } from '@/components/navigation/links'
 import { personalData } from '@/common'
 
 const PLATFORM_LABEL: Record<string, string> = {
@@ -75,8 +75,18 @@ const NavFooter: React.FC = () => {
 				</div>
 			</Container>
 
-			<div className='border-border/50 text-muted-foreground border-t px-4 py-4 text-center font-mono text-[0.65rem] tracking-widest uppercase md:px-6'>
-				© {new Date().getFullYear()} {personalData.name} — All systems operational
+			<div className='border-border/50 text-muted-foreground flex flex-wrap items-center justify-center gap-x-4 gap-y-1 border-t px-4 py-4 text-center font-mono text-[0.65rem] tracking-widest uppercase md:px-6'>
+				<span>
+					© {new Date().getFullYear()} {personalData.name} — All systems operational
+				</span>
+				{LEGAL_LINKS.map(l => (
+					<Link
+						key={l.href}
+						href={l.href}
+						className='hover:text-cyber-cyan underline-offset-4 transition-colors hover:underline'>
+						{l.label}
+					</Link>
+				))}
 			</div>
 		</footer>
 	)

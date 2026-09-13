@@ -18,8 +18,11 @@
  *
  * Exit codes: 0 all reachable, 1 something is broken or malformed.
  */
-import { postsData } from '../../common'
-import type { Post } from '../../common/interfaces'
+import { postsData, privacyPolicy } from '../../common'
+import type { Post, PostBlock } from '../../common/interfaces'
+
+/** Non-post pages whose prose carries outbound links, checked under the same rules. */
+const PAGES: { id: string; body: PostBlock[] }[] = [{ id: '/privacy', body: privacyPolicy.body }]
 
 /** GitHub rate-limits unauthenticated HEADs harshly; a token is optional but helps. */
 const UA = 'nooobtimex-links-external/1.0 (+https://nooobtimex.me)'
@@ -37,17 +40,23 @@ function inlineExternalUrls(text: string): string[] {
 	return [...text.matchAll(/\[[^\]]*\]\((https?:\/\/[^)\s]+)\)/g)].map(m => m[1])
 }
 
-/** Every authored string in a post — the raw markup, since the link syntax is what we are reading. */
-function rawText(p: Post): string[] {
-	const out: string[] = [p.tldr, p.description, ...(p.lessons ?? [])]
-	for (const f of p.faqs) out.push(f.q, f.a)
-	for (const b of p.body) {
+/** Every authored string in a run of blocks — the raw markup, since the link syntax is what we are reading. */
+function blockText(blocks: PostBlock[]): string[] {
+	const out: string[] = []
+	for (const b of blocks) {
 		for (const k of ['text', 'caption', 'label', 'title'] as const)
 			if (k in b && typeof (b as Record<string, unknown>)[k] === 'string') out.push((b as Record<string, string>)[k])
 		if (b.kind === 'list') out.push(...b.items)
 		if (b.kind === 'table') out.push(...b.head, ...b.rows.flat())
 	}
 	return out
+}
+
+/** Every authored string in a post. */
+function rawText(p: Post): string[] {
+	const out: string[] = [p.tldr, p.description, ...(p.lessons ?? [])]
+	for (const f of p.faqs) out.push(f.q, f.a)
+	return [...out, ...blockText(p.body)]
 }
 
 function collect(): Citation[] {
@@ -57,6 +66,9 @@ function collect(): Citation[] {
 		for (const text of rawText(post))
 			for (const url of inlineExternalUrls(text)) out.push({ url, postId: post.id, where: 'prose' })
 	}
+	for (const page of PAGES)
+		for (const text of blockText(page.body))
+			for (const url of inlineExternalUrls(text)) out.push({ url, postId: page.id, where: 'page' })
 	return out
 }
 
@@ -134,10 +146,12 @@ async function main(): Promise<void> {
 		broken.push(`  ${r.url}\n      ${r.detail} — cited by ${cited.map(c => `${c.postId} (${c.where})`).join(', ')}`)
 	}
 
-	const postsWith = new Set(citations.map(c => c.postId)).size
+	const postsWith = new Set(citations.filter(c => c.where !== 'page').map(c => c.postId)).size
+	const pageLinks = citations.filter(c => c.where === 'page').length
 	console.log(
 		`links:external — ${urls.length} distinct URLs across ${postsWith}/${postsData.length} published posts`
-			+ ` (${citations.filter(c => c.where === 'prose').length} inline, ${citations.filter(c => c.where === 'sources').length} in sources).`
+			+ ` (${citations.filter(c => c.where === 'prose').length} inline, ${citations.filter(c => c.where === 'sources').length} in sources)`
+			+ ` and ${PAGES.length} page(s) (${pageLinks} links).`
 	)
 
 	if (broken.length > 0) {

@@ -67,6 +67,12 @@ export const MOBILE_TABS = NAV_LINKS.filter(l => l.isMobileTab)
 export const FOOTER_LINKS = NAV_LINKS.filter(l => l.inFooter)
 
 /**
+ * Legal pages — the footer's bottom row only. Kept out of `NAV_LINKS` on purpose: NavBar and
+ * the ⌘K palette render that table whole, and a privacy policy is not a site section.
+ */
+export const LEGAL_LINKS: readonly { label: string; href: Route }[] = [{ label: 'Privacy', href: '/privacy' }]
+
+/**
  * Home matches exactly; every other route matches its detail pages too, so
  * `/projects/looklook-pet` keeps the Projects tab lit.
  */

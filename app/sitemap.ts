@@ -6,6 +6,7 @@ import {
 	experiencesData,
 	indexableSkillIds,
 	postsData,
+	privacyPolicy,
 	projectsData,
 	skillsData
 } from '@/common'
@@ -44,6 +45,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		entry('/contact', 0.7),
 		// The journal gets fresh entries between content bumps, so it dates itself.
 		entry('/blog', 0.8, 'weekly'),
+		// Listed so a crawler — and an ad reviewer — finds the policy the way it finds everything
+		// else. Dated by the policy itself, not the site-wide stamp.
+		{ ...entry('/privacy', 0.3, 'yearly'), lastModified: new Date(privacyPolicy.updatedAt) },
 		// Detail routes are keyed by `id` — the same value each route's
 		// `generateStaticParams` emits, so a sitemap URL can never 404.
 		...projectsData.map(p => entry(`/projects/${p.id}`, 0.7)),
