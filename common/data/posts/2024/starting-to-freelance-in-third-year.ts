@@ -4,8 +4,8 @@ import type { PostDef } from '../../../interfaces'
 export const startingToFreelanceInThirdYear: PostDef = {
 	id: 'starting-to-freelance-in-third-year',
 	title: 'Starting to freelance in my third year of university',
-	publishedAt: '2024-01-01',
-	updatedAt: '2026-08-25',
+	happenedAt: '2024-01-01',
+	publishedAt: '2026-08-25',
 	chapter: 'freelance',
 	category: 'engineering',
 	description:

@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const onePersonTwoIdsJsonLd: PostDef = {
 	id: 'one-person-two-ids-json-ld',
 	title: 'One Person, two @ids: how a missing JSON-LD @id split my entity graph',
-	publishedAt: '2026-08-24',
+	happenedAt: '2026-08-24',
 	chapter: 'ownership',
 	draft: true
 }

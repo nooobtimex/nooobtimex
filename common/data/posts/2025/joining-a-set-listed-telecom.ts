@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const joiningASetListedTelecom: PostDef = {
 	id: 'joining-a-set-listed-telecom',
 	title: 'Joining a SET-listed telecom as one developer among many',
-	publishedAt: '2025-07-16',
+	happenedAt: '2025-07-16',
 	chapter: 'scale',
 	draft: true
 }

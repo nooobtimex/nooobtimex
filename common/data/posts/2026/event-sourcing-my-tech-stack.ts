@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const eventSourcingMyTechStack: PostDef = {
 	id: 'event-sourcing-my-tech-stack',
 	title: 'Event-sourcing a tech stack: skills as dated add/remove timeline events',
-	publishedAt: '2026-07-18',
+	happenedAt: '2026-07-18',
 	chapter: 'freelance',
 	draft: true
 }

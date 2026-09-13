@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const files1621Kept35gbDeleted: PostDef = {
 	id: 'files-1621-kept-3-5gb-deleted',
 	title: '1,621 files kept, 3.5 GB deleted: checksums before calling anything a duplicate',
-	publishedAt: '2026-08-18',
+	happenedAt: '2026-08-18',
 	chapter: 'ownership',
 	draft: true
 }

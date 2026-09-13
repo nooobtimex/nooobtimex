@@ -3,8 +3,8 @@ import type { PostDef } from '../../../interfaces'
 export const howIBecameCtoAt23: PostDef = {
 	id: 'how-i-became-cto-at-23',
 	title: 'How I became CTO at 23 of the company that hired me as a part-time student',
-	publishedAt: '2026-08-01', // the event — the CTO start date
-	updatedAt: '2026-08-24', // the day the post was actually written
+	happenedAt: '2026-08-01', // the event — the CTO start date
+	publishedAt: '2026-08-25',
 	chapter: 'ownership',
 	category: 'engineering',
 	description:

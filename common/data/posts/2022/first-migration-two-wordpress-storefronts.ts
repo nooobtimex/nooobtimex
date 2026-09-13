@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const firstMigrationTwoWordpressStorefronts: PostDef = {
 	id: 'first-migration-two-wordpress-storefronts',
 	title: 'My first migration: two WordPress storefronts to Next.js, at 18',
-	publishedAt: '2022-02-01',
+	happenedAt: '2022-02-01',
 	chapter: 'student',
 	draft: true
 }

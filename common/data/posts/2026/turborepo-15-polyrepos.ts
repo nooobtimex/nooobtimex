@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const turborepo15Polyrepos: PostDef = {
 	id: 'turborepo-15-polyrepos',
 	title: 'Consolidating 15 repos into one Turborepo',
-	publishedAt: '2026-07-07',
+	happenedAt: '2026-07-07',
 	chapter: 'scale',
 	series: { id: 'looklook', part: 9 },
 	draft: true

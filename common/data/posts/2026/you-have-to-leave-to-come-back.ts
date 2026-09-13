@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const youHaveToLeaveToComeBack: PostDef = {
 	id: 'you-have-to-leave-to-come-back',
 	title: 'You have to leave to come back',
-	publishedAt: '2026-08-01',
+	happenedAt: '2026-08-01',
 	chapter: 'ownership',
 	draft: true
 }

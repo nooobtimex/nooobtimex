@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const trophyCompanyFounded2006: PostDef = {
 	id: 'trophy-company-founded-2006',
 	title: 'A 20-year-old trophy company, founded in 2006',
-	publishedAt: '2006-01-01',
+	happenedAt: '2006-01-01',
 	chapter: 'origins',
 	draft: true
 }

@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const tableScopedQrCodes: PostDef = {
 	id: 'table-scoped-qr-codes',
 	title: 'Table-scoped QR codes: making a URL identify a physical seat',
-	publishedAt: '2024-03-15',
+	happenedAt: '2024-03-15',
 	chapter: 'student',
 	draft: true
 }

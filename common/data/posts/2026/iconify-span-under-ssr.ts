@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const iconifySpanUnderSsr: PostDef = {
 	id: 'iconify-span-under-ssr',
 	title: '@iconify/react renders an empty span under renderToString',
-	publishedAt: '2026-08-24',
+	happenedAt: '2026-08-24',
 	chapter: 'ownership',
 	draft: true
 }

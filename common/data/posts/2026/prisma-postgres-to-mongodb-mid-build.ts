@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const prismaPostgresToMongodbMidBuild: PostDef = {
 	id: 'prisma-postgres-to-mongodb-mid-build',
 	title: 'Switching from Prisma/Postgres to MongoDB mid-build',
-	publishedAt: '2026-01-28',
-	updatedAt: '2026-08-25',
+	happenedAt: '2026-01-28',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'scale',
 	category: 'engineering',
 	description:

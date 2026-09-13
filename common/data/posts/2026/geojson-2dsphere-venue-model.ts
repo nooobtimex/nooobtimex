@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const geojson2dsphereVenueModel: PostDef = {
 	id: 'geojson-2dsphere-venue-model',
 	title: 'GeoJSON venues, a 2dsphere index, and a database-enforced uniqueness constraint',
-	publishedAt: '2026-06-16',
+	happenedAt: '2026-06-16',
 	chapter: 'scale',
 	draft: true
 }

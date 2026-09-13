@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const nobodyWritesThisFromTheInside: PostDef = {
 	id: 'nobody-writes-this-from-the-inside',
 	title: 'Nobody in Thailand is writing this from the inside',
-	publishedAt: '2026-08-07',
+	happenedAt: '2026-08-07',
 	chapter: 'ownership',
 	draft: true
 }

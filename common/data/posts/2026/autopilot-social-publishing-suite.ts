@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const autopilotSocialPublishingSuite: PostDef = {
 	id: 'autopilot-social-publishing-suite',
 	title: 'An autopilot multi-channel social publishing suite with OAuth and scheduling',
-	publishedAt: '2026-06-22',
+	happenedAt: '2026-06-22',
 	chapter: 'scale',
 	draft: true
 }

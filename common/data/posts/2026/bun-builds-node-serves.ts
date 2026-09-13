@@ -5,8 +5,9 @@ import type { PostDef } from '../../../interfaces'
 export const bunBuildsNodeServes: PostDef = {
 	id: 'bun-builds-node-serves',
 	title: 'Build with Bun, serve with Node: dodging a standalone RSS leak',
-	publishedAt: '2026-07-30',
-	updatedAt: '2026-08-25',
+	happenedAt: '2026-07-30',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'freelance',
 	category: 'infrastructure',
 	series: { id: 'container-diet', part: 1 },

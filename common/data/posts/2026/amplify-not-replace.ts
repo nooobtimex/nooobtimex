@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const amplifyNotReplace: PostDef = {
 	id: 'amplify-not-replace',
 	title: 'Use AI to amplify productivity, not to reduce the workforce',
-	publishedAt: '2026-08-01',
+	happenedAt: '2026-08-01',
 	chapter: 'ownership',
 	draft: true
 }

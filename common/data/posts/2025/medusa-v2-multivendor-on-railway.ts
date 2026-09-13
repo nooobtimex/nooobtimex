@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const medusaV2MultivendorOnRailway: PostDef = {
 	id: 'medusa-v2-multivendor-on-railway',
 	title: 'Standing up a Medusa v2 multi-vendor marketplace on Railway',
-	publishedAt: '2025-12-08',
+	happenedAt: '2025-12-08',
 	chapter: 'scale',
 	series: { id: 'looklook', part: 3 },
 	draft: true

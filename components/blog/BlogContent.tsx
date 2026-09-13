@@ -6,12 +6,13 @@ import SectionHeader from '@/components/cyber/SectionHeader'
 import { type PostChapter, chapterMetadata, postsData } from '@/common'
 
 /**
- * The /blog index — posts grouped by the YEAR THE WORK HAPPENED (`publishedAt`),
- * newest year first, using the grouped-section rule from `SkillsContent`. The archive
- * reads as a journal of the work, which is the whole framing of the blog.
+ * The /blog index — posts grouped by the YEAR THE WORK HAPPENED (`happenedAt`, not the
+ * day a post went live), newest year first, using the grouped-section rule from
+ * `SkillsContent`. The archive reads as a journal of the work, which is the whole framing
+ * of the blog.
  */
 const BlogContent: React.FC = () => {
-	const years = [...new Set(postsData.map(p => p.publishedAt.slice(0, 4)))].sort((a, b) => b.localeCompare(a))
+	const years = [...new Set(postsData.map(p => p.happenedAt.slice(0, 4)))].sort((a, b) => b.localeCompare(a))
 	// Every card names its chapter; this legend says what each chapter was. Chapters with no
 	// published entry yet are left out rather than advertised.
 	const chapters = (Object.keys(chapterMetadata) as PostChapter[])
@@ -40,7 +41,7 @@ const BlogContent: React.FC = () => {
 			</section>
 
 			{years.map((year, idx) => {
-				const items = postsData.filter(p => p.publishedAt.startsWith(year))
+				const items = postsData.filter(p => p.happenedAt.startsWith(year))
 				return (
 					<section key={year} className='mt-12'>
 						<div className='mb-5 flex items-center gap-3'>

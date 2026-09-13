@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const typingTestThreeAngryCustomers: PostDef = {
 	id: 'typing-test-three-angry-customers',
 	title: 'Screening a chat-admin role: a typing test and three mock angry customers',
-	publishedAt: '2026-08-17',
+	happenedAt: '2026-08-17',
 	chapter: 'ownership',
 	draft: true
 }

@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const localeAwareRoutingAppRouter: PostDef = {
 	id: 'locale-aware-routing-app-router',
 	title: 'Locale-aware routing in the Next.js App Router',
-	publishedAt: '2025-08-24',
+	happenedAt: '2025-08-24',
 	chapter: 'freelance',
 	draft: true
 }

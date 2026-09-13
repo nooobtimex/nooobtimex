@@ -1,4 +1,4 @@
-/** Publication order for 2026 — regenerated from the folder, ordered by (publishedAt, id). */
+/** Journey order for 2026 — regenerated from the folder, ordered by (happenedAt, id). */
 import type { PostDef } from '../../../interfaces'
 import { a4PrintCssInReact } from './a4-print-css-in-react'
 import { aiMemoryInMarkdownIOwn } from './ai-memory-in-markdown-i-own'

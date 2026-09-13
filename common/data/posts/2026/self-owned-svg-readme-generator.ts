@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const selfOwnedSvgReadmeGenerator: PostDef = {
 	id: 'self-owned-svg-readme-generator',
 	title: 'Generating my own SVG README cards instead of using badge services',
-	publishedAt: '2026-06-12',
+	happenedAt: '2026-06-12',
 	chapter: 'freelance',
 	draft: true
 }

@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const firebaseSpaToNextjs16Replatform: PostDef = {
 	id: 'firebase-spa-to-nextjs-16-replatform',
 	title: 'Re-architecting a client-built Firebase SPA into Next.js 16 full-stack',
-	publishedAt: '2026-06-15',
+	happenedAt: '2026-06-15',
 	chapter: 'scale',
 	draft: true
 }

@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const tagsRottedInsidePixels: PostDef = {
 	id: 'tags-rotted-inside-pixels',
 	title: 'Data baked into pixels rots silently: the cover tags that lied for months',
-	publishedAt: '2026-07-28',
+	happenedAt: '2026-07-28',
 	chapter: 'freelance',
 	draft: true
 }

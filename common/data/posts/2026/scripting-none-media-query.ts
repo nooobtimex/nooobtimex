@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const scriptingNoneMediaQuery: PostDef = {
 	id: 'scripting-none-media-query',
 	title: '@media (scripting: none): stop a scroll reveal from hiding the whole page',
-	publishedAt: '2026-08-24',
+	happenedAt: '2026-08-24',
 	chapter: 'ownership',
 	draft: true
 }

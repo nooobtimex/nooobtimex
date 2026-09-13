@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const thaiLocalizationAndANewDesignSystem: PostDef = {
 	id: 'thai-localization-and-a-new-design-system',
 	title: 'Localizing a storefront to Thai while replacing its design system',
-	publishedAt: '2026-01-30',
-	updatedAt: '2026-08-25',
+	happenedAt: '2026-01-30',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'scale',
 	category: 'nextjs',
 	description:

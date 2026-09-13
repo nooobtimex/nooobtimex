@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const brandAlignedWordpressCatalogTheme: PostDef = {
 	id: 'brand-aligned-wordpress-catalog-theme',
 	title: 'Designing a brand-aligned WordPress catalog theme without a designer',
-	publishedAt: '2022-09-01',
-	updatedAt: '2026-08-25',
+	happenedAt: '2022-09-01',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'student',
 	category: 'commerce',
 	description:

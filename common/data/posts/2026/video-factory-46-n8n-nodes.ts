@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const videoFactory46N8nNodes: PostDef = {
 	id: 'video-factory-46-n8n-nodes',
 	title: 'Video Factory v2: 46 n8n nodes from spreadsheet row to product video',
-	publishedAt: '2026-08-18',
+	happenedAt: '2026-08-18',
 	chapter: 'ownership',
 	draft: true
 }

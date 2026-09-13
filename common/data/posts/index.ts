@@ -2,8 +2,8 @@
  * The blog registry + resolver — the `resolveProject()` of posts.
  *
  * Authoring happens in one file per post under the year folders (filename === `id`,
- * year folder === `publishedAt`'s year — navigation only, the URL stays /blog/<id>).
- * Each year's `index.ts` lists its posts in publication order; this file folds them,
+ * year folder === `happenedAt`'s year — navigation only, the URL stays /blog/<id>).
+ * Each year's `index.ts` lists its posts in journey order; this file folds them,
  * validates them, and derives everything routes may consume.
  *
  * Validation is two-tier (see `PostDef`): a `draft: true` stub needs only four fields
@@ -133,8 +133,10 @@ const wordCount = (blocks: readonly PostBlock[]): number => blocks.reduce((sum, 
 
 /**
  * Build-time "now" — the site is statically prerendered, so this is the deploy date.
- * One dating rule for the whole journal: `publishedAt` is the real date of the event a
- * post describes, however far back that goes. The only forbidden direction is forward.
+ *
+ * Two dates per post (see `PostDef`): `happenedAt`, the event the post describes, however
+ * far back; and `publishedAt`, the day it went live. They order as
+ * `happenedAt ≤ publishedAt ≤ updatedAt`, and none of them may point forward.
  */
 const TODAY = new Date().toISOString().slice(0, 10)
 
@@ -147,13 +149,12 @@ const CODE_POST_MIN_SOURCES = 2
 
 const resolvePost = (d: PostDef): Post => {
 	if (!/^[a-z0-9-]+$/.test(d.id)) fail(d.id, 'id must be url-safe kebab-case')
-	if (!DATE.test(d.publishedAt)) fail(d.id, `publishedAt "${d.publishedAt}" is not YYYY-MM-DD`)
-	if (d.updatedAt && (!DATE.test(d.updatedAt) || d.updatedAt < d.publishedAt))
-		fail(d.id, `updatedAt "${d.updatedAt}" must be YYYY-MM-DD on or after publishedAt`)
+	if (!DATE.test(d.happenedAt)) fail(d.id, `happenedAt "${d.happenedAt}" is not YYYY-MM-DD`)
 
 	if (d.draft) {
 		// Stub tier — reserve the slot, skip the AEO contract. Never surfaces anywhere.
 		return {
+			publishedAt: '',
 			description: '',
 			tldr: '',
 			category: 'engineering',
@@ -166,7 +167,17 @@ const resolvePost = (d: PostDef): Post => {
 	}
 
 	// Full tier — the AEO contract. A post that cannot be cited must not build.
-	if (d.publishedAt > TODAY) fail(d.id, `publishedAt ${d.publishedAt} is in the future — posts are never future-dated`)
+	if (d.happenedAt > TODAY) fail(d.id, `happenedAt ${d.happenedAt} is in the future — a post describes what happened`)
+	if (!d.publishedAt || !DATE.test(d.publishedAt))
+		fail(d.id, 'publishedAt (YYYY-MM-DD) is required once draft is off — the day the post goes live')
+	if (d.publishedAt! > TODAY) fail(d.id, `publishedAt ${d.publishedAt} is in the future — posts are never future-dated`)
+	if (d.publishedAt! < d.happenedAt)
+		fail(
+			d.id,
+			`publishedAt ${d.publishedAt} is before happenedAt ${d.happenedAt} — publishedAt is the go-live day, not the event`
+		)
+	if (d.updatedAt && (!DATE.test(d.updatedAt) || d.updatedAt <= d.publishedAt!))
+		fail(d.id, `updatedAt "${d.updatedAt}" must be YYYY-MM-DD after publishedAt — omit it until the post is revised`)
 	if (!d.category) fail(d.id, 'category is required once draft is off')
 	if (!d.description) fail(d.id, 'description is required once draft is off')
 	if (d.description!.length > 155)
@@ -213,6 +224,7 @@ const resolvePost = (d: PostDef): Post => {
 		accent: categoryMetadataPosts[category].accent,
 		...d,
 		description: d.description!,
+		publishedAt: d.publishedAt!,
 		tldr: d.tldr!,
 		category,
 		faqs: d.faqs!,
@@ -221,7 +233,7 @@ const resolvePost = (d: PostDef): Post => {
 	}
 }
 
-/** Registration order — publication order within each year folder's index. */
+/** Registration order — journey order (`happenedAt`) within each year folder's index. */
 const defs: PostDef[] = [
 	...posts2006,
 	...posts2019,
@@ -253,13 +265,14 @@ const defs: PostDef[] = [
 }
 
 /**
- * Published posts, newest work first. The ONLY list any route, the sitemap, llms.txt
- * or the ⌘K palette may read — drafts exist solely as version-controlled backlog.
+ * Published posts, newest WORK first — ordered by `happenedAt`, the journey, not by the
+ * day each was written up. The ONLY list any route, the sitemap, llms.txt or the ⌘K palette
+ * may read — drafts exist solely as version-controlled backlog.
  */
 export const postsData: Post[] = defs
 	.map(resolvePost)
 	.filter(p => !p.draft)
-	.sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+	.sort((a, b) => b.happenedAt.localeCompare(a.happenedAt))
 
 export const postById = (id: string): Post | undefined => postsData.find(p => p.id === id)
 

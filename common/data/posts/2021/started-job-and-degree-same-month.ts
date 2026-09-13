@@ -4,8 +4,8 @@ import type { PostDef } from '../../../interfaces'
 export const startedJobAndDegreeSameMonth: PostDef = {
 	id: 'started-job-and-degree-same-month',
 	title: 'I started my first dev job and my CS degree in the same month',
-	publishedAt: '2021-08-01',
-	updatedAt: '2026-08-25',
+	happenedAt: '2021-08-01',
+	publishedAt: '2026-08-25',
 	chapter: 'student',
 	category: 'engineering',
 	description:

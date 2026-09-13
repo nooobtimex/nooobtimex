@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const skillGraphAndGameUiPages: PostDef = {
 	id: 'skill-graph-and-game-ui-pages',
 	title: 'Modelling skills as a dependency-wired node graph with game-UI pages',
-	publishedAt: '2026-06-08',
+	happenedAt: '2026-06-08',
 	chapter: 'freelance',
 	draft: true
 }

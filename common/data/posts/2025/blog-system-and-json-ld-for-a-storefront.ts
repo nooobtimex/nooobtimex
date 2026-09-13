@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const blogSystemAndJsonLdForAStorefront: PostDef = {
 	id: 'blog-system-and-json-ld-for-a-storefront',
 	title: 'Adding a blog system and JSON-LD to a catalog storefront',
-	publishedAt: '2025-06-06',
-	updatedAt: '2026-08-25',
+	happenedAt: '2025-06-06',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'bridge',
 	category: 'seo-aeo',
 	description:

@@ -13,6 +13,7 @@
 import { ImageResponse } from 'next/og'
 import { alpha, gridBackground, truncate } from '@/components/og/card-primitives'
 import { OG } from '@/lib/og-palette'
+import { formatMilestoneDate } from '@/lib/utils'
 import { categoryMetadataPosts, chapterMetadata, postsData } from '@/common'
 
 export const dynamic = 'force-static'
@@ -87,7 +88,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
 						{categoryMetadataPosts[post.category].label.toUpperCase()}
 					</div>
 					<div style={{ display: 'flex', fontSize: 22, color: OG.muted }}>
-						{`${post.publishedAt}  ·  ${post.readingMinutes} MIN`}
+						{`${formatMilestoneDate(post.happenedAt).toUpperCase()}  ·  ${post.readingMinutes} MIN`}
 					</div>
 				</div>
 				<div style={{ display: 'flex', fontSize: 22, letterSpacing: 2, color: OG.muted }}>nooobtimex.me/blog</div>

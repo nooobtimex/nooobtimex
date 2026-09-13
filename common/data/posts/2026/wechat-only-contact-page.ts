@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const wechatOnlyContactPage: PostDef = {
 	id: 'wechat-only-contact-page',
 	title: 'Designing a contact page for a hall where only WeChat works',
-	publishedAt: '2026-07-20',
+	happenedAt: '2026-07-20',
 	chapter: 'freelance',
 	draft: true
 }

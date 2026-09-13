@@ -5,8 +5,9 @@ import type { PostDef } from '../../../interfaces'
 export const containerRss402To126: PostDef = {
 	id: 'container-rss-402-to-126',
 	title: '402 MB to 126 MB: what was actually in my Next.js container',
-	publishedAt: '2026-07-31',
-	updatedAt: '2026-08-25',
+	happenedAt: '2026-07-31',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'freelance',
 	category: 'infrastructure',
 	series: { id: 'container-diet', part: 2 },

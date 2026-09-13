@@ -14,8 +14,8 @@ description: >-
 
 The Journal is typed data, not MDX. One post is one `PostDef` object in
 `common/data/posts/<year>/<id>.ts`, where **filename === `id`** and the export is the
-camelCase of it. Registration is `<year>/index.ts` (ordered by `publishedAt`, then `id`)
-→ `posts/index.ts`.
+camelCase of it. Registration is `<year>/index.ts` (the year of `happenedAt`, ordered by
+`happenedAt`, then `id`) → `posts/index.ts`.
 
 **`draft: false` IS publishing.** There is no scheduler. Merging a non-draft post puts it
 on nooobtimex.me, in the sitemap, in `llms.txt` and in the OG card route. Finish it before
@@ -126,11 +126,12 @@ Both render with `target="_blank" rel="noopener noreferrer"` automatically. Do n
 
 ## 4. The full-tier contract
 
-Required always: `id`, `title`, `publishedAt`, `chapter`. Required once `draft` is off,
+Required always: `id`, `title`, `happenedAt`, `chapter`. Required once `draft` is off,
 each one a build error:
 
 | Field         | Rule                                                                      |
 | :------------ | :------------------------------------------------------------------------ |
+| `publishedAt` | the go-live day — `happenedAt` ≤ `publishedAt` ≤ today                    |
 | `description` | ≤ 155 chars                                                               |
 | `tldr`        | ≥ 120 chars — the direct answer; the ONLY thing `llms.txt` emits per post |
 | `faqs`        | ≥ 3, query-shaped questions — feeds FAQPage JSON-LD                       |
@@ -138,8 +139,15 @@ each one a build error:
 | `sources`     | ≥ 2 when the body has a `code` block                                      |
 | `category`    | `nextjs \| infrastructure \| commerce \| seo-aeo \| engineering`          |
 
-- `publishedAt` is **the real date of the event**, never the writing date, never future.
-  `updatedAt` is the writing date.
+- **Two dates, never one standing in for the other.** `happenedAt` is **the real date of
+  the event** — a milestone, a commit, a role date — however far back; it orders the
+  archive and renders as "Happened". `publishedAt` is **the day the post goes live** (the
+  commit that removes `draft`); it is what `datePublished`, `article:published_time` and
+  the sitemap report. Google's byline-date guidance forbids giving "the date of the action
+  described on the page" as the publication date — the single-date rule did exactly that,
+  and 30 posts written on 2026-08-25 claimed to be from as early as 2021.
+- `updatedAt` is the last reader-visible revision **after** going live — omit it until
+  there is one. The resolver rejects `updatedAt ≤ publishedAt`.
 - `title` is query-shaped — how someone would search it, not a clever headline.
 - Inline format is exactly four forms: `` `code` ``, `**bold**`, `[text](href)`,
   `[[kind:id]]` where kind is `skill|project|career|company`. **Single-star `*italics*`
@@ -162,12 +170,15 @@ each one a build error:
 
 ## 6. Ship
 
+In the same commit that removes `draft: true`, set `publishedAt` to that day's date.
+Revising an already-published post? Set `updatedAt` to the day of the revision.
+
 ```bash
 bun run lint && bun run build && bun run links:external && bun run llms:generate
 ```
 
-`build` is `icons:check` → `next build` → `links:check`. `llms:generate` is **not** in
-the build — regenerate and commit `public/llms.txt`, or it goes stale silently.
+`build` is `icons:check` → `next build` → `links:check` → `seo:check`. `llms:generate` is
+**not** in the build — regenerate and commit `public/llms.txt`, or it goes stale silently.
 
 Then verify what actually shipped: published count rose, the series strip reads
 "Part N of M", `/sitemap.xml` holds exactly the non-draft posts, and the new slugs render.

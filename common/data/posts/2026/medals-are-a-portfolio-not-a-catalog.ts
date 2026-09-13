@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const medalsAreAPortfolioNotACatalog: PostDef = {
 	id: 'medals-are-a-portfolio-not-a-catalog',
 	title: '122 medals we already made are not a catalog — they are a portfolio',
-	publishedAt: '2026-08-22',
+	happenedAt: '2026-08-22',
 	chapter: 'ownership',
 	draft: true
 }

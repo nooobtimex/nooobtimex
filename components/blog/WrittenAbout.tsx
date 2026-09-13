@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import MotionReveal from '@/components/cyber/MotionReveal'
+import { formatMilestoneDate } from '@/lib/utils'
 import type { Post } from '@/common'
 
 /**
@@ -30,7 +31,7 @@ const WrittenAbout: React.FC<{ posts?: Post[] }> = ({ posts }) => {
 							</h3>
 							<p className='text-muted-foreground mt-2 line-clamp-2 text-sm leading-relaxed'>{p.description}</p>
 							<p className='text-muted-foreground mt-2 font-mono text-[0.65rem] tracking-wider uppercase'>
-								{p.publishedAt} · {p.readingMinutes} min
+								{formatMilestoneDate(p.happenedAt)} · {p.readingMinutes} min
 							</p>
 						</Link>
 					</MotionReveal>

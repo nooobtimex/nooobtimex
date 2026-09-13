@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import CyberIcon from '@/components/cyber/CyberIcon'
+import { formatMilestoneDate } from '@/lib/utils'
 import { type Post, categoryMetadataPosts, chapterMetadata } from '@/common'
 
 interface PostCardProps {
@@ -33,9 +34,8 @@ const PostCard: React.FC<PostCardProps> = ({ post, index = 0 }) => {
 			<div className='flex flex-1 flex-col gap-3 p-4'>
 				<div className='flex items-center justify-between font-mono text-[0.65rem] tracking-widest'>
 					<span className='text-cyber-cyan'>{String(index + 1).padStart(2, '0')} //</span>
-					<time dateTime={post.publishedAt} className='text-muted-foreground'>
-						{post.publishedAt}
-					</time>
+					{/* When the work happened — the journey order the archive is read in. */}
+					<span className='text-muted-foreground'>{formatMilestoneDate(post.happenedAt)}</span>
 				</div>
 				<h3 className='font-display group-hover:text-cyber-yellow text-xl leading-tight font-bold tracking-wide transition-colors'>
 					{post.title}

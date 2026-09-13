@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const freelancingWithACSuiteTitle: PostDef = {
 	id: 'freelancing-with-a-c-suite-title',
 	title: 'Freelancing while holding a C-suite title: how I decided that was OK',
-	publishedAt: '2026-08-01',
+	happenedAt: '2026-08-01',
 	chapter: 'ownership',
 	draft: true
 }

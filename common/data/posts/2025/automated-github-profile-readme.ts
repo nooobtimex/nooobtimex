@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const automatedGithubProfileReadme: PostDef = {
 	id: 'automated-github-profile-readme',
 	title: 'An automated GitHub profile README with scheduled workflows',
-	publishedAt: '2025-12-23',
+	happenedAt: '2025-12-23',
 	chapter: 'freelance',
 	draft: true
 }

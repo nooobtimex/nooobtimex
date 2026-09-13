@@ -1,4 +1,4 @@
-/** Publication order for 2022 — regenerated from the folder, ordered by (publishedAt, id). */
+/** Journey order for 2022 — regenerated from the folder, ordered by (happenedAt, id). */
 import type { PostDef } from '../../../interfaces'
 import { brandAlignedWordpressCatalogTheme } from './brand-aligned-wordpress-catalog-theme'
 import { firstClientWorkWasWordpress } from './first-client-work-was-wordpress'

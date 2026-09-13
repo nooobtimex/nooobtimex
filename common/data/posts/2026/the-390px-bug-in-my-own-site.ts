@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const the390pxBugInMyOwnSite: PostDef = {
 	id: 'the-390px-bug-in-my-own-site',
 	title: 'I sell mobile-layout fixes. My own site broke at 390px.',
-	publishedAt: '2026-08-24',
+	happenedAt: '2026-08-24',
 	chapter: 'ownership',
 	draft: true
 }

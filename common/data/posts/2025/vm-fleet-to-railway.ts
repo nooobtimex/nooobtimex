@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const vmFleetToRailway: PostDef = {
 	id: 'vm-fleet-to-railway',
 	title: 'Retiring self-managed VMs and CircleCI + SSH for Railway across a fleet',
-	publishedAt: '2025-11-07',
-	updatedAt: '2026-08-25',
+	happenedAt: '2025-11-07',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'scale',
 	series: { id: 'looklook', part: 2 },
 	category: 'infrastructure',

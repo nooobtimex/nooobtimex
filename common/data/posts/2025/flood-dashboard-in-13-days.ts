@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const floodDashboardIn13Days: PostDef = {
 	id: 'flood-dashboard-in-13-days',
 	title: 'Building a flood-monitoring dashboard in 13 days',
-	publishedAt: '2025-02-19',
+	happenedAt: '2025-02-19',
 	chapter: 'freelance',
 	draft: true
 }

@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const navyGoldDesignTokenSystem: PostDef = {
 	id: 'navy-gold-design-token-system',
 	title: 'A navy-and-gold design-token system replacing hardcoded values',
-	publishedAt: '2026-05-12',
+	happenedAt: '2026-05-12',
 	chapter: 'scale',
 	draft: true
 }

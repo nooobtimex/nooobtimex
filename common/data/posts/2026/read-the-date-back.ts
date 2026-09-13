@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const readTheDateBack: PostDef = {
 	id: 'read-the-date-back',
 	title: 'Read the date back. I got it wrong twice.',
-	publishedAt: '2026-08-21',
+	happenedAt: '2026-08-21',
 	chapter: 'ownership',
 	draft: true
 }

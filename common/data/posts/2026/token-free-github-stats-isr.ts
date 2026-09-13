@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const tokenFreeGithubStatsIsr: PostDef = {
 	id: 'token-free-github-stats-isr',
 	title: 'Token-free GitHub stats with ISR: no PAT, no rate-limit wall',
-	publishedAt: '2026-06-08',
-	updatedAt: '2026-08-25',
+	happenedAt: '2026-06-08',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'freelance',
 	category: 'nextjs',
 	description:

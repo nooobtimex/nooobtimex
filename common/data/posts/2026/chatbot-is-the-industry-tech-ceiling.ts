@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const chatbotIsTheIndustryTechCeiling: PostDef = {
 	id: 'chatbot-is-the-industry-tech-ceiling',
 	title: 'Two of my own documents disagree about whether our AI assistant matters',
-	publishedAt: '2026-08-07',
+	happenedAt: '2026-08-07',
 	chapter: 'ownership',
 	draft: true
 }

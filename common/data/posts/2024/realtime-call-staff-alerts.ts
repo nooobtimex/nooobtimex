@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const realtimeCallStaffAlerts: PostDef = {
 	id: 'realtime-call-staff-alerts',
 	title: 'Real-time call-staff alerts: polling versus push in a restaurant hall',
-	publishedAt: '2024-08-10',
+	happenedAt: '2024-08-10',
 	chapter: 'student',
 	draft: true
 }

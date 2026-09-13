@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const fastworkSellerCenterMechanics: PostDef = {
 	id: 'fastwork-seller-center-mechanics',
 	title: 'What the Seller Center actually says: 10 services, and a path to 0% commission',
-	publishedAt: '2026-08-24',
+	happenedAt: '2026-08-24',
 	chapter: 'freelance',
 	draft: true
 }

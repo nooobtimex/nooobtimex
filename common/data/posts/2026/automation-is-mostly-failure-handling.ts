@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const automationIsMostlyFailureHandling: PostDef = {
 	id: 'automation-is-mostly-failure-handling',
 	title: 'Most of my automation is failure handling',
-	publishedAt: '2026-08-18',
-	updatedAt: '2026-08-25',
+	happenedAt: '2026-08-18',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'ownership',
 	category: 'engineering',
 	description:

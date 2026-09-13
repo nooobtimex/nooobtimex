@@ -6,8 +6,8 @@ import type { PostDef } from '../../../interfaces'
 export const railwayStartCommandThreePlaces: PostDef = {
 	id: 'railway-start-command-three-places',
 	title: 'Three places a Railway container can get its start command',
-	publishedAt: '2026-07-30',
-	updatedAt: '2026-09-05',
+	happenedAt: '2026-07-30',
+	publishedAt: '2026-09-05',
 	chapter: 'freelance',
 	category: 'infrastructure',
 	series: { id: 'container-diet', part: 5 },

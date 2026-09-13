@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const perBranchMenuAvailability: PostDef = {
 	id: 'per-branch-menu-availability',
 	title: 'Per-branch menu availability without duplicating the catalog',
-	publishedAt: '2024-08-10',
+	happenedAt: '2024-08-10',
 	chapter: 'student',
 	draft: true
 }

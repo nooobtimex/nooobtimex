@@ -3,7 +3,9 @@ import type { PostDef } from '../../../interfaces'
 export const rootLayoutCanonical90Duplicates: PostDef = {
 	id: 'root-layout-canonical-90-duplicates',
 	title: 'One line in layout.tsx told Google 90 pages were duplicates of my homepage',
-	publishedAt: '2026-08-24',
+	happenedAt: '2026-08-24',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'ownership',
 	category: 'seo-aeo',
 	series: { id: 'seo-forensics', part: 1 },

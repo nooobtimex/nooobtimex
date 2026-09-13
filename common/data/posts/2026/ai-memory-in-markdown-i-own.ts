@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const aiMemoryInMarkdownIOwn: PostDef = {
 	id: 'ai-memory-in-markdown-i-own',
 	title: "I moved my AI's memory into Markdown files I own",
-	publishedAt: '2026-08-22',
+	happenedAt: '2026-08-22',
 	chapter: 'ownership',
 	draft: true
 }

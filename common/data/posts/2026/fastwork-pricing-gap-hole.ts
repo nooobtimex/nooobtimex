@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const fastworkPricingGapHole: PostDef = {
 	id: 'fastwork-pricing-gap-hole',
 	title: 'The empty price band nobody occupies',
-	publishedAt: '2026-08-22',
+	happenedAt: '2026-08-22',
 	chapter: 'freelance',
 	draft: true
 }

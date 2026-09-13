@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const twoTrueFactsOneConfidentLie: PostDef = {
 	id: 'two-true-facts-one-confident-lie',
 	title: 'Two true facts, joined, make one confident lie',
-	publishedAt: '2026-08-22',
+	happenedAt: '2026-08-22',
 	chapter: 'ownership',
 	draft: true
 }

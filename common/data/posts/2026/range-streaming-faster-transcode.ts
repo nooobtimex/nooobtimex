@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const rangeStreamingFasterTranscode: PostDef = {
 	id: 'range-streaming-faster-transcode',
 	title: 'HTTP Range video streaming and a faster ffmpeg transcode',
-	publishedAt: '2026-06-26',
+	happenedAt: '2026-06-26',
 	chapter: 'scale',
 	series: { id: 'looklook', part: 8 },
 	draft: true

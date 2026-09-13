@@ -206,29 +206,36 @@ export interface PostFaq {
 /**
  * Authoring shape for a blog post. Two validation tiers, enforced by `resolvePost`:
  *
- * - **Stub** (`draft: true`): only `id`, `title`, `publishedAt`, `chapter` are needed.
+ * - **Stub** (`draft: true`): only `id`, `title`, `happenedAt`, `chapter` are needed.
  *   Renders nowhere — not prerendered, not in the sitemap, llms.txt or ⌘K, and its URL
  *   is a real 404 (`dynamicParams = false`). The backlog lives in the repo as stubs.
  * - **Full** (no `draft`): every AEO field below is required and validated. Flipping
  *   `draft` off IS publishing — there is no scheduler.
  *
- * `publishedAt` is always the real date of the event the post is about — a milestone,
- * a commit, a role date — never a future date (the resolver throws on one).
+ * Two dates, never one standing in for the other:
+ * - `happenedAt` is the date of the event the post is about — a milestone, a commit, a role
+ *   date — however far back. It orders the journey: the archive, chapters, "Happened".
+ * - `publishedAt` is the day the post went live — the commit that removed `draft`. It is
+ *   what `datePublished`, `article:published_time` and the sitemap report, because Google's
+ *   byline-date guidance says a page must not claim "the date of the action described on the
+ *   page" as its publication date. The two used to be one field, and 30 posts written on
+ *   2026-08-25 claimed to have been published as early as 2021.
  */
 export interface PostDef {
 	id: string // url-safe id — /blog/<id>. NEVER slugify(title); see scripts/links/check.ts.
 	title: string // query-shaped — how someone would SEARCH it, not a clever headline
-	publishedAt: string // YYYY-MM-DD — the REAL date of the event this post is about (milestone, commit, role date). Never future; same-day ties sort by registry order.
+	happenedAt: string // YYYY-MM-DD — the REAL date of the event this post is about (milestone, commit, role date). Orders the journey; same-day ties sort by registry order.
 	chapter: PostChapter
 	draft?: boolean
 	// --- Required once draft is off (resolvePost enforces) ---
+	publishedAt?: string // YYYY-MM-DD — the day the post went live (set it in the commit that removes `draft`). Never before happenedAt, never future.
 	description?: string // <= 155 chars — the meta description
 	tldr?: string // 2-3 sentences, THE direct answer. Rendered first; what an engine cites.
 	category?: PostCategory
 	faqs?: PostFaq[] // >= 3 — feeds FAQPage JSON-LD, rendered visibly by PostFaq
 	body?: PostBlock[]
 	// --- Optional either way ---
-	updatedAt?: string // YYYY-MM-DD, >= publishedAt
+	updatedAt?: string // YYYY-MM-DD — last reader-visible revision after going live; > publishedAt, or omitted
 	series?: { id: string; part: number } // cross-chapter topic cluster, e.g. 'container-diet'
 	lessons?: string[] // the "what I'd do differently" bullets
 	skills?: SkillId[] // cross-links to /skills/<id> — typo-checked at compile time
@@ -242,6 +249,7 @@ export interface PostDef {
 
 /** A resolved, publishable post — every AEO field present, `readingMinutes` derived. */
 export interface Post extends PostDef {
+	publishedAt: string
 	description: string
 	tldr: string
 	category: PostCategory

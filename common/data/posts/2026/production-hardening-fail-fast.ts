@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const productionHardeningFailFast: PostDef = {
 	id: 'production-hardening-fail-fast',
 	title: 'Production hardening: fail-fast secrets, graceful shutdown, health checks, rate limits',
-	publishedAt: '2026-06-07',
+	happenedAt: '2026-06-07',
 	chapter: 'scale',
 	draft: true
 }

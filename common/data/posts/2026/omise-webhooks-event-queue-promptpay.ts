@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const omiseWebhooksEventQueuePromptpay: PostDef = {
 	id: 'omise-webhooks-event-queue-promptpay',
 	title: 'Omise payments properly: webhook signatures, an async event queue, native PromptPay',
-	publishedAt: '2026-02-09',
+	happenedAt: '2026-02-09',
 	chapter: 'scale',
 	series: { id: 'looklook', part: 4 },
 	draft: true

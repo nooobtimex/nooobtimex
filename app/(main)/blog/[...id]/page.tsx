@@ -63,6 +63,7 @@ const PostPage: React.FC<PostPageProps> = async ({ params }) => {
 		description: post.description,
 		publishedAt: post.publishedAt,
 		updatedAt: post.updatedAt,
+		happenedAt: post.happenedAt,
 		section: categoryMetadataPosts[post.category].label,
 		keywords: post.skills ?? [],
 		wordCount: post.readingMinutes * 200,

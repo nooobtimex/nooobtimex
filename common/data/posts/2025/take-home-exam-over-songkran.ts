@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const takeHomeExamOverSongkran: PostDef = {
 	id: 'take-home-exam-over-songkran',
 	title: 'The take-home exam I did over Songkran',
-	publishedAt: '2025-04-14',
+	happenedAt: '2025-04-14',
 	chapter: 'student',
 	draft: true
 }

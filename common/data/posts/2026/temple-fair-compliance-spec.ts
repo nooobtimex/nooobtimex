@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const templeFairComplianceSpec: PostDef = {
 	id: 'temple-fair-compliance-spec',
 	title: 'A temple fair has a compliance spec',
-	publishedAt: '2026-08-21',
+	happenedAt: '2026-08-21',
 	chapter: 'ownership',
 	draft: true
 }

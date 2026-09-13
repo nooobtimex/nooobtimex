@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const timeSeriesReadingsSchemaInPrisma: PostDef = {
 	id: 'time-series-readings-schema-in-prisma',
 	title: 'Designing a time-series readings schema in Prisma',
-	publishedAt: '2025-02-08',
+	happenedAt: '2025-02-08',
 	chapter: 'freelance',
 	draft: true
 }

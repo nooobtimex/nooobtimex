@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const prettierSchemaVersionPickerDiff: PostDef = {
 	id: 'prettier-schema-version-picker-diff',
 	title: 'Auto-generating formatter options from the Prettier schema, per version',
-	publishedAt: '2026-05-27',
+	happenedAt: '2026-05-27',
 	chapter: 'freelance',
 	draft: true
 }

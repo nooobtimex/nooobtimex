@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const lighthouse8862Published: PostDef = {
 	id: 'lighthouse-88-62-published',
 	title: 'Publishing my own unflattering Lighthouse numbers',
-	publishedAt: '2026-08-24',
+	happenedAt: '2026-08-24',
 	chapter: 'ownership',
 	draft: true
 }

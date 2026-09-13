@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const oneBrandTwoIdentities: PostDef = {
 	id: 'one-brand-two-identities',
 	title: 'One brand, two identities — and the collision is the point',
-	publishedAt: '2026-08-07',
+	happenedAt: '2026-08-07',
 	chapter: 'ownership',
 	draft: true
 }

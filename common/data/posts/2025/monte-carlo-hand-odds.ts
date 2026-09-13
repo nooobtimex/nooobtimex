@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const monteCarloHandOdds: PostDef = {
 	id: 'monte-carlo-hand-odds',
 	title: 'A Monte Carlo simulation for live poker win probability',
-	publishedAt: '2025-08-29',
+	happenedAt: '2025-08-29',
 	chapter: 'freelance',
 	draft: true
 }

@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const invertedQrWechatDetector: PostDef = {
 	id: 'inverted-qr-wechat-detector',
 	title: "Inverted QR codes break WeChat's scanner — polarity, not contrast",
-	publishedAt: '2026-07-20',
+	happenedAt: '2026-07-20',
 	chapter: 'freelance',
 	draft: true
 }

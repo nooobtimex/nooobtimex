@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const whyATrophyCompanyNeedsACto: PostDef = {
 	id: 'why-a-trophy-company-needs-a-cto',
 	title: 'Why does a 20-year-old trophy company need a CTO?',
-	publishedAt: '2026-08-07',
+	happenedAt: '2026-08-07',
 	chapter: 'ownership',
 	draft: true
 }

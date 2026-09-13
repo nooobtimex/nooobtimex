@@ -6,8 +6,8 @@ import type { PostDef } from '../../../interfaces'
 export const mallocArenaGlibcSlimTag: PostDef = {
 	id: 'malloc-arena-glibc-slim-tag',
 	title: 'MALLOC_ARENA_MAX across a glibc bump hiding in an unsuffixed -slim tag',
-	publishedAt: '2026-07-31',
-	updatedAt: '2026-09-05',
+	happenedAt: '2026-07-31',
+	publishedAt: '2026-09-05',
 	chapter: 'freelance',
 	category: 'infrastructure',
 	series: { id: 'container-diet', part: 3 },

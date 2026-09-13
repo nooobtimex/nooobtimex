@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const lifeMapFromMemoryFiles: PostDef = {
 	id: 'life-map-from-memory-files',
 	title: 'Generating a life map from your own memory files',
-	publishedAt: '2026-08-25',
+	happenedAt: '2026-08-25',
 	chapter: 'ownership',
 	draft: true
 }

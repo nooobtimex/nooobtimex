@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const seoAeoProductPagesClientSearch: PostDef = {
 	id: 'seo-aeo-product-pages-client-search',
 	title: 'Product pages with SEO/AEO structured data and client-side search',
-	publishedAt: '2026-02-10',
+	happenedAt: '2026-02-10',
 	chapter: 'scale',
 	draft: true
 }

@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const iosSafariZeroByteDownload: PostDef = {
 	id: 'ios-safari-zero-byte-download',
 	title: 'iOS Safari writes a 0-byte file if you revoke the object URL too soon',
-	publishedAt: '2026-07-20',
+	happenedAt: '2026-07-20',
 	chapter: 'freelance',
 	draft: true
 }

@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const competitorResearchAsAMethod: PostDef = {
 	id: 'competitor-research-as-a-method',
 	title: '85 sellers, 13 teardowns, one CSV: researching an industry as a solo CTO',
-	publishedAt: '2026-05-19',
+	happenedAt: '2026-05-19',
 	chapter: 'scale',
 	draft: true
 }

@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const lineOaIsInfrastructure: PostDef = {
 	id: 'line-oa-is-infrastructure',
 	title: 'LINE is not a social platform. For a Thai SME it is infrastructure.',
-	publishedAt: '2026-08-07',
+	happenedAt: '2026-08-07',
 	chapter: 'ownership',
 	draft: true
 }

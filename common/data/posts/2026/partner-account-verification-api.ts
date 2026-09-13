@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const partnerAccountVerificationApi: PostDef = {
 	id: 'partner-account-verification-api',
 	title: 'Integrating a partner account-verification API with sync and reconciliation',
-	publishedAt: '2026-07-03',
+	happenedAt: '2026-07-03',
 	chapter: 'scale',
 	draft: true
 }

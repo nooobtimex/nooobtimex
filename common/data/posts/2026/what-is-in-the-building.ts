@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const whatIsInTheBuilding: PostDef = {
 	id: 'what-is-in-the-building',
 	title: 'Design, zinc casting, laser engraving, electroplating: what a trophy factory actually does',
-	publishedAt: '2026-08-01',
+	happenedAt: '2026-08-01',
 	chapter: 'ownership',
 	draft: true
 }

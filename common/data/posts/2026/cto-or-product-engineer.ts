@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const ctoOrProductEngineer: PostDef = {
 	id: 'cto-or-product-engineer',
 	title: 'CTO, or product engineer? Picking the title after the job',
-	publishedAt: '2026-08-01',
+	happenedAt: '2026-08-01',
 	chapter: 'ownership',
 	draft: true
 }

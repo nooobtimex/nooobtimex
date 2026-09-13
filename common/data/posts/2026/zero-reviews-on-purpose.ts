@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const zeroReviewsOnPurpose: PostDef = {
 	id: 'zero-reviews-on-purpose',
 	title: 'Opening a freelance profile with zero reviews on purpose',
-	publishedAt: '2026-08-01',
+	happenedAt: '2026-08-01',
 	chapter: 'freelance',
 	draft: true
 }

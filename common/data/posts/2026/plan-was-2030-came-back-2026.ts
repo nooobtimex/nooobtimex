@@ -4,8 +4,8 @@ import type { PostDef } from '../../../interfaces'
 export const planWas2030CameBack2026: PostDef = {
 	id: 'plan-was-2030-came-back-2026',
 	title: 'The plan was to come back in 2030. I came back in 2026.',
-	publishedAt: '2026-08-01',
-	updatedAt: '2026-08-25',
+	happenedAt: '2026-08-01',
+	publishedAt: '2026-08-25',
 	chapter: 'ownership',
 	category: 'engineering',
 	description:

@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const inHouseQrCertificateVerification: PostDef = {
 	id: 'in-house-qr-certificate-verification',
 	title: 'Replacing an external QR service with in-house certificate verification',
-	publishedAt: '2026-06-16',
+	happenedAt: '2026-06-16',
 	chapter: 'scale',
 	draft: true
 }

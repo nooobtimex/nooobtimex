@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const tournamentModeAndSpectators: PostDef = {
 	id: 'tournament-mode-and-spectators',
 	title: 'Tournament mode, spectator roles, and a pre-showdown reveal',
-	publishedAt: '2025-10-27',
+	happenedAt: '2025-10-27',
 	chapter: 'freelance',
 	draft: true
 }

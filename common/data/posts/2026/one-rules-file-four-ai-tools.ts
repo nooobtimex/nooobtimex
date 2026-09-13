@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const oneRulesFileFourAiTools: PostDef = {
 	id: 'one-rules-file-four-ai-tools',
 	title: 'One rules file, four AI tools',
-	publishedAt: '2026-08-24',
+	happenedAt: '2026-08-24',
 	chapter: 'ownership',
 	draft: true
 }

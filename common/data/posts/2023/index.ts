@@ -1,4 +1,4 @@
-/** Publication order for 2023 — regenerated from the folder, ordered by (publishedAt, id). */
+/** Journey order for 2023 — regenerated from the folder, ordered by (happenedAt, id). */
 import type { PostDef } from '../../../interfaces'
 import { onpageSeoForAThaiB2bCatalog } from './onpage-seo-for-a-thai-b2b-catalog'
 import { replacingPosHardwareWithQrOrdering } from './replacing-pos-hardware-with-qr-ordering'

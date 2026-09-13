@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const browserOnlyPrettierPlayground: PostDef = {
 	id: 'browser-only-prettier-playground',
 	title: 'prettier-config.dev: a formatter playground that runs entirely in the browser',
-	publishedAt: '2025-09-06',
+	happenedAt: '2025-09-06',
 	chapter: 'freelance',
 	draft: true
 }

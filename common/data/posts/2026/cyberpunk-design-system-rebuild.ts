@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const cyberpunkDesignSystemRebuild: PostDef = {
 	id: 'cyberpunk-design-system-rebuild',
 	title: 'Rebuilding my site on a Cyberpunk 2077 design system',
-	publishedAt: '2026-06-08',
+	happenedAt: '2026-06-08',
 	chapter: 'freelance',
 	draft: true
 }

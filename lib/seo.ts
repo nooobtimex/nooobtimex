@@ -46,8 +46,9 @@ interface PageMetaInput {
 	ogImage?: string
 	/**
 	 * Present on blog posts only. Switches `openGraph.type` to `'article'` and carries
-	 * the byline fields. `publishedTime` is the date the URL went public, which for a
-	 * backfilled post is its real milestone date — never a future date.
+	 * the byline fields. `publishedTime` is the day the URL went public (`Post.publishedAt`),
+	 * never the date of the event the post describes — that is `happenedAt`, and belongs in
+	 * the JSON-LD's `temporalCoverage`, not in a byline.
 	 */
 	article?: { publishedTime: string; modifiedTime?: string; section: string; tags?: string[] }
 	/**

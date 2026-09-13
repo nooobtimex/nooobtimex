@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const leafletMarkerClusteringStationMap: PostDef = {
 	id: 'leaflet-marker-clustering-station-map',
 	title: 'A live station map with Leaflet marker clustering',
-	publishedAt: '2025-02-10',
+	happenedAt: '2025-02-10',
 	chapter: 'freelance',
 	draft: true
 }

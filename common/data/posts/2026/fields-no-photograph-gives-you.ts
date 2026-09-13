@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const fieldsNoPhotographGivesYou: PostDef = {
 	id: 'fields-no-photograph-gives-you',
 	title: 'The fields no photograph can give you',
-	publishedAt: '2026-08-22',
+	happenedAt: '2026-08-22',
 	chapter: 'ownership',
 	draft: true
 }

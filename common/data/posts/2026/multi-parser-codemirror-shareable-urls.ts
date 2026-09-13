@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const multiParserCodemirrorShareableUrls: PostDef = {
 	id: 'multi-parser-codemirror-shareable-urls',
 	title: 'A multi-parser CodeMirror editor with URL-encoded shareable configs',
-	publishedAt: '2026-05-29',
+	happenedAt: '2026-05-29',
 	chapter: 'freelance',
 	draft: true
 }

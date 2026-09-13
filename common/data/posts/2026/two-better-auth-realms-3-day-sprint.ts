@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const twoBetterAuthRealms3DaySprint: PostDef = {
 	id: 'two-better-auth-realms-3-day-sprint',
 	title: 'Two isolated better-auth realms in one Next.js app — a 3-day sprint',
-	publishedAt: '2026-06-16',
+	happenedAt: '2026-06-16',
 	chapter: 'scale',
 	draft: true
 }

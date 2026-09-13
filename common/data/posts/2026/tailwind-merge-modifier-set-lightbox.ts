@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const tailwindMergeModifierSetLightbox: PostDef = {
 	id: 'tailwind-merge-modifier-set-lightbox',
 	title: 'tailwind-merge keys max-width by modifier set: the 448px lightbox',
-	publishedAt: '2026-07-31',
+	happenedAt: '2026-07-31',
 	chapter: 'freelance',
 	draft: true
 }

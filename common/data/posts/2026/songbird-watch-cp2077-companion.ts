@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const songbirdWatchCp2077Companion: PostDef = {
 	id: 'songbird-watch-cp2077-companion',
 	title: 'A health tracker disguised as a Cyberpunk 2077 companion',
-	publishedAt: '2026-06-01',
+	happenedAt: '2026-06-01',
 	chapter: 'freelance',
 	draft: true
 }

@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const tealEraNavyEra: PostDef = {
 	id: 'teal-era-navy-era',
 	title: 'The teal era and the navy era, sitting in the same folder',
-	publishedAt: '2026-08-22',
+	happenedAt: '2026-08-22',
 	chapter: 'ownership',
 	draft: true
 }

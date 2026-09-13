@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const sessionAuthForGameRooms: PostDef = {
 	id: 'session-auth-for-game-rooms',
 	title: 'Session-based authentication for multiplayer game rooms',
-	publishedAt: '2025-08-05',
+	happenedAt: '2025-08-05',
 	chapter: 'freelance',
 	draft: true
 }

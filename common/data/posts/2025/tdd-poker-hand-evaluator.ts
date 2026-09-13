@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const tddPokerHandEvaluator: PostDef = {
 	id: 'tdd-poker-hand-evaluator',
 	title: 'Test-driving a poker hand evaluator',
-	publishedAt: '2025-06-11',
-	updatedAt: '2026-08-25',
+	happenedAt: '2025-06-11',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'freelance',
 	category: 'engineering',
 	description:

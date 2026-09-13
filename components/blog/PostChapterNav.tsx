@@ -11,7 +11,7 @@ const PostChapterNav: React.FC<{ post: Post }> = ({ post }) => {
 	// Chapter timeline runs oldest → newest, the direction the journey is read in.
 	const chapter = postsData
 		.filter(p => p.chapter === post.chapter)
-		.sort((a, b) => a.publishedAt.localeCompare(b.publishedAt))
+		.sort((a, b) => a.happenedAt.localeCompare(b.happenedAt))
 	const at = chapter.findIndex(p => p.id === post.id)
 	const prev = at > 0 ? chapter[at - 1] : undefined
 	const next = at < chapter.length - 1 ? chapter[at + 1] : undefined

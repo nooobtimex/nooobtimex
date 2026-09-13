@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const woocommerceStorefrontForAManufacturer: PostDef = {
 	id: 'woocommerce-storefront-for-a-manufacturer',
 	title: 'Launching a WooCommerce storefront for a Thai manufacturer',
-	publishedAt: '2022-11-01',
-	updatedAt: '2026-08-25',
+	happenedAt: '2022-11-01',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'student',
 	category: 'commerce',
 	description:

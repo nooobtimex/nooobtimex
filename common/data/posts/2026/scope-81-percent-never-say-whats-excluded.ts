@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const scope81PercentNeverSayWhatsExcluded: PostDef = {
 	id: 'scope-81-percent-never-say-whats-excluded',
 	title: '81% of listings never say what is NOT included',
-	publishedAt: '2026-08-22',
+	happenedAt: '2026-08-22',
 	chapter: 'freelance',
 	draft: true
 }

@@ -80,8 +80,11 @@ interface BlogPostingInput {
 	id: string
 	title: string
 	description: string
+	/** When the post went live — the byline date. */
 	publishedAt: string
 	updatedAt?: string
+	/** When the events it describes happened — carried as `temporalCoverage`, never as a byline date. */
+	happenedAt: string
 	section: string
 	keywords: string[]
 	wordCount: number
@@ -98,6 +101,11 @@ interface BlogPostingInput {
  * visual footer only: a human sees the post is grounded in the Next.js docs and a bug
  * report, and a machine reading the structured data sees an unsourced opinion. Reachability
  * of these URLs is enforced separately by `bun run links:external`.
+ *
+ * `datePublished` is the day the post went live. A post about 2021 written in 2026 is
+ * published in 2026; the year it is ABOUT goes in `temporalCoverage` — schema.org's "the
+ * period that the content applies to" — which is exactly what Google's byline-date
+ * guidance asks for instead of backdating the page.
  */
 export const blogPostingSchema = (post: BlogPostingInput) => ({
 	'@context': 'https://schema.org',
@@ -108,6 +116,7 @@ export const blogPostingSchema = (post: BlogPostingInput) => ({
 	'url': `${SITE_URL}/blog/${post.id}`,
 	'datePublished': post.publishedAt,
 	'dateModified': post.updatedAt ?? post.publishedAt,
+	'temporalCoverage': post.happenedAt,
 	'inLanguage': 'en',
 	'author': personRef(),
 	'publisher': personRef(),

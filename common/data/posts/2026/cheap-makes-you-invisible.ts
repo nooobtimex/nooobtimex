@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const cheapMakesYouInvisible: PostDef = {
 	id: 'cheap-makes-you-invisible',
 	title: 'On this platform, cheap makes you invisible',
-	publishedAt: '2026-08-22',
+	happenedAt: '2026-08-22',
 	chapter: 'freelance',
 	draft: true
 }

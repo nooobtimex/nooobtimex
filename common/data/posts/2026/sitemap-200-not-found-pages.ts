@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const sitemap200NotFoundPages: PostDef = {
 	id: 'sitemap-200-not-found-pages',
 	title: 'Your sitemap can submit 200-status Not Found pages',
-	publishedAt: '2026-08-24',
-	updatedAt: '2026-08-25',
+	happenedAt: '2026-08-24',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'ownership',
 	series: { id: 'seo-forensics', part: 3 },
 	category: 'seo-aeo',

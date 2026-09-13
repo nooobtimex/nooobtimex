@@ -26,9 +26,14 @@ export function formatExperienceDuration(startDate: string, endDate?: string): s
 	return `${startMonth} ${startYear} - ${endMonth} ${endYear}`
 }
 
-// Format a single milestone date as e.g. "Jun 2026"
+/**
+ * Format a `YYYY-MM-DD` date as e.g. "Jun 2026" — project milestones and a post's `happenedAt`.
+ *
+ * Formatted in UTC because that is how the string parses: `new Date('2021-08-01')` is UTC
+ * midnight, so formatting it in local time prints "Jul 2021" on any machine west of UTC.
+ */
 export function formatMilestoneDate(date: string): string {
-	return new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+	return new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
 }
 
 /** Format a kebab-case position id for display, e.g. 'chief-technology-officer' → 'Chief Technology Officer'. */

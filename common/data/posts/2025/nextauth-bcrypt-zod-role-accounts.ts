@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const nextauthBcryptZodRoleAccounts: PostDef = {
 	id: 'nextauth-bcrypt-zod-role-accounts',
 	title: 'Role-based accounts with NextAuth, bcrypt and Zod — the whole flow',
-	publishedAt: '2025-02-07',
-	updatedAt: '2026-08-25',
+	happenedAt: '2025-02-07',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'freelance',
 	category: 'nextjs',
 	description:

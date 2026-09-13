@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const sideProjectInMyNoticePeriod: PostDef = {
 	id: 'side-project-in-my-notice-period',
 	title: 'I shipped a side project during my notice period',
-	publishedAt: '2025-07-09',
+	happenedAt: '2025-07-09',
 	chapter: 'bridge',
 	draft: true
 }

@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const brokenTemplateLiteralShips: PostDef = {
 	id: 'broken-template-literal-ships',
 	title: 'A broken template literal does not throw — it ships',
-	publishedAt: '2026-08-22',
+	happenedAt: '2026-08-22',
 	chapter: 'ownership',
 	draft: true
 }

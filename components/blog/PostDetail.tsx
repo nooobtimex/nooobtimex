@@ -10,6 +10,7 @@ import Container from '@/components/cyber/Container'
 import CyberIcon from '@/components/cyber/CyberIcon'
 import NeonPanel from '@/components/cyber/NeonPanel'
 import { InlineText } from '@/lib/inline'
+import { formatMilestoneDate } from '@/lib/utils'
 import { type Post, categoryMetadataPosts, chapterMetadata } from '@/common'
 
 const StatCell: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
@@ -45,9 +46,12 @@ const PostDetail: React.FC<{ post: Post; adAfter?: Readonly<Record<number, strin
 				<p className='text-muted-foreground mt-3 max-w-3xl leading-relaxed'>{post.description}</p>
 			</NeonPanel>
 
-			{/* Meta strip */}
-			<NeonPanel className='clip-notch-sm mt-6 grid grid-cols-2 gap-4 p-4 sm:grid-cols-4'>
-				<StatCell label='Logged'>
+			{/* Meta strip. The event and the write-up are different dates, and only the second is
+			    the page's publication date — it matches `datePublished` in the JSON-LD. "Happened"
+			    is plain month text, not a <time>, so it is never read as the byline date. */}
+			<NeonPanel className='clip-notch-sm mt-6 grid grid-cols-2 gap-4 p-4 sm:grid-cols-3 lg:grid-cols-5'>
+				<StatCell label='Happened'>{formatMilestoneDate(post.happenedAt)}</StatCell>
+				<StatCell label='Published'>
 					<time dateTime={post.publishedAt}>{post.publishedAt}</time>
 				</StatCell>
 				<StatCell label='Updated'>

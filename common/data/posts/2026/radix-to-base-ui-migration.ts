@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const radixToBaseUiMigration: PostDef = {
 	id: 'radix-to-base-ui-migration',
 	title: 'Migrating shadcn/ui from Radix to Base UI',
-	publishedAt: '2026-04-09',
+	happenedAt: '2026-04-09',
 	chapter: 'freelance',
 	draft: true
 }

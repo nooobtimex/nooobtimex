@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const modularPotPositionBettingManagers: PostDef = {
 	id: 'modular-pot-position-betting-managers',
 	title: 'Refactoring a game engine into pot, position and betting managers',
-	publishedAt: '2025-07-05',
+	happenedAt: '2025-07-05',
 	chapter: 'freelance',
 	draft: true
 }

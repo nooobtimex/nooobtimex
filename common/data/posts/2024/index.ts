@@ -1,4 +1,4 @@
-/** Publication order for 2024 — regenerated from the folder, ordered by (publishedAt, id). */
+/** Journey order for 2024 — regenerated from the folder, ordered by (happenedAt, id). */
 import type { PostDef } from '../../../interfaces'
 import { post38EndpointThesisOnVercel } from './38-endpoint-thesis-on-vercel'
 import { multiBranchRestaurantSchemaInPrisma } from './multi-branch-restaurant-schema-in-prisma'

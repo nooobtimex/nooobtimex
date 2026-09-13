@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const whyNuxtNotNextForMyThesis: PostDef = {
 	id: 'why-nuxt-not-next-for-my-thesis',
 	title: 'Why I built my thesis on Nuxt 3 instead of Next.js',
-	publishedAt: '2024-03-15',
-	updatedAt: '2026-08-25',
+	happenedAt: '2024-03-15',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'student',
 	category: 'engineering',
 	description:

@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const firstClientWorkWasWordpress: PostDef = {
 	id: 'first-client-work-was-wordpress',
 	title: 'My first client work was WordPress, and that was the right call',
-	publishedAt: '2022-03-01',
-	updatedAt: '2026-08-25',
+	happenedAt: '2022-03-01',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'student',
 	category: 'engineering',
 	description:

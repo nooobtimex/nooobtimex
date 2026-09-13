@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const reactSilentlyAteMyFormValues: PostDef = {
 	id: 'react-silently-ate-my-form-values',
 	title: 'React silently ate my form values',
-	publishedAt: '2026-08-24',
+	happenedAt: '2026-08-24',
 	chapter: 'freelance',
 	draft: true
 }

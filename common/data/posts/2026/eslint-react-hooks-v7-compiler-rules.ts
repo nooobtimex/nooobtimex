@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const eslintReactHooksV7CompilerRules: PostDef = {
 	id: 'eslint-react-hooks-v7-compiler-rules',
 	title: "React Compiler's rules are on even when React Compiler is not",
-	publishedAt: '2026-08-24',
+	happenedAt: '2026-08-24',
 	chapter: 'ownership',
 	draft: true
 }

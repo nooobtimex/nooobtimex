@@ -6,8 +6,8 @@ import type { PostDef } from '../../../interfaces'
 export const droppingNextImageQualitiesTrap: PostDef = {
 	id: 'dropping-next-image-qualities-trap',
 	title: 'Dropping next/image on purpose: libvips, host cores, and the qualities:[100] trap',
-	publishedAt: '2026-07-31',
-	updatedAt: '2026-09-05',
+	happenedAt: '2026-07-31',
+	publishedAt: '2026-09-05',
 	chapter: 'freelance',
 	category: 'infrastructure',
 	series: { id: 'container-diet', part: 4 },

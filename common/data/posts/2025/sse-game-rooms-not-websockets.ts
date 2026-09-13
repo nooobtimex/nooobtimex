@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const sseGameRoomsNotWebsockets: PostDef = {
 	id: 'sse-game-rooms-not-websockets',
 	title: 'Server-Sent Events for realtime game rooms — why not WebSockets',
-	publishedAt: '2025-06-11',
-	updatedAt: '2026-08-25',
+	happenedAt: '2025-06-11',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'freelance',
 	category: 'nextjs',
 	description:

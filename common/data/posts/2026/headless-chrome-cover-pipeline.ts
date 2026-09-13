@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const headlessChromeCoverPipeline: PostDef = {
 	id: 'headless-chrome-cover-pipeline',
 	title: 'Branded 1600x900 covers from headless Chrome and cwebp',
-	publishedAt: '2026-07-28',
+	happenedAt: '2026-07-28',
 	chapter: 'freelance',
 	draft: true
 }

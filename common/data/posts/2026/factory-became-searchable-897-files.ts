@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const factoryBecameSearchable897Files: PostDef = {
 	id: 'factory-became-searchable-897-files',
 	title: '897 files, one CSV, and the day the factory became searchable',
-	publishedAt: '2026-08-22',
+	happenedAt: '2026-08-22',
 	chapter: 'ownership',
 	draft: true
 }

@@ -4,8 +4,8 @@ import type { PostDef } from '../../../interfaces'
 export const threeStorefrontsTenMonths: PostDef = {
 	id: 'three-storefronts-ten-months',
 	title: 'Three storefronts in ten months on the boring stack',
-	publishedAt: '2023-01-01',
-	updatedAt: '2026-08-25',
+	happenedAt: '2023-01-01',
+	publishedAt: '2026-08-25',
 	chapter: 'student',
 	category: 'commerce',
 	description:

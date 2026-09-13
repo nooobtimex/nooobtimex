@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const legacyWordpressSitesConsolidation: PostDef = {
 	id: 'legacy-wordpress-sites-consolidation',
 	title: 'Consolidating two legacy WordPress sites into one platform with redirects',
-	publishedAt: '2026-05-13',
+	happenedAt: '2026-05-13',
 	chapter: 'scale',
 	draft: true
 }

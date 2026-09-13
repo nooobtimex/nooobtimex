@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const fifteenLocalesHreflangSitemap: PostDef = {
 	id: 'fifteen-locales-hreflang-sitemap',
 	title: 'Fifteen locales and a dynamic hreflang sitemap',
-	publishedAt: '2026-05-05',
+	happenedAt: '2026-05-05',
 	chapter: 'freelance',
 	draft: true
 }

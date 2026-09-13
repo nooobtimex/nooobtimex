@@ -4,7 +4,7 @@ import type { PostDef } from '../../../interfaces'
 export const tencentCosToR2ProviderFlip: PostDef = {
 	id: 'tencent-cos-to-r2-provider-flip',
 	title: 'A runtime storage-provider flip: Tencent COS to Cloudflare R2, zero downstream changes',
-	publishedAt: '2026-06-02',
+	happenedAt: '2026-06-02',
 	chapter: 'scale',
 	series: { id: 'looklook', part: 7 },
 	draft: true

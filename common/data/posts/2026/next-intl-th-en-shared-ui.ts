@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const nextIntlThEnSharedUi: PostDef = {
 	id: 'next-intl-th-en-shared-ui',
 	title: 'next-intl Thai/English localization with a shared UI workspace',
-	publishedAt: '2026-05-09',
-	updatedAt: '2026-08-25',
+	happenedAt: '2026-05-09',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'scale',
 	category: 'nextjs',
 	description:

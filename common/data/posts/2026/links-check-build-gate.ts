@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const linksCheckBuildGate: PostDef = {
 	id: 'links-check-build-gate',
 	title: 'A 116-line build gate that fails on broken internal links',
-	publishedAt: '2026-08-24',
-	updatedAt: '2026-08-25',
+	happenedAt: '2026-08-24',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'ownership',
 	series: { id: 'seo-forensics', part: 4 },
 	category: 'engineering',

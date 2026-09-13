@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const replacingPosHardwareWithQrOrdering: PostDef = {
 	id: 'replacing-pos-hardware-with-qr-ordering',
 	title: 'Replacing restaurant POS hardware with QR ordering: scoping a senior thesis',
-	publishedAt: '2023-08-01',
-	updatedAt: '2026-08-25',
+	happenedAt: '2023-08-01',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'student',
 	category: 'engineering',
 	description:

@@ -7,7 +7,7 @@ import type { PostDef } from '../../../interfaces'
 export const priceCardReskin158Auto34Human: PostDef = {
 	id: 'price-card-reskin-158-auto-34-human',
 	title: 'I re-skinned 158 price cards automatically. 34 needed a human.',
-	publishedAt: '2026-08-13',
+	happenedAt: '2026-08-13',
 	chapter: 'ownership',
 	draft: true
 }

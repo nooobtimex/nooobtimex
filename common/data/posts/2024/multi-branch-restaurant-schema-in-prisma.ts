@@ -4,8 +4,9 @@ import type { PostDef } from '../../../interfaces'
 export const multiBranchRestaurantSchemaInPrisma: PostDef = {
 	id: 'multi-branch-restaurant-schema-in-prisma',
 	title: 'Designing a multi-branch restaurant schema in Prisma',
-	publishedAt: '2024-03-15',
-	updatedAt: '2026-08-25',
+	happenedAt: '2024-03-15',
+	publishedAt: '2026-08-25',
+	updatedAt: '2026-09-05',
 	chapter: 'student',
 	category: 'engineering',
 	description:

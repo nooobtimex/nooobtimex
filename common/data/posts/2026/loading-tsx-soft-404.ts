@@ -4,7 +4,8 @@ import type { PostDef } from '../../../interfaces'
 export const loadingTsxSoft404: PostDef = {
 	id: 'loading-tsx-soft-404',
 	title: 'loading.tsx turns every notFound() into an indexable soft-404',
-	publishedAt: '2026-08-24',
+	happenedAt: '2026-08-24',
+	publishedAt: '2026-08-25',
 	updatedAt: '2026-09-14',
 	chapter: 'ownership',
 	series: { id: 'seo-forensics', part: 2 },

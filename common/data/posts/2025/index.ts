@@ -1,4 +1,4 @@
-/** Publication order for 2025 — regenerated from the folder, ordered by (publishedAt, id). */
+/** Journey order for 2025 — regenerated from the folder, ordered by (happenedAt, id). */
 import type { PostDef } from '../../../interfaces'
 import { automatedGithubProfileReadme } from './automated-github-profile-readme'
 import { blogSystemAndJsonLdForAStorefront } from './blog-system-and-json-ld-for-a-storefront'
