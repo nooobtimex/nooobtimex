@@ -6,7 +6,8 @@
 		"node": ">=26"
 	},
 	"scripts": {
-		"build": "bun run icons:check && next build && bun run links:check && bun run seo:check",
+		"build": "bun run icons:check && next build && bun run links:check && bun run seo:check && bun run bundle:check",
+		"bundle:check": "bun run scripts/bundle/check.ts",
 		"dev": "next dev -p 1000",
 		"icons:check": "bun run scripts/icons/check.ts",
 		"icons:generate": "bun run scripts/icons/generate.ts",

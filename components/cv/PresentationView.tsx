@@ -1,21 +1,42 @@
 'use client'
 
 import React from 'react'
+import { useRouter } from 'next/navigation'
 import { Icon } from '@iconify/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import GlitchText from '@/components/cyber/GlitchText'
 import { formatExperienceDuration } from '@/lib/utils'
-import {
-	SkillCategory,
-	categoryMetadata,
-	entitiesData,
-	experiencesData,
-	featuredProjects,
-	featuredSkills,
-	latestRole,
-	personalData,
-	workExperienceData
-} from '@/common'
+import type { ExperienceItem, PersonalData, Project, Skill, SkillCategory } from '@/common'
+
+type SkillChip = Pick<Skill, 'name' | 'icon'>
+
+/**
+ * Everything the deck renders, assembled on the server by `app/cv/presentation/page.tsx`.
+ *
+ * The deck used to import `personalData`, `featuredProjects` and five more arrays from
+ * `@/common` directly. It is a client component, and a client import of that barrel shipped
+ * the whole data layer — every Journal post's body included — in this page's first-load
+ * JavaScript. Now it imports types only, and receives exactly the fields a slide shows, with
+ * the cross-entity lookups (client and seconded-to names) already resolved.
+ */
+export interface PresentationData {
+	personal: Pick<PersonalData, 'name' | 'tagline' | 'about' | 'languages'> & { email: string; website: string }
+	/** The latest role's position id, humanized for the intro slide. */
+	latestPosition: string
+	roles: (Pick<ExperienceItem, 'id' | 'credential' | 'position' | 'startDate' | 'endDate' | 'description'> & {
+		organization: string
+	})[]
+	stack: { category: SkillCategory; label: string; skills: SkillChip[] }[]
+	projects: (Pick<Project, 'id' | 'title' | 'description' | 'startDate' | 'endDate'> & {
+		cover: string
+		live?: string
+		/** Explicit client organisation if set (e.g. MONOMax), else the delivering role's organisation. */
+		client: string | null
+		via: string | null
+		activeSkills: SkillChip[]
+		retiredSkills: SkillChip[]
+	})[]
+}
 
 const humanize = (value: string) =>
 	value
@@ -23,18 +44,10 @@ const humanize = (value: string) =>
 		.map(w => w.charAt(0).toUpperCase() + w.slice(1))
 		.join(' ')
 
-// Client = explicit client org if set (e.g. MONOMax), else the delivering role's organization.
-const clientName = (p: (typeof featuredProjects)[number]) => {
-	if (p.clientOrganizationId) return entitiesData.find(e => e.id === p.clientOrganizationId)?.name ?? null
-	const roleId = p.linkedExperienceIds?.[0]
-	return roleId ? (experiencesData.find(e => e.id === roleId)?.organization.name ?? null) : null
-}
+const PresentationView: React.FC<{ data: PresentationData }> = ({ data }) => {
+	const router = useRouter()
+	const onExit = React.useCallback(() => router.push('/cv'), [router])
 
-interface PresentationViewProps {
-	onExit: () => void
-}
-
-const PresentationView: React.FC<PresentationViewProps> = ({ onExit }) => {
 	const slides: { code: string; title: string; render: () => React.ReactNode }[] = [
 		{
 			code: '00',
@@ -43,13 +56,13 @@ const PresentationView: React.FC<PresentationViewProps> = ({ onExit }) => {
 				<div className='text-center'>
 					<p className='text-cyber-cyan font-mono text-sm tracking-[0.4em] uppercase'>// Portfolio_v2.077</p>
 					<h1 className='font-display mt-4 text-5xl font-bold tracking-tight uppercase md:text-8xl'>
-						{personalData.name}
+						{data.personal.name}
 					</h1>
 					<GlitchText
-						text={humanize(latestRole.position)}
+						text={humanize(data.latestPosition)}
 						className='neon-text-yellow font-display mt-4 inline-block text-2xl font-bold tracking-[0.3em] uppercase md:text-4xl'
 					/>
-					<p className='text-muted-foreground mx-auto mt-6 max-w-2xl text-base md:text-lg'>{personalData.tagline}</p>
+					<p className='text-muted-foreground mx-auto mt-6 max-w-2xl text-base md:text-lg'>{data.personal.tagline}</p>
 				</div>
 			)
 		},
@@ -61,9 +74,9 @@ const PresentationView: React.FC<PresentationViewProps> = ({ onExit }) => {
 					<h2 className='font-display neon-text-cyan text-3xl font-bold tracking-wide uppercase md:text-5xl'>
 						Profile
 					</h2>
-					<p className='text-muted-foreground mt-6 text-lg leading-relaxed'>{personalData.about.bio}</p>
+					<p className='text-muted-foreground mt-6 text-lg leading-relaxed'>{data.personal.about.bio}</p>
 					<ul className='mt-6 grid gap-3 sm:grid-cols-2'>
-						{personalData.about.highlights.map((h, i) => (
+						{data.personal.about.highlights.map((h, i) => (
 							<li key={i} className='flex gap-2'>
 								<span className='bg-cyber-yellow mt-2 size-1.5 shrink-0' />
 								<span className='text-sm'>{h}</span>
@@ -82,12 +95,12 @@ const PresentationView: React.FC<PresentationViewProps> = ({ onExit }) => {
 						Experience
 					</h2>
 					<div className='mt-6 space-y-4'>
-						{workExperienceData.slice(0, 4).map(item => (
+						{data.roles.map(item => (
 							<div key={item.id} className='neon-panel clip-notch-sm p-4'>
 								<div className='flex flex-wrap items-baseline justify-between gap-2'>
 									<h3 className='font-display text-lg font-bold tracking-wide uppercase'>
 										{item.credential ?? humanize(item.position)}
-										<span className='text-cyber-yellow'> @ {item.organization.name}</span>
+										<span className='text-cyber-yellow'> @ {item.organization}</span>
 									</h3>
 									<span className='text-muted-foreground font-mono text-[0.7rem] uppercase'>
 										{formatExperienceDuration(item.startDate, item.endDate)}
@@ -109,16 +122,12 @@ const PresentationView: React.FC<PresentationViewProps> = ({ onExit }) => {
 						Core Stack
 					</h2>
 					<div className='mt-6 grid gap-5 sm:grid-cols-2'>
-						{(['frontend', 'backend', 'infrastructure', 'growth-management'] as SkillCategory[]).map(cat => {
-							const items = featuredSkills.filter(a => a.category === cat)
-							if (!items.length) return null
+						{data.stack.map(group => {
 							return (
-								<div key={cat} className='neon-panel clip-notch-sm p-4'>
-									<h3 className='text-cyber-yellow mb-3 font-mono text-xs tracking-widest uppercase'>
-										{categoryMetadata[cat].label}
-									</h3>
+								<div key={group.category} className='neon-panel clip-notch-sm p-4'>
+									<h3 className='text-cyber-yellow mb-3 font-mono text-xs tracking-widest uppercase'>{group.label}</h3>
 									<div className='flex flex-wrap gap-2'>
-										{items.map(a => (
+										{group.skills.map(a => (
 											<span key={a.name} className='inline-flex items-center gap-1.5 text-sm'>
 												<Icon icon={a.icon} className='size-4' />
 												{a.name}
@@ -132,9 +141,8 @@ const PresentationView: React.FC<PresentationViewProps> = ({ onExit }) => {
 				</div>
 			)
 		},
-		...featuredProjects.map((p, idx) => {
-			const client = clientName(p)
-			const via = p.viaOrganizationId ? (entitiesData.find(e => e.id === p.viaOrganizationId)?.name ?? null) : null
+		...data.projects.map((p, idx) => {
+			const { client, via } = p
 			return {
 				code: String(4 + idx).padStart(2, '0'),
 				title: p.title,
@@ -143,7 +151,7 @@ const PresentationView: React.FC<PresentationViewProps> = ({ onExit }) => {
 						{/* Left: banner + meta + grouped tech */}
 						<div className='flex min-h-0 flex-col gap-4 overflow-y-auto pr-1'>
 							<div className='neon-panel clip-notch relative aspect-[16/9] w-full shrink-0 overflow-hidden'>
-								<img src={p.images.cover} alt={p.title} className='h-full w-full object-cover' />
+								<img src={p.cover} alt={p.title} className='h-full w-full object-cover' />
 								<div className='from-background/90 absolute inset-0 bg-gradient-to-t to-transparent' />
 							</div>
 
@@ -162,10 +170,10 @@ const PresentationView: React.FC<PresentationViewProps> = ({ onExit }) => {
 									<p className='text-cyber-cyan tracking-widest uppercase'>Timeline</p>
 									<p className='mt-1'>{formatExperienceDuration(p.startDate, p.endDate)}</p>
 								</div>
-								{p.links.live && (
+								{p.live && (
 									<div>
 										<p className='text-cyber-cyan tracking-widest uppercase'>Live</p>
-										<p className='mt-1'>{p.links.live.replace(/^https?:\/\//, '').replace(/\/+$/, '')}</p>
+										<p className='mt-1'>{p.live.replace(/^https?:\/\//, '').replace(/\/+$/, '')}</p>
 									</div>
 								)}
 							</div>
@@ -217,15 +225,14 @@ const PresentationView: React.FC<PresentationViewProps> = ({ onExit }) => {
 					<div className='mt-8 flex flex-col items-center gap-3 font-mono text-sm'>
 						<span className='inline-flex items-center gap-2'>
 							<Icon icon='mdi:email-outline' className='text-cyber-cyan size-5' />
-							{personalData.contact.email}
+							{data.personal.email}
 						</span>
 						<span className='inline-flex items-center gap-2'>
-							<Icon icon='mdi:web' className='text-cyber-cyan size-5' />{' '}
-							{personalData.socialLinks.find(s => s.platform === 'website')?.username ?? 'nooobtimex.me'}
+							<Icon icon='mdi:web' className='text-cyber-cyan size-5' /> {data.personal.website}
 						</span>
 						<span className='inline-flex items-center gap-2'>
 							<Icon icon='mdi:translate' className='text-cyber-cyan size-5' />
-							{personalData.languages.map(l => `${l.name} (${l.level})`).join(' · ')}
+							{data.personal.languages.map(l => `${l.name} (${l.level})`).join(' · ')}
 						</span>
 					</div>
 				</div>

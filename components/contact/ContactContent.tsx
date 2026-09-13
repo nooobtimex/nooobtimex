@@ -11,7 +11,8 @@ import GlitchText from '@/components/cyber/GlitchText'
 import MotionReveal from '@/components/cyber/MotionReveal'
 import NeonPanel from '@/components/cyber/NeonPanel'
 import SectionHeader from '@/components/cyber/SectionHeader'
-import { personalData } from '@/common'
+import { buildVCard, vCardFilename } from '@/lib/vcard'
+import { latestRole, personalData } from '@/common'
 
 const PLATFORM_LABEL: Record<string, string> = {
 	github: 'GitHub',
@@ -113,7 +114,13 @@ const ContactContent: React.FC = () => {
 					className='mt-16'
 				/>
 				<div className='mt-8 grid gap-6 md:grid-cols-2'>
-					<VCardPanel />
+					{/* Built here, on the server, and handed over as strings — see VCardPanel. */}
+					<VCardPanel
+						name={personalData.name}
+						qrPayload={buildVCard(personalData, { org: latestRole?.organization.name })}
+						filePayload={buildVCard(personalData, { rich: true, org: latestRole?.organization.name })}
+						filename={vCardFilename(personalData)}
+					/>
 					{wechat && <WeChatPanel channel={wechat} />}
 				</div>
 			</MotionReveal>

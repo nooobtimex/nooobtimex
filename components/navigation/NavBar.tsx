@@ -7,16 +7,18 @@ import { usePathname } from 'next/navigation'
 import { Icon } from '@iconify/react'
 import Container from '@/components/cyber/Container'
 import { NAV_LINKS, isActive } from '@/components/navigation/links'
+import { loadSearchIndex } from '@/components/search/loadSearchIndex'
 import { cn } from '@/lib/utils'
 
 /**
  * Loaded on demand, not with the nav.
  *
- * `GlobalSearch` imports `projectsData`, `skillsData`, `experiencesData` and
- * `entitiesData` and renders a CommandItem for every one of them. NavBar mounts on
- * every page, so that whole dataset shipped in the first-load bundle for a palette
- * most visitors never open. `mounted` below keeps the chunk request off the initial
- * load entirely — it is only requested once the palette is first opened.
+ * NavBar mounts on every page, and the palette is something most visitors never open, so
+ * neither its code nor its rows belong in the first-load bundle. `mounted` below keeps the
+ * chunk request off the initial load entirely, and the rows are not in any bundle at all:
+ * they come from the prerendered `/search-index.json`, which `openSearch` starts fetching
+ * alongside the chunk. (The palette used to import the `@/common` arrays itself, and that
+ * put every Journal post's full body into a 436 KB chunk.)
  */
 const GlobalSearch = dynamic(() => import('@/components/search/GlobalSearch'))
 
@@ -30,6 +32,7 @@ const NavBar: React.FC = () => {
 	const [searchMounted, setSearchMounted] = React.useState(false)
 
 	const openSearch = () => {
+		void loadSearchIndex() // race the palette chunk rather than wait behind it
 		setSearchMounted(true)
 		setSearchOpen(true)
 	}
@@ -38,6 +41,7 @@ const NavBar: React.FC = () => {
 		const onKey = (e: KeyboardEvent) => {
 			if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
 				e.preventDefault()
+				void loadSearchIndex()
 				setSearchMounted(true)
 				setSearchOpen(o => !o)
 			}

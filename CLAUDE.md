@@ -27,11 +27,12 @@ scripts/icons/     # generates that subset · the ONLY place @iconify-json/* may
 | Task   | Command                   | Notes                                                                                               |
 | ------ | ------------------------- | --------------------------------------------------------------------------------------------------- |
 | Dev    | `bun run dev`             | serves on **port 1000**                                                                             |
-| Build  | `bun run build`           | the type-check gate. `icons:check` → `next build` → `links:check` → `seo:check`                     |
+| Build  | `bun run build`           | the type-check gate. `icons:check` → `next build` → `links:check` → `seo:check` → `bundle:check`    |
 | Lint   | `bun run lint`            | `eslint . --fix && prettier . --write`                                                              |
 | Icons  | `bun run icons:generate`  | after any `icon:` change in `common/data` — commit the artifact                                     |
 | Links  | `bun run links:check`     | post-build gate: every internal `href` must resolve. Needs a build first                            |
 | SEO    | `bun run seo:check`       | post-build gate: no content hidden in a streamed segment; sitemap ⇄ robots agree. Needs a build too |
+| Bundle | `bun run bundle:check`    | post-build gate: no Journal post text in any browser chunk. Needs a build too                       |
 | Images | `bun run images:optimize` | after adding anything to `public/` — idempotent, commit the result                                  |
 | LLMs   | `bun run llms:generate`   | regenerates `public/llms.txt` from `common/` — commit the artifact                                  |
 | Cites  | `bun run links:external`  | fetches every blog citation. Run before shipping a post; NOT in `build`                             |
@@ -46,8 +47,9 @@ the dashboard) + the root `Dockerfile`, mirroring `rs-trophy.com`:
 
 - **bun installs, node builds and serves.** Stage 1 installs on `oven/bun:1-slim`; stage 2
   builds on `node:26-slim` with the bun binary copied in, which runs the same gates as
-  `bun run build` (`icons:check`, then `links:check` + `seo:check` after `next build`) —
-  there is no CI, so a failing gate fails the deploy. Stage 3 serves on `node:26-slim`.
+  `bun run build` (`icons:check`, then `links:check` + `seo:check` + `bundle:check` after
+  `next build`) — there is no CI, so a failing gate fails the deploy. Stage 3 serves on
+  `node:26-slim`.
   Serving on Bun is deliberately avoided — the Next standalone server leaks RSS under
   Bun's Node-compat HTTP layer (oven-sh/bun#27514), which on a long-lived container reads
   as a slow OOM.

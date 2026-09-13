@@ -177,7 +177,7 @@ Revising an already-published post? Set `updatedAt` to the day of the revision.
 bun run lint && bun run build && bun run links:external && bun run llms:generate
 ```
 
-`build` is `icons:check` → `next build` → `links:check` → `seo:check`. `llms:generate` is
+`build` is `icons:check` → `next build` → `links:check` → `seo:check` → `bundle:check`. `llms:generate` is
 **not** in the build — regenerate and commit `public/llms.txt`, or it goes stale silently.
 
 Then verify what actually shipped: published count rose, the series strip reads

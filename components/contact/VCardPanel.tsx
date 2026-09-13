@@ -5,8 +5,16 @@ import { Icon } from '@iconify/react'
 import CyberQR from '@/components/contact/CyberQR'
 import CyberButton from '@/components/cyber/CyberButton'
 import NeonPanel from '@/components/cyber/NeonPanel'
-import { buildVCard, vCardFilename } from '@/lib/vcard'
-import { latestRole, personalData } from '@/common'
+
+interface VCardPanelProps {
+	/** Display name, for the QR's accessible title. */
+	name: string
+	/** The CORE vCard — what the QR encodes. */
+	qrPayload: string
+	/** The RICH vCard — what the .vcf download contains. */
+	filePayload: string
+	filename: string
+}
 
 /**
  * The business-card panel: scan the QR to be offered "Add contact", or download the .vcf.
@@ -14,18 +22,19 @@ import { latestRole, personalData } from '@/common'
  * The QR carries the CORE vCard (name, title, company, phone, email, site) — the fields
  * people actually use, kept lean so the code stays scannable. The downloadable file adds
  * the rich extras (address, birthday, socials, photo, note).
+ *
+ * The payloads are built by the server parent (`ContactContent`) and arrive as strings.
+ * This component used to import `personalData` from `@/common` to build them itself, and a
+ * client import of that barrel shipped the whole data layer — every Journal post's body —
+ * in /contact's first-load JavaScript.
  */
-const VCardPanel: React.FC = () => {
-	const org = latestRole?.organization.name
-	const qrPayload = buildVCard(personalData, { org })
-	const filePayload = buildVCard(personalData, { rich: true, org })
-
+const VCardPanel: React.FC<VCardPanelProps> = ({ name, qrPayload, filePayload, filename }) => {
 	const handleDownload = () => {
 		const blob = new Blob([filePayload], { type: 'text/vcard;charset=utf-8' })
 		const url = URL.createObjectURL(blob)
 		const anchor = document.createElement('a')
 		anchor.href = url
-		anchor.download = vCardFilename(personalData)
+		anchor.download = filename
 		document.body.appendChild(anchor)
 		anchor.click()
 		anchor.remove()
@@ -47,7 +56,7 @@ const VCardPanel: React.FC = () => {
 			{/* Larger than the WeChat code because a vCard needs far more modules. 248px is
 			    the widest that still fits a 375px viewport once Container, panel and plate
 			    padding are subtracted. */}
-			<CyberQR value={qrPayload} title={`Contact card QR for ${personalData.name}`} size={248} />
+			<CyberQR value={qrPayload} title={`Contact card QR for ${name}`} size={248} />
 
 			<CyberButton variant='outline' size='lg' onClick={handleDownload}>
 				<Icon icon='mdi:download' />

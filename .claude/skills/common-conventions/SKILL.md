@@ -34,6 +34,22 @@ import { skillById, projectsData, type SkillId } from '@/common'
 import { skillById } from '@/common/data/skills'
 ```
 
+**Never import a value from `@/common` in a `'use client'` module — types only.** The
+barrel's post registry validates at import time, so a client import of anything at all
+(`personalData` for a vCard) ships the whole data layer to the browser, every Journal
+post's body included: /contact and /cv/presentation once loaded a 436 KB chunk of
+articles on first paint. Give client components their data as props from a server parent
+(`VCardPanel` ← `ContactContent`, `PresentationView` ← its page), or fetch a prerendered
+file (the ⌘K palette reads `/search-index.json`). `bun run build` fails via
+`bundle:check` if post text reaches a browser chunk.
+
+```tsx
+// ✅ RIGHT — server parent resolves, client child receives plain props
+import type { PersonalData } from '@/common'
+// ❌ WRONG — inside a 'use client' file
+import { personalData } from '@/common'
+```
+
 ## 2. Enums are string-literal unions, not TS `enum`s
 
 Small fixed sets live in [`common/enums.ts`](../../../common/enums.ts) as plain
