@@ -1,11 +1,11 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: doc comments in app/(main)/projects/[...id]/page.tsx and scripts/links/check.ts, CLAUDE.md's SEO invariants, commit f338c5c, app/loading.tsx, app/not-found.tsx. */
+/** Sources: doc comments in app/(main)/projects/[...id]/page.tsx and scripts/links/check.ts, CLAUDE.md's SEO invariants, commit f338c5c, app/loading.tsx, app/not-found.tsx. Update callout: commit 8257568 (loading.tsx deleted) and scripts/seo/check.ts. */
 export const loadingTsxSoft404: PostDef = {
 	id: 'loading-tsx-soft-404',
 	title: 'loading.tsx turns every notFound() into an indexable soft-404',
 	publishedAt: '2026-08-24',
-	updatedAt: '2026-08-25',
+	updatedAt: '2026-09-14',
 	chapter: 'ownership',
 	series: { id: 'seo-forensics', part: 2 },
 	category: 'seo-aeo',
@@ -26,13 +26,13 @@ export const loadingTsxSoft404: PostDef = {
 		{ kind: 'h2', text: 'How a loading spinner commits a 200' },
 		{
 			kind: 'p',
-			text: "`app/loading.tsx` is the App Router's loading-UI convention: put a component there and Next wraps the routes below it in a Suspense boundary, streams the shell immediately, and swaps in the page when it resolves. Mine is a full-screen spinner in the site's Cyberpunk style."
+			text: "`app/loading.tsx` is the App Router's loading-UI convention: put a component there and Next wraps the routes below it in a Suspense boundary, streams the shell immediately, and swaps in the page when it resolves. Mine was a full-screen spinner in the site's Cyberpunk style."
 		},
 		{
 			kind: 'code',
 			lang: 'tsx',
 			caption:
-				'app/loading.tsx, abridged — a full-screen shell that streams for any matched route while the page resolves.',
+				'app/loading.tsx (since deleted), abridged — a full-screen shell that streamed for any matched route while the page resolved.',
 			code: "export default function Loading() {\n\treturn (\n\t\t<div className='bg-background fixed inset-0 z-50 …'>\n\t\t\t<div className='border-t-cyber-cyan size-20 animate-spin …' />\n\t\t\t<p className='neon-text-cyan animate-pulse …'>Loading…</p>\n\t\t</div>\n\t)\n}"
 		},
 		{
@@ -87,6 +87,12 @@ export const loadingTsxSoft404: PostDef = {
 			text: 'I also considered deleting `app/loading.tsx`, since the spinner was the mechanism. I kept it. Streaming loading UI was working exactly as documented; the defect was letting an unknown slug get far enough to stream. Removing the spinner would have patched this symptom and left the class of bug alive.'
 		},
 		{
+			kind: 'callout',
+			tone: 'warn',
+			title: 'Update · 14 September 2026',
+			text: "Three weeks later I deleted `app/loading.tsx` after all, for a reason this post missed. React 19.2's server renderer [sends the fallback instead of a Suspense boundary's content](https://github.com/react/react/issues/35460) when that content is larger than 500 bytes and the response has already passed 12,800 bytes — even when nothing suspended. The real content goes into a `hidden` element that an inline script reveals. My spinner wrapped every page, so 123 of 126 prerendered pages shipped as “Loading…”: a Journal post had 1 visible word and 1,759 hidden. In a browser the script swapped it in almost at once; anything reading the HTML without running JavaScript got a loading screen on every URL, while Google AdSense rated the site “Low value content”. The routing-layer fix above still stands, and a second build gate now fails any page whose content ships hidden."
+		},
+		{
 			kind: 'p',
 			text: 'And the fix only makes failures **visible**, not impossible — a real 404 still needs a human or a crawler to hit it before anyone notices the link pointing there. That gap is closed by `scripts/links/check.ts`, a post-build gate that walks the prerendered HTML in `.next/server/app` and fails the build on any internal `href` the build did not emit. It reads the build output rather than re-deriving routes from `common/data`, because comparing a thing against itself proves nothing. After the change I verified the site the way Railway serves it — standalone build, injected port, no `.env`: all 90 sitemap URLs answered 200, and `/skills/vue-js`, along with every other unknown slug, answered a real 404.'
 		}
@@ -111,7 +117,7 @@ export const loadingTsxSoft404: PostDef = {
 		},
 		{
 			q: 'Should I delete loading.tsx to avoid soft 404s?',
-			a: 'No. Streaming loading UI is behaving as documented; the defect is letting a request for a nonexistent slug get far enough to stream. Keep the loading UI and close the routing layer with `dynamicParams = false` (or validate params before the boundary). Deleting the spinner trades away real UX to patch one symptom of a bug class that stays alive.'
+			a: 'Not to fix soft 404s — `dynamicParams = false` rejects unknown slugs at the routing layer whatever wraps the page. But check what a route-level `loading.tsx` does to your HTML. In React 19.2 a completed Suspense boundary larger than 500 bytes, in a response already past 12,800 bytes, is sent as its fallback, with the real content in a hidden element that an inline script reveals. Around a whole page that makes every page read as a loading screen to anything that does not run JavaScript. If your build emits that, remove the route-level boundary and scope Suspense to the parts that genuinely wait on data.'
 		}
 	],
 	sources: [
@@ -122,6 +128,14 @@ export const loadingTsxSoft404: PostDef = {
 		{
 			title: 'vercel/next.js#93238 — HTTPAccessFallbackBoundary swallows the notFound() status code',
 			url: 'https://github.com/vercel/next.js/issues/93238'
+		},
+		{
+			title: 'vercel/next.js#91806 — Next / React 19.2 suspense boundary outlining bug',
+			url: 'https://github.com/vercel/next.js/issues/91806'
+		},
+		{
+			title: 'react/react#35460 — In React 19.2 Suspense renders fallback instead of children if children are too big',
+			url: 'https://github.com/react/react/issues/35460'
 		},
 		{
 			title: 'Next.js — loading.js file convention',
