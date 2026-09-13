@@ -1,13 +1,10 @@
 # Authorized Digital Sellers — https://iabtechlab.com/ads-txt/
 #
-# This file is here for the SUBDOMAIN, not for nooobtimex.me itself.
-#
-# Ads serve on prettier-config.nooobtimex.me, but crawlers only ever read
-# ads.txt from the root domain of a host — so a copy sitting at
-# prettier-config.nooobtimex.me/ads.txt is ignored, and this is the file that
-# authorises that inventory. Getting it wrong fails silently, surfacing only as
-# "Earnings at risk" in the AdSense dashboard.
+# Authorises Google AdSense to sell this domain's ad inventory: the in-article units
+# on Journal posts (/blog/…). Crawlers read ads.txt only from the root of a host, so
+# this file also covers any *.nooobtimex.me subdomain serving ads under this account.
+# Getting it wrong fails silently, surfacing only as "Earnings at risk" in AdSense.
 #
 # Publisher ID is the bare `pub-…` form here — no `ca-` prefix, unlike the
-# <meta google-adsense-account> tag and every data-ad-client attribute.
+# <meta google-adsense-account> tag and every data-ad-client (lib/adsense.ts).
 google.com, pub-6034794215506479, DIRECT, f08c47fec0942fa0

@@ -5,6 +5,7 @@ import { GoogleTagManager } from '@next/third-parties/google'
 import ScanlineOverlay from '@/components/cyber/ScanlineOverlay'
 import { ThemeProvider } from '@/components/theme-provider'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { ADSENSE_CLIENT_ID } from '@/lib/adsense'
 import { cn } from '@/lib/utils'
 import { assets } from '@/common'
 import './globals.css'
@@ -101,13 +102,11 @@ export const metadata: Metadata = {
 	},
 	verification: {
 		google: 'KiAn5R5UAuZgmwSS_KpMOO2FIRmt-39QIKrHKXrAOL8',
-		// Ownership declaration only — no ads serve from the portfolio. AdSense
-		// verifies the site you add, and the site being added is this root domain,
-		// because ads run on prettier-config.nooobtimex.me and AdSense manages
-		// sites at the root. Pairs with public/ads.txt, which crawlers likewise
-		// read only from the root of a host.
+		// Declares the AdSense account for the whole domain — the tag AdSense verifies the site
+		// by and reads during review. It serves nothing on its own: ads load only on Journal
+		// posts (components/ads/AdSenseScript.tsx). Pairs with public/ads.txt.
 		other: {
-			'google-adsense-account': 'ca-pub-6034794215506479'
+			'google-adsense-account': ADSENSE_CLIENT_ID
 		}
 	}
 }

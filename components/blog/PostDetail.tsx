@@ -25,7 +25,7 @@ const StatCell: React.FC<{ label: string; children: React.ReactNode }> = ({ labe
  * the display treatment but caps its size — post titles are full sentences, and the
  * global `text-5xl md:text-7xl` is sized for two-word HUD headings.
  */
-const PostDetail: React.FC<{ post: Post }> = ({ post }) => {
+const PostDetail: React.FC<{ post: Post; adAfter?: Readonly<Record<number, string>> }> = ({ post, adAfter }) => {
 	return (
 		<Container className='py-10'>
 			<Link
@@ -65,7 +65,7 @@ const PostDetail: React.FC<{ post: Post }> = ({ post }) => {
 				{/* Article */}
 				<article className='min-w-0 space-y-8'>
 					<PostTldr tldr={post.tldr} />
-					<PostBody body={post.body} />
+					<PostBody body={post.body} adAfter={adAfter} />
 
 					{post.lessons && post.lessons.length > 0 && (
 						<section>

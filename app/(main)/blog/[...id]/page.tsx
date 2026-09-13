@@ -1,8 +1,10 @@
 import React from 'react'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import AdSenseScript from '@/components/ads/AdSenseScript'
 import PostDetail from '@/components/blog/PostDetail'
 import JsonLd from '@/components/seo/JsonLd'
+import { inArticleAds } from '@/lib/ad-breaks'
 import { blogPostingSchema, breadcrumbSchema, faqSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
 import { categoryMetadataPosts, flattenPostText, postsData } from '@/common'
@@ -77,12 +79,18 @@ const PostPage: React.FC<PostPageProps> = async ({ params }) => {
 		{ name: post.title, path: `/blog/${post.id}` }
 	])
 
+	// Journal posts are the only pages that carry ads. With no unit configured, or no break the
+	// placement rule accepts, the post gets no slot and never loads the ad script at all.
+	const ads = inArticleAds(post.body)
+	const hasAds = Object.keys(ads).length > 0
+
 	return (
 		<>
 			<JsonLd data={posting} />
 			<JsonLd data={faqs} />
 			<JsonLd data={breadcrumbs} />
-			<PostDetail post={post} />
+			<PostDetail post={post} adAfter={hasAds ? ads : undefined} />
+			{hasAds && <AdSenseScript />}
 		</>
 	)
 }

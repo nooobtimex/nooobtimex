@@ -474,6 +474,28 @@
 }
 
 /* ============================================================
+ * Ads — in-article AdSense units on Journal posts only
+ * ============================================================ */
+
+/*
+ * Google marks a unit it could not fill with `data-ad-status="unfilled"` but leaves the <ins>
+ * at the height it asked for, which on this dark theme reads as a blank slab under an
+ * orphaned "Advertisement" label. Collapsing the whole container is Google's documented
+ * remedy. No-fill is the normal case — ad blockers, no matching demand, and every unit before
+ * the site is approved — so this is permanent behaviour, not a pre-approval workaround.
+ * Unlayered on purpose, so no utility class can outrank it. (prettier-config 3bde9c4)
+ */
+[data-ad-container]:has(ins.adsbygoogle[data-ad-status='unfilled']) {
+	display: none;
+}
+
+@media print {
+	[data-ad-container] {
+		display: none;
+	}
+}
+
+/* ============================================================
  * Game-UI utilities: perk lanes, gig journal, career trace
  * ============================================================ */
 @layer utilities {
