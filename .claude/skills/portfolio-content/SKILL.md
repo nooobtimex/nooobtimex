@@ -41,6 +41,7 @@ see [`/common-conventions`](../common-conventions/SKILL.md); for routing/pages s
 2. Add `x` to the `allSkills` tuple (this is what derives `SkillId` — keep it a literal list).
 3. Optionally add to `featuredSkills` if it should show on the home Stack section.
 4. `id` must be url-safe (it becomes `/skills/<id>`). `icon` is an `@iconify` name; set `whiteBg: true` if the logo needs a light chip.
+5. Expect the new page to be `noindex, follow` and absent from the sitemap: a skill page is indexed only once `isSkillIndexable` in `common/data/coverage.ts` says it has substance of its own. To earn it a place, write a field note — `common/data/skill-notes/<id>.ts` exporting a `SkillNote`, registered in that folder's `index.ts` — or a Journal post that references the skill. Nothing else to update; `seo:check` keeps the sitemap and robots tags in agreement.
 
 ### Add a project
 

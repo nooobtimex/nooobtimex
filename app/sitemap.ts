@@ -1,6 +1,14 @@
 import { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/seo'
-import { entitiesData, experiencesData, postsData, projectsData, skillsData } from '@/common'
+import {
+	type SkillId,
+	entitiesData,
+	experiencesData,
+	indexableSkillIds,
+	postsData,
+	projectsData,
+	skillsData
+} from '@/common'
 
 /**
  * Stable `lastModified` on purpose.
@@ -30,7 +38,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		entry('/skills', 0.8),
 		entry('/career', 0.8),
 		entry('/companies', 0.7),
-		entry('/github', 0.6, 'weekly'),
+		// No /github: it is `noindex` (a dashboard of API numbers), and a sitemap must only
+		// nominate pages that ask to be indexed — scripts/seo/check.ts fails the build otherwise.
 		entry('/cv', 0.6),
 		entry('/contact', 0.7),
 		// The journal gets fresh entries between content bumps, so it dates itself.
@@ -38,7 +47,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		// Detail routes are keyed by `id` — the same value each route's
 		// `generateStaticParams` emits, so a sitemap URL can never 404.
 		...projectsData.map(p => entry(`/projects/${p.id}`, 0.7)),
-		...skillsData.map(s => entry(`/skills/${s.id}`, 0.5)),
+		// Only skills with substance of their own — the same set their pages' robots tags use.
+		...skillsData.filter(s => indexableSkillIds.has(s.id as SkillId)).map(s => entry(`/skills/${s.id}`, 0.5)),
 		...experiencesData.map(e => entry(`/career/${e.id}`, 0.6)),
 		...entitiesData.map(o => entry(`/companies/${o.id}`, 0.6)),
 		// Posts carry REAL per-post dates — the one deliberate divergence from the frozen

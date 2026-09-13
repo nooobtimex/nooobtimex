@@ -5,7 +5,7 @@ import JsonLd from '@/components/seo/JsonLd'
 import SkillDetail from '@/components/skills/SkillDetail'
 import { breadcrumbSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
-import { skillsData } from '@/common'
+import { type SkillId, indexableSkillIds, skillsData } from '@/common'
 
 interface PageProps {
 	params: Promise<{ id: string[] }>
@@ -37,7 +37,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 		path: `/skills/${skill.id}`,
 		title: `${skill.name} | Skill`,
 		// Prefer the real copy; the generic line is only a fallback for a skill with none.
-		description: skill.description ?? `Projects and work powered by ${skill.name}.`
+		description: skill.description ?? `Projects and work powered by ${skill.name}.`,
+		// Same set app/sitemap.ts lists — a skill page is indexed only once it has substance.
+		index: indexableSkillIds.has(skill.id as SkillId)
 	})
 }
 

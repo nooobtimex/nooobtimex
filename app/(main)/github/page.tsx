@@ -8,7 +8,10 @@ import { pageMetadata } from '@/lib/seo'
 export const metadata = pageMetadata({
 	path: '/github',
 	title: 'GitHub',
-	description: 'Live GitHub contribution activity — heatmap, streaks, repos, stars, and followers.'
+	description: 'Live GitHub contribution activity — heatmap, streaks, repos, stars, and followers.',
+	// A dashboard of API numbers under one paragraph, with a `?year=` variant per year.
+	// Useful to a visitor, nothing a search result needs — and absent from the sitemap.
+	index: false
 })
 
 /**

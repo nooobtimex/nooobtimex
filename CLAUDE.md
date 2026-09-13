@@ -24,17 +24,17 @@ scripts/icons/     # generates that subset · the ONLY place @iconify-json/* may
 
 ## Commands
 
-| Task   | Command                   | Notes                                                                                   |
-| ------ | ------------------------- | --------------------------------------------------------------------------------------- |
-| Dev    | `bun run dev`             | serves on **port 1000**                                                                 |
-| Build  | `bun run build`           | the type-check gate. `icons:check` → `next build` → `links:check` → `seo:check`         |
-| Lint   | `bun run lint`            | `eslint . --fix && prettier . --write`                                                  |
-| Icons  | `bun run icons:generate`  | after any `icon:` change in `common/data` — commit the artifact                         |
-| Links  | `bun run links:check`     | post-build gate: every internal `href` must resolve. Needs a build first                |
-| SEO    | `bun run seo:check`       | post-build gate: no prerendered content hidden in a streamed segment. Needs a build too |
-| Images | `bun run images:optimize` | after adding anything to `public/` — idempotent, commit the result                      |
-| LLMs   | `bun run llms:generate`   | regenerates `public/llms.txt` from `common/` — commit the artifact                      |
-| Cites  | `bun run links:external`  | fetches every blog citation. Run before shipping a post; NOT in `build`                 |
+| Task   | Command                   | Notes                                                                                               |
+| ------ | ------------------------- | --------------------------------------------------------------------------------------------------- |
+| Dev    | `bun run dev`             | serves on **port 1000**                                                                             |
+| Build  | `bun run build`           | the type-check gate. `icons:check` → `next build` → `links:check` → `seo:check`                     |
+| Lint   | `bun run lint`            | `eslint . --fix && prettier . --write`                                                              |
+| Icons  | `bun run icons:generate`  | after any `icon:` change in `common/data` — commit the artifact                                     |
+| Links  | `bun run links:check`     | post-build gate: every internal `href` must resolve. Needs a build first                            |
+| SEO    | `bun run seo:check`       | post-build gate: no content hidden in a streamed segment; sitemap ⇄ robots agree. Needs a build too |
+| Images | `bun run images:optimize` | after adding anything to `public/` — idempotent, commit the result                                  |
+| LLMs   | `bun run llms:generate`   | regenerates `public/llms.txt` from `common/` — commit the artifact                                  |
+| Cites  | `bun run links:external`  | fetches every blog citation. Run before shipping a post; NOT in `build`                             |
 
 **Definition of done for any code change: `bun run lint` then `bun run build`, both
 green.** Run them before declaring work complete.

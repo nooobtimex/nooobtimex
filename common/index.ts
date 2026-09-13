@@ -8,3 +8,6 @@ export * from './data/personal'
 export * from './data/assets'
 export * from './utils'
 export * from './data/posts'
+export * from './data/skill-notes'
+// Last: coverage reads the post, project and skill indexes above.
+export * from './data/coverage'

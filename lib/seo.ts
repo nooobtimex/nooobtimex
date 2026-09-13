@@ -50,6 +50,15 @@ interface PageMetaInput {
 	 * backfilled post is its real milestone date — never a future date.
 	 */
 	article?: { publishedTime: string; modifiedTime?: string; section: string; tags?: string[] }
+	/**
+	 * `false` emits `noindex, follow`: the page stays reachable and passes link equity, but
+	 * stops competing in the index — a thin skill page, the `/github` dashboard. Coverage
+	 * decisions come from `common/data/coverage.ts`, which `app/sitemap.ts` reads too.
+	 *
+	 * A route-level `robots` REPLACES the root layout's rather than merging with it, which is
+	 * why indexable pages omit the key entirely and keep inheriting the root directives.
+	 */
+	index?: boolean
 }
 
 /**
@@ -63,7 +72,15 @@ interface PageMetaInput {
  * `openGraph.images` is deliberately omitted: the file-convention
  * `app/opengraph-image.tsx` is resolved separately and still applies.
  */
-export function pageMetadata({ path, title, description, absoluteTitle, ogImage, article }: PageMetaInput): Metadata {
+export function pageMetadata({
+	path,
+	title,
+	description,
+	absoluteTitle,
+	ogImage,
+	article,
+	index = true
+}: PageMetaInput): Metadata {
 	const url = `${SITE_URL}${path === '/' ? '' : path}`
 	const socialTitle = absoluteTitle ?? `${title} | ${DISPLAY_NAME}`
 
@@ -83,6 +100,7 @@ export function pageMetadata({ path, title, description, absoluteTitle, ogImage,
 		title: resolvedTitle ? { absolute: resolvedTitle } : title,
 		description: clamped,
 		alternates: { canonical: path },
+		...(!index && { robots: { index: false, follow: true, googleBot: { index: false, follow: true } } }),
 		openGraph: {
 			locale: 'en_US',
 			siteName: `${DISPLAY_NAME} Portfolio`,

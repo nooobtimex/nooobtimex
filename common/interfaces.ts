@@ -246,6 +246,19 @@ export interface Post extends PostDef {
 	readingMinutes: number
 }
 
+/**
+ * An original write-up for one skill — the prose `/skills/<id>` otherwise lacks, and what
+ * earns that page a place in the index (see `isSkillIndexable` in `data/coverage.ts`).
+ *
+ * Deliberately NOT a field on `Skill`: skills are declared through `skill()`, whose
+ * `const` type parameter keeps `SkillId` a literal union, and a note there would be
+ * inferred as literal types inside that tuple too. Notes live in `data/skill-notes/`.
+ */
+export interface SkillNote {
+	updatedAt: string // YYYY-MM-DD — when the note was last written
+	body: PostBlock[] // the Journal's typed blocks and inline format, rendered by PostBody
+}
+
 /** Global personal information */
 export interface PersonalData {
 	name: string

@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import PostBody from '@/components/blog/PostBody'
 import WrittenAbout from '@/components/blog/WrittenAbout'
 import Container from '@/components/cyber/Container'
 import CyberIcon from '@/components/cyber/CyberIcon'
@@ -7,7 +8,15 @@ import MotionReveal from '@/components/cyber/MotionReveal'
 import NeonPanel from '@/components/cyber/NeonPanel'
 import ProjectCard from '@/components/projects/ProjectCard'
 import { cn, formatExperienceDuration } from '@/lib/utils'
-import { type Skill, type SkillId, categoryMetadata, experiencesData, postsBySkill, projectsData } from '@/common'
+import {
+	type Skill,
+	type SkillId,
+	categoryMetadata,
+	experiencesData,
+	postsBySkill,
+	projectsData,
+	skillNotes
+} from '@/common'
 
 const humanize = (value: string) =>
 	value
@@ -28,7 +37,8 @@ const StatCell: React.FC<{ label: string; children: React.ReactNode }> = ({ labe
 
 const SkillDetail: React.FC<SkillDetailProps> = ({ skill }) => {
 	const meta = categoryMetadata[skill.category]
-	const deployedIn = projectsData.filter(p => p.skills.some(s => s.name === skill.name))
+	const note = skillNotes[skill.id as SkillId]
+	const deployedIn = projectsData.filter(p => p.skills.some(s => s.id === skill.id))
 
 	// Roles that fielded this skill (via linked projects), oldest first — the
 	// earliest is where the skill was first put to work.
@@ -83,6 +93,23 @@ const SkillDetail: React.FC<SkillDetailProps> = ({ skill }) => {
 				</StatCell>
 				<StatCell label='Roles'>{fieldRecord.length}</StatCell>
 			</NeonPanel>
+
+			{/* Field notes — the original write-up that earns this page its place in the index
+			    (common/data/coverage.ts). Everything else on the page is derived from other data. */}
+			{note && (
+				<section className='mt-10'>
+					<div className='mb-6 flex items-center gap-3'>
+						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Field Notes</h2>
+						<span className='bg-border h-px flex-1' />
+						<time dateTime={note.updatedAt} className='text-muted-foreground font-mono text-xs'>
+							{note.updatedAt}
+						</time>
+					</div>
+					<div className='max-w-3xl'>
+						<PostBody body={note.body} />
+					</div>
+				</section>
+			)}
 
 			{/* Field record — which role first put this skill to work, and every role since */}
 			{fieldRecord.length > 0 && (

@@ -90,13 +90,13 @@ export function refLabel(kind: RefKind, id: string): string | undefined {
 	return entitiesData.find(o => o.id === id)?.name
 }
 
-/** Every text field a post can carry refs in — scanned for validation and back-links. */
-function textFields(d: PostDef): string[] {
+/**
+ * Every inline-formatted string in a run of blocks — where `[[kind:id]]` refs can live.
+ * Shared with skill field notes, which use the same blocks and the same inline format.
+ */
+export function blockTexts(blocks: readonly PostBlock[]): string[] {
 	const out: string[] = []
-	if (d.tldr) out.push(d.tldr)
-	for (const f of d.faqs ?? []) out.push(f.q, f.a)
-	for (const l of d.lessons ?? []) out.push(l)
-	for (const b of d.body ?? []) {
+	for (const b of blocks) {
 		if ('text' in b && typeof b.text === 'string') out.push(b.text)
 		if (b.kind === 'list') out.push(...b.items)
 		if (b.kind === 'code' && b.caption) out.push(b.caption)
@@ -106,19 +106,30 @@ function textFields(d: PostDef): string[] {
 	return out
 }
 
+/** Every text field a post can carry refs in — scanned for validation and back-links. */
+function textFields(d: PostDef): string[] {
+	const out: string[] = []
+	if (d.tldr) out.push(d.tldr)
+	for (const f of d.faqs ?? []) out.push(f.q, f.a)
+	for (const l of d.lessons ?? []) out.push(l)
+	out.push(...blockTexts(d.body ?? []))
+	return out
+}
+
 const DATE = /^\d{4}-\d{2}-\d{2}$/
-const wordCount = (blocks: PostBlock[]): number =>
-	blocks
-		.map(b =>
-			b.kind === 'code' ? b.code
-			: b.kind === 'list' ? b.items.join(' ')
-			: b.kind === 'table' ? [...b.head, ...b.rows.flat()].join(' ')
-			: 'text' in b ? b.text
-			: ''
-		)
-		.join(' ')
+
+/** Words a reader works through in one block — code included, as reading time counts it. */
+export const blockWords = (b: PostBlock): number =>
+	(b.kind === 'code' ? b.code
+	: b.kind === 'list' ? b.items.join(' ')
+	: b.kind === 'table' ? [...b.head, ...b.rows.flat()].join(' ')
+	: 'text' in b ? b.text
+	: ''
+	)
 		.split(/\s+/)
 		.filter(Boolean).length
+
+const wordCount = (blocks: readonly PostBlock[]): number => blocks.reduce((sum, b) => sum + blockWords(b), 0)
 
 /**
  * Build-time "now" — the site is statically prerendered, so this is the deploy date.
