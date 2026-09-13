@@ -878,6 +878,9 @@ export const qrFood: ProjectDef = {
 	// Nuxt/Vue lead: the only project in the portfolio not built on React, so maximally identifying.
 	highlightSkills: ['nuxt-js', 'vue', 'supabase', 'prisma', 'postgresql', 'vercel'],
 	title: 'QR Food Platform',
+	// The description opens with where it was built, so its first sentence alone says nothing about what it is.
+	summary:
+		'A Thammasat senior thesis: QR-code table ordering and multi-branch restaurant management, built to replace expensive POS hardware.',
 	description:
 		'A senior thesis project from Thammasat University. Developed a full-stack QR-code ordering and multi-branch restaurant management web application designed to streamline in-restaurant operations and eliminate expensive POS hardware. Key components include: (1) Customer Table Ordering: A Nuxt 3 web application enabling customers to scan table-specific QR codes, browse live menus, customize dishes with add-ons, add items to a real-time cart, and place orders directly from their mobile devices. Features integrated support for calling staff and live bill tracking. (2) Staff & Kitchen Portal: Features custom views for restaurant staff to take orders directly at the table, manage order queues, track preparation statuses, and process instant table closures with bill printing. (3) Multi-Branch Admin Console: An analytical dashboard for owners to manage multiple restaurant branches, configure custom staff roles (owner/staff), toggle menu item availability dynamically per branch, customize food sections and add-on options, and view real-time sales statistics. Built with Nuxt 3, Vue 3, Tailwind CSS, Prisma, and PostgreSQL (Supabase), containerized with Docker and deployed on Vercel.',
 	resumeSummary:

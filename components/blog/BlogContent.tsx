@@ -3,7 +3,7 @@ import PostCard from '@/components/blog/PostCard'
 import Container from '@/components/cyber/Container'
 import MotionReveal from '@/components/cyber/MotionReveal'
 import SectionHeader from '@/components/cyber/SectionHeader'
-import { postsData } from '@/common'
+import { type PostChapter, chapterMetadata, postsData } from '@/common'
 
 /**
  * The /blog index — posts grouped by the YEAR THE WORK HAPPENED (`publishedAt`),
@@ -12,6 +12,11 @@ import { postsData } from '@/common'
  */
 const BlogContent: React.FC = () => {
 	const years = [...new Set(postsData.map(p => p.publishedAt.slice(0, 4)))].sort((a, b) => b.localeCompare(a))
+	// Every card names its chapter; this legend says what each chapter was. Chapters with no
+	// published entry yet are left out rather than advertised.
+	const chapters = (Object.keys(chapterMetadata) as PostChapter[])
+		.map(id => ({ id, ...chapterMetadata[id], count: postsData.filter(p => p.chapter === id).length }))
+		.filter(c => c.count > 0)
 
 	return (
 		<Container className='py-12 md:py-16'>
@@ -21,6 +26,18 @@ const BlogContent: React.FC = () => {
 				title='Journal'
 				subtitle={`${postsData.length} entries — the engineering journey, written up with the numbers.`}
 			/>
+
+			<section aria-label='Chapters' className='mt-8 grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3'>
+				{chapters.map(c => (
+					<div key={c.id} className='border-border/60 border-l-2 pl-3'>
+						<p className='text-cyber-cyan font-mono text-[0.65rem] tracking-[0.3em] uppercase'>// {c.span}</p>
+						<p className='font-display mt-1 font-bold tracking-wide uppercase'>
+							{c.label} <span className='text-muted-foreground font-mono text-xs normal-case'>· {c.count}</span>
+						</p>
+						<p className='text-muted-foreground mt-1 text-sm leading-relaxed'>{c.description}</p>
+					</div>
+				))}
+			</section>
 
 			{years.map((year, idx) => {
 				const items = postsData.filter(p => p.publishedAt.startsWith(year))

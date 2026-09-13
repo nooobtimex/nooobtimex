@@ -18,7 +18,7 @@ const GithubIntro: React.FC<{ variant: 'home' | 'page'; year: string }> = ({ var
 		{/* On home the hero owns the h1; only the standalone /github page promotes this. */}
 		<SectionHeader
 			as={variant === 'home' ? 'h2' : 'h1'}
-			code='04'
+			code='05'
 			title='GitHub'
 			subtitle={year === 'last' ? 'Live contribution activity, refreshed daily.' : `Contribution activity in ${year}.`}
 			action={

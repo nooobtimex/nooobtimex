@@ -40,6 +40,34 @@ export function formatPosition(position: string): string {
 }
 
 /**
+ * A card-length excerpt: whole sentences while they fit in `max` characters, otherwise the
+ * text cut at a word boundary with an ellipsis.
+ *
+ * Cards used to render a full description behind `line-clamp-3`, which hides text from the
+ * eye but not from the HTML — so a 200-word project description shipped verbatim on every
+ * page that listed the project (15+ skill pages for MONOMax). The full text belongs on the
+ * detail page; everywhere else carries this.
+ *
+ * Sentences split only where `.`/`!`/`?` is followed by whitespace and a capital, digit or
+ * quote, so `Next.js` and `e.g. restaurants` stay intact.
+ */
+export function excerpt(text: string, max = 180): string {
+	const flat = text.replace(/\s+/g, ' ').trim()
+	if (flat.length <= max) return flat
+
+	let out = ''
+	for (const sentence of flat.split(/(?<=[.!?])\s+(?=[A-Z0-9"“(])/)) {
+		const next = out ? `${out} ${sentence}` : sentence
+		if (next.length > max) break
+		out = next
+	}
+	if (out) return out
+
+	const cut = flat.slice(0, max)
+	return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:—-]$/, '')}…`
+}
+
+/**
  * Converts a string into a URL-friendly slug.
  * Example: "Next.js" -> "next-js"
  */

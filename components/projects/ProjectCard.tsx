@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import CyberIcon from '@/components/cyber/CyberIcon'
-import { cn } from '@/lib/utils'
+import { cn, excerpt } from '@/lib/utils'
 import type { Project } from '@/common'
 
 interface ProjectCardProps {
@@ -41,7 +41,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) => {
 				<h3 className='font-display group-hover:text-cyber-yellow text-xl leading-tight font-bold tracking-wide transition-colors'>
 					{project.title}
 				</h3>
-				<p className='text-muted-foreground line-clamp-3 text-sm leading-relaxed'>{project.description}</p>
+				{/* An excerpt, never the full description: this card renders on up to 15+ pages per
+				    project, and `line-clamp` hides overflow from readers, not from the HTML. */}
+				<p className='text-muted-foreground line-clamp-3 text-sm leading-relaxed'>
+					{project.summary ?? excerpt(project.description)}
+				</p>
 
 				<div className='mt-auto flex flex-wrap items-center gap-1.5 pt-2'>
 					{shownSkills.slice(0, 5).map((a, i) => (

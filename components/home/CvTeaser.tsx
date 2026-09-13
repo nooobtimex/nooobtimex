@@ -10,7 +10,7 @@ import SectionHeader from '@/components/cyber/SectionHeader'
  */
 const CvTeaser: React.FC = () => (
 	<Container as='section' className='mt-20 pb-10'>
-		<SectionHeader code='05' title='CV' subtitle='Print-ready résumé and a slide presentation.' />
+		<SectionHeader code='06' title='CV' subtitle='Print-ready résumé and a slide presentation.' />
 
 		<NeonPanel className='clip-notch mt-8 flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between'>
 			<div className='flex items-center gap-4'>

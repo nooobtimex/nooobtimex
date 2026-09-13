@@ -139,6 +139,12 @@ export interface Project {
 	description: string
 	/** Short resume-style blurb (1–2 lines) for the CV / presentation; falls back to `description`. */
 	resumeSummary?: string
+	/**
+	 * Card copy, ≤ 180 chars. Optional: cards fall back to `excerpt(description)` — the
+	 * leading whole sentences that fit. Set it only when those sentences say too little
+	 * (a description that opens with context rather than with what the project is).
+	 */
+	summary?: string
 	images: {
 		cover: string
 		photos: string[]

@@ -7,6 +7,7 @@
  */
 import React from 'react'
 import Link from 'next/link'
+import PostCard from '@/components/blog/PostCard'
 import Container from '@/components/cyber/Container'
 import CyberButton from '@/components/cyber/CyberButton'
 import CyberIcon from '@/components/cyber/CyberIcon'
@@ -17,7 +18,7 @@ import MotionReveal from '@/components/cyber/MotionReveal'
 import SectionHeader from '@/components/cyber/SectionHeader'
 import ProjectCard from '@/components/projects/ProjectCard'
 import { cn, formatExperienceDuration } from '@/lib/utils'
-import { featuredProjects, featuredSkills, personalData, workExperienceData } from '@/common'
+import { featuredProjects, featuredSkills, personalData, postsData, workExperienceData } from '@/common'
 
 const formatPosition = (position: string) =>
 	position
@@ -212,10 +213,35 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId }) => {
 				</div>
 			</section>
 
-			{/* CORE STACK */}
+			{/* JOURNAL — the site's long-form writing. Without this the home page, which is where
+			    a visitor or a reviewer lands first, carried no link-level sign that the site
+			    publishes anything beyond a CV: the Journal was reachable only from the nav. */}
 			<section className='mt-20'>
 				<SectionHeader
 					code='03'
+					title='Journal'
+					subtitle={`${postsData.length} entries — the engineering journey, written up with the numbers.`}
+					action={
+						<Link
+							href='/blog'
+							className='text-cyber-cyan hover:text-cyber-yellow hidden font-mono text-xs tracking-widest uppercase transition-colors md:block'>
+							All →
+						</Link>
+					}
+				/>
+				<div className='mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
+					{postsData.slice(0, 3).map((p, i) => (
+						<MotionReveal key={p.id} delay={i * 0.08}>
+							<PostCard post={p} index={i} />
+						</MotionReveal>
+					))}
+				</div>
+			</section>
+
+			{/* CORE STACK */}
+			<section className='mt-20'>
+				<SectionHeader
+					code='04'
 					title='Skills'
 					subtitle='Core tools in active rotation.'
 					action={
