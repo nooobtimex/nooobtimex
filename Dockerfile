@@ -3,7 +3,7 @@
 #
 # Bun installs dependencies; Node builds and serves.
 # ─── Stage 1: Install ────────────────────────────────────────────────────────
-FROM oven/bun:1-slim AS installer
+FROM oven/bun:1.4.2-slim AS installer
 WORKDIR /app
 
 # Manifests only, so this layer is cached until dependencies actually change.
