@@ -22,7 +22,15 @@ import {
 } from '@/components/og/card-primitives'
 import { iconDataUri } from '@/lib/og-assets'
 import { OG } from '@/lib/og-palette'
+import { type ProjectStatus, projectStatus } from '@/lib/utils'
 import { type Project, entitiesData, experiencesData } from '@/common'
+
+/** Same wording as the dossier (`ProjectDetail.tsx`), so the card and the page agree. */
+const STATUS_LABEL = {
+	'live': 'Active',
+	'in-development': 'In Development',
+	'archived': 'Archived'
+} satisfies Record<ProjectStatus, string>
 
 /**
  * The covers are 16:9, so 1080×608 shows one whole and uncropped. That matters:
@@ -70,7 +78,7 @@ const ProjectSquareCard: React.FC<ProjectSquareCardProps> = ({ project, cover })
 	const accent = project.accent
 	const title = stripEmoji(project.title)
 	const year = new Date(project.startDate).getFullYear()
-	const live = !!project.links.live
+	const status = projectStatus(project)
 	const tier = Math.min(3, Math.max(1, Math.ceil(project.activeSkills.length / 4)))
 
 	// Explicit client wins; otherwise fall back to the delivering role's org — same
@@ -150,8 +158,8 @@ const ProjectSquareCard: React.FC<ProjectSquareCardProps> = ({ project, cover })
 					<MetaCell label='Year' value={String(year)} accent={accent} />
 					<MetaCell
 						label='Status'
-						value={live ? 'Active' : 'Archived'}
-						color={live ? accent : OG.muted}
+						value={STATUS_LABEL[status]}
+						color={status === 'archived' ? OG.muted : accent}
 						accent={accent}
 					/>
 					<MetaCell label='Tier' value={<TierBars tier={tier} accent={accent} />} accent={accent} />

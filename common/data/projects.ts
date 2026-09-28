@@ -32,6 +32,92 @@ type ProjectDef = Omit<Project, 'skills' | 'activeSkills' | 'retiredSkills' | 't
 /** Tooling used on every project — always active, never retired, so it lives here not per-project. */
 const commonTooling: SkillId[] = ['typescript', 'git-github', 'prettier', 'eslint']
 
+export const whenWe: ProjectDef = {
+	id: 'whenwe',
+	accent: '#3AD198', // WhenWe's own emerald — the app's dark-theme accent token
+	// Expo leads: WhenWe is a phone app first — the calendar is read and scrubbed on the
+	// device — backed by an Elysia/Bun API. WebSocket closes it out as the live-update layer.
+	highlightSkills: ['expo', 'react-native', 'elysia-js', 'bun-js', 'mongodb', 'websocket'],
+	title: 'WhenWe',
+	description:
+		"A privacy-first group scheduling app that shows couples, families and friend groups when everyone is free, without anyone sharing what is on their calendar. Each phone scrubs its calendar events down to busy start and end times before anything is uploaded; the server folds every member's busy blocks into a heatmap of who is free in each 30-minute slot and suggests the best times, and the group proposes, votes on and confirms a plan, while friends without the app RSVP from a web link. Built as a Bun monorepo: an Expo (React Native) app with an offline vote queue and live WebSocket updates, an Elysia API on MongoDB and Redis with passwordless email sign-in and rotating refresh tokens, and Next.js guest and admin sites, all built on one shared TypeScript package that holds the overlap engine, the bilingual English/Thai copy and the design tokens. Currently in pre-beta, running on Railway.",
+	resumeSummary:
+		'Privacy-first group scheduling app — on-device calendar scrubbing, a shared free-time heatmap, plan voting, and web RSVP for guests without the app. An Expo + Elysia/Bun monorepo on MongoDB and Redis, currently in pre-beta.',
+	// Cover only: the app's screenshots so far are design-gallery specimens, not product screens.
+	images: { cover: assets.projects.whenWe.cover, photos: [] },
+	// Starting stack — every framework landed in the day-one monorepo commit; email, deploy and
+	// realtime arrive via the timeline events below.
+	skills: ['expo', 'react-native', 'bun-js', 'elysia-js', 'mongodb', 'redis', 'next-js', 'react', 'tailwind-css'],
+	// No link: the repo is private and the app has no public URL yet. `stage` keeps the
+	// derived status from reading "Archived" while it is being built.
+	links: {},
+	stage: 'in-development',
+	startDate: '2026-09-23',
+	// Personal builds live under the freelance role, as portfolio and prettier-config do.
+	linkedExperienceIds: ['freelance'],
+	timeline: [
+		{
+			date: '2026-09-23',
+			title: 'Kickoff — Bun monorepo & overlap engine',
+			description:
+				"Set up a Bun workspaces monorepo around one shared TypeScript engine that merges every member's busy blocks into 30-minute free-time slices.",
+			icon: 'mdi:rocket-launch-outline'
+		},
+		{
+			date: '2026-09-23',
+			title: 'Platform — API, guest site & mobile app',
+			description:
+				'Stood up the Elysia API with passwordless email codes, a Next.js guest site and admin console, and the Expo app that scrubs calendar events on the phone before upload.',
+			icon: 'mdi:cellphone-link',
+			addedSkills: ['resend']
+		},
+		{
+			date: '2026-09-23',
+			title: 'Deploy — Railway services & rotating sessions',
+			description:
+				'Deployed the API, guest site and admin to Railway from Dockerfiles, and added rotating refresh tokens that revoke a session when an old token is replayed.',
+			icon: 'simple-icons:railway',
+			addedSkills: ['railway', 'docker']
+		},
+		{
+			date: '2026-09-24',
+			title: 'Plans — heatmap, votes & guest RSVP',
+			description:
+				'Built the free-time heatmap, plan proposals with suggested times, atomic votes that queue while offline, and a public guest page that shows vote counts, never names.',
+			icon: 'mdi:calendar-check'
+		},
+		{
+			date: '2026-09-25',
+			title: 'Design system — tokens, contrast maths & EN/TH',
+			description:
+				'Designed a token-driven light and dark theme with in-house WCAG contrast checks, shared by the app and both sites in English and Thai.',
+			icon: 'mdi:palette-outline'
+		},
+		{
+			date: '2026-09-25',
+			title: 'Circles — invite links & account deletion',
+			description:
+				'Added shareable invite links with member caps, and account deletion that hands circle ownership to the next member.',
+			icon: 'mdi:account-group-outline'
+		},
+		{
+			date: '2026-09-26',
+			title: 'Realtime — live updates over WebSockets',
+			description:
+				'Connected live plan updates on mobile over WebSockets, with jittered reconnects and a fresh socket before each token expires.',
+			icon: 'mdi:broadcast',
+			addedSkills: ['websocket']
+		},
+		{
+			date: '2026-09-26',
+			title: 'Accessibility — VoiceOver & TalkBack QA',
+			description:
+				'Tested the app with real screen readers across English and Thai, light and dark, large text and reduced motion, fixing focus, keyboard and input issues as they surfaced.',
+			icon: 'material-symbols:accessibility-new'
+		}
+	]
+}
+
 export const looklookPet: ProjectDef = {
 	id: 'looklook-pet',
 	accent: '#FF7D5A', // sampled from looklook.pet — coral logo mark
@@ -934,6 +1020,7 @@ export const qrFood: ProjectDef = {
 }
 
 const defs: ProjectDef[] = [
+	whenWe,
 	monomaxEplPortal,
 	rsTrophy,
 	looklookPet,
@@ -1028,7 +1115,7 @@ const resolveProject = (d: ProjectDef): Project => {
 export const projectsData: Project[] = defs.map(resolveProject).sort(sortByDateDesc)
 
 /** Hand-picked projects for the home page (in this order). Edit to curate. */
-const featuredProjectIds = ['monomax-epl-portal', 'rs-trophy', 'looklook-pet']
+const featuredProjectIds = ['whenwe', 'monomax-epl-portal', 'rs-trophy', 'looklook-pet']
 export const featuredProjects: Project[] = featuredProjectIds
 	.map(id => projectsData.find(p => p.id === id))
 	.filter((p): p is Project => Boolean(p))

@@ -195,7 +195,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId }) => {
 				<SectionHeader
 					code='02'
 					title='Projects'
-					subtitle='Selected builds — full-stack systems shipped end to end.'
+					subtitle='Selected builds — full-stack systems built end to end.'
 					action={
 						<Link
 							href='/projects'
@@ -204,7 +204,8 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId }) => {
 						</Link>
 					}
 				/>
-				<div className='mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
+				{/* Four featured: 2×2 until the row is wide enough to hold all four. */}
+				<div className='mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4'>
 					{featured.map((p, i) => (
 						<MotionReveal key={p.id} delay={i * 0.08}>
 							<ProjectCard project={p} index={i} />

@@ -16,6 +16,7 @@ export const assets = {
 		tuLogo: '/logo/tu-logo.webp'
 	},
 	projects: {
+		whenWe: { cover: '/issue/whenwe/cover.webp' },
 		rsTrophy: { cover: '/issue/rs-trophy/cover.webp', gallery: ['/issue/rs-trophy/photo-1.webp'] },
 		looklookPet: {
 			cover: '/issue/looklook-pet/cover.webp',

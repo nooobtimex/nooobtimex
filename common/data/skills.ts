@@ -124,6 +124,23 @@ const flutter = skill({
 	icon: 'logos:flutter',
 	category: 'frontend'
 })
+const reactNative = skill({
+	id: 'react-native',
+	description:
+		"React's component model rendering to real native views on iOS and Android instead of the DOM. The same components and hooks, with platform widgets underneath.",
+	name: 'React Native',
+	icon: 'skill-icons:react-dark',
+	category: 'frontend'
+})
+const expo = skill({
+	id: 'expo',
+	description:
+		'The framework and toolchain around React Native: file-based routing, a curated SDK of native modules, and cloud builds for iOS and Android from one TypeScript codebase.',
+	name: 'Expo',
+	icon: 'logos:expo-icon',
+	category: 'frontend',
+	whiteBg: true
+})
 const prettier = skill({
 	id: 'prettier',
 	description:
@@ -232,6 +249,15 @@ const sse = skill({
 	name: 'SSE',
 	icon: 'material-symbols:stream',
 	category: 'backend'
+})
+const websocket = skill({
+	id: 'websocket',
+	description:
+		'A persistent, two-way connection between client and server over a single socket. Where SSE only lets the server push, both sides can send at any time.',
+	name: 'WebSocket',
+	icon: 'logos:websocket',
+	category: 'backend',
+	whiteBg: true
 })
 const bun = skill({
 	id: 'bun-js',
@@ -550,6 +576,8 @@ const allSkills = [
 	tanstackQuery,
 	recharts,
 	flutter,
+	reactNative,
+	expo,
 	prettier,
 	codemirror,
 	reactHookForm,
@@ -564,6 +592,7 @@ const allSkills = [
 	nats,
 	elysia,
 	sse,
+	websocket,
 	bun,
 	postgresql,
 	mongodb,

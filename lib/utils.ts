@@ -1,5 +1,7 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+// Type-only: erased at compile time, so client components importing `cn` pull in no data.
+import type { Project } from '@/common'
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
@@ -70,6 +72,21 @@ export function excerpt(text: string, max = 180): string {
 
 	const cut = flat.slice(0, max)
 	return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:—-]$/, '')}…`
+}
+
+/** Where a build stands, as its card, dossier and share cards say it. */
+export type ProjectStatus = 'live' | 'in-development' | 'archived'
+
+/**
+ * The one place a project's status is decided. It used to be `links.live ? … : 'Archived'`
+ * inline at four call sites, which made every private build read "Archived" — right for a
+ * delivered freelance job, wrong for one still being built this week.
+ */
+export function projectStatus(project: Pick<Project, 'links' | 'stage' | 'endDate'>): ProjectStatus {
+	// An explicit stage outranks the derived status — a public beta has a live link and is
+	// still in development — but never outlives the work: an `endDate` voids a stale flag.
+	if (project.stage === 'in-development' && !project.endDate) return 'in-development'
+	return project.links.live ? 'live' : 'archived'
 }
 
 /**

@@ -9,7 +9,7 @@ export const freelanceExperience: ExperienceItem = {
 	organization: freelance,
 	position: 'developer',
 	description:
-		'Remote freelance software engineering — building web apps end-to-end, from scoping and design through full-stack delivery and deployment. Recent freelance builds include a flood / water-level monitoring dashboard (interactive station map, historical charts, CSV export, and role-based accounts), a real-time multiplayer game, and a QR-code restaurant ordering & multi-branch management platform. Open to select freelance web-app projects alongside my full-time role.',
+		'Remote freelance software engineering — building web and mobile apps end-to-end, from scoping and design through full-stack delivery and deployment. Recent freelance builds include WhenWe (a privacy-first group scheduling app, in development), a flood / water-level monitoring dashboard (interactive station map, historical charts, CSV export, and role-based accounts), a real-time multiplayer game, and a QR-code restaurant ordering & multi-branch management platform. Open to select freelance web-app projects alongside my full-time role.',
 	type: 'freelance',
 	category: 'work',
 	startDate: '2024-01-01'

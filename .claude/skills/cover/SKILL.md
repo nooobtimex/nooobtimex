@@ -67,7 +67,9 @@ inventing one — looklook-pet, prettier-config and monomax-epl-portal were corr
 this way. Update both this table and `projects.ts` together.
 
 Keep `accent`/`motif` distinct per project so the set reads as a cohesive family,
-not clones. Match `badgeLvl` to `links.live` (`● Live` vs `● Archived`).
+not clones. Match `badgeLvl` to the status the site derives (`projectStatus()` in
+`lib/utils.ts`): `● Live` for a live link, `● In Development` for a project with
+`stage: 'in-development'`, otherwise `● Archived`.
 
 ## Wiring it into the data (`common/data/`)
 
@@ -114,6 +116,8 @@ project** — cross-check `activeSkills` in `common/data/projects.ts`, and prefe
 from that project's `highlightSkills`, which is already the curated signature list.
 
 ```
+whenwe              accent #3AD198  motif dots     title When|We             kicker // GROUP SCHEDULING     badge ● In Development  tags Expo,React Native,Elysia,MongoDB
+                    subtitle Free-time heatmap · No calendars shared  badgeSub Pre-Beta  meta FREELANCE // 2026
 monomax-epl-portal  accent #EE5E25  motif qr       title MONOMax|EPL Portal  kicker // LICENSING SAAS       badge ● SaaS      tags Next.js,MongoDB,Better-Auth,Docker
 rs-trophy           accent #FCEE0A  motif trophy   title RS|Trophy           kicker // E-COMMERCE PLATFORM  badge ● Live      tags Bun,Next.js,Elysia,MongoDB,R2
 looklook-pet        accent #FF7D5A  motif hex      title LOOKLOOK|Pet        kicker // MARKETPLACE          badge ● Live      tags NestJS,Medusa,Omise,Next.js

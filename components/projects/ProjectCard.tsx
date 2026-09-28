@@ -1,8 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
 import CyberIcon from '@/components/cyber/CyberIcon'
-import { cn, excerpt } from '@/lib/utils'
+import { type ProjectStatus, cn, excerpt, projectStatus } from '@/lib/utils'
 import type { Project } from '@/common'
+
+const STATUS_LABEL = {
+	'live': 'Live',
+	'in-development': 'In Development',
+	'archived': 'Archived'
+} satisfies Record<ProjectStatus, string>
 
 interface ProjectCardProps {
 	project: Project
@@ -65,7 +71,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) => {
 			{/* Footer bar */}
 			<div className='border-border/60 flex items-center justify-between border-t px-4 py-2'>
 				<span className={cn('font-mono text-[0.65rem] tracking-widest uppercase', 'text-cyber-cyan')}>
-					{project.links.live ? 'Live' : 'Archived'}
+					{STATUS_LABEL[projectStatus(project)]}
 				</span>
 				<CyberIcon
 					icon='mdi:arrow-top-right'

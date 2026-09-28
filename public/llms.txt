@@ -40,7 +40,7 @@ Read more: https://nooobtimex.me/career/ruamsuk-software-engineer-full-time
 
 ### Developer — Freelance (Jan 2024 - Present)
 
-Remote freelance software engineering — building web apps end-to-end, from scoping and design through full-stack delivery and deployment. Recent freelance builds include a flood / water-level monitoring dashboard (interactive station map, historical charts, CSV export, and role-based accounts), a real-time multiplayer game, and a QR-code restaurant ordering & multi-branch management platform. Open to select freelance web-app projects alongside my full-time role.
+Remote freelance software engineering — building web and mobile apps end-to-end, from scoping and design through full-stack delivery and deployment. Recent freelance builds include WhenWe (a privacy-first group scheduling app, in development), a flood / water-level monitoring dashboard (interactive station map, historical charts, CSV export, and role-based accounts), a real-time multiplayer game, and a QR-code restaurant ordering & multi-branch management platform. Open to select freelance web-app projects alongside my full-time role.
 
 Read more: https://nooobtimex.me/career/freelance
 
@@ -55,6 +55,13 @@ Read more: https://nooobtimex.me/career/ruamsuk-software-engineer-part-time
 - Student, Thammasat University (Aug 2021 - Jun 2025)
 
 ## Projects
+
+### WhenWe
+
+A privacy-first group scheduling app that shows couples, families and friend groups when everyone is free, without anyone sharing what is on their calendar. Each phone scrubs its calendar events down to busy start and end times before anything is uploaded; the server folds every member's busy blocks into a heatmap of who is free in each 30-minute slot and suggests the best times, and the group proposes, votes on and confirms a plan, while friends without the app RSVP from a web link. Built as a Bun monorepo: an Expo (React Native) app with an offline vote queue and live WebSocket updates, an Elysia API on MongoDB and Redis with passwordless email sign-in and rotating refresh tokens, and Next.js guest and admin sites, all built on one shared TypeScript package that holds the overlap engine, the bilingual English/Thai copy and the design tokens. Currently in pre-beta, running on Railway.
+
+- Stack: Expo, React Native, Bun.js, Elysia.js, MongoDB, Redis, Next.js, React, Tailwind CSS, Resend, Railway, Docker, WebSocket, TypeScript, Git/GitHub, Prettier, ESLint
+- Details: https://nooobtimex.me/projects/whenwe
 
 ### MONOMax EPL Licensing Portal
 
@@ -334,8 +341,8 @@ Read more: https://nooobtimex.me/blog/started-job-and-degree-same-month
 
 ## Skills
 
-- frontend: Next.js, React, TypeScript, Tailwind CSS, Shadcn/ui, Radix UI, Base UI, Embla Carousel, TanStack Query, Recharts, Flutter, Prettier, CodeMirror, React Hook Form, Leaflet, Vitest, ESLint, Vue.js, Nuxt.js
-- backend: Node.js, Nest.js, NATS, Elysia.js, SSE, Bun.js, PostgreSQL, MongoDB, Prisma, Redis, BullMQ, Medusa, Zod, Better Auth, Clerk, NextAuth, Firebase, Supabase, Mercur
+- frontend: Next.js, React, TypeScript, Tailwind CSS, Shadcn/ui, Radix UI, Base UI, Embla Carousel, TanStack Query, Recharts, Flutter, React Native, Expo, Prettier, CodeMirror, React Hook Form, Leaflet, Vitest, ESLint, Vue.js, Nuxt.js
+- backend: Node.js, Nest.js, NATS, Elysia.js, SSE, WebSocket, Bun.js, PostgreSQL, MongoDB, Prisma, Redis, BullMQ, Medusa, Zod, Better Auth, Clerk, NextAuth, Firebase, Supabase, Mercur
 - infrastructure: Vercel, Railway, Docker, Render, Tencent Cloud, CircleCI, Git/GitHub, MinIO, Resend, Cloudflare R2, AWS S3, Mailgun, Omise, Algolia
 - growth-management: SEO, AEO, GEO, JSON-LD, Google Analytics, Google Ads, Google Tag Manager, WordPress, WooCommerce
 

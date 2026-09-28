@@ -31,6 +31,13 @@ export type ExperienceId =
 	| 'thammasat-bs-cs'
 
 /**
+ * Where a project stands, for the one case its status can't be derived. Live/Archived comes
+ * from `links.live`, so a private build with no public URL reads "Archived" — true for a
+ * delivered job, false for one still being built.
+ */
+export type ProjectStage = 'in-development'
+
+/**
  * Blog journey chapters — the career phase a post belongs to. Spans mirror the exact
  * dates in `common/data/experiences.ts`; `freelance` runs underneath the others.
  */

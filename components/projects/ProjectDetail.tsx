@@ -7,12 +7,19 @@ import CyberIcon from '@/components/cyber/CyberIcon'
 import NeonPanel from '@/components/cyber/NeonPanel'
 import ProjectGallery from '@/components/projects/ProjectGallery'
 import ProjectTimeline from '@/components/projects/ProjectTimeline'
-import { formatExperienceDuration } from '@/lib/utils'
+import { type ProjectStatus, formatExperienceDuration, projectStatus } from '@/lib/utils'
 import { type Project, entitiesData, experiencesData, postsByProject } from '@/common'
 
 interface ProjectDetailProps {
 	project: Project
 }
+
+/** The dossier's wording and signal colour per status — it says "Active" where the card says "Live". */
+const STATUS_META = {
+	'live': { label: 'Active', className: 'text-cyber-cyan' },
+	'in-development': { label: 'In Development', className: 'text-cyber-yellow' },
+	'archived': { label: 'Archived', className: 'text-muted-foreground' }
+} satisfies Record<ProjectStatus, { label: string; className: string }>
 
 const MetaCell: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
 	<div className='border-border/60 border-l-2 pl-3'>
@@ -36,7 +43,7 @@ const humanize = (value: string) =>
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
 	const year = new Date(project.startDate).getFullYear()
-	const live = !!project.links.live
+	const status = STATUS_META[projectStatus(project)]
 	const tier = Math.min(3, Math.max(1, Math.ceil(project.activeSkills.length / 4)))
 	// Role(s) this project was delivered under — primary role first.
 	const linkedRoles = (project.linkedExperienceIds ?? []).flatMap(id => {
@@ -102,7 +109,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
 					<span className='text-cyber-magenta'>{'▲'.repeat(tier)}</span>
 				</MetaCell>
 				<MetaCell label='Status'>
-					<span className={live ? 'text-cyber-cyan' : 'text-muted-foreground'}>{live ? 'Active' : 'Archived'}</span>
+					<span className={status.className}>{status.label}</span>
 				</MetaCell>
 				<MetaCell label='Year'>{year}</MetaCell>
 			</NeonPanel>

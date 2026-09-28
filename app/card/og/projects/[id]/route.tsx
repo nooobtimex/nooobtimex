@@ -17,16 +17,23 @@
  * to the top drops that row whole — and losing it costs nothing, because the strip below
  * reprints the same stack alongside what a static cover cannot carry: status and the URL.
  *
- * Prerendered for all ten projects, so `pngDataUri`'s sharp import stays a build-time
+ * Prerendered for every project, so `pngDataUri`'s sharp import stays a build-time
  * cost and never reaches the runtime container. See the Deployment section in CLAUDE.md.
  */
 import { ImageResponse } from 'next/og'
 import { alpha, gridBackground, stripEmoji, truncate } from '@/components/og/card-primitives'
 import { pngDataUri } from '@/lib/og-assets'
 import { OG } from '@/lib/og-palette'
+import { type ProjectStatus, projectStatus } from '@/lib/utils'
 import { projectsData } from '@/common'
 
 export const dynamic = 'force-static'
+
+const STATUS_LABEL = {
+	'live': 'LIVE',
+	'in-development': 'IN DEVELOPMENT',
+	'archived': 'ARCHIVED'
+} satisfies Record<ProjectStatus, string>
 
 const SIZE = { width: 1200, height: 630 }
 /** The visible band of the cover. The rest is clipped off the bottom. */
@@ -47,7 +54,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
 	const accent = project.accent
 	// Downscaled to the card width — a full-size 1600×900 cover inlines to ~1.5 MB.
 	const cover = await pngDataUri(project.images.cover, SIZE.width)
-	const status = project.links.live ? 'LIVE' : 'ARCHIVED'
+	const status = projectStatus(project)
 	const stack = project.skills
 		.slice(0, 6)
 		.map(s => s.name)
@@ -110,10 +117,10 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
 							fontSize: 20,
 							fontWeight: 700,
 							letterSpacing: 3,
-							color: status === 'LIVE' ? OG.bg : accent,
-							backgroundColor: status === 'LIVE' ? accent : alpha(accent, 0.16)
+							color: status === 'live' ? OG.bg : accent,
+							backgroundColor: status === 'live' ? accent : alpha(accent, 0.16)
 						}}>
-						{status}
+						{STATUS_LABEL[status]}
 					</div>
 					<div style={{ display: 'flex', fontSize: 22, letterSpacing: 2, color: OG.muted }}>nooobtimex.me</div>
 				</div>

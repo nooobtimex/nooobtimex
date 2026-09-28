@@ -14,6 +14,7 @@ import {
 	Position,
 	PostCategory,
 	PostChapter,
+	ProjectStage,
 	SkillCategory,
 	SocialPlatform
 } from './enums'
@@ -165,6 +166,12 @@ export interface Project {
 	links: {
 		live?: string
 	}
+	/**
+	 * Set only when the derived status would mislead — a private repo still being built has
+	 * no live link, so it would read "Archived". Leave unset everywhere else; see
+	 * `projectStatus()` in `lib/utils.ts`.
+	 */
+	stage?: ProjectStage
 	startDate: string // YYYY-MM-DD
 	endDate?: string // YYYY-MM-DD, or undefined if ongoing
 	/** Role(s) this project was delivered under — primary role first. */

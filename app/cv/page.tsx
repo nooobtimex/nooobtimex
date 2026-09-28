@@ -81,12 +81,9 @@ export default function CVPage() {
 			<style
 				dangerouslySetInnerHTML={{
 					__html: `
-				#cv-page-1,
-				#cv-page-2,
-				#cv-page-3,
-				#cv-page-4,
-				#cv-page-5,
-				#cv-page-6 {
+				/* Pages are matched by position under #cv-pages, never by id: the old
+				   #cv-page-1…6 lists silently capped the CV at three featured projects. */
+				#cv-pages > .cv-page-container {
 					font-family:
 						ui-sans-serif,
 						system-ui,
@@ -98,12 +95,7 @@ export default function CVPage() {
 						Arial,
 						sans-serif !important;
 				}
-				#cv-page-1 :is(h1, h2, h3, h4),
-				#cv-page-2 :is(h1, h2, h3, h4),
-				#cv-page-3 :is(h1, h2, h3, h4),
-				#cv-page-4 :is(h1, h2, h3, h4),
-				#cv-page-5 :is(h1, h2, h3, h4),
-				#cv-page-6 :is(h1, h2, h3, h4) {
+				#cv-pages > .cv-page-container :is(h1, h2, h3, h4) {
 					font-family:
 						ui-sans-serif,
 						system-ui,
@@ -134,19 +126,11 @@ export default function CVPage() {
 						-webkit-print-color-adjust: exact !important;
 						print-color-adjust: exact !important;
 					}
-					#cv-page-1,
-					#cv-page-2,
-					#cv-page-3,
-					#cv-page-4,
-					#cv-page-5 {
+					/* Every page but the last, so printing never ends on a blank sheet. */
+					#cv-pages > .cv-page-container:not(:last-child) {
 						page-break-after: always !important;
 					}
-					#cv-page-1,
-					#cv-page-2,
-					#cv-page-3,
-					#cv-page-4,
-					#cv-page-5,
-					#cv-page-6 {
+					#cv-pages > .cv-page-container {
 						margin: 0 !important;
 						border: none !important;
 						box-shadow: none !important;
@@ -181,8 +165,8 @@ export default function CVPage() {
 			{/* Client island: the print button needs window.print(). */}
 			<CvControls accent={ACCENT} />
 
-			{/* A4 pages */}
-			<div className='flex flex-col items-center gap-10 px-4 md:px-0'>
+			{/* A4 pages — each a direct child, which the print CSS above relies on. */}
+			<div id='cv-pages' className='flex flex-col items-center gap-10 px-4 md:px-0'>
 				{/* PAGE 1 — Branding & core info */}
 				<div
 					id='cv-page-1'
@@ -406,7 +390,7 @@ export default function CVPage() {
 					)}
 				</div>
 
-				{/* PAGES 4–6 — one full page per flagship project */}
+				{/* PAGES 4+ — one full page per featured project */}
 				{featuredProjects.map((project, i) => {
 					const client = getClientName(project)
 					const via =

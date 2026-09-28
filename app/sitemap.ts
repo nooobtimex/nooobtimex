@@ -19,7 +19,7 @@ import {
  * distrust a `lastmod` that is always "now", so bump this date only when the
  * content behind these routes actually changes.
  */
-const CONTENT_LAST_MODIFIED = new Date('2026-08-24')
+const CONTENT_LAST_MODIFIED = new Date('2026-09-28')
 
 const entry = (
 	path: string,
