@@ -2,10 +2,12 @@
 import type { PostDef } from '../../../interfaces'
 import { a4PrintCssInReact } from './a4-print-css-in-react'
 import { aiMemoryInMarkdownIOwn } from './ai-memory-in-markdown-i-own'
+import { aiVerificationGateFailedOpen } from './ai-verification-gate-failed-open'
 import { amplifyNotReplace } from './amplify-not-replace'
 import { automationIsMostlyFailureHandling } from './automation-is-mostly-failure-handling'
 import { autopilotSocialPublishingSuite } from './autopilot-social-publishing-suite'
 import { brokenTemplateLiteralShips } from './broken-template-literal-ships'
+import { bullmqCustomIdColon } from './bullmq-custom-id-colon'
 import { bunBuildsNodeServes } from './bun-builds-node-serves'
 import { bunMonorepoElysiaEdenTreaty } from './bun-monorepo-elysia-eden-treaty'
 import { chatbotIsTheIndustryTechCeiling } from './chatbot-is-the-industry-tech-ceiling'
@@ -16,6 +18,7 @@ import { containerRss402To126 } from './container-rss-402-to-126'
 import { ctoOrProductEngineer } from './cto-or-product-engineer'
 import { ctoWhoFixesThePrinter } from './cto-who-fixes-the-printer'
 import { cyberpunkDesignSystemRebuild } from './cyberpunk-design-system-rebuild'
+import { deleted38kLinesRestoredIn4Days } from './deleted-38k-lines-restored-in-4-days'
 import { droppingNextImageQualitiesTrap } from './dropping-next-image-qualities-trap'
 import { eslintReactHooksV7CompilerRules } from './eslint-react-hooks-v7-compiler-rules'
 import { eventSourcingMyTechStack } from './event-sourcing-my-tech-stack'
@@ -31,6 +34,7 @@ import { geojson2dsphereVenueModel } from './geojson-2dsphere-venue-model'
 import { headlessChromeCoverPipeline } from './headless-chrome-cover-pipeline'
 import { howIBecameCtoAt23 } from './how-i-became-cto-at-23'
 import { iconifySpanUnderSsr } from './iconify-span-under-ssr'
+import { imageModelMustNotRenderText } from './image-model-must-not-render-text'
 import { imageOptimizerExifIdempotency } from './image-optimizer-exif-idempotency'
 import { inHouseQrCertificateVerification } from './in-house-qr-certificate-verification'
 import { invertedQrWechatDetector } from './inverted-qr-wechat-detector'
@@ -56,7 +60,6 @@ import { openrouterStreamingAgentMcpTools } from './openrouter-streaming-agent-m
 import { partnerAccountVerificationApi } from './partner-account-verification-api'
 import { planWas2030CameBack2026 } from './plan-was-2030-came-back-2026'
 import { prettierSchemaVersionPickerDiff } from './prettier-schema-version-picker-diff'
-import { priceCardReskin158Auto34Human } from './price-card-reskin-158-auto-34-human'
 import { printReadyCvAndCommandPalette } from './print-ready-cv-and-command-palette'
 import { prismaPostgresToMongodbMidBuild } from './prisma-postgres-to-mongodb-mid-build'
 import { productMaster825Rows192Photos } from './product-master-825-rows-192-photos'
@@ -66,6 +69,7 @@ import { railwayStartCommandThreePlaces } from './railway-start-command-three-pl
 import { rangeStreamingFasterTranscode } from './range-streaming-faster-transcode'
 import { reactSilentlyAteMyFormValues } from './react-silently-ate-my-form-values'
 import { readTheDateBack } from './read-the-date-back'
+import { reasoningTokensEmptyCompletion } from './reasoning-tokens-empty-completion'
 import { rootLayoutCanonical90Duplicates } from './root-layout-canonical-90-duplicates'
 import { rsTrophyLiveOnRailway } from './rs-trophy-live-on-railway'
 import { scope81PercentNeverSayWhatsExcluded } from './scope-81-percent-never-say-whats-excluded'
@@ -76,6 +80,7 @@ import { semanticVectorSearchBullmq } from './semantic-vector-search-bullmq'
 import { seoAeoProductPagesClientSearch } from './seo-aeo-product-pages-client-search'
 import { sitemap200NotFoundPages } from './sitemap-200-not-found-pages'
 import { skillGraphAndGameUiPages } from './skill-graph-and-game-ui-pages'
+import { socialPublisherFalseSuccess } from './social-publisher-false-success'
 import { solePmPoDesigner } from './sole-pm-po-designer'
 import { songbirdWatchCp2077Companion } from './songbird-watch-cp2077-companion'
 import { staticProfileToFullWebApp } from './static-profile-to-full-web-app'
@@ -88,6 +93,7 @@ import { templeFairComplianceSpec } from './temple-fair-compliance-spec'
 import { tencentCosToR2ProviderFlip } from './tencent-cos-to-r2-provider-flip'
 import { thaiLocalizationAndANewDesignSystem } from './thai-localization-and-a-new-design-system'
 import { thaiSmeWebStackCounted } from './thai-sme-web-stack-counted'
+import { thaiTextMacosVsAlpineResvg } from './thai-text-macos-vs-alpine-resvg'
 import { the390pxBugInMyOwnSite } from './the-390px-bug-in-my-own-site'
 import { tokenFreeGithubStatsIsr } from './token-free-github-stats-isr'
 import { turborepo15Polyrepos } from './turborepo-15-polyrepos'
@@ -167,12 +173,14 @@ export const posts2026: PostDef[] = [
 	whatIsInTheBuilding,
 	youHaveToLeaveToComeBack,
 	zeroReviewsOnPurpose,
+	socialPublisherFalseSuccess,
 	chatbotIsTheIndustryTechCeiling,
 	lineOaIsInfrastructure,
 	nobodyWritesThisFromTheInside,
 	oneBrandTwoIdentities,
 	whyATrophyCompanyNeedsACto,
-	priceCardReskin158Auto34Human,
+	imageModelMustNotRenderText,
+	thaiTextMacosVsAlpineResvg,
 	typingTestThreeAngryCustomers,
 	automationIsMostlyFailureHandling,
 	files1621Kept35gbDeleted,
@@ -191,6 +199,9 @@ export const posts2026: PostDef[] = [
 	scraping185ListingsBeforePricing,
 	tealEraNavyEra,
 	twoTrueFactsOneConfidentLie,
+	reasoningTokensEmptyCompletion,
+	aiVerificationGateFailedOpen,
+	bullmqCustomIdColon,
 	eslintReactHooksV7CompilerRules,
 	fastworkSellerCenterMechanics,
 	iconifySpanUnderSsr,
@@ -205,5 +216,6 @@ export const posts2026: PostDef[] = [
 	sitemap200NotFoundPages,
 	styledJsxIsClientOnly,
 	the390pxBugInMyOwnSite,
-	lifeMapFromMemoryFiles
+	lifeMapFromMemoryFiles,
+	deleted38kLinesRestoredIn4Days
 ]

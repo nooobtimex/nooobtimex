@@ -141,6 +141,24 @@ This site — a Cyberpunk 2077–inspired portfolio built on Next.js (App Router
 
 ## Writing
 
+### Should you delete a feature stuck in platform review? I deleted ~38k lines, restored it 4 days later
+
+On 31 August 2026 I deleted a finished social auto-posting system — 37,990 lines across three commits — because its launch was gated on TikTok, YouTube and Meta review queues, and an MCP assistant plus each platform's own scheduler could replace it. Four days later I restored it: Meta never needed App Review to post to our own Page and Instagram; I had generalised TikTok's and YouTube's gates to it. Verify each platform's gate from its own docs before deleting, and treat schedulers, collections and OAuth grants as part of the deletion.
+
+Read more: https://nooobtimex.me/blog/deleted-38k-lines-restored-in-4-days
+
+### Why my LLM verification gate passed an empty {} reply — failing open in JSON mode
+
+My vision-model gate checked an AI-cleaned image by asking three yes/no questions in JSON mode and reading each answer as parsed.x === true. JSON mode guarantees valid JSON, not the keys you asked for, so a reply of {} produced no problems and reported a pass — a gate that failed open at exactly the moment the model misbehaved. The fix requires every answer to be a real boolean and treats anything else as a refusal. The same afternoon, the feature it guarded was deleted for good.
+
+Read more: https://nooobtimex.me/blog/ai-verification-gate-failed-open
+
+### Why BullMQ throws 'Custom Id cannot contain :' — and 1,034 green tests missed it
+
+BullMQ throws Custom Id cannot contain : when a custom jobId holds a colon — it only lets exactly two through, for old repeatable jobs. Four of the five stable id builders in my family's trophy company's API were written prefix:${id}, so scheduled publishing, "Generate now", sample renders and plate cleans could not enqueue, while 1,034 unit tests stayed green: they spied on queue.add, which proves an id is stable, never that BullMQ accepts it. The fix was hyphens plus a test that scans the source for every id builder and was mutation-tested to prove it can fail.
+
+Read more: https://nooobtimex.me/blog/bullmq-custom-id-colon
+
 ### A 116-line build gate that fails on broken internal links
 
 After three SEO defects that no build, lint or type check reported, I added a 116-line post-build gate. It walks the prerendered HTML in .next/server/app, collects every internal href, and fails the build if one points at a route the build did not emit. The design rule that makes it work: it reads the build output on both sides, never the data layer — deriving links and routes from the same source would only prove that source agrees with itself.
@@ -165,11 +183,35 @@ A sitemap is the strongest indexing signal you send — you are asserting that t
 
 Read more: https://nooobtimex.me/blog/sitemap-200-not-found-pages
 
+### Why does an LLM API call return an empty string? Reasoning tokens count against max_tokens
+
+An LLM API call returns an empty string when a reasoning model spends its max_tokens budget thinking: the response is an HTTP 200 with finish_reason: "length", no usable content, and the reasoning is still billed. My client returned content ?? '' without reading finish_reason, so every AI caption path in production failed as "No captions generated". The fix: treat length and empty as errors that name the tokens spent, the cap and the reasoning share, and size caps for reasoning plus answer.
+
+Read more: https://nooobtimex.me/blog/reasoning-tokens-empty-completion
+
 ### Most of my automation is failure handling
 
 I built an n8n workflow that turns a row in a Google Sheet into a finished, uploaded product video for my family's trophy business. Of its 40 working nodes, 13 — a full third — exist only for failure: polling, retry counters, error writes, cleanup. The pipeline's real coordination layer is four words in a spreadsheet status column: pending, processing, done, error. The happy path is the demo; the failure-handling third is what makes it automation.
 
 Read more: https://nooobtimex.me/blog/automation-is-mostly-failure-handling
+
+### How to render Thai SVG text byte-identically on macOS and in Alpine Docker
+
+To render Thai text identically on macOS and in an Alpine container, take the host fonts out of the loop. SVG text through sharp resolves fonts via fontconfig, which finds hundreds of faces on a Mac and none in the Alpine image, so text can render locally and ship blank. I moved to resvg with two bundled static font files and loadSystemFonts: false, and the same Thai + Latin layer produced the same sha256 on darwin-arm64 and inside the image.
+
+Read more: https://nooobtimex.me/blog/thai-text-macos-vs-alpine-resvg
+
+### Why an image model must never render the text on your product cards
+
+On 11 August 2026 I moved my family's trophy-company ad cards onto a new navy/gold template. One bulk image-model prompt was tried first and failed silently: it dropped a size row and a price row, invented a product code, printed the LINE badge as "LIME" and deleted the red X that marks an item as excluded from a set — and every output looked finished. The replacement re-types nothing. A local sharp script lifts each card's own printed pixels as an alpha matte and composites them onto the new frame, so the text a customer reads is the text the operator printed.
+
+Read more: https://nooobtimex.me/blog/image-model-must-not-render-text
+
+### Why our social publisher reported success for posts that never went out
+
+Before our social auto-posting system had ever been connected to a platform, a review on 5 August 2026 found it could report PUBLISHED for posts that went out privately, went out as the wrong media, or never went out: a TikTok privacy lookup that failed open to SELF_ONLY, a dry-run sandbox that answered for disabled channels with a synthetic success, and OAuth scopes stored as what we asked Meta for rather than what Meta granted. Every fix reduced to one rule — a status may only say what the platform confirmed — and keeping it cost us the sandbox.
+
+Read more: https://nooobtimex.me/blog/social-publisher-false-success
 
 ### How I became CTO at 23 of the company that hired me as a part-time student
 
