@@ -4,7 +4,7 @@ Wongsaphat Puangsorn's personal portfolio — a content-driven marketing site wi
 **Cyberpunk 2077** visual theme. Deployed on **Railway** via `railway.toml` and the root
 `Dockerfile` (Vercel is no longer a deploy target).
 
-- **Next.js 16** (App Router, Turbopack) · **React 19** · **TypeScript**
+- **Next.js 16** (App Router, Turbopack) · **React 19** · **TypeScript 7** (paired with TS 6 — see below)
 - **Tailwind CSS v4** · **shadcn/ui on Base UI** (`@base-ui/react`)
 - Package manager: **bun** (`bun.lock`) — `bun install`; run scripts with `bun run <script>`.
 - Fonts: Rajdhani (display), JetBrains Mono (mono), Noto Thai.
@@ -24,18 +24,19 @@ scripts/icons/     # generates that subset · the ONLY place @iconify-json/* may
 
 ## Commands
 
-| Task   | Command                   | Notes                                                                                               |
-| ------ | ------------------------- | --------------------------------------------------------------------------------------------------- |
-| Dev    | `bun run dev`             | serves on **port 1000**                                                                             |
-| Build  | `bun run build`           | the type-check gate. `icons:check` → `next build` → `links:check` → `seo:check` → `bundle:check`    |
-| Lint   | `bun run lint`            | `eslint . --fix && prettier . --write`                                                              |
-| Icons  | `bun run icons:generate`  | after any `icon:` change in `common/data` — commit the artifact                                     |
-| Links  | `bun run links:check`     | post-build gate: every internal `href` must resolve. Needs a build first                            |
-| SEO    | `bun run seo:check`       | post-build gate: no content hidden in a streamed segment; sitemap ⇄ robots agree. Needs a build too |
-| Bundle | `bun run bundle:check`    | post-build gate: no Journal post text in any browser chunk. Needs a build too                       |
-| Images | `bun run images:optimize` | after adding anything to `public/` — idempotent, commit the result                                  |
-| LLMs   | `bun run llms:generate`   | regenerates `public/llms.txt` from `common/` — commit the artifact                                  |
-| Cites  | `bun run links:external`  | fetches every blog citation. Run before shipping a post; NOT in `build`                             |
+| Task   | Command                   | Notes                                                                                                    |
+| ------ | ------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Dev    | `bun run dev`             | serves on **port 1000**                                                                                  |
+| Build  | `bun run build`           | the full gate. `icons:check` → `typecheck` → `next build` → `links:check` → `seo:check` → `bundle:check` |
+| Types  | `bun run typecheck`       | the type-check gate: `next typegen && tsc --noEmit` on TypeScript 7's native `tsc`                       |
+| Lint   | `bun run lint`            | `eslint . --fix && prettier . --write`                                                                   |
+| Icons  | `bun run icons:generate`  | after any `icon:` change in `common/data` — commit the artifact                                          |
+| Links  | `bun run links:check`     | post-build gate: every internal `href` must resolve. Needs a build first                                 |
+| SEO    | `bun run seo:check`       | post-build gate: no content hidden in a streamed segment; sitemap ⇄ robots agree. Needs a build too      |
+| Bundle | `bun run bundle:check`    | post-build gate: no Journal post text in any browser chunk. Needs a build too                            |
+| Images | `bun run images:optimize` | after adding anything to `public/` — idempotent, commit the result                                       |
+| LLMs   | `bun run llms:generate`   | regenerates `public/llms.txt` from `common/` — commit the artifact                                       |
+| Cites  | `bun run links:external`  | fetches every blog citation. Run before shipping a post; NOT in `build`                                  |
 
 **Definition of done for any code change: `bun run lint` then `bun run build`, both
 green.** Run them before declaring work complete.
@@ -47,8 +48,8 @@ the dashboard) + the root `Dockerfile`, mirroring `rs-trophy.com`:
 
 - **bun installs, node builds and serves.** Stage 1 installs on `oven/bun:1-slim`; stage 2
   builds on `node:26-slim` with the bun binary copied in, which runs the same gates as
-  `bun run build` (`icons:check`, then `links:check` + `seo:check` + `bundle:check` after
-  `next build`) — there is no CI, so a failing gate fails the deploy. Stage 3 serves on
+  `bun run build` (`icons:check` + `typecheck`, then `links:check` + `seo:check` +
+  `bundle:check` after `next build`) — there is no CI, so a failing gate fails the deploy. Stage 3 serves on
   `node:26-slim`.
   Serving on Bun is deliberately avoided — the Next standalone server leaks RSS under
   Bun's Node-compat HTTP layer (oven-sh/bun#27514), which on a long-lived container reads
@@ -85,6 +86,25 @@ docker build -t nooobtimex . && docker run --rm -e PORT=7788 -p 7788:7788 nooobt
 - **Commit messages** end with:
   `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`
   Only commit/push when asked; branch first if on `main` and unsure.
+
+## TypeScript 6 + 7 — the alias pair is deliberate
+
+TypeScript 7 (the native Go compiler) ships the `tsc` binary but **no compiler API** —
+its main export is just a version string. typescript-eslint parses every file through
+that API and caps `typescript` at `<6.1.0`, so `package.json` installs both:
+
+- `"typescript": "npm:@typescript/typescript6@…"` — the TS 6 API for anything that
+  `require('typescript')`s (typescript-eslint, Next's detection). Its binary is `tsc6`.
+- `"@typescript/native": "npm:typescript@^7…"` — TypeScript 7; owns the `tsc` binary.
+
+**Do not "fix" `typescript` back to `typescript@7`** until typescript-eslint supports the
+TS 7 API: that exact bump was shipped once and reverted (`f9d1f92`) after a fresh install
+broke the deploy — a stale local `node_modules` had hidden it. Because Next would find the
+TS 6 alias, `next.config.ts` sets `typescript.ignoreBuildErrors` and the type gate is
+`bun run typecheck` (TS 7) in both `build` and the Dockerfile — never call `next build`
+alone. Bun can keep a stale `typescript@6` lock entry when the alias spec changes; if
+`node_modules/typescript/package.json` is not `@typescript/typescript6`, `bun remove
+typescript` and re-add the alias.
 
 ## SEO — five invariants the build depends on
 

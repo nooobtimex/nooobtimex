@@ -19,6 +19,13 @@ const nextConfig: NextConfig = {
 	// to the only allowed value — 100 — re-encoding the whole set every 60s.
 	images: { unoptimized: true },
 	typedRoutes: true,
+	// NOT "ignore type errors" — the type gate moved, it did not go away. `bun run build`
+	// (and the Dockerfile) runs `bun run typecheck` — TypeScript 7's native `tsc` — before
+	// `next build`. Left on, Next would type-check a second time with TypeScript 6: the
+	// `typescript` package is aliased to @typescript/typescript6 because typescript-eslint
+	// still needs the compiler API TS 7 does not ship. Anything that calls `next build`
+	// directly must run `typecheck` first. See "TypeScript 6 + 7" in CLAUDE.md.
+	typescript: { ignoreBuildErrors: true },
 	async redirects() {
 		// Only single-segment detail routes are redirected. Deeper paths (e.g.
 		// /issue/<slug>/banner.png) are public image assets and must NOT redirect.
