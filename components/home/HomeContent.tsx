@@ -170,7 +170,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 							<span className='border-cyber-cyan/60 absolute top-2 left-2 size-4 border-t-2 border-l-2' />
 							<span className='border-cyber-cyan/60 absolute right-2 bottom-2 size-4 border-r-2 border-b-2' />
 						</div>
-						<span className='bg-cyber-yellow absolute -bottom-3 left-4 px-2 py-0.5 font-mono text-[0.6rem] font-bold tracking-widest text-black uppercase'>
+						<span className='bg-cyber-yellow absolute -bottom-3 left-4 px-2 py-0.5 font-mono text-[0.65rem] font-bold tracking-widest text-black uppercase'>
 							@NooobtimeX
 						</span>
 					</div>
@@ -237,7 +237,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 									</p>
 								</div>
 								{role.id === nowId && (
-									<span className='bg-cyber-yellow now-pulse shrink-0 px-2 py-0.5 font-mono text-[0.6rem] font-bold tracking-widest text-black uppercase'>
+									<span className='bg-cyber-yellow now-pulse shrink-0 px-2 py-0.5 font-mono text-[0.65rem] font-bold tracking-widest text-black uppercase'>
 										Now
 									</span>
 								)}
@@ -273,7 +273,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 						href='/skills'
 						className='border-cyber-cyan/30 text-muted-foreground hover:border-cyber-yellow/60 hover:text-cyber-yellow clip-notch-sm flex aspect-square flex-col items-center justify-center gap-1 border border-dashed text-center transition-colors'>
 						<CyberIcon icon='mdi:dots-horizontal' className='size-6' />
-						<span className='font-mono text-[0.6rem] tracking-widest uppercase'>All</span>
+						<span className='font-mono text-[0.65rem] tracking-widest uppercase'>All</span>
 					</Link>
 				</div>
 			</section>

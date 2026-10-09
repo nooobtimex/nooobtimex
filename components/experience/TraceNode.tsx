@@ -55,7 +55,7 @@ const TraceNode: React.FC<TraceNodeProps> = ({ item, side, isNow }) => {
 							<p className='text-cyber-cyan truncate text-sm'>{item.organization.name}</p>
 						</div>
 						{isNow && (
-							<span className='bg-cyber-yellow shrink-0 px-2 py-0.5 font-mono text-[0.6rem] font-bold tracking-widest text-black uppercase'>
+							<span className='bg-cyber-yellow shrink-0 px-2 py-0.5 font-mono text-[0.65rem] font-bold tracking-widest text-black uppercase'>
 								Now
 							</span>
 						)}
@@ -68,7 +68,7 @@ const TraceNode: React.FC<TraceNodeProps> = ({ item, side, isNow }) => {
 
 					<span
 						className={cn(
-							'mt-3 inline-block border px-2 py-0.5 font-mono text-[0.6rem] tracking-widest uppercase',
+							'mt-3 inline-block border px-2 py-0.5 font-mono text-[0.65rem] tracking-widest uppercase',
 							categoryAccent[item.category]
 						)}>
 						{humanize(item.category)}

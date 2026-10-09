@@ -98,7 +98,7 @@ const NavBar: React.FC<NavBarProps> = ({ hireUrl }) => {
 							className='border-border text-muted-foreground hover:border-cyber-cyan/50 hover:text-cyber-cyan hidden items-center gap-2 border px-2.5 py-1.5 font-mono text-xs transition-colors sm:flex'>
 							<Icon icon='mdi:magnify' className='size-4' />
 							<span className='tracking-wider uppercase'>Search</span>
-							<kbd className='border-border bg-muted ml-1 border px-1 text-[0.6rem]'>⌘K</kbd>
+							<kbd className='border-border bg-muted ml-1 border px-1 text-[0.65rem]'>⌘K</kbd>
 						</button>
 						<button
 							onClick={openSearch}

@@ -16,7 +16,7 @@ import { type Post, categoryMetadataPosts, chapterMetadata } from '@/common'
 
 const StatCell: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
 	<div className='border-border/60 border-l-2 pl-3'>
-		<p className='text-muted-foreground font-mono text-[0.6rem] tracking-widest uppercase'>{label}</p>
+		<p className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>{label}</p>
 		<p className='mt-0.5 text-sm font-semibold'>{children}</p>
 	</div>
 )

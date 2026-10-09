@@ -67,7 +67,7 @@ const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ contributions
 			<div className='mx-auto w-fit'>
 				<div className='flex gap-2'>
 					{/* weekday labels */}
-					<div className='text-muted-foreground flex flex-col gap-1 pt-5 font-mono text-[0.55rem]'>
+					<div className='text-muted-foreground flex flex-col gap-1 pt-5 font-mono text-[0.65rem]'>
 						{['', 'Mon', '', 'Wed', '', 'Fri', ''].map((d, i) => (
 							<span key={i} className='flex h-3 items-center leading-none'>
 								{d}
@@ -78,7 +78,7 @@ const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ contributions
 					<div>
 						{/* month labels */}
 						<div
-							className='text-muted-foreground relative mb-1 h-4 font-mono text-[0.55rem]'
+							className='text-muted-foreground relative mb-1 h-4 font-mono text-[0.65rem]'
 							style={{ width: gridWidth }}>
 							{monthMarks.map(m => (
 								<span key={`${m.week}-${m.label}`} className='absolute top-0' style={{ left: m.week * STEP }}>
@@ -118,7 +118,7 @@ const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ contributions
 						{/* Legend — centered under the grid. Each shade carries the daily counts it
 						    stands for: GitHub picks the thresholds per calendar, so "more" alone
 						    tells a reader nothing. */}
-						<div className='text-muted-foreground mt-3 flex items-start justify-center gap-2 font-mono text-[0.55rem] tracking-wider'>
+						<div className='text-muted-foreground mt-3 flex items-start justify-center gap-2 font-mono text-[0.65rem] tracking-wider'>
 							<span className='pt-0.5 uppercase'>Per day</span>
 							{SCALE.map((c, i) => (
 								<span key={i} className='flex flex-col items-center gap-1'>

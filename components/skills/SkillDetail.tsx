@@ -30,7 +30,7 @@ interface SkillDetailProps {
 
 const StatCell: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
 	<div className='border-border/60 border-l-2 pl-3'>
-		<p className='text-muted-foreground font-mono text-[0.6rem] tracking-widest uppercase'>{label}</p>
+		<p className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>{label}</p>
 		<p className='mt-0.5 text-sm font-semibold'>{children}</p>
 	</div>
 )
@@ -133,7 +133,7 @@ const SkillDetail: React.FC<SkillDetailProps> = ({ skill }) => {
 											<p className='text-cyber-cyan truncate text-sm'>{role.organization.name}</p>
 										</div>
 										{i === 0 && (
-											<span className='bg-cyber-yellow shrink-0 px-2 py-0.5 font-mono text-[0.6rem] font-bold tracking-widest text-black uppercase'>
+											<span className='bg-cyber-yellow shrink-0 px-2 py-0.5 font-mono text-[0.65rem] font-bold tracking-widest text-black uppercase'>
 												First Contact
 											</span>
 										)}

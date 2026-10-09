@@ -44,7 +44,7 @@ const WeChatPanel: React.FC<WeChatPanelProps> = ({ channel }) => {
 			)}
 
 			{channel.verifiedOn && (
-				<p className='text-muted-foreground/60 font-mono text-[0.65rem] tracking-widest uppercase'>
+				<p className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>
 					QR verified {channel.verifiedOn}
 				</p>
 			)}

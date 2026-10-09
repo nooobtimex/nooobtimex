@@ -86,7 +86,7 @@ export const ColumnChart: React.FC<{
 						const body = (
 							<>
 								{c.labelled && c.value > 0 && (
-									<span className='text-foreground mb-1 font-mono text-[0.6rem]'>{c.valueText}</span>
+									<span className='text-foreground mb-1 font-mono text-[0.65rem]'>{c.valueText}</span>
 								)}
 								<span
 									className={cn(
@@ -114,7 +114,7 @@ export const ColumnChart: React.FC<{
 				{reference && reference.value > 0 && (
 					<div className='pointer-events-none absolute inset-x-0' style={{ bottom: `${pct(reference.value)}%` }}>
 						<span className='bg-foreground/40 block h-px' />
-						<span className='bg-card text-muted-foreground absolute right-0 bottom-full mb-0.5 px-1 font-mono text-[0.55rem] tracking-wider uppercase'>
+						<span className='bg-card text-muted-foreground absolute right-0 bottom-full mb-0.5 px-1 font-mono text-[0.65rem] tracking-wider uppercase'>
 							{reference.label}
 						</span>
 					</div>
@@ -123,7 +123,7 @@ export const ColumnChart: React.FC<{
 
 			<div aria-hidden className='mt-2 flex gap-1 sm:gap-2'>
 				{columns.map(c => (
-					<span key={c.key} className='text-muted-foreground flex-1 text-center font-mono text-[0.6rem] uppercase'>
+					<span key={c.key} className='text-muted-foreground flex-1 text-center font-mono text-[0.65rem] uppercase'>
 						{c.label}
 					</span>
 				))}
@@ -169,13 +169,13 @@ export const DataTable: React.FC<{ caption: string; head: [string, string]; rows
 	rows
 }) => (
 	<details className='mt-5'>
-		<summary className='text-muted-foreground hover:text-cyber-cyan w-fit cursor-pointer font-mono text-[0.6rem] tracking-widest uppercase transition-colors'>
+		<summary className='text-muted-foreground hover:text-cyber-cyan w-fit cursor-pointer font-mono text-[0.65rem] tracking-widest uppercase transition-colors'>
 			Data table
 		</summary>
 		<table className='mt-3 w-full text-xs'>
 			<caption className='sr-only'>{caption}</caption>
 			<thead>
-				<tr className='border-border text-muted-foreground border-b font-mono text-[0.6rem] uppercase'>
+				<tr className='border-border text-muted-foreground border-b font-mono text-[0.65rem] uppercase'>
 					<th scope='col' className='py-1.5 text-left font-normal'>
 						{head[0]}
 					</th>

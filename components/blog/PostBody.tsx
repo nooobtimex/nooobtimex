@@ -111,7 +111,7 @@ const Block: React.FC<{ block: PostBlock }> = ({ block }) => {
 					<span className='text-cyber-yellow font-display text-3xl font-bold tracking-wide'>{block.value}</span>
 					<span className='text-muted-foreground text-sm'>{block.label}</span>
 					{block.source && (
-						<span className='text-muted-foreground/70 font-mono text-[0.65rem] tracking-wider uppercase'>
+						<span className='text-muted-foreground font-mono text-[0.65rem] tracking-wider uppercase'>
 							Source: {block.source}
 						</span>
 					)}

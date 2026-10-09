@@ -140,8 +140,10 @@
 		@apply border-border outline-ring/50;
 	}
 
+	/* Weight 500, not 400: Rajdhani's regular strokes are hairline-thin on this near-black
+	   ground, and body copy in the muted grey read as faint at phone sizes. */
 	body {
-		@apply bg-background text-foreground font-sans antialiased;
+		@apply bg-background text-foreground font-sans font-medium antialiased;
 		font-feature-settings:
 			'ss01' 1,
 			'cv01' 1;
@@ -478,6 +480,13 @@
 	[data-reveal] {
 		opacity: 1 !important;
 		transform: none !important;
+	}
+
+	/* Neutralised, the glitch layers froze on their last keyframe: a static offset slice of
+	   the heading, which reads as a rendering bug. Without motion they have nothing to say. */
+	.glitch::before,
+	.glitch::after {
+		display: none;
 	}
 }
 

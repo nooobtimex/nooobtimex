@@ -22,7 +22,7 @@ const Tile: React.FC<{ icon: string; label: string; value: string }> = ({ icon, 
 	<NeonPanel className='clip-notch-sm flex flex-col gap-1 p-4'>
 		<CyberIcon icon={icon} className='text-cyber-cyan size-4' />
 		<span className='font-display neon-text-yellow text-2xl leading-none font-bold'>{value}</span>
-		<span className='text-muted-foreground font-mono text-[0.6rem] tracking-widest uppercase'>{label}</span>
+		<span className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>{label}</span>
 	</NeonPanel>
 )
 
@@ -148,7 +148,7 @@ const GithubInsights: React.FC<{ data: GithubInsightsData }> = ({ data }) => {
 			<div className='flex items-center gap-3 pt-8'>
 				<h2 className='font-display text-2xl font-bold tracking-wide uppercase'>All time</h2>
 				<span className='bg-border h-px flex-1' />
-				<span className='text-muted-foreground font-mono text-[0.6rem] tracking-widest uppercase'>
+				<span className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>
 					Not affected by the year filter
 				</span>
 			</div>

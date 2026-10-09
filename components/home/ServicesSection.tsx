@@ -27,7 +27,7 @@ const ServicesSection: React.FC = () => (
 						<h3 className='font-display mt-4 text-xl font-bold tracking-wide uppercase'>{s.title}</h3>
 						<p className='text-muted-foreground mt-2 flex-1 text-sm leading-relaxed'>{s.blurb}</p>
 
-						<p className='text-cyber-cyan mt-5 font-mono text-[0.6rem] tracking-[0.3em] uppercase'>// Proof</p>
+						<p className='text-cyber-cyan mt-5 font-mono text-[0.65rem] tracking-[0.3em] uppercase'>// Proof</p>
 						<ul className='mt-2 space-y-1.5'>
 							{s.proof.map(p => (
 								<li key={`${p.kind}:${p.id}`}>

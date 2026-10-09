@@ -26,9 +26,10 @@ interface MobileTabBarProps {
  * reachable only through search or the footer.
  *
  * z-40 is deliberate: every overlay in this repo sits at z-50 (Sheet, Dialog, the ⌘K
- * CommandDialog, Tooltip, the loading splash) and the sticky header is z-50 too. Sitting
- * below them means dialogs occlude this bar structurally, without depending on portal DOM
- * order — and it stops the bar floating over the iOS soft keyboard.
+ * CommandDialog, Tooltip) and the sticky header is z-50 too. Sitting below them means
+ * dialogs occlude this bar structurally, without depending on portal DOM order — and it
+ * stops the bar floating over the iOS soft keyboard. The decorative ScanlineOverlay is
+ * z-30, under the bar, so it never dims the tabs.
  *
  * These are navigation links, not tabs in the ARIA sense, so `aria-current='page'` is
  * correct and `role='tablist'`/`aria-selected` would be wrong (that pattern implies
@@ -58,7 +59,7 @@ const MobileTabBar: React.FC<MobileTabBarProps> = ({ hireUrl }) => {
 							<Link href={link.href} aria-current={active ? 'page' : undefined} className={cellClass(active)}>
 								{active && <span className='bg-cyber-yellow absolute inset-x-4 top-0 h-px' />}
 								<Icon icon={link.icon} className='size-5' />
-								<span className='font-mono text-[0.6rem] tracking-widest uppercase'>{link.label}</span>
+								<span className='font-mono text-[0.65rem] tracking-widest uppercase'>{link.label}</span>
 							</Link>
 						</li>
 					)
@@ -72,7 +73,7 @@ const MobileTabBar: React.FC<MobileTabBarProps> = ({ hireUrl }) => {
 						className={cellClass(menuActive)}>
 						{menuActive && <span className='bg-cyber-yellow absolute inset-x-4 top-0 h-px' />}
 						<Icon icon='mdi:menu' className='size-5' />
-						<span className='font-mono text-[0.6rem] tracking-widest uppercase'>Menu</span>
+						<span className='font-mono text-[0.65rem] tracking-widest uppercase'>Menu</span>
 					</button>
 				</li>
 			</ul>

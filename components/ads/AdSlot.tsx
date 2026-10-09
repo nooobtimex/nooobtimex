@@ -63,7 +63,7 @@ const AdSlot: React.FC<{ slot: string }> = ({ slot }) => {
 		<aside data-ad-container='' aria-label='Advertisement' className='w-full'>
 			{/* Google requires ads to be distinguishable from content. A quiet label does that
 			    without inviting a click. */}
-			<span className='text-muted-foreground/60 mb-1 block text-center font-mono text-[0.6rem] tracking-[0.3em] uppercase'>
+			<span className='text-muted-foreground mb-1 block text-center font-mono text-[0.65rem] tracking-[0.3em] uppercase'>
 				Advertisement
 			</span>
 			{process.env.NODE_ENV === 'production' ?
@@ -77,7 +77,7 @@ const AdSlot: React.FC<{ slot: string }> = ({ slot }) => {
 					data-ad-layout='in-article'
 					data-ad-format='fluid'
 				/>
-			:	<div className='border-border text-muted-foreground/60 flex min-h-24 w-full items-center justify-center border border-dashed font-mono text-xs'>
+			:	<div className='border-border text-muted-foreground flex min-h-24 w-full items-center justify-center border border-dashed font-mono text-xs'>
 					in-article slot {slot}
 				</div>
 			}

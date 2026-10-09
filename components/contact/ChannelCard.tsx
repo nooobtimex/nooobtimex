@@ -42,7 +42,7 @@ const ChannelCard: React.FC<ChannelCardProps> = ({ icon, label, value, url, inCh
 					</a>
 				:	<span className='text-muted-foreground block truncate font-mono text-sm'>{value}</span>}
 
-				{note && <p className='text-muted-foreground/70 mt-1 text-xs'>{note}</p>}
+				{note && <p className='text-muted-foreground mt-1 text-xs'>{note}</p>}
 			</div>
 
 			<CopyButton value={value} label={`Copy ${label}`} />

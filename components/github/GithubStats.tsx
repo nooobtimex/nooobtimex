@@ -32,8 +32,8 @@ const Tile: React.FC<TileSpec> = ({ icon, label, value, sub }) => (
 	<NeonPanel className='clip-notch-sm flex flex-col gap-1 p-4'>
 		<CyberIcon icon={icon} className='text-cyber-cyan size-4' />
 		<span className='font-display neon-text-yellow text-2xl leading-none font-bold'>{value}</span>
-		<span className='text-muted-foreground font-mono text-[0.6rem] tracking-widest uppercase'>{label}</span>
-		{sub && <span className='text-muted-foreground/80 text-[0.7rem] leading-snug'>{sub}</span>}
+		<span className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>{label}</span>
+		{sub && <span className='text-muted-foreground text-[0.7rem] leading-snug'>{sub}</span>}
 	</NeonPanel>
 )
 

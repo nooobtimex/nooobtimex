@@ -46,7 +46,9 @@ const AboutSection: React.FC = () => (
 							<div key={f.label} className='flex items-start gap-3'>
 								<CyberIcon icon={f.icon} className='text-cyber-cyan mt-0.5 size-4 shrink-0' />
 								<div>
-									<dt className='text-muted-foreground font-mono text-[0.6rem] tracking-widest uppercase'>{f.label}</dt>
+									<dt className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>
+										{f.label}
+									</dt>
 									<dd className='mt-0.5 text-sm font-semibold'>{f.value}</dd>
 								</div>
 							</div>

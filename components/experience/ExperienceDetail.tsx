@@ -85,7 +85,7 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({ item }) => {
 					</p>
 				</div>
 				{isNow && (
-					<span className='bg-cyber-yellow now-pulse self-start px-2 py-0.5 font-mono text-[0.6rem] font-bold tracking-widest text-black uppercase'>
+					<span className='bg-cyber-yellow now-pulse self-start px-2 py-0.5 font-mono text-[0.65rem] font-bold tracking-widest text-black uppercase'>
 						Now
 					</span>
 				)}

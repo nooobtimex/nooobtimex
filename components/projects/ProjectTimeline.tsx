@@ -42,7 +42,7 @@ const ProjectTimeline: React.FC<ProjectTimelineProps> = ({ items }) => {
 									<div className='flex items-start justify-between gap-2'>
 										<h3 className='text-base leading-tight font-bold tracking-wide uppercase'>{m.title}</h3>
 										{isLatest && (
-											<span className='bg-cyber-yellow shrink-0 px-2 py-0.5 font-mono text-[0.6rem] font-bold tracking-widest text-black uppercase'>
+											<span className='bg-cyber-yellow shrink-0 px-2 py-0.5 font-mono text-[0.65rem] font-bold tracking-widest text-black uppercase'>
 												Now
 											</span>
 										)}

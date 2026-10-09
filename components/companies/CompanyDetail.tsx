@@ -22,7 +22,7 @@ const humanize = (value: string) =>
 
 const StatCell: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
 	<div className='border-border/60 border-l-2 pl-3'>
-		<p className='text-muted-foreground font-mono text-[0.6rem] tracking-widest uppercase'>{label}</p>
+		<p className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>{label}</p>
 		<p className='mt-0.5 text-sm font-semibold'>{children}</p>
 	</div>
 )
@@ -31,7 +31,7 @@ const InfoRow: React.FC<{ icon: string; label: string; children: React.ReactNode
 	<div className='border-cyber-cyan/40 bg-cyber-cyan/[0.04] flex items-start gap-3 border-l-2 p-3'>
 		<CyberIcon icon={icon} className='text-cyber-cyan mt-0.5 size-4 shrink-0' />
 		<div className='min-w-0'>
-			<p className='text-muted-foreground font-mono text-[0.6rem] tracking-widest uppercase'>{label}</p>
+			<p className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>{label}</p>
 			<p className='mt-0.5 text-sm font-semibold'>{children}</p>
 		</div>
 	</div>
