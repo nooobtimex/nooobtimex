@@ -25,17 +25,17 @@
 		<line x1="520" y1="76" x2="520" y2="222" stroke="#1B2A33" stroke-width="2" />
 		<text class="mono" x="552" y="92" font-size="13" letter-spacing="2" fill="#E6FBFF" opacity="0.5">TOP_LANGUAGES</text>
 		<text class="mono" x="552" y="118" font-size="16" fill="#E6FBFF">TYPESCRIPT</text>
-		<text class="mono" x="964" y="118" font-size="16" fill="#FCEE0A" text-anchor="end" font-weight="700">98.0%</text>
+		<text class="mono" x="964" y="118" font-size="16" fill="#FCEE0A" text-anchor="end" font-weight="700">98.1%</text>
 		<rect x="552" y="126" width="412" height="9" fill="#0A0C11" stroke="#1B2A33" stroke-width="1" />
-		<rect x="552" y="126" width="403.92" height="9" fill="#FCEE0A" />
+		<rect x="552" y="126" width="404.03" height="9" fill="#FCEE0A" />
 		<text class="mono" x="552" y="162" font-size="16" fill="#E6FBFF">CSS</text>
 		<text class="mono" x="964" y="162" font-size="16" fill="#00F0FF" text-anchor="end" font-weight="700">1.2%</text>
 		<rect x="552" y="170" width="412" height="9" fill="#0A0C11" stroke="#1B2A33" stroke-width="1" />
-		<rect x="552" y="170" width="4.85" height="9" fill="#00F0FF" />
+		<rect x="552" y="170" width="4.78" height="9" fill="#00F0FF" />
 		<text class="mono" x="552" y="206" font-size="16" fill="#E6FBFF">JAVASCRIPT</text>
 		<text class="mono" x="964" y="206" font-size="16" fill="#FF003C" text-anchor="end" font-weight="700">0.8%</text>
 		<rect x="552" y="214" width="412" height="9" fill="#0A0C11" stroke="#1B2A33" stroke-width="1" />
-		<rect x="552" y="214" width="3.24" height="9" fill="#FF003C" />
+		<rect x="552" y="214" width="3.19" height="9" fill="#FF003C" />
 		<rect x="0" y="0" width="1000" height="250" fill="url(#scanlines)" />
 	</g>
 	<polygon points="19,1 999,1 999,231 981,249 1,249 1,19" fill="none" stroke="#1B2A33" stroke-width="2" />
