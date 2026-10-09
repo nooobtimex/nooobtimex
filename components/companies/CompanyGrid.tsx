@@ -1,17 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
-import Container from '@/components/cyber/Container'
 import MotionReveal from '@/components/cyber/MotionReveal'
-import SectionHeader from '@/components/cyber/SectionHeader'
-import { type EntityType, type Organization, entitiesData, experiencesData, projectsData } from '@/common'
+import { type Organization, entitiesData, experiencesData, projectsData } from '@/common'
 
 const humanize = (value: string) =>
 	value
 		.split('-')
 		.map(w => w.charAt(0).toUpperCase() + w.slice(1))
 		.join(' ')
-
-const groups: { type: EntityType; label: string }[] = [{ type: 'company', label: 'Companies' }]
 
 const CompanyCard: React.FC<{ org: Organization; index: number }> = ({ org, index }) => {
 	const roles = experiencesData.filter(e => e.organization.id === org.id)
@@ -60,36 +56,27 @@ const CompanyCard: React.FC<{ org: Organization; index: number }> = ({ org, inde
 	)
 }
 
-const CompaniesContent: React.FC = () => {
+/**
+ * Every organization on the career map — employers, clients and the freelance practice —
+ * as cards linking to `/companies/:id`. Lives at the foot of `/career` (`#organizations`)
+ * since the standalone `/companies` index merged into it; that URL now redirects here.
+ */
+const CompanyGrid: React.FC = () => {
+	const orgs = entitiesData.filter(o => o.type === 'company')
 	return (
-		<Container className='py-10'>
-			<SectionHeader
-				as='h1'
-				code='05'
-				title='Network'
-				subtitle={`${entitiesData.length} organizations across the career map — employers and collaborators.`}
-			/>
-
-			{groups.map(group => {
-				const orgs = entitiesData.filter(o => o.type === group.type)
-				if (orgs.length === 0) return null
-				return (
-					<section key={group.type} className='mt-10'>
-						<div className='mb-6 flex items-center gap-3'>
-							<h2 className='font-display text-xl font-bold tracking-wide uppercase'>{group.label}</h2>
-							<span className='bg-border h-px flex-1' />
-							<span className='text-muted-foreground font-mono text-xs'>{orgs.length}</span>
-						</div>
-						<div className='grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
-							{orgs.map((org, i) => (
-								<CompanyCard key={org.id} org={org} index={i} />
-							))}
-						</div>
-					</section>
-				)
-			})}
-		</Container>
+		<section id='organizations' className='mt-16 scroll-mt-20'>
+			<div className='mb-6 flex items-center gap-3'>
+				<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Organizations</h2>
+				<span className='bg-border h-px flex-1' />
+				<span className='text-muted-foreground font-mono text-xs'>{orgs.length}</span>
+			</div>
+			<div className='grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
+				{orgs.map((org, i) => (
+					<CompanyCard key={org.id} org={org} index={i} />
+				))}
+			</div>
+		</section>
 	)
 }
 
-export default CompaniesContent
+export default CompanyGrid

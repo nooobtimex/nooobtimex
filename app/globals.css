@@ -148,7 +148,11 @@
 		overflow-x: hidden;
 	}
 
-	html {
+	/* Smooth only once the visitor is interacting (a clicked link holds focus). On a fresh
+	   load the browser's jump to a #fragment must be instant — animated, it was cut short
+	   and /career#organizations opened at the top. Route changes are covered by
+	   data-scroll-behavior on <html> (app/layout.tsx). */
+	html:focus-within {
 		scroll-behavior: smooth;
 	}
 

@@ -57,7 +57,8 @@ const CompanyDetailPage: React.FC<CompanyDetailPageProps> = async ({ params }) =
 
 	const breadcrumbs = breadcrumbSchema([
 		{ name: 'Home', path: '/' },
-		{ name: 'Companies', path: '/companies' },
+		// No /companies index any more — it merged into /career, which owns these pages.
+		{ name: 'Career', path: '/career' },
 		{ name: org.name, path: `/companies/${org.id}` }
 	])
 

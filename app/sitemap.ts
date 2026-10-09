@@ -38,7 +38,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		entry('/projects', 0.8),
 		entry('/skills', 0.8),
 		entry('/career', 0.8),
-		entry('/companies', 0.7),
 		// No /github: it is `noindex` (a dashboard of API numbers), and a sitemap must only
 		// nominate pages that ask to be indexed — scripts/seo/check.ts fails the build otherwise.
 		entry('/cv', 0.6),

@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 import { Icon } from '@iconify/react'
 import Container from '@/components/cyber/Container'
 import { cyberButtonVariants } from '@/components/cyber/CyberButton'
-import { NAV_LINKS, isActive } from '@/components/navigation/links'
+import { HEADER_LINKS, isActive } from '@/components/navigation/links'
 import { loadSearchIndex } from '@/components/search/loadSearchIndex'
 import { cn } from '@/lib/utils'
 
@@ -68,15 +68,13 @@ const NavBar: React.FC<NavBarProps> = ({ hireUrl }) => {
 						</span>
 					</Link>
 
-					{/* Desktop links */}
-					{/* Desktop links from xl only: nine links plus search and the Hire button need
-					    ~1,150px, so at md/lg they overflowed and pushed Hire off-screen. Below xl,
-					    MobileTabBar + search carry navigation, as they do on phones. The "01"-style
-					    codes are dropped here for the same reason — Container caps the row at
-					    1,232px at every width, and with them it never fits. */}
-					<nav className='hidden items-center gap-1 xl:flex'>
-						{NAV_LINKS.map(link => {
-							const active = isActive(pathname, link.href)
+					{/* Desktop links from lg. The header carries only the five `inHeader` sections —
+					    GitHub and CV live in the footer, the ⌘K palette and the mobile Menu sheet — so
+					    links + Search + Hire fit at 1,024px. When it carried all nine it needed
+					    ~1,150px and pushed Hire off-screen below xl. Below lg, MobileTabBar takes over. */}
+					<nav className='hidden items-center gap-1 lg:flex'>
+						{HEADER_LINKS.map(link => {
+							const active = isActive(pathname, link)
 							return (
 								<Link
 									key={link.href}
@@ -92,9 +90,8 @@ const NavBar: React.FC<NavBarProps> = ({ hireUrl }) => {
 						})}
 					</nav>
 
-					{/* Right controls. Below xl, search and Hire are the only header controls — the
-					    hamburger is gone, replaced by MobileTabBar. Search is what keeps the
-					    non-tab routes (Career, Companies, GitHub, CV) one tap away. */}
+					{/* Right controls. Below lg, search and Hire are the only header controls —
+					    MobileTabBar and its Menu sheet carry navigation there. */}
 					<div className='flex shrink-0 items-center gap-2'>
 						<button
 							onClick={openSearch}

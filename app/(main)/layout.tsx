@@ -14,9 +14,9 @@ export default function MainLayout({
 		// It goes on this wrapper rather than on <main> so the footer's last row isn't
 		// occluded either. Scoping the bar to (main) keeps /cv — which has its own fixed
 		// bottom controls and lives outside this group — untouched.
-		<div className='relative flex min-h-screen flex-col pb-[calc(3.5rem+env(safe-area-inset-bottom))] xl:pb-0'>
+		<div className='relative flex min-h-screen flex-col pb-[calc(3.5rem+env(safe-area-inset-bottom))] lg:pb-0'>
 			{/*
-			 * Skip link. NavBar carries eight section links plus the search trigger, so
+			 * Skip link. NavBar carries five section links plus the search trigger, so
 			 * without this a keyboard or screen-reader user tabs through the whole nav on
 			 * every page before reaching content. Visually hidden until focused.
 			 */}
@@ -31,7 +31,7 @@ export default function MainLayout({
 				{children}
 			</main>
 			<NavFooter />
-			<MobileTabBar />
+			<MobileTabBar hireUrl={personalData.hire.url} />
 		</div>
 	)
 }

@@ -3,6 +3,7 @@
  * `new Date()` that picked the NOW node; that now arrives as the `nowId` prop.
  */
 import React from 'react'
+import CompanyGrid from '@/components/companies/CompanyGrid'
 import Container from '@/components/cyber/Container'
 import MotionReveal from '@/components/cyber/MotionReveal'
 import SectionHeader from '@/components/cyber/SectionHeader'
@@ -36,6 +37,8 @@ const ExperienceContent: React.FC<ExperienceContentProps> = ({ nowId }) => {
 					))}
 				</div>
 			</div>
+
+			<CompanyGrid />
 		</Container>
 	)
 }

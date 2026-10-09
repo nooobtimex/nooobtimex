@@ -55,6 +55,8 @@ const nextConfig: NextConfig = {
 			{ source: '/ability', destination: '/skills', permanent: true },
 			{ source: '/ability/:id', destination: '/skills/:id', permanent: true },
 			{ source: '/affiliation', destination: '/career', permanent: true },
+			// The /companies index merged into /career; each /companies/:id page stays
+			{ source: '/companies', destination: '/career#organizations', permanent: true },
 			{ source: '/affiliation/:id', destination: '/career/:id', permanent: true }
 		]
 	},

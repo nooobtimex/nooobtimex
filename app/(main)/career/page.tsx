@@ -6,7 +6,8 @@ import { currentEntryId, experiencesData } from '@/common'
 export const metadata = pageMetadata({
 	path: '/career',
 	title: 'Career',
-	description: 'Professional roles, freelance work, and education across the timeline.'
+	description:
+		'Professional roles, freelance work, and education across the timeline — and the organizations behind them.'
 })
 
 const ExperiencePage: React.FC = () => {

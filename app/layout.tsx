@@ -119,6 +119,10 @@ export default function RootLayout({
 		<html
 			lang='en'
 			className={cn('dark', rajdhani.variable, jetbrains.variable, notoThai.variable)}
+			// globals.css sets `scroll-behavior: smooth` on <html>. Without this attribute Next
+			// leaves it on during route changes, and the smooth scroll to a `#fragment` target
+			// (e.g. /career#organizations) is interrupted, so the page stays at the top.
+			data-scroll-behavior='smooth'
 			suppressHydrationWarning>
 			<GoogleTagManager gtmId='GTM-5PVXPTWP' />
 			<body className='bg-background text-foreground font-sans antialiased'>

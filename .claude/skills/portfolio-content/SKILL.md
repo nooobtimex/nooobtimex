@@ -55,10 +55,12 @@ see [`/common-conventions`](../common-conventions/SKILL.md); for routing/pages s
 ### Add an experience/role
 
 1. Ensure the `Organization` exists in `entities.ts`. Add a **company** to
-   `entitiesData` so it gets a `/companies` page; keep an **education-only** org
-   (e.g. a university) as a const referenced by the experience but **not** in
-   `entitiesData` — it shouldn't render on `/companies` (the experience detail
-   renders such an org's name as plain text, not a link).
+   `entitiesData` so it gets a `/companies/<id>` page and a card in `/career`'s
+   Organizations grid (`components/companies/CompanyGrid.tsx` — there is no
+   `/companies` index; it redirects to `/career#organizations`). Keep an
+   **education-only** org (e.g. a university) as a const referenced by the experience
+   but **not** in `entitiesData` — it shouldn't get a company page (the experience
+   detail renders such an org's name as plain text, not a link).
 2. In `experiences.ts`, add an `ExperienceItem` const and include it in the `all` array.
    Use `category: 'work'|'education'`. Omit `endDate` for a current role
    (it renders as "Present"); dates are `YYYY-MM-DD` strings.

@@ -79,9 +79,9 @@ const CompanyDetail: React.FC<CompanyDetailProps> = ({ organization }) => {
 	return (
 		<Container className='py-10'>
 			<Link
-				href='/companies'
+				href={'/career#organizations' as never}
 				className='text-muted-foreground hover:text-cyber-cyan inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase transition-colors'>
-				<CyberIcon icon='mdi:arrow-left' className='size-4' /> Network
+				<CyberIcon icon='mdi:arrow-left' className='size-4' /> Career
 			</Link>
 
 			{/* Company header */}

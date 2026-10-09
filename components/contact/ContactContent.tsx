@@ -38,7 +38,7 @@ const ContactContent: React.FC = () => {
 			    contingent on that, and the other pages render their headers eagerly too. */}
 			<p className='text-cyber-cyan font-mono text-xs tracking-[0.35em] uppercase'>// COMMS_CHANNEL</p>
 			<h1 className='font-display mt-3 text-5xl leading-[0.9] font-bold tracking-tight uppercase md:text-7xl'>
-				<GlitchText text='Hire me' />
+				<GlitchText text='Contact' />
 			</h1>
 			<p className='text-muted-foreground mt-5 max-w-2xl text-base leading-relaxed'>
 				Every project starts with a message on Fastwork — chat, agree on scope, and pay through the platform. For
