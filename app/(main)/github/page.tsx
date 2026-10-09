@@ -28,8 +28,8 @@ export const revalidate = 3600
  */
 const GithubPage: React.FC = () => (
 	<Container as='section' className='py-12 md:py-16'>
-		<GithubIntro variant='page' year='last' />
-		<GithubStats variant='page' period='last' />
+		<GithubIntro year='last' />
+		<GithubStats period='last' />
 	</Container>
 )
 

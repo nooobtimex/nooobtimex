@@ -6,6 +6,7 @@
  * data layer into the first-load bundle just to render static markup.
  */
 import React from 'react'
+import type { Route } from 'next'
 import Link from 'next/link'
 import PostCard from '@/components/blog/PostCard'
 import Container from '@/components/cyber/Container'
@@ -33,6 +34,18 @@ import {
 	skillsData,
 	workExperienceData
 } from '@/common'
+
+/**
+ * A home section's link to its full page. Visible at every width: it used to be
+ * `md:block` only, so on a phone the sole routes from a section onward were its own cards.
+ */
+const SeeAll: React.FC<{ href: Route }> = ({ href }) => (
+	<Link
+		href={href}
+		className='text-cyber-cyan hover:text-cyber-yellow shrink-0 font-mono text-xs tracking-widest whitespace-nowrap uppercase transition-colors'>
+		See all →
+	</Link>
+)
 
 interface HomeContentProps {
 	/** Resolved on the server — see `currentEntryId` for why it is not computed here. */
@@ -174,13 +187,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 					code='03'
 					title='Selected work'
 					subtitle='Shipped builds — the proof behind the services above.'
-					action={
-						<Link
-							href='/projects'
-							className='text-cyber-cyan hover:text-cyber-yellow hidden font-mono text-xs tracking-widest uppercase transition-colors md:block'>
-							All →
-						</Link>
-					}
+					action={<SeeAll href='/projects' />}
 				/>
 				{/* Four featured: 2×2 until the row is wide enough to hold all four. */}
 				<div className='mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4'>
@@ -190,6 +197,13 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 						</MotionReveal>
 					))}
 				</div>
+				{/* The GitHub heatmap used to be a home section of its own. A link keeps the proof one
+				    tap away without letting a GitHub API outage change the home page. */}
+				<Link
+					href='/github'
+					className='text-muted-foreground hover:text-cyber-cyan mt-6 inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase transition-colors'>
+					<CyberIcon icon='simple-icons:github' className='size-4' /> GitHub activity →
+				</Link>
 			</section>
 
 			{/* CAREER */}
@@ -198,13 +212,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 					code='04'
 					title='Career'
 					subtitle='Current role and recent history.'
-					action={
-						<Link
-							href='/career'
-							className='text-cyber-cyan hover:text-cyber-yellow hidden font-mono text-xs tracking-widest uppercase transition-colors md:block'>
-							All →
-						</Link>
-					}
+					action={<SeeAll href='/career' />}
 				/>
 				<div className='mt-8 space-y-3'>
 					{latestRoles.map((role, i) => (
@@ -253,13 +261,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 					code='05'
 					title='Stack'
 					subtitle='Core tools in active rotation.'
-					action={
-						<Link
-							href='/skills'
-							className='text-cyber-cyan hover:text-cyber-yellow hidden font-mono text-xs tracking-widest uppercase transition-colors md:block'>
-							All →
-						</Link>
-					}
+					action={<SeeAll href='/skills' />}
 				/>
 				<div className='mt-8 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7'>
 					{homeSkills.map((s, i) => (
@@ -293,13 +295,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 					code='06'
 					title='Journal'
 					subtitle={`${postsData.length} entries — the engineering journey, written up with the numbers.`}
-					action={
-						<Link
-							href='/blog'
-							className='text-cyber-cyan hover:text-cyber-yellow hidden font-mono text-xs tracking-widest uppercase transition-colors md:block'>
-							All →
-						</Link>
-					}
+					action={<SeeAll href='/blog' />}
 				/>
 				<div className='mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
 					{postsData.slice(0, 3).map((p, i) => (

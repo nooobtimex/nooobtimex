@@ -1,5 +1,4 @@
 import React from 'react'
-import GithubStats from '@/components/github/GithubStats'
 import HireBand from '@/components/hire/HireBand'
 import HomeContent from '@/components/home/HomeContent'
 import JsonLd from '@/components/seo/JsonLd'
@@ -84,8 +83,7 @@ const Home: React.FC = () => {
 				nowId={currentEntryId(workExperienceData, now)}
 				yearsShipping={yearsShipping(workExperienceData, now)}
 			/>
-			<GithubStats variant='home' code='07' />
-			<HireBand code='08' />
+			<HireBand code='07' />
 		</>
 	)
 }

@@ -38,8 +38,8 @@ const GithubYearPage = async ({ params }: Props) => {
 	const year = (await params).year as GithubPeriod
 	return (
 		<Container as='section' className='py-12 md:py-16'>
-			<GithubIntro variant='page' year={year} />
-			<GithubStats variant='page' period={year} />
+			<GithubIntro year={year} />
+			<GithubStats period={year} />
 		</Container>
 	)
 }
