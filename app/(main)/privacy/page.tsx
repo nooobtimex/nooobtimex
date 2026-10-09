@@ -18,7 +18,7 @@ export const metadata = pageMetadata({
  */
 const PrivacyPage: React.FC = () => (
 	<Container className='py-12 md:py-16'>
-		<SectionHeader as='h1' code='00' title='Privacy Policy' subtitle='How this site handles your data.' />
+		<SectionHeader as='h1' title='Privacy Policy' subtitle='How this site handles your data.' />
 		<p className='text-muted-foreground mt-4 font-mono text-xs tracking-widest uppercase'>
 			Last updated <time dateTime={privacyPolicy.updatedAt}>{privacyPolicy.updatedAt}</time>
 		</p>

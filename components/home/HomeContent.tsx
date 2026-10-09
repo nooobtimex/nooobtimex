@@ -89,7 +89,9 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 				<div className='grid items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-16'>
 					{/* Left: identity */}
 					<div>
-						<p className='text-cyber-cyan font-mono text-xs tracking-[0.35em] uppercase'>// PROFILE_v2.077</p>
+						<p className='text-cyber-cyan font-mono text-xs tracking-[0.35em] uppercase'>
+							// Freelance software engineer
+						</p>
 
 						<h1 className='font-display mt-4 text-5xl leading-[0.9] font-bold tracking-tight uppercase md:text-8xl'>
 							Wongsaphat
@@ -169,7 +171,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 							<span className='border-cyber-cyan/60 absolute right-2 bottom-2 size-4 border-r-2 border-b-2' />
 						</div>
 						<span className='bg-cyber-yellow absolute -bottom-3 left-4 px-2 py-0.5 font-mono text-[0.6rem] font-bold tracking-widest text-black uppercase'>
-							ID // NooobtimeX
+							@NooobtimeX
 						</span>
 					</div>
 				</div>
@@ -178,13 +180,12 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 			{/* PROOF — numbers at the fold, before the scroll-revealed sections. */}
 			<ProofStrip stats={stats} />
 
-			<AboutSection code='01' />
-			<ServicesSection code='02' />
+			<AboutSection />
+			<ServicesSection />
 
 			{/* SELECTED WORK */}
 			<section className='mt-20'>
 				<SectionHeader
-					code='03'
 					title='Selected work'
 					subtitle='Shipped builds — the proof behind the services above.'
 					action={<SeeAll href='/projects' />}
@@ -208,12 +209,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 
 			{/* CAREER */}
 			<section className='mt-20'>
-				<SectionHeader
-					code='04'
-					title='Career'
-					subtitle='Current role and recent history.'
-					action={<SeeAll href='/career' />}
-				/>
+				<SectionHeader title='Career' subtitle='Current role and recent history.' action={<SeeAll href='/career' />} />
 				<div className='mt-8 space-y-3'>
 					{latestRoles.map((role, i) => (
 						<MotionReveal key={role.id} delay={i * 0.06}>
@@ -257,12 +253,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 
 			{/* CORE STACK */}
 			<section className='mt-20'>
-				<SectionHeader
-					code='05'
-					title='Stack'
-					subtitle='Core tools in active rotation.'
-					action={<SeeAll href='/skills' />}
-				/>
+				<SectionHeader title='Stack' subtitle='Core tools in active rotation.' action={<SeeAll href='/skills' />} />
 				<div className='mt-8 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7'>
 					{homeSkills.map((s, i) => (
 						<MotionReveal key={s.id} delay={(i % 7) * 0.04}>
@@ -292,7 +283,6 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 			    publishes anything beyond a CV: the Journal was reachable only from the nav. */}
 			<section className='mt-20'>
 				<SectionHeader
-					code='06'
 					title='Journal'
 					subtitle={`${postsData.length} entries — the engineering journey, written up with the numbers.`}
 					action={<SeeAll href='/blog' />}

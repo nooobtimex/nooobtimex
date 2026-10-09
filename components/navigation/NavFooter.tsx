@@ -81,7 +81,7 @@ const NavFooter: React.FC = () => {
 
 			<div className='border-border/50 text-muted-foreground flex flex-wrap items-center justify-center gap-x-4 gap-y-1 border-t px-4 py-4 text-center font-mono text-[0.65rem] tracking-widest uppercase md:px-6'>
 				<span>
-					© {new Date().getFullYear()} {personalData.name} — All systems operational
+					© {new Date().getFullYear()} {personalData.name} — Available for freelance
 				</span>
 				{LEGAL_LINKS.map(l => (
 					<Link

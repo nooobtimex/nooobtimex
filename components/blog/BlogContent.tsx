@@ -23,7 +23,6 @@ const BlogContent: React.FC = () => {
 		<Container className='py-12 md:py-16'>
 			<SectionHeader
 				as='h1'
-				code='08'
 				title='Journal'
 				subtitle={`${postsData.length} entries — the engineering journey, written up with the numbers.`}
 			/>

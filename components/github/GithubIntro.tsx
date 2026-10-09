@@ -12,7 +12,6 @@ const GithubIntro: React.FC<{ year: string }> = ({ year }) => (
 	<>
 		<SectionHeader
 			as='h1'
-			code='05'
 			title='GitHub'
 			subtitle={year === 'last' ? 'Live contribution activity, refreshed daily.' : `Contribution activity in ${year}.`}
 			action={

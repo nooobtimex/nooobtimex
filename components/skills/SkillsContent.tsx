@@ -13,7 +13,6 @@ const SkillsContent: React.FC = () => {
 		<Container className='py-12 md:py-16'>
 			<SectionHeader
 				as='h1'
-				code='02'
 				title='Skills'
 				subtitle={`${skillsData.length} skills across frontend, backend, infrastructure, and growth.`}
 			/>

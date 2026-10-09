@@ -49,13 +49,12 @@ const PresentationView: React.FC<{ data: PresentationData }> = ({ data }) => {
 	const router = useRouter()
 	const onExit = React.useCallback(() => router.push('/cv'), [router])
 
-	const slides: { code: string; title: string; render: () => React.ReactNode }[] = [
+	const slides: { title: string; render: () => React.ReactNode }[] = [
 		{
-			code: '00',
 			title: 'Intro',
 			render: () => (
 				<div className='text-center'>
-					<p className='text-cyber-cyan font-mono text-sm tracking-[0.4em] uppercase'>// Profile_v2.077</p>
+					<p className='text-cyber-cyan font-mono text-sm tracking-[0.4em] uppercase'>// Freelance software engineer</p>
 					<h1 className='font-display mt-4 text-5xl font-bold tracking-tight uppercase md:text-8xl'>
 						{data.personal.name}
 					</h1>
@@ -68,7 +67,6 @@ const PresentationView: React.FC<{ data: PresentationData }> = ({ data }) => {
 			)
 		},
 		{
-			code: '01',
 			title: 'Profile',
 			render: () => (
 				<div className='mx-auto max-w-3xl'>
@@ -88,7 +86,6 @@ const PresentationView: React.FC<{ data: PresentationData }> = ({ data }) => {
 			)
 		},
 		{
-			code: '02',
 			title: 'Experience',
 			render: () => (
 				<div className='mx-auto max-w-3xl'>
@@ -115,7 +112,6 @@ const PresentationView: React.FC<{ data: PresentationData }> = ({ data }) => {
 			)
 		},
 		{
-			code: '03',
 			title: 'Stack',
 			render: () => (
 				<div className='mx-auto max-w-4xl'>
@@ -142,10 +138,9 @@ const PresentationView: React.FC<{ data: PresentationData }> = ({ data }) => {
 				</div>
 			)
 		},
-		...data.projects.map((p, idx) => {
+		...data.projects.map(p => {
 			const { client, via } = p
 			return {
-				code: String(4 + idx).padStart(2, '0'),
 				title: p.title,
 				render: () => (
 					<div className='mx-auto grid max-h-[80vh] w-full max-w-5xl gap-8 md:grid-cols-[0.95fr_1.05fr]'>
@@ -216,7 +211,6 @@ const PresentationView: React.FC<{ data: PresentationData }> = ({ data }) => {
 			}
 		}),
 		{
-			code: '07',
 			title: 'Contact',
 			render: () => (
 				<div className='text-center'>
@@ -274,7 +268,9 @@ const PresentationView: React.FC<{ data: PresentationData }> = ({ data }) => {
 			{/* Top bar */}
 			<div className='relative z-10 flex items-center justify-between px-6 py-4'>
 				<span className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>
-					{slide.code} // {slide.title}
+					{/* The slide's position, not a hand-numbered code — those collided once the
+					    project slides grew past three. */}
+					{String(index).padStart(2, '0')} // {slide.title}
 				</span>
 				<button
 					onClick={onExit}

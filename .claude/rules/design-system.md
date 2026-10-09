@@ -19,6 +19,22 @@ A personal profile (a freelance-hire funnel) with a **Cyberpunk 2077** visual th
 on dark surfaces, notched/HUD framing, glitch and scanline accents. The feeling is
 high-contrast and "in-world", not generic SaaS.
 
+### Copy: the theme is visual, the words are plain
+
+The site's reader is a client deciding whether to hire, not a player. The in-world feel
+lives in **color, notches, neon, glitch and the `//` eyebrow mark** — never in words a
+visitor has to decode.
+
+- Every title, label, button and nav item is plain English: "Projects", not "Gig Board";
+  "Tech used", not "Loadout"; "Company facts", not "Dossier"; "Page not found", not
+  "Signal Lost". A `//` eyebrow is fine; what follows it must say what the thing is.
+- A nav label and the H1 of the page it opens are the same word.
+- **No numbered section codes** (`03 //`). They meant nothing to a visitor and drifted out
+  of step — two index pages both said 05, and home skipped 07 when a section was absent.
+  `SectionHeader` has no `code` prop; its accent rule is purely visual. (A slide counter in
+  `/cv/presentation` is the exception — it is derived from the slide's position.)
+- Journal post text is out of scope — authorial voice, not UI.
+
 ## 2. Signal colors — Tailwind utilities, not raw hex
 
 Use the named signal utilities; don't hand-write the hex.
@@ -38,12 +54,12 @@ These are the design-system primitives — reach for them before writing a `<div
 - **`Container`** — the **one** page-width wrapper (`mx-auto max-w-7xl px-4 md:px-6`).
   Wrap every page/section in it; change site width in one place. Has `as` + `className`.
 - **`NeonPanel`** — the panel surface.
-- **`SectionHeader`** — `code` + `title` + `subtitle` + `action`.
+- **`SectionHeader`** — accent rule + `title` + `subtitle` + `action` (+ `as='h1'` on index pages).
 - **`CyberButton`** — variants `solid | outline | danger | ghost`; renders a
   `<button>`, an internal `<Link>`, or an external `<a>` based on `href` + `external`
   (and casts internal hrefs to `Route` for you).
-- **`CyberTag`**, **`CyberTooltip`**, **`GlitchText`**, **`HudFrame`**,
-  **`ScanlineOverlay`**, **`MotionReveal`** (scroll-in reveal).
+- **`CyberTag`**, **`CyberTooltip`**, **`GlitchText`**, **`ScanlineOverlay`**,
+  **`MotionReveal`** (scroll-in reveal).
 
 ## 4. Utility classes
 

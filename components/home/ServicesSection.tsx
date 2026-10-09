@@ -13,9 +13,9 @@ import { servicesData } from '@/common'
  * proves it. One hire button under the grid rather than one per card: four identical
  * buttons read as noise, and the decision is "hire him", not "buy service #3".
  */
-const ServicesSection: React.FC<{ code: string }> = ({ code }) => (
+const ServicesSection: React.FC = () => (
 	<section className='mt-20'>
-		<SectionHeader code={code} title='What I build' subtitle='Freelance work I take on — each with shipped proof.' />
+		<SectionHeader title='What I build' subtitle='Freelance work I take on — each with shipped proof.' />
 
 		<div className='mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4'>
 			{servicesData.map((s, i) => (

@@ -9,7 +9,7 @@ const PostToc: React.FC<{ body: PostBlock[] }> = ({ body }) => {
 
 	return (
 		<nav aria-label='Table of contents' className='neon-panel clip-notch-sm p-4'>
-			<h3 className='text-cyber-cyan mb-3 font-mono text-xs tracking-widest uppercase md:text-xs'>// Index</h3>
+			<h3 className='text-cyber-cyan mb-3 font-mono text-xs tracking-widest uppercase md:text-xs'>// Contents</h3>
 			<ol className='space-y-2'>
 				{headings.map((h, i) => (
 					<li key={i}>

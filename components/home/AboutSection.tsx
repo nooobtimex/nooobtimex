@@ -21,9 +21,9 @@ const FACTS = [
  * Home "About" — the bio and highlights, which until now only the CV carried. A profile
  * page that never says who the person is asks a client to hire a list of projects.
  */
-const AboutSection: React.FC<{ code: string }> = ({ code }) => (
+const AboutSection: React.FC = () => (
 	<section className='mt-20'>
-		<SectionHeader code={code} title='About' subtitle='Who you would be hiring.' />
+		<SectionHeader title='About' subtitle='Who you would be hiring.' />
 
 		<div className='mt-8 grid gap-6 lg:grid-cols-[1.4fr_1fr]'>
 			<MotionReveal>

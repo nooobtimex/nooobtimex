@@ -61,7 +61,7 @@ const PostDetail: React.FC<{ post: Post; adAfter?: Readonly<Record<number, strin
 					:	'—'}
 				</StatCell>
 				<StatCell label='Read Time'>{post.readingMinutes} min</StatCell>
-				<StatCell label='Channel'>
+				<StatCell label='Category'>
 					<span style={{ color: post.accent }}>{categoryMetadataPosts[post.category].label}</span>
 				</StatCell>
 			</NeonPanel>

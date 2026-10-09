@@ -64,7 +64,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
 			<Link
 				href='/projects'
 				className='text-muted-foreground hover:text-cyber-cyan inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase transition-colors'>
-				<CyberIcon icon='mdi:arrow-left' className='size-4' /> Gig Board
+				<CyberIcon icon='mdi:arrow-left' className='size-4' /> All projects
 			</Link>
 
 			{/* Banner */}
@@ -159,7 +159,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
 					</CyberButton>
 
 					<NeonPanel className='clip-notch-sm p-4'>
-						<h3 className='text-cyber-cyan mb-3 font-mono text-xs tracking-widest uppercase'>Loadout</h3>
+						<h3 className='text-cyber-cyan mb-3 font-mono text-xs tracking-widest uppercase'>Tech used</h3>
 						<div className='flex flex-wrap gap-2'>
 							{project.activeSkills.map(a => (
 								<Link

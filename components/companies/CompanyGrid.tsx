@@ -49,7 +49,8 @@ const CompanyCard: React.FC<{ org: Organization; index: number }> = ({ org, inde
 					<p className='text-muted-foreground mt-3 line-clamp-3 text-sm leading-relaxed'>{org.description}</p>
 				)}
 				<p className='text-cyber-cyan mt-auto pt-3 font-mono text-[0.65rem] tracking-wider uppercase'>
-					{roles.length} {roles.length === 1 ? 'role' : 'roles'} · {gigs.length} {gigs.length === 1 ? 'gig' : 'gigs'}
+					{roles.length} {roles.length === 1 ? 'role' : 'roles'} · {gigs.length}{' '}
+					{gigs.length === 1 ? 'project' : 'projects'}
 				</p>
 			</Link>
 		</MotionReveal>

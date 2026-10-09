@@ -25,7 +25,7 @@ const PostRefs: React.FC<{ post: Post }> = ({ post }) => {
 
 	return (
 		<div className='neon-panel clip-notch-sm p-4'>
-			<h3 className='text-cyber-cyan mb-3 font-mono text-xs tracking-widest uppercase md:text-xs'>// Linked Data</h3>
+			<h3 className='text-cyber-cyan mb-3 font-mono text-xs tracking-widest uppercase md:text-xs'>// Related</h3>
 			<div className='flex flex-wrap gap-1.5'>
 				{rows.map(row => (
 					<Link key={row.href} href={row.href as Route}>

@@ -83,13 +83,9 @@ export const HireStrip: React.FC<{ heading: string; className?: string }> = ({ h
  * The home page's closing section: the full ask, how hiring works, and the CV for anyone
  * who wants the long version first. Replaces the old CV teaser, whose two links live on here.
  */
-const HireBand: React.FC<{ code: string }> = ({ code }) => (
+const HireBand: React.FC = () => (
 	<Container as='section' className='mt-20 pb-10'>
-		<SectionHeader
-			code={code}
-			title='Hire me'
-			subtitle='Remote freelance web app projects, scoped and shipped end to end.'
-		/>
+		<SectionHeader title='Hire me' subtitle='Remote freelance web app projects, scoped and shipped end to end.' />
 
 		<NeonPanel variant='yellow' corners className='mt-8 p-6 md:p-10'>
 			<p className='text-cyber-yellow font-mono text-xs tracking-[0.3em] uppercase'>// Open for freelance</p>

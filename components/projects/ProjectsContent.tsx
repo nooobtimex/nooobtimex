@@ -10,7 +10,6 @@ const ProjectsContent: React.FC = () => {
 		<Container className='py-12 md:py-16'>
 			<SectionHeader
 				as='h1'
-				code='01'
 				title='Projects'
 				subtitle={`${projectsData.length} builds — systems architected, shipped, and maintained.`}
 			/>

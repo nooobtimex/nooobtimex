@@ -125,7 +125,7 @@ const ProjectSquareCard: React.FC<ProjectSquareCardProps> = ({ project, cover })
 								height: COVER_HEIGHT,
 								padding: `0 ${PAD}px`
 							}}>
-							<Kicker color={accent}>{'// GIG DOSSIER'}</Kicker>
+							<Kicker color={accent}>{'// PROJECT'}</Kicker>
 							<div
 								style={{
 									display: 'flex',

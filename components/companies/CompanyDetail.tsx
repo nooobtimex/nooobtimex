@@ -98,7 +98,7 @@ const CompanyDetail: React.FC<CompanyDetailProps> = ({ organization }) => {
 					</span>
 				)}
 				<div className='flex-1'>
-					<span className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// Corp File</span>
+					<span className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// Company</span>
 					<h1 className='font-display text-3xl font-bold tracking-wide uppercase md:text-4xl'>{organization.name}</h1>
 					{organization.description && (
 						<p className='text-muted-foreground mt-2 max-w-3xl leading-relaxed'>{organization.description}</p>
@@ -122,7 +122,7 @@ const CompanyDetail: React.FC<CompanyDetailProps> = ({ organization }) => {
 
 			{dossier.length > 0 && (
 				<>
-					<h2 className='text-cyber-cyan mt-8 font-mono text-xs tracking-[0.3em] uppercase'>// Dossier</h2>
+					<h2 className='text-cyber-cyan mt-8 font-mono text-xs tracking-[0.3em] uppercase'>// Company facts</h2>
 					<NeonPanel className='clip-notch-sm mt-3 grid grid-cols-1 gap-3 p-4 sm:grid-cols-2'>
 						{dossier.map(f => (
 							<InfoRow key={f.key} icon={f.icon} label={f.label}>
@@ -155,7 +155,7 @@ const CompanyDetail: React.FC<CompanyDetailProps> = ({ organization }) => {
 
 			{organization.highlights && organization.highlights.length > 0 && (
 				<section className='mt-8'>
-					<h2 className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// Field Notes</h2>
+					<h2 className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// Highlights</h2>
 					<ul className='mt-3 space-y-2'>
 						{organization.highlights.map(h => (
 							<li key={h} className='text-muted-foreground flex items-start gap-2 text-sm leading-relaxed'>
@@ -175,17 +175,17 @@ const CompanyDetail: React.FC<CompanyDetailProps> = ({ organization }) => {
 						<span className='text-cyber-yellow'>{formatExperienceDuration(tenureStart, tenureEnd)}</span>
 					:	'—'}
 				</StatCell>
-				<StatCell label='Gigs'>
+				<StatCell label='Projects'>
 					<span className='text-cyber-cyan'>{gigs.length}</span>
 				</StatCell>
-				<StatCell label='Skills Fielded'>{skills.length}</StatCell>
+				<StatCell label='Skills used'>{skills.length}</StatCell>
 			</NeonPanel>
 
 			{/* Roles held here */}
 			{roles.length > 0 && (
 				<section className='mt-10'>
 					<div className='mb-6 flex items-center gap-3'>
-						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Service Records</h2>
+						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Roles</h2>
 						<span className='bg-border h-px flex-1' />
 						<span className='text-muted-foreground font-mono text-xs'>{roles.length}</span>
 					</div>
@@ -213,7 +213,7 @@ const CompanyDetail: React.FC<CompanyDetailProps> = ({ organization }) => {
 			{gigs.length > 0 && (
 				<section className='mt-10'>
 					<div className='mb-6 flex items-center gap-3'>
-						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Linked Gigs</h2>
+						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Projects</h2>
 						<span className='bg-border h-px flex-1' />
 						<span className='text-muted-foreground font-mono text-xs'>{gigs.length}</span>
 					</div>
@@ -231,7 +231,7 @@ const CompanyDetail: React.FC<CompanyDetailProps> = ({ organization }) => {
 			{skills.length > 0 && (
 				<section className='mt-10'>
 					<div className='mb-6 flex items-center gap-3'>
-						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Loadout</h2>
+						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Tech used</h2>
 						<span className='bg-border h-px flex-1' />
 						<span className='text-muted-foreground font-mono text-xs'>{skills.length}</span>
 					</div>

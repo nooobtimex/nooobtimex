@@ -20,9 +20,9 @@ export default function NotFound() {
 		<div className='bg-background relative flex min-h-screen flex-col items-center justify-center px-4 py-16 text-center'>
 			<div className='cyber-grid pointer-events-none absolute inset-0 opacity-25' />
 			<GlitchText text='404' className='neon-text-magenta font-display text-8xl font-bold tracking-tight md:text-9xl' />
-			<p className='text-cyber-cyan mt-2 font-mono text-sm tracking-[0.4em] uppercase'>// Signal Lost</p>
+			<p className='text-cyber-cyan mt-2 font-mono text-sm tracking-[0.4em] uppercase'>// Page not found</p>
 			<p className='text-muted-foreground mt-4 max-w-md'>
-				This sector of the grid doesn&apos;t exist. The route may have been moved or never deployed.
+				This page doesn&apos;t exist or has moved. Try one of the sections below.
 			</p>
 
 			<Link
@@ -34,7 +34,7 @@ export default function NotFound() {
 			{/* Crawlable recovery links — the same nav the rest of the site uses, so a crawler
 			    that lands here still reaches every section instead of hitting a dead end. */}
 			<nav aria-label='Site sections' className='mt-10 w-full max-w-lg'>
-				<p className='text-muted-foreground font-mono text-xs tracking-[0.3em] uppercase'>// Reroute</p>
+				<p className='text-muted-foreground font-mono text-xs tracking-[0.3em] uppercase'>// Sections</p>
 				<ul className='mt-4 flex flex-wrap justify-center gap-2'>
 					{NAV_LINKS.filter(l => l.href !== '/').map(link => (
 						<li key={link.href}>

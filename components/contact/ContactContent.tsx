@@ -36,7 +36,7 @@ const ContactContent: React.FC = () => {
 			    opacity 0 and depends on an IntersectionObserver callback; if that never
 			    fires the content stays invisible. The page's identity block must not be
 			    contingent on that, and the other pages render their headers eagerly too. */}
-			<p className='text-cyber-cyan font-mono text-xs tracking-[0.35em] uppercase'>// COMMS_CHANNEL</p>
+			<p className='text-cyber-cyan font-mono text-xs tracking-[0.35em] uppercase'>// Get in touch</p>
 			<h1 className='font-display mt-3 text-5xl leading-[0.9] font-bold tracking-tight uppercase md:text-7xl'>
 				<GlitchText text='Contact' />
 			</h1>
@@ -108,7 +108,6 @@ const ContactContent: React.FC = () => {
 			{/* SCAN-ME PANELS */}
 			<MotionReveal delay={0.1}>
 				<SectionHeader
-					code='07'
 					title='Scan me'
 					subtitle='Two codes: one saves me to your phone, one adds me on WeChat.'
 					className='mt-16'
@@ -129,7 +128,6 @@ const ContactContent: React.FC = () => {
 			{listed.length > 0 && (
 				<MotionReveal delay={0.15}>
 					<SectionHeader
-						code='08'
 						title='Direct channels'
 						subtitle='Messaging apps, with mainland-China availability marked.'
 						className='mt-16'
@@ -153,7 +151,7 @@ const ContactContent: React.FC = () => {
 
 			{/* SOCIALS */}
 			<MotionReveal delay={0.2}>
-				<SectionHeader code='09' title='Elsewhere' subtitle='Profiles and long-form output.' className='mt-16' />
+				<SectionHeader title='Elsewhere' subtitle='Profiles and long-form output.' className='mt-16' />
 				<div className='mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3'>
 					{personalData.socialLinks.map(social => (
 						<a

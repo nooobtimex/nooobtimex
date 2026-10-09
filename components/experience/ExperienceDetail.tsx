@@ -49,7 +49,7 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({ item }) => {
 			<Link
 				href='/career'
 				className='text-muted-foreground hover:text-cyber-cyan inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase transition-colors'>
-				<CyberIcon icon='mdi:arrow-left' className='size-4' /> Career Trace
+				<CyberIcon icon='mdi:arrow-left' className='size-4' /> Career
 			</Link>
 
 			<NeonPanel
@@ -69,7 +69,7 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({ item }) => {
 					</span>
 				)}
 				<div className='flex-1'>
-					<span className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// Service Record</span>
+					<span className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// Role</span>
 					<h1 className='font-display text-3xl font-bold tracking-wide uppercase md:text-4xl'>
 						{item.credential ?? humanize(item.position)}
 					</h1>
@@ -120,7 +120,7 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({ item }) => {
 			{relatedProjects.length > 0 && (
 				<section className='mt-10'>
 					<div className='mb-6 flex items-center gap-3'>
-						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Linked Gigs</h2>
+						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Projects</h2>
 						<span className='bg-border h-px flex-1' />
 						<span className='text-muted-foreground font-mono text-xs'>{relatedProjects.length}</span>
 					</div>

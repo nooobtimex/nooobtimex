@@ -69,7 +69,7 @@ const SkillDetail: React.FC<SkillDetailProps> = ({ skill }) => {
 					<CyberIcon icon={skill.icon} className='size-12' />
 				</span>
 				<div>
-					<span className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// {meta.label} branch</span>
+					<span className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// {meta.label} skill</span>
 					<h1 className='font-display text-3xl font-bold tracking-wide uppercase md:text-5xl'>{skill.name}</h1>
 				</div>
 			</NeonPanel>
@@ -82,11 +82,11 @@ const SkillDetail: React.FC<SkillDetailProps> = ({ skill }) => {
 
 			{/* Stat readout */}
 			<NeonPanel className='clip-notch-sm mt-6 grid grid-cols-2 gap-4 p-4 sm:grid-cols-4'>
-				<StatCell label='Branch'>{meta.label}</StatCell>
-				<StatCell label='Deployed'>
-					<span className='text-cyber-cyan'>{deployedIn.length} gigs</span>
+				<StatCell label='Category'>{meta.label}</StatCell>
+				<StatCell label='Projects'>
+					<span className='text-cyber-cyan'>{deployedIn.length}</span>
 				</StatCell>
-				<StatCell label='First Fielded'>
+				<StatCell label='First used'>
 					{firstFielded ?
 						<span className='text-cyber-yellow'>{new Date(firstFielded.startDate).getFullYear()}</span>
 					:	'—'}
@@ -99,7 +99,7 @@ const SkillDetail: React.FC<SkillDetailProps> = ({ skill }) => {
 			{note && (
 				<section className='mt-10'>
 					<div className='mb-6 flex items-center gap-3'>
-						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Field Notes</h2>
+						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Notes</h2>
 						<span className='bg-border h-px flex-1' />
 						<time dateTime={note.updatedAt} className='text-muted-foreground font-mono text-xs'>
 							{note.updatedAt}
@@ -115,7 +115,7 @@ const SkillDetail: React.FC<SkillDetailProps> = ({ skill }) => {
 			{fieldRecord.length > 0 && (
 				<section className='mt-10'>
 					<div className='mb-6 flex items-center gap-3'>
-						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Field Record</h2>
+						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Used in roles</h2>
 						<span className='bg-border h-px flex-1' />
 						<span className='text-muted-foreground font-mono text-xs'>{fieldRecord.length}</span>
 					</div>
@@ -140,7 +140,7 @@ const SkillDetail: React.FC<SkillDetailProps> = ({ skill }) => {
 									</div>
 									<p className='text-muted-foreground mt-2 font-mono text-[0.65rem] tracking-wider uppercase'>
 										{formatExperienceDuration(role.startDate, role.endDate)} · {gigs.length}{' '}
-										{gigs.length === 1 ? 'gig' : 'gigs'}
+										{gigs.length === 1 ? 'project' : 'projects'}
 									</p>
 								</Link>
 							</MotionReveal>
@@ -151,7 +151,7 @@ const SkillDetail: React.FC<SkillDetailProps> = ({ skill }) => {
 
 			<section className='mt-10'>
 				<div className='mb-6 flex items-center gap-3'>
-					<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Deployed In</h2>
+					<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Used in projects</h2>
 					<span className='bg-border h-px flex-1' />
 					<span className='text-muted-foreground font-mono text-xs'>{deployedIn.length}</span>
 				</div>
@@ -164,7 +164,7 @@ const SkillDetail: React.FC<SkillDetailProps> = ({ skill }) => {
 							</MotionReveal>
 						))}
 					</div>
-				:	<p className='text-muted-foreground font-mono text-sm'>No public gigs tagged with this perk yet.</p>}
+				:	<p className='text-muted-foreground font-mono text-sm'>No public projects use this skill yet.</p>}
 			</section>
 
 			{/* Journal entries that reference this skill — the reverse side of post cross-refs */}

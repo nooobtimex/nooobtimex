@@ -20,9 +20,8 @@ const ExperienceContent: React.FC<ExperienceContentProps> = ({ nowId }) => {
 		<Container className='py-12 md:py-16'>
 			<SectionHeader
 				as='h1'
-				code='03'
-				title='Career Trace'
-				subtitle='Chronological lifepath — roles, freelance work, and education.'
+				title='Career'
+				subtitle='Roles, freelance work and education, newest first — plus the organizations behind them.'
 			/>
 
 			<div className='relative mt-12'>

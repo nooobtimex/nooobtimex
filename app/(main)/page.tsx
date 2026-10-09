@@ -83,7 +83,7 @@ const Home: React.FC = () => {
 				nowId={currentEntryId(workExperienceData, now)}
 				yearsShipping={yearsShipping(workExperienceData, now)}
 			/>
-			<HireBand code='07' />
+			<HireBand />
 		</>
 	)
 }
