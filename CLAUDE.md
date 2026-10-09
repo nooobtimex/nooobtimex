@@ -71,7 +71,10 @@ the dashboard) + the root `Dockerfile`, mirroring `rs-trophy.com`:
   `GITHUB_TOKEN`) belongs in Railway service variables, not build args.
 - Railway service **Root Directory stays `/`** — the Dockerfile expects the repo root as
   its build context. `watchPatterns` is an allowlist so the `readme-assets` workflow
-  committing regenerated `.github/assets/*.svg` doesn't trigger a site rebuild.
+  committing regenerated `.github/assets/*.svg` doesn't trigger a site rebuild. That
+  workflow runs **weekly + manual dispatch only — never add a `push` trigger back**: its
+  commit then lands mid-deploy, Railway diffs against the last successful deploy, and every
+  code push builds twice.
 
 Verify a Railway change locally the way Railway runs it — injected port, no `.env`:
 

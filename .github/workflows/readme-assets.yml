@@ -1,18 +1,14 @@
 name: README assets
 
+# Weekly plus manual only — deliberately no `push` trigger. On push, this job's commit landed
+# ~15 s after each code push, while Railway was still building it; Railway diffs against the
+# last *successful* deploy, so watchPatterns did not skip the bot commit and every code push
+# built twice (the first build cancelled). It also left local main behind after every push.
+# Need the README cards fresh sooner? Actions → README assets → Run workflow.
 on:
   schedule:
-    - cron: '0 5 * * 1' # weekly, Monday 05:00 UTC
+    - cron: '0 5 * * 1' # weekly, Monday 05:00 UTC (12:00 in Thailand)
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/readme/**'
-      - 'common/data/**'
-      - 'lib/github.ts'
-      - 'lib/icon-data.ts'
-      - 'lib/og-icons.generated.json'
-      - '.github/workflows/readme-assets.yml'
 
 permissions:
   contents: write

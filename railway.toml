@@ -3,8 +3,8 @@ builder = "DOCKERFILE"
 # Railway: leave the service Root Directory at "/" (repo root) — the Dockerfile
 # expects the repo root as its build context.
 dockerfilePath = "Dockerfile"
-# Allowlist, so the readme-assets workflow committing regenerated SVGs into
-# .github/assets/ does not trigger a pointless site rebuild. Anything the build
+# Allowlist, so the readme-assets workflow (weekly, never on push) committing regenerated
+# SVGs into .github/assets/ does not trigger a pointless site rebuild. Anything the build
 # actually reads has to be listed here.
 watchPatterns = [
 	"app/**",

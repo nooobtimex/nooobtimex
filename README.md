@@ -1,5 +1,5 @@
 <!-- All visuals are self-generated SVGs — see scripts/readme/ (bun run readme:assets). -->
-<!-- Stats refresh daily via .github/workflows/readme-assets.yml -->
+<!-- Stats refresh weekly (Mondays) via .github/workflows/readme-assets.yml -->
 
 <div align="center">
 
