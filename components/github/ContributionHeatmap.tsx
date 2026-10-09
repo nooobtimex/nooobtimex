@@ -1,11 +1,22 @@
 import React from 'react'
 import type { ContributionDay } from '@/lib/github'
+import type { LevelRange } from '@/lib/github-stats'
 
 export type { ContributionDay }
 
 interface ContributionHeatmapProps {
 	contributions: ContributionDay[]
+	/** `YYYY-MM-DD`. Later days of a year in progress render as outlines, not as "no activity". */
+	today: string
+	/** The counts each shade stands for, so the legend says "5–9" instead of just "more". */
+	levels: LevelRange[]
 }
+
+/** '0', '3', '4–8' — what one shade means in contributions per day. */
+const rangeLabel = (r: LevelRange | undefined) =>
+	!r ? '—'
+	: r.min === r.max ? String(r.min)
+	: `${r.min}–${r.max}`
 
 // level 0–4 → cyber-yellow intensity scale (0 = faint cyan tint)
 const SCALE = [
@@ -25,7 +36,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
  * GitHub-style contribution calendar: weeks as columns, weekdays as rows,
  * recolored to the cyberpunk palette. Pure render — native title tooltips.
  */
-const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ contributions }) => {
+const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ contributions, today, levels }) => {
 	if (!contributions.length) return null
 
 	// Pad the start so the first column lines up with the correct weekday (Sun=0).
@@ -83,6 +94,14 @@ const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ contributions
 									{Array.from({ length: 7 }).map((_, di) => {
 										const day = week[di]
 										if (!day) return <span key={di} className='size-3' />
+										if (day.date > today)
+											return (
+												<span
+													key={di}
+													title={`${day.date}: not yet`}
+													className='border-border/60 size-3 rounded-[2px] border'
+												/>
+											)
 										return (
 											<span
 												key={di}
@@ -96,13 +115,17 @@ const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ contributions
 							))}
 						</div>
 
-						{/* legend — centered under the grid */}
-						<div className='text-muted-foreground mt-3 flex items-center justify-center gap-1.5 font-mono text-[0.6rem] tracking-wider uppercase'>
-							Less
+						{/* Legend — centered under the grid. Each shade carries the daily counts it
+						    stands for: GitHub picks the thresholds per calendar, so "more" alone
+						    tells a reader nothing. */}
+						<div className='text-muted-foreground mt-3 flex items-start justify-center gap-2 font-mono text-[0.55rem] tracking-wider'>
+							<span className='pt-0.5 uppercase'>Per day</span>
 							{SCALE.map((c, i) => (
-								<span key={i} className='size-3 rounded-[2px]' style={{ backgroundColor: c }} />
+								<span key={i} className='flex flex-col items-center gap-1'>
+									<span className='size-3 rounded-[2px]' style={{ backgroundColor: c }} />
+									<span>{rangeLabel(levels.find(l => l.level === i))}</span>
+								</span>
 							))}
-							More
 						</div>
 					</div>
 				</div>

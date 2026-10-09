@@ -13,7 +13,7 @@ Fastwork link (`personalData.hire.url`). Deployed on **Railway** via `railway.to
 ```
 app/
   (main)/          # the site — shares NavBar + footer via (main)/layout.tsx
-    page.tsx       # home · projects/ · skills/ · experience/ · github/ (+ [...id] detail routes)
+    page.tsx       # home · projects/ · skills/ · experience/ · github/ (+ [...id] detail routes, github/[year])
   cv/ · cv/presentation/   # standalone, OUTSIDE the (main) layout
   layout.tsx       # root (fonts, metadata, global overlays)
 common/            # the data layer — single source of truth for all content
@@ -145,7 +145,8 @@ These encode bugs that were live on nooobtimex.me and produced **no error anywhe
    suspend. The root `app/loading.tsx` did this to 123 of 126 prerendered pages, so
    anything reading the HTML without JavaScript saw one word, "Loading…", on every URL —
    while AdSense rated the site "Low value content". Scope a boundary to something whose
-   absence from the HTML costs nothing (the `/github` stats), never to a page.
+   absence from the HTML costs nothing, never to a page. The site has none today: the
+   `/github` stats, the last one, went when every year became a prerendered `/github/[year]`.
    [`scripts/seo/check.ts`](scripts/seo/check.ts) fails the build on any prerendered page
    with readable text inside such a segment.
 

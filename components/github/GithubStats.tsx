@@ -8,89 +8,34 @@ import ContributionHeatmap from '@/components/github/ContributionHeatmap'
 import GithubInsights from '@/components/github/GithubInsights'
 import GithubIntro from '@/components/github/GithubIntro'
 import {
-	type ContributionDay,
-	type RepoSummary,
+	type GithubPeriod,
 	USERNAME,
 	getContributions,
 	getProfile,
 	getRepos,
-	resolveGithubYear
+	getYearTotals,
+	githubYears
 } from '@/lib/github'
+import { describePeriod, foldLanguages, formatDay, isoDay, periodStats } from '@/lib/github-stats'
 import { cn } from '@/lib/utils'
-
-const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-
-/** Roll the daily series up into the visualizations the insights panel needs. */
-function buildInsights(days: ContributionDay[], repos: RepoSummary | null) {
-	const monthMap = new Map<string, number>()
-	const weekdaySums = Array<number>(7).fill(0)
-	let activeDays = 0
-	let total = 0
-	let busiest: ContributionDay | null = null
-
-	for (const d of days) {
-		monthMap.set(d.date.slice(0, 7), (monthMap.get(d.date.slice(0, 7)) ?? 0) + d.count)
-		weekdaySums[new Date(d.date).getUTCDay()] += d.count
-		if (d.count > 0) activeDays++
-		total += d.count
-		if (!busiest || d.count > busiest.count) busiest = d
-	}
-
-	const monthly = [...monthMap.entries()]
-		.sort(([a], [b]) => a.localeCompare(b))
-		.slice(-12)
-		.map(([key, count]) => {
-			const m = Number(key.slice(5, 7)) - 1
-			return { key, label: MONTHS[m][0], full: `${MONTHS[m]} ${key.slice(0, 4)}`, count }
-		})
-
-	const weekday = WEEKDAYS.map((label, i) => ({ label, count: weekdaySums[i] }))
-
-	return {
-		monthly,
-		weekday,
-		languages: repos?.languages ?? [],
-		topRepos: repos?.top ?? [],
-		activeDays,
-		totalDays: days.length,
-		avgPerDay: activeDays ? total / activeDays : 0, // averaged over active days, not the full window
-		busiest: busiest ? { date: busiest.date, count: busiest.count } : null
-	}
-}
-
-function computeStreaks(days: ContributionDay[]) {
-	let longest = 0
-	let run = 0
-	for (const d of days) {
-		if (d.count > 0) {
-			run++
-			longest = Math.max(longest, run)
-		} else {
-			run = 0
-		}
-	}
-	let current = 0
-	for (let i = days.length - 1; i >= 0; i--) {
-		if (days[i].count > 0) current++
-		else break
-	}
-	return { current, longest }
-}
 
 const fmt = (n: number) => n.toLocaleString('en-US')
 
-/** Placeholder for `/github`'s Suspense boundary — same footprint as the resolved stats. */
-export const GithubStatsSkeleton: React.FC = () => (
-	<div aria-busy='true'>
-		<span className='sr-only'>Loading contribution activity…</span>
-		<div className='mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6'>
-			{Array.from({ length: 6 }, (_, i) => (
-				<NeonPanel key={i} className='clip-notch-sm h-[5.25rem] animate-pulse' />
-			))}
-		</div>
-		<NeonPanel className='mt-5 h-40 animate-pulse' />
-	</div>
+interface TileSpec {
+	icon: string
+	label: string
+	value: string
+	/** What the number means, in words — a tile that needs a hover to be understood isn't one. */
+	sub?: string
+}
+
+const Tile: React.FC<TileSpec> = ({ icon, label, value, sub }) => (
+	<NeonPanel className='clip-notch-sm flex flex-col gap-1 p-4'>
+		<CyberIcon icon={icon} className='text-cyber-cyan size-4' />
+		<span className='font-display neon-text-yellow text-2xl leading-none font-bold'>{value}</span>
+		<span className='text-muted-foreground font-mono text-[0.6rem] tracking-widest uppercase'>{label}</span>
+		{sub && <span className='text-muted-foreground/80 text-[0.7rem] leading-snug'>{sub}</span>}
+	</NeonPanel>
 )
 
 /**
@@ -116,112 +61,165 @@ const GithubUnavailable: React.FC = () => (
 )
 
 /**
- * On home this renders the whole section, intro included. On `/github` it renders only
- * the data: the page draws `GithubIntro` itself, outside the Suspense boundary around
- * this component, so the heading and prose never stream behind the numbers.
+ * The period filter — one row above everything it scopes. Each chip is its own
+ * prerendered page, so switching years is a static navigation, not a server round trip.
+ */
+const PeriodFilter: React.FC<{ period: GithubPeriod; thisYear: number }> = ({ period, thisYear }) => (
+	<nav aria-label='Period' className='mt-6 flex flex-wrap gap-2'>
+		{['last', ...githubYears(thisYear)].map(p => {
+			const active = p === period
+			return (
+				<Link
+					key={p}
+					href={(p === 'last' ? '/github' : `/github/${p}`) as Route}
+					aria-current={active ? 'page' : undefined}
+					className={cn(
+						'clip-notch-sm border px-3 py-1 font-mono text-xs tracking-widest uppercase transition-colors',
+						active ?
+							'bg-cyber-yellow border-cyber-yellow text-black'
+						:	'border-border text-muted-foreground hover:border-cyber-cyan hover:text-cyber-cyan'
+					)}>
+					{p === 'last' ? 'Last 12 mo' : p}
+				</Link>
+			)
+		})}
+	</nav>
+)
+
+/**
+ * The GitHub section, home and `/github` alike. Every figure is derived in
+ * `lib/github-stats.ts` while the page is prerendered (and again on each daily ISR
+ * revalidation), so a visitor never waits on GitHub: there is no Suspense boundary here
+ * any more, because nothing renders per request.
  */
 const GithubStats = async ({
 	variant = 'page',
-	year,
+	period = 'last',
 	code
 }: {
 	variant?: 'home' | 'page'
-	year?: string
+	period?: GithubPeriod
 	/** HUD code for the home section header — its position in the home page's order. */
 	code?: string
 }) => {
-	const selectedYear = resolveGithubYear(variant, year)
-	const contrib = await getContributions(selectedYear)
+	const contrib = await getContributions(period)
 	if (!contrib) return variant === 'home' ? null : <GithubUnavailable />
 
-	const [profile, repos] = await Promise.all([getProfile(), getRepos()])
-	const { current, longest } = computeStreaks(contrib.days)
+	// One "now" for the render: prerendered, then refreshed daily by ISR.
+	const now = new Date()
+	const today = isoDay(now)
+	const thisYear = now.getUTCFullYear()
+	const ongoing = period === 'last' || period === String(thisYear)
+	const stats = periodStats(contrib.days, contrib.total, today, ongoing)
+	const summary = describePeriod(stats, period, today)
 
-	const currentYear = new Date().getFullYear()
-	const startYear = profile?.createdYear ?? currentYear - 5
-	const years = [
-		'last',
-		...Array.from({ length: Math.max(0, currentYear - startYear) + 1 }, (_, i) => String(currentYear - i))
-	]
-
-	const allStats: { label: string; value: string; icon: string; homeHidden?: boolean }[] = [
+	const { longestStreak: ls, busiestDay } = stats
+	const tiles: TileSpec[] = [
 		{
-			label: selectedYear === 'last' ? 'Contributions / yr' : `Contributions ${selectedYear}`,
-			value: fmt(contrib.total),
-			icon: 'mdi:source-commit'
+			icon: 'mdi:source-commit',
+			label: period === 'last' ? 'Contributions · 12 mo' : `Contributions · ${period}`,
+			value: fmt(stats.total),
+			sub: 'commits, PRs, issues and reviews'
 		},
-		{ label: 'Current streak', value: `${current}d`, icon: 'mdi:fire' },
-		{ label: 'Longest streak', value: `${longest}d`, icon: 'mdi:trophy-outline' },
 		{
-			label: 'Public repos',
-			value: profile ? fmt(profile.repos) : '—',
-			icon: 'mdi:source-repository',
-			homeHidden: true
+			icon: 'mdi:calendar-check',
+			label: 'Active days',
+			value: fmt(stats.activeDays),
+			sub: `${stats.activePct}% of ${fmt(stats.elapsedDays)} days`
 		},
-		{ label: 'Stars earned', value: repos ? fmt(repos.stars) : '—', icon: 'mdi:star-outline' },
+		...(stats.currentStreak !== null ?
+			[
+				{
+					icon: 'mdi:fire',
+					label: 'Current streak',
+					value: `${stats.currentStreak}d`,
+					sub: 'days in a row, up to today'
+				}
+			]
+		:	[]),
 		{
-			label: 'Followers',
-			value: profile ? fmt(profile.followers) : '—',
-			icon: 'mdi:account-multiple-outline',
-			homeHidden: true
+			icon: 'mdi:trophy-outline',
+			label: 'Longest streak',
+			value: `${ls.length}d`,
+			sub: ls.start && ls.end && ls.length > 1 ? `${formatDay(ls.start)} – ${formatDay(ls.end, true)}` : undefined
 		}
 	]
-	// Home keeps the four activity-focused cards; the full repos/followers set lives on /github.
-	const stats = variant === 'home' ? allStats.filter(s => !s.homeHidden) : allStats
+	if (variant === 'page')
+		tiles.push(
+			{
+				icon: 'mdi:chart-line-variant',
+				label: 'Avg / active day',
+				value: stats.avgPerActiveDay.toFixed(1),
+				sub: 'on days with any activity'
+			},
+			{
+				icon: 'mdi:flash',
+				label: 'Busiest day',
+				value: busiestDay ? fmt(busiestDay.count) : '—',
+				sub: busiestDay ? formatDay(busiestDay.date, true) : undefined
+			}
+		)
 
-	const data = (
-		<>
-			{variant === 'page' && (
-				<div className='mt-6 flex flex-wrap gap-2'>
-					{years.map(y => {
-						const active = y === selectedYear
-						return (
-							<Link
-								key={y}
-								href={(y === 'last' ? '/github' : `/github?year=${y}`) as Route}
-								className={cn(
-									'clip-notch-sm border px-3 py-1 font-mono text-xs tracking-widest uppercase transition-colors',
-									active ?
-										'bg-cyber-yellow border-cyber-yellow text-black'
-									:	'border-border text-muted-foreground hover:border-cyber-cyan hover:text-cyber-cyan'
-								)}>
-								{y === 'last' ? 'Last 12 mo' : y}
-							</Link>
-						)
-					})}
-				</div>
-			)}
-
-			<div
-				className={
-					variant === 'home' ?
-						'mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4'
-					:	'mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6'
-				}>
-				{stats.map(s => (
-					<NeonPanel key={s.label} className='clip-notch-sm flex flex-col gap-1 p-4'>
-						<CyberIcon icon={s.icon} className='text-cyber-cyan size-4' />
-						<span className='font-display neon-text-yellow text-2xl leading-none font-bold'>{s.value}</span>
-						<span className='text-muted-foreground font-mono text-[0.6rem] tracking-widest uppercase'>{s.label}</span>
-					</NeonPanel>
-				))}
-			</div>
-
-			<NeonPanel className='clip-notch mt-5 p-5'>
-				<ContributionHeatmap contributions={contrib.days} />
-			</NeonPanel>
-
-			{variant === 'page' && <GithubInsights data={buildInsights(contrib.days, repos)} />}
-		</>
+	const summaryLine = (
+		<p className='text-muted-foreground mt-6 max-w-3xl text-sm leading-relaxed md:text-base'>{summary}</p>
 	)
 
-	if (variant === 'page') return data
+	// A year with no recorded activity (2021–2023 today) gets one honest line, not a wall
+	// of zeros and an empty heatmap. "Years at a glance" below still shows where the work is.
+	// Say only what the data says: the calendar already counts private contributions, so a
+	// zero is a zero — not "hidden in private repos".
+	const activity =
+		stats.total === 0 && stats.elapsedDays > 0 ?
+			<>
+				{summaryLine}
+				<NeonPanel className='clip-notch-sm mt-6 p-5'>
+					<p className='text-muted-foreground max-w-2xl text-sm leading-relaxed'>
+						This GitHub account recorded no contributions this year. The chart below shows every year side by side —
+						select one with activity to open it.
+					</p>
+				</NeonPanel>
+			</>
+		:	<>
+				{summaryLine}
+
+				<div className={cn('mt-6 grid grid-cols-2 gap-3', variant === 'home' ? 'sm:grid-cols-4' : 'sm:grid-cols-3')}>
+					{tiles.map(t => (
+						<Tile key={t.label} {...t} />
+					))}
+				</div>
+
+				<NeonPanel className='clip-notch mt-5 p-5'>
+					<ContributionHeatmap contributions={contrib.days} today={today} levels={stats.levels} />
+				</NeonPanel>
+			</>
+
+	if (variant === 'home')
+		return (
+			<Container as='section' className='mt-20 pb-4'>
+				<GithubIntro variant='home' year={period} code={code} />
+				{activity}
+			</Container>
+		)
+
+	const [profile, repos, yearTotals] = await Promise.all([getProfile(), getRepos(), getYearTotals()])
 
 	return (
-		<Container as='section' className='mt-20 pb-4'>
-			<GithubIntro variant='home' year={selectedYear} code={code} />
-			{data}
-		</Container>
+		<>
+			<PeriodFilter period={period} thisYear={thisYear} />
+			{activity}
+			<GithubInsights
+				data={{
+					period,
+					stats,
+					// Only the years with a page — the account's first year through this one.
+					yearTotals: yearTotals?.filter(y => Number(y.year) <= thisYear) ?? null,
+					languages: foldLanguages(repos?.languages ?? []),
+					topRepos: repos?.top ?? [],
+					profile,
+					stars: repos?.stars ?? null
+				}}
+			/>
+		</>
 	)
 }
 

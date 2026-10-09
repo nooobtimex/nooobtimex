@@ -1,141 +1,185 @@
 import React from 'react'
 import CyberIcon from '@/components/cyber/CyberIcon'
 import NeonPanel from '@/components/cyber/NeonPanel'
+import { BarList, ChartPanel, type Column, ColumnChart, DataTable } from '@/components/github/GithubCharts'
+import type { GithubPeriod, RepoSummary } from '@/lib/github'
+import type { PeriodStats, foldLanguages } from '@/lib/github-stats'
+
+const fmt = (n: number) => n.toLocaleString('en-US')
 
 export interface GithubInsightsData {
-	monthly: { key: string; label: string; full: string; count: number }[]
-	weekday: { label: string; count: number }[]
-	languages: { name: string; bytes: number }[]
-	topRepos: { name: string; stars: number; language: string | null; url: string; description: string | null }[]
-	activeDays: number
-	totalDays: number
-	avgPerDay: number
-	busiest: { date: string; count: number } | null
+	period: GithubPeriod
+	stats: PeriodStats
+	/** Contributions per calendar year since the account opened, oldest first. Null if the fetch failed. */
+	yearTotals: { year: string; total: number }[] | null
+	languages: ReturnType<typeof foldLanguages>
+	topRepos: RepoSummary['top']
+	profile: { repos: number; followers: number } | null
+	stars: number | null
 }
 
-const Heading: React.FC<{ children: React.ReactNode; count?: React.ReactNode }> = ({ children, count }) => (
-	<div className='mb-4 flex items-center gap-3'>
-		<h3 className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// {children}</h3>
-		<span className='bg-border h-px flex-1' />
-		{count != null && <span className='text-muted-foreground font-mono text-xs'>{count}</span>}
-	</div>
-)
-
-/** Vertical bars — one per month of the trailing year. */
-const MonthlyBars: React.FC<{ data: GithubInsightsData['monthly'] }> = ({ data }) => {
-	const max = Math.max(...data.map(d => d.count), 1)
-	return (
-		<>
-			<div className='flex h-44 items-end gap-1.5'>
-				{data.map(d => (
-					<div key={d.key} className='flex h-full flex-1 flex-col justify-end' title={`${d.full} — ${d.count}`}>
-						<div
-							className='clip-notch-sm to-cyber-cyan from-cyber-cyan/15 hover:to-cyber-yellow w-full bg-gradient-to-t transition-colors'
-							style={{ height: `${Math.max(3, (d.count / max) * 100)}%` }}
-						/>
-					</div>
-				))}
-			</div>
-			<div className='mt-2 flex gap-1.5'>
-				{data.map(d => (
-					<span key={d.key} className='text-muted-foreground flex-1 text-center font-mono text-[0.55rem] uppercase'>
-						{d.label}
-					</span>
-				))}
-			</div>
-		</>
-	)
-}
-
-/** Horizontal bars for the 7 weekdays. */
-const WeekdayBars: React.FC<{ data: GithubInsightsData['weekday'] }> = ({ data }) => {
-	const max = Math.max(...data.map(d => d.count), 1)
-	return (
-		<div className='space-y-2.5'>
-			{data.map(d => (
-				<div key={d.label} className='flex items-center gap-3'>
-					<span className='text-muted-foreground w-9 font-mono text-[0.6rem] tracking-widest uppercase'>{d.label}</span>
-					<div className='bg-border/40 h-2.5 flex-1 overflow-hidden'>
-						<div className='bg-cyber-cyan h-full' style={{ width: `${(d.count / max) * 100}%` }} />
-					</div>
-					<span className='text-cyber-yellow w-10 text-right font-mono text-[0.6rem]'>{d.count}</span>
-				</div>
-			))}
-		</div>
-	)
-}
-
-const StatCell: React.FC<{ icon: string; label: string; value: React.ReactNode; sub?: string }> = ({
-	icon,
-	label,
-	value,
-	sub
-}) => (
+const Tile: React.FC<{ icon: string; label: string; value: string }> = ({ icon, label, value }) => (
 	<NeonPanel className='clip-notch-sm flex flex-col gap-1 p-4'>
 		<CyberIcon icon={icon} className='text-cyber-cyan size-4' />
 		<span className='font-display neon-text-yellow text-2xl leading-none font-bold'>{value}</span>
 		<span className='text-muted-foreground font-mono text-[0.6rem] tracking-widest uppercase'>{label}</span>
-		{sub && <span className='text-muted-foreground/70 font-mono text-[0.55rem]'>{sub}</span>}
 	</NeonPanel>
 )
 
+/** Monthly cadence: one series in cyan, the in-progress month dimmed, the average as a reference line. */
+const MonthlyCadence: React.FC<{ stats: PeriodStats }> = ({ stats }) => {
+	const { monthly, monthlyAvg, peakMonth } = stats
+	const partial = monthly.find(m => m.partial)
+	const columns: Column[] = monthly.map(m => ({
+		key: m.key,
+		label: m.label,
+		value: m.count,
+		valueText: fmt(m.count),
+		detail: m.partial ? `${m.full} — so far` : m.full,
+		tone: m.partial ? 'partial' : 'base',
+		labelled: m.key === peakMonth?.key
+	}))
+	const takeaway =
+		peakMonth ?
+			`Peak: ${peakMonth.full} with ${fmt(peakMonth.count)}. Average ${fmt(Math.round(monthlyAvg))} a month${partial ? ` — ${partial.label} is still in progress, shown dimmed` : ''}.`
+		:	undefined
+
+	return (
+		<ChartPanel title='Monthly cadence' takeaway={takeaway}>
+			<ColumnChart
+				title='Contributions per month'
+				columns={columns}
+				reference={{ value: monthlyAvg, label: `avg ${fmt(Math.round(monthlyAvg))}` }}
+			/>
+			<DataTable
+				caption='Contributions per month'
+				head={['Month', 'Contributions']}
+				rows={monthly.map(m => [m.partial ? `${m.full} (so far)` : m.full, fmt(m.count)])}
+			/>
+		</ChartPanel>
+	)
+}
+
+/** Weekday rhythm: emphasis form — the busiest day in yellow, the rest in gray. */
+const WeekdayRhythm: React.FC<{ stats: PeriodStats }> = ({ stats }) => {
+	const total = stats.weekday.reduce((s, w) => s + w.count, 0)
+	const top = stats.busiestWeekday
+	return (
+		<ChartPanel
+			title='Weekday rhythm'
+			takeaway={
+				top && total ?
+					`${top.name} is the busiest — ${Math.round((top.count / total) * 100)}% of all contributions land on it.`
+				:	undefined
+			}>
+			<BarList
+				title='Contributions by weekday'
+				rows={stats.weekday.map(w => ({
+					key: w.label,
+					label: w.name,
+					value: w.count,
+					valueText: fmt(w.count),
+					tone: top && w.name === top.name ? 'accent' : 'muted'
+				}))}
+			/>
+		</ChartPanel>
+	)
+}
+
+/** Years at a glance: every calendar year since the account opened; the selected one highlighted. */
+const YearsAtAGlance: React.FC<{ period: GithubPeriod; years: { year: string; total: number }[] }> = ({
+	period,
+	years
+}) => {
+	const sum = years.reduce((s, y) => s + y.total, 0)
+	const biggest = years.reduce((best, y) => (y.total > best.total ? y : best), years[0])
+	const selected = years.find(y => y.year === period)
+	const columns: Column[] = years.map(y => ({
+		key: y.year,
+		label: `'${y.year.slice(2)}`,
+		value: y.total,
+		valueText: fmt(y.total),
+		detail: `${y.year} — open the ${y.year} view`,
+		// Emphasis when a year is selected; otherwise one plain series.
+		tone:
+			!selected ? 'base'
+			: y.year === period ? 'accent'
+			: 'muted',
+		labelled: y.year === biggest.year || y.year === period,
+		href: `/github/${y.year}`
+	}))
+	const takeaway =
+		selected ?
+			`${selected.year} highlighted: ${fmt(selected.total)} of ${fmt(sum)} contributions since ${years[0].year}.`
+		:	`${fmt(sum)} contributions since ${years[0].year}; ${biggest.year} is the biggest year. Select a column to open that year.`
+
+	return (
+		<ChartPanel title='Years at a glance' takeaway={takeaway}>
+			<ColumnChart title='Contributions per calendar year' columns={columns} />
+			<DataTable
+				caption='Contributions per calendar year'
+				head={['Year', 'Contributions']}
+				rows={years.map(y => [y.year, fmt(y.total)])}
+			/>
+		</ChartPanel>
+	)
+}
+
+/**
+ * The /github analysis below the heatmap. Two groups, and the split is the point: the
+ * period charts follow the year filter; the all-time group sits under its own heading
+ * because repos, stars, followers and languages don't change with it.
+ */
 const GithubInsights: React.FC<{ data: GithubInsightsData }> = ({ data }) => {
-	const { monthly, weekday, languages, topRepos, activeDays, totalDays, avgPerDay, busiest } = data
-	const maxLang = Math.max(...languages.map(l => l.bytes), 1)
-	const totalLangBytes = languages.reduce((s, l) => s + l.bytes, 0) || 1
-	const activePct = totalDays ? Math.round((activeDays / totalDays) * 100) : 0
-	const busiestLabel =
-		busiest ? new Date(busiest.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '—'
+	const { period, stats, yearTotals, languages, topRepos, profile, stars } = data
+	const hasActivity = stats.total > 0
 
 	return (
 		<div className='mt-12 space-y-5'>
-			{/* derived rhythm cells */}
-			<div className='grid grid-cols-2 gap-3 sm:grid-cols-3'>
-				<StatCell
-					icon='mdi:calendar-check'
-					label='Active days'
-					value={`${activeDays}`}
-					sub={`${activePct}% of ${totalDays}`}
-				/>
-				<StatCell icon='mdi:source-commit' label='Commits / day' value={avgPerDay.toFixed(1)} sub='per active day' />
-				<StatCell icon='mdi:flash' label='Busiest day' value={busiest ? `${busiest.count}` : '—'} sub={busiestLabel} />
+			{hasActivity && (
+				<div className='grid gap-5 lg:grid-cols-[1.4fr_1fr]'>
+					<MonthlyCadence stats={stats} />
+					<WeekdayRhythm stats={stats} />
+				</div>
+			)}
+
+			{yearTotals && yearTotals.length > 0 && <YearsAtAGlance period={period} years={yearTotals} />}
+
+			<div className='flex items-center gap-3 pt-8'>
+				<h2 className='font-display text-2xl font-bold tracking-wide uppercase'>All time</h2>
+				<span className='bg-border h-px flex-1' />
+				<span className='text-muted-foreground font-mono text-[0.6rem] tracking-widest uppercase'>
+					Not affected by the year filter
+				</span>
 			</div>
 
-			<div className='grid gap-5 lg:grid-cols-2'>
-				<NeonPanel className='clip-notch p-5'>
-					<Heading>Monthly cadence</Heading>
-					<MonthlyBars data={monthly} />
-				</NeonPanel>
-
-				<NeonPanel className='clip-notch p-5'>
-					<Heading>Weekday rhythm</Heading>
-					<WeekdayBars data={weekday} />
-				</NeonPanel>
+			<div className='grid grid-cols-3 gap-3'>
+				<Tile icon='mdi:source-repository' label='Public repos' value={profile ? fmt(profile.repos) : '—'} />
+				<Tile icon='mdi:star-outline' label='Stars earned' value={stars !== null ? fmt(stars) : '—'} />
+				<Tile icon='mdi:account-multiple-outline' label='Followers' value={profile ? fmt(profile.followers) : '—'} />
 			</div>
 
 			<div className='grid gap-5 lg:grid-cols-2'>
 				{languages.length > 0 && (
-					<NeonPanel className='clip-notch p-5'>
-						<Heading count={languages.length}>Languages</Heading>
-						<div className='space-y-2.5'>
-							{languages.slice(0, 6).map(l => (
-								<div key={l.name} className='flex items-center gap-3'>
-									<span className='w-24 truncate text-xs'>{l.name}</span>
-									<div className='bg-border/40 h-2 flex-1 overflow-hidden'>
-										<div className='bg-cyber-magenta h-full' style={{ width: `${(l.bytes / maxLang) * 100}%` }} />
-									</div>
-									<span className='text-muted-foreground w-10 text-right font-mono text-[0.6rem]'>
-										{Math.round((l.bytes / totalLangBytes) * 100)}%
-									</span>
-								</div>
-							))}
-						</div>
-					</NeonPanel>
+					<ChartPanel title='Languages' takeaway='Share of code across public repositories, by bytes.'>
+						<BarList
+							title='Share of code by language'
+							rows={languages.map(l => ({
+								key: l.name,
+								label: l.name,
+								value: l.share,
+								valueText: `${l.share < 1 ? '<1' : Math.round(l.share)}%`
+							}))}
+						/>
+					</ChartPanel>
 				)}
 
 				{topRepos.length > 0 && (
 					<NeonPanel className='clip-notch p-5'>
-						<Heading count={topRepos.length}>Top repositories</Heading>
+						<div className='mb-4 flex items-center gap-3'>
+							<h3 className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// Top repositories</h3>
+							<span className='bg-border h-px flex-1' />
+						</div>
 						<div className='-mt-1'>
 							{topRepos.map(r => (
 								<a
@@ -150,8 +194,8 @@ const GithubInsights: React.FC<{ data: GithubInsightsData }> = ({ data }) => {
 									</div>
 									<div className='flex shrink-0 items-center gap-3 font-mono text-xs'>
 										{r.language && <span className='text-muted-foreground'>{r.language}</span>}
-										<span className='text-cyber-yellow flex items-center gap-1'>
-											<CyberIcon icon='mdi:star' className='size-3' />
+										<span className='text-foreground flex items-center gap-1'>
+											<CyberIcon icon='mdi:star' className='text-cyber-yellow size-3' />
 											{r.stars}
 										</span>
 									</div>

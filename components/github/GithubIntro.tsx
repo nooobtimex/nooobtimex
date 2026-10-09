@@ -6,12 +6,8 @@ import { USERNAME } from '@/lib/github'
 
 /**
  * The heading and framing prose of the GitHub section — everything that does not depend
- * on the API.
- *
- * Split out of `GithubStats` so `/github` can render it OUTSIDE the Suspense boundary
- * that wraps the numbers. Inside a boundary it would stream with them, and React
- * outlines a completed boundary into a hidden segment once the response is large, so the
- * page's only prose would ship invisible to anything that doesn't run JavaScript.
+ * on the API, so it renders even when the feed is offline. (It was split out to sit
+ * outside a Suspense boundary; `/github` is prerendered per year now and has none.)
  */
 const GithubIntro: React.FC<{ variant: 'home' | 'page'; year: string; code?: string }> = ({
 	variant,

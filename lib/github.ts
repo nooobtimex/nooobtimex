@@ -23,11 +23,22 @@ function ghHeaders(): Record<string, string> {
 }
 
 /**
- * Normalises a `?year=` value to what `getContributions` accepts. Home is always the
- * trailing year; only the dedicated page honours a selected calendar year.
+ * The year the GitHub account was created (2020-02-27). A constant, not an API read: it
+ * decides which `/github/<year>` pages exist, and a route list must not depend on a
+ * rate-limited fetch succeeding at build time.
  */
-export const resolveGithubYear = (variant: 'home' | 'page', year?: string): string =>
-	variant === 'page' && year && /^\d{4}$/.test(year) ? year : 'last'
+export const GITHUB_SINCE = 2020
+
+/** A `/github` view: the trailing 12 months, or one calendar year. */
+export type GithubPeriod = 'last' | `${number}`
+
+/**
+ * Calendar years with a `/github/<year>` page, newest first. `through` is the last year to
+ * include — the current year for the year chips, the current year + 1 for
+ * `generateStaticParams`, so a deploy made in December already has January's page.
+ */
+export const githubYears = (through: number): string[] =>
+	Array.from({ length: Math.max(0, through - GITHUB_SINCE) + 1 }, (_, i) => String(through - i))
 
 // `year` is 'last' (trailing 12 months) or a 4-digit calendar year.
 export async function getContributions(year: string): Promise<{ total: number; days: ContributionDay[] } | null> {
@@ -39,6 +50,26 @@ export async function getContributions(year: string): Promise<{ total: number; d
 		const json = (await res.json()) as { total?: Record<string, number>; contributions?: ContributionDay[] }
 		const total = year === 'last' ? (json.total?.lastYear ?? 0) : (json.total?.[year] ?? 0)
 		return { total, days: json.contributions ?? [] }
+	} catch {
+		return null
+	}
+}
+
+/**
+ * Contribution total per calendar year since the account opened — one request for every
+ * year, so the year-over-year chart never needs eight fetches.
+ */
+export async function getYearTotals(): Promise<{ year: string; total: number }[] | null> {
+	try {
+		const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=all`, {
+			next: { revalidate: REVALIDATE }
+		})
+		if (!res.ok) return null
+		const json = (await res.json()) as { total?: Record<string, number> }
+		return Object.entries(json.total ?? {})
+			.filter(([year]) => /^\d{4}$/.test(year))
+			.map(([year, total]) => ({ year, total }))
+			.sort((a, b) => a.year.localeCompare(b.year))
 	} catch {
 		return null
 	}

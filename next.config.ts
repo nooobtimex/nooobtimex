@@ -40,6 +40,13 @@ const nextConfig: NextConfig = {
 			{ source: '/issue/rs-trophy-v1', destination: '/projects/rs-trophy', permanent: true },
 			// Renamed experience id — Product Engineer role became CTO
 			{ source: '/experience/ruamsuk-product-engineer', destination: '/career/ruamsuk-cto', permanent: true },
+			// GitHub years moved from ?year= (rendered per request) to prerendered /github/<year>
+			{
+				source: '/github',
+				has: [{ type: 'query', key: 'year', value: '(?<year>\\d{4})' }],
+				destination: '/github/:year',
+				permanent: true
+			},
 			// Career section moved — /experience/* now lives at /career/*
 			{ source: '/experience', destination: '/career', permanent: true },
 			{ source: '/experience/:id', destination: '/career/:id', permanent: true },

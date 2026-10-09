@@ -52,6 +52,7 @@
 	--color-chart-3: var(--chart-3);
 	--color-chart-4: var(--chart-4);
 	--color-chart-5: var(--chart-5);
+	--color-chart-muted: var(--chart-muted);
 
 	--color-sidebar: var(--sidebar);
 	--color-sidebar-foreground: var(--sidebar-foreground);
@@ -120,6 +121,9 @@
 	--chart-3: #ff003c;
 	--chart-4: #39ff14;
 	--chart-5: #b026ff;
+	/* De-emphasis gray for chart marks (the "rest" beside one highlighted mark). The lightest
+	   gray that still clears 3:1 against --card (3.18:1); one step darker read as 2.68:1. */
+	--chart-muted: #56636f;
 
 	--sidebar: #07090d;
 	--sidebar-foreground: #e6fbff;
