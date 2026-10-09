@@ -17,8 +17,8 @@ export const generateStaticParams = () => githubYears(new Date().getUTCFullYear(
 // An unknown year is a 404 at the routing layer, never a 200 "no data" page (CLAUDE.md, SEO #2).
 export const dynamicParams = false
 
-/** Refreshed once a day, like `/github` — the current year keeps moving. */
-export const revalidate = 86400
+/** Regenerated hourly, like `/github` — see the note there. */
+export const revalidate = 3600
 
 interface Props {
 	params: Promise<{ year: string }>

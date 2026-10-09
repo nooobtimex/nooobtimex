@@ -13,8 +13,13 @@ export const metadata = pageMetadata({
 	index: false
 })
 
-/** Prerendered, then refreshed once a day — the same cadence as the GitHub fetches it reads. */
-export const revalidate = 86400
+/**
+ * Prerendered, then regenerated hourly. The GitHub fetches themselves stay cached for a day
+ * (`REVALIDATE` in lib/github.ts) and Next caches only 200s, so an hourly pass costs no API
+ * calls when the data is good — and a page baked while the API was down heals within the
+ * hour instead of the day.
+ */
+export const revalidate = 3600
 
 /**
  * The trailing 12 months. Each calendar year is its own prerendered page under

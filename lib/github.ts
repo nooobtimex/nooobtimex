@@ -22,6 +22,38 @@ function ghHeaders(): Record<string, string> {
 	return headers
 }
 
+/** Backoff before each retry; its length is the retry count. */
+const RETRY_DELAYS_MS = [500, 1500]
+
+/**
+ * GET a JSON endpoint, or `null` once it has failed for good. A network error, 429 or 5xx is
+ * retried; any other non-2xx is final. Every failure is logged: these fetchers used to
+ * swallow errors, so a build that prerendered `/github` while the API blinked shipped a
+ * "data unavailable" page with nothing in the build log to say why.
+ */
+async function fetchJson<T>(url: string, init: RequestInit): Promise<T | null> {
+	for (let attempt = 0; ; attempt++) {
+		let reason: string
+		try {
+			const res = await fetch(url, init)
+			if (res.ok) return (await res.json()) as T
+			reason = `HTTP ${res.status}`
+			if (res.status !== 429 && res.status < 500) {
+				console.warn(`[github] ${url} → ${reason}`)
+				return null
+			}
+		} catch (err) {
+			reason = err instanceof Error ? err.message : String(err)
+		}
+		const delay = RETRY_DELAYS_MS[attempt]
+		if (delay === undefined) {
+			console.warn(`[github] ${url} → ${reason} (gave up after ${attempt + 1} attempts)`)
+			return null
+		}
+		await new Promise(resolve => setTimeout(resolve, delay))
+	}
+}
+
 /**
  * The year the GitHub account was created (2020-02-27). A constant, not an API read: it
  * decides which `/github/<year>` pages exist, and a route list must not depend on a
@@ -42,17 +74,13 @@ export const githubYears = (through: number): string[] =>
 
 // `year` is 'last' (trailing 12 months) or a 4-digit calendar year.
 export async function getContributions(year: string): Promise<{ total: number; days: ContributionDay[] } | null> {
-	try {
-		const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=${year}`, {
-			next: { revalidate: REVALIDATE }
-		})
-		if (!res.ok) return null
-		const json = (await res.json()) as { total?: Record<string, number>; contributions?: ContributionDay[] }
-		const total = year === 'last' ? (json.total?.lastYear ?? 0) : (json.total?.[year] ?? 0)
-		return { total, days: json.contributions ?? [] }
-	} catch {
-		return null
-	}
+	const json = await fetchJson<{ total?: Record<string, number>; contributions?: ContributionDay[] }>(
+		`https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=${year}`,
+		{ next: { revalidate: REVALIDATE } }
+	)
+	if (!json) return null
+	const total = year === 'last' ? (json.total?.lastYear ?? 0) : (json.total?.[year] ?? 0)
+	return { total, days: json.contributions ?? [] }
 }
 
 /**
@@ -60,36 +88,27 @@ export async function getContributions(year: string): Promise<{ total: number; d
  * year, so the year-over-year chart never needs eight fetches.
  */
 export async function getYearTotals(): Promise<{ year: string; total: number }[] | null> {
-	try {
-		const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=all`, {
-			next: { revalidate: REVALIDATE }
-		})
-		if (!res.ok) return null
-		const json = (await res.json()) as { total?: Record<string, number> }
-		return Object.entries(json.total ?? {})
-			.filter(([year]) => /^\d{4}$/.test(year))
-			.map(([year, total]) => ({ year, total }))
-			.sort((a, b) => a.year.localeCompare(b.year))
-	} catch {
-		return null
-	}
+	const json = await fetchJson<{ total?: Record<string, number> }>(
+		`https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=all`,
+		{ next: { revalidate: REVALIDATE } }
+	)
+	if (!json) return null
+	return Object.entries(json.total ?? {})
+		.filter(([year]) => /^\d{4}$/.test(year))
+		.map(([year, total]) => ({ year, total }))
+		.sort((a, b) => a.year.localeCompare(b.year))
 }
 
 export async function getProfile(): Promise<{ repos: number; followers: number; createdYear: number } | null> {
-	try {
-		const res = await fetch(`https://api.github.com/users/${USERNAME}`, {
-			headers: ghHeaders(),
-			next: { revalidate: REVALIDATE }
-		})
-		if (!res.ok) return null
-		const json = (await res.json()) as { public_repos?: number; followers?: number; created_at?: string }
-		return {
-			repos: json.public_repos ?? 0,
-			followers: json.followers ?? 0,
-			createdYear: json.created_at ? new Date(json.created_at).getFullYear() : new Date().getFullYear()
-		}
-	} catch {
-		return null
+	const json = await fetchJson<{ public_repos?: number; followers?: number; created_at?: string }>(
+		`https://api.github.com/users/${USERNAME}`,
+		{ headers: ghHeaders(), next: { revalidate: REVALIDATE } }
+	)
+	if (!json) return null
+	return {
+		repos: json.public_repos ?? 0,
+		followers: json.followers ?? 0,
+		createdYear: json.created_at ? new Date(json.created_at).getFullYear() : new Date().getFullYear()
 	}
 }
 
@@ -135,32 +154,26 @@ async function aggregateLanguages(repos: RepoRaw[]): Promise<{ name: string; byt
 }
 
 export async function getRepos(): Promise<RepoSummary | null> {
-	try {
-		const res = await fetch(`https://api.github.com/users/${USERNAME}/repos?per_page=100&type=owner&sort=updated`, {
-			headers: ghHeaders(),
-			next: { revalidate: REVALIDATE }
-		})
-		if (!res.ok) return null
-		const raw = (await res.json()) as RepoRaw[]
-		// Keep forks too — owned forks (e.g. a published config) still earn stars worth counting.
-		const repos = raw
+	// Keep forks too — owned forks (e.g. a published config) still earn stars worth counting.
+	const repos = await fetchJson<RepoRaw[]>(
+		`https://api.github.com/users/${USERNAME}/repos?per_page=100&type=owner&sort=updated`,
+		{ headers: ghHeaders(), next: { revalidate: REVALIDATE } }
+	)
+	if (!repos) return null
 
-		const stars = repos.reduce((sum, r) => sum + (r.stargazers_count ?? 0), 0)
-		const languages = await aggregateLanguages(repos)
+	const stars = repos.reduce((sum, r) => sum + (r.stargazers_count ?? 0), 0)
+	const languages = await aggregateLanguages(repos)
 
-		const top = [...repos]
-			.sort((a, b) => (b.stargazers_count ?? 0) - (a.stargazers_count ?? 0) || a.name.localeCompare(b.name))
-			.slice(0, 5)
-			.map(r => ({
-				name: r.name,
-				stars: r.stargazers_count ?? 0,
-				language: r.language,
-				url: r.html_url,
-				description: r.description
-			}))
+	const top = [...repos]
+		.sort((a, b) => (b.stargazers_count ?? 0) - (a.stargazers_count ?? 0) || a.name.localeCompare(b.name))
+		.slice(0, 5)
+		.map(r => ({
+			name: r.name,
+			stars: r.stargazers_count ?? 0,
+			language: r.language,
+			url: r.html_url,
+			description: r.description
+		}))
 
-		return { stars, count: repos.length, languages, top }
-	} catch {
-		return null
-	}
+	return { stars, count: repos.length, languages, top }
 }
