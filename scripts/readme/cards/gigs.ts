@@ -67,8 +67,8 @@ export const GIGS: GigSpec[] = [
 	{
 		id: 'portfolio',
 		file: 'gig-portfolio.svg',
-		title: 'PORTFOLIO_V2.077',
-		blurb: 'THIS REPO · CYBERPUNK-2077-THEMED NEXT.JS PORTFOLIO',
+		title: 'PROFILE_V2.077',
+		blurb: 'THIS REPO · CYBERPUNK-2077-THEMED NEXT.JS PROFILE',
 		domain: 'nooobtimex.me',
 		href: 'https://nooobtimex.me'
 	}

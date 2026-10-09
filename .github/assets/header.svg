@@ -28,7 +28,7 @@
 	<g clip-path="url(#panel-clip)">
 		<rect x="0" y="0" width="1000" height="300" fill="url(#grid)" />
 
-		<text class="mono" x="60" y="62" font-size="16" letter-spacing="6" fill="#00F0FF">// PORTFOLIO_V2.077</text>
+		<text class="mono" x="60" y="62" font-size="16" letter-spacing="6" fill="#00F0FF">// PROFILE_V2.077</text>
 
 		<g>
 			<circle cx="744" cy="36" r="4" fill="#39FF14" class="blink" />

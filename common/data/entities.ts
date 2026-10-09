@@ -1,5 +1,6 @@
 import type { Organization } from '../interfaces'
 import { assets } from './assets'
+import { personalData } from './personal'
 
 export const ruamsukPlating: Organization = {
 	id: 'ruamsuk-plating',
@@ -127,7 +128,9 @@ export const freelance: Organization = {
 	name: 'Freelance',
 	location: 'remote',
 	type: 'company',
-	url: 'https://nooobtimex.me/contact',
+	// The hire link, so "Visit Organization" on /career/freelance and "Website" on
+	// /companies/freelance both land where a client can actually hire.
+	url: personalData.hire.url,
 	description: 'Remote freelance web-app engineering, delivered end-to-end from scoping to deployment.',
 	about:
 		'Independent, remote freelance software engineering — building web apps end-to-end for clients, from scoping and design through full-stack build and deployment.',

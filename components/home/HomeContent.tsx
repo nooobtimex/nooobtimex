@@ -16,27 +16,55 @@ import CyberTooltip from '@/components/cyber/CyberTooltip'
 import GlitchText from '@/components/cyber/GlitchText'
 import MotionReveal from '@/components/cyber/MotionReveal'
 import SectionHeader from '@/components/cyber/SectionHeader'
+import { HireDestination } from '@/components/hire/HireBand'
+import HireButton from '@/components/hire/HireButton'
+import AboutSection from '@/components/home/AboutSection'
+import ProofStrip from '@/components/home/ProofStrip'
+import ServicesSection from '@/components/home/ServicesSection'
 import ProjectCard from '@/components/projects/ProjectCard'
-import { cn, formatExperienceDuration } from '@/lib/utils'
-import { featuredProjects, featuredSkills, personalData, postsData, workExperienceData } from '@/common'
-
-const formatPosition = (position: string) =>
-	position
-		.split('-')
-		.map(w => w.charAt(0).toUpperCase() + w.slice(1))
-		.join(' ')
+import type { ProfileStat } from '@/lib/profile-stats'
+import { cn, formatExperienceDuration, formatPosition } from '@/lib/utils'
+import {
+	featuredProjects,
+	featuredSkills,
+	personalData,
+	postsData,
+	projectsData,
+	skillsData,
+	workExperienceData
+} from '@/common'
 
 interface HomeContentProps {
 	/** Resolved on the server — see `currentEntryId` for why it is not computed here. */
 	nowId?: string
+	/** Resolved on the server with the same "now" — see `yearsShipping`. */
+	yearsShipping: number
 }
 
-const HomeContent: React.FC<HomeContentProps> = ({ nowId }) => {
+/**
+ * The home page is a profile with one job: turn a visitor into a client. Order follows
+ * the questions a client asks — who is this (hero, about), what can he do for me
+ * (services), can he really (work, career, stack, writing, GitHub), how do I start
+ * (the hire band, rendered by the page after the GitHub section).
+ */
+const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 	// Show the most recent roles, including any future-dated (not-yet-started) one — data is
 	// sorted by startDate desc, so the latest role (e.g. an upcoming CTO) leads.
 	const latestRoles = workExperienceData.slice(0, 3)
 	const featured = featuredProjects
 	const homeSkills = featuredSkills
+
+	const stats: ProfileStat[] = [
+		{ value: `${yearsShipping}+`, label: 'Years shipping', icon: 'mdi:calendar-check', href: '/career' },
+		{
+			value: String(projectsData.length),
+			label: 'Projects built',
+			icon: 'mdi:package-variant-closed',
+			href: '/projects'
+		},
+		{ value: String(postsData.length), label: 'Journal write-ups', icon: 'mdi:file-document-outline', href: '/blog' },
+		{ value: String(skillsData.length), label: 'Technologies', icon: 'mdi:shape-outline', href: '/skills' }
+	]
 
 	return (
 		<Container>
@@ -48,7 +76,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId }) => {
 				<div className='grid items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-16'>
 					{/* Left: identity */}
 					<div>
-						<p className='text-cyber-cyan font-mono text-xs tracking-[0.35em] uppercase'>// PORTFOLIO_v2.077</p>
+						<p className='text-cyber-cyan font-mono text-xs tracking-[0.35em] uppercase'>// PROFILE_v2.077</p>
 
 						<h1 className='font-display mt-4 text-5xl leading-[0.9] font-bold tracking-tight uppercase md:text-8xl'>
 							Wongsaphat
@@ -65,14 +93,14 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId }) => {
 						</div>
 
 						<p className='text-muted-foreground mt-6 max-w-2xl text-base leading-relaxed md:text-lg'>
-							{personalData.tagline}
+							{personalData.pitch}
 						</p>
 
 						<div className='mt-6 flex flex-wrap gap-2'>
 							<CyberTag icon='mdi:map-marker-outline'>{personalData.contact.location}</CyberTag>
 							<CyberTag icon='mdi:home-outline'>Remote</CyberTag>
 							<CyberTag icon='mdi:circle' tone='yellow'>
-								Available
+								Available for freelance
 							</CyberTag>
 							<CyberTag icon='mdi:translate' tone='magenta'>
 								{personalData.languages.map(l => l.code.toUpperCase()).join(' / ')}
@@ -84,16 +112,15 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId }) => {
 							{personalData.contact.availability}
 						</p>
 
+						{/* The page's one ask. Never inside MotionReveal — it must paint with the hero. */}
 						<div className='mt-8 flex flex-wrap items-center gap-3'>
-							<CyberButton href='/projects' size='lg'>
+							<HireButton size='lg' />
+							<CyberButton href='/projects' variant='outline' size='lg'>
 								<CyberIcon icon='mdi:folder-multiple-outline' />
-								View Projects
-							</CyberButton>
-							<CyberButton href='/cv' variant='outline' size='lg'>
-								<CyberIcon icon='mdi:file-account-outline' />
-								View CV
+								View work
 							</CyberButton>
 						</div>
+						<HireDestination className='mt-3' />
 
 						{/* Socials */}
 						<div className='mt-6 flex flex-wrap items-center gap-2'>
@@ -135,10 +162,40 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId }) => {
 				</div>
 			</section>
 
+			{/* PROOF — numbers at the fold, before the scroll-revealed sections. */}
+			<ProofStrip stats={stats} />
+
+			<AboutSection code='01' />
+			<ServicesSection code='02' />
+
+			{/* SELECTED WORK */}
+			<section className='mt-20'>
+				<SectionHeader
+					code='03'
+					title='Selected work'
+					subtitle='Shipped builds — the proof behind the services above.'
+					action={
+						<Link
+							href='/projects'
+							className='text-cyber-cyan hover:text-cyber-yellow hidden font-mono text-xs tracking-widest uppercase transition-colors md:block'>
+							All →
+						</Link>
+					}
+				/>
+				{/* Four featured: 2×2 until the row is wide enough to hold all four. */}
+				<div className='mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4'>
+					{featured.map((p, i) => (
+						<MotionReveal key={p.id} delay={i * 0.08}>
+							<ProjectCard project={p} index={i} />
+						</MotionReveal>
+					))}
+				</div>
+			</section>
+
 			{/* CAREER */}
 			<section className='mt-20'>
 				<SectionHeader
-					code='01'
+					code='04'
 					title='Career'
 					subtitle='Current role and recent history.'
 					action={
@@ -190,60 +247,11 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId }) => {
 				</div>
 			</section>
 
-			{/* FEATURED PROJECTS */}
-			<section className='mt-20'>
-				<SectionHeader
-					code='02'
-					title='Projects'
-					subtitle='Selected builds — full-stack systems built end to end.'
-					action={
-						<Link
-							href='/projects'
-							className='text-cyber-cyan hover:text-cyber-yellow hidden font-mono text-xs tracking-widest uppercase transition-colors md:block'>
-							All →
-						</Link>
-					}
-				/>
-				{/* Four featured: 2×2 until the row is wide enough to hold all four. */}
-				<div className='mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4'>
-					{featured.map((p, i) => (
-						<MotionReveal key={p.id} delay={i * 0.08}>
-							<ProjectCard project={p} index={i} />
-						</MotionReveal>
-					))}
-				</div>
-			</section>
-
-			{/* JOURNAL — the site's long-form writing. Without this the home page, which is where
-			    a visitor or a reviewer lands first, carried no link-level sign that the site
-			    publishes anything beyond a CV: the Journal was reachable only from the nav. */}
-			<section className='mt-20'>
-				<SectionHeader
-					code='03'
-					title='Journal'
-					subtitle={`${postsData.length} entries — the engineering journey, written up with the numbers.`}
-					action={
-						<Link
-							href='/blog'
-							className='text-cyber-cyan hover:text-cyber-yellow hidden font-mono text-xs tracking-widest uppercase transition-colors md:block'>
-							All →
-						</Link>
-					}
-				/>
-				<div className='mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
-					{postsData.slice(0, 3).map((p, i) => (
-						<MotionReveal key={p.id} delay={i * 0.08}>
-							<PostCard post={p} index={i} />
-						</MotionReveal>
-					))}
-				</div>
-			</section>
-
 			{/* CORE STACK */}
 			<section className='mt-20'>
 				<SectionHeader
-					code='04'
-					title='Skills'
+					code='05'
+					title='Stack'
 					subtitle='Core tools in active rotation.'
 					action={
 						<Link
@@ -274,6 +282,31 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId }) => {
 						<CyberIcon icon='mdi:dots-horizontal' className='size-6' />
 						<span className='font-mono text-[0.6rem] tracking-widest uppercase'>All</span>
 					</Link>
+				</div>
+			</section>
+
+			{/* JOURNAL — the site's long-form writing. Without this the home page, which is where
+			    a visitor or a reviewer lands first, carried no link-level sign that the site
+			    publishes anything beyond a CV: the Journal was reachable only from the nav. */}
+			<section className='mt-20'>
+				<SectionHeader
+					code='06'
+					title='Journal'
+					subtitle={`${postsData.length} entries — the engineering journey, written up with the numbers.`}
+					action={
+						<Link
+							href='/blog'
+							className='text-cyber-cyan hover:text-cyber-yellow hidden font-mono text-xs tracking-widest uppercase transition-colors md:block'>
+							All →
+						</Link>
+					}
+				/>
+				<div className='mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
+					{postsData.slice(0, 3).map((p, i) => (
+						<MotionReveal key={p.id} delay={i * 0.08}>
+							<PostCard post={p} index={i} />
+						</MotionReveal>
+					))}
 				</div>
 			</section>
 		</Container>

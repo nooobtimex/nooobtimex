@@ -12,7 +12,8 @@ export interface ButtonSpec {
 }
 
 export const BUTTONS: ButtonSpec[] = [
-	{ file: 'btn-portfolio.svg', label: 'VIEW_PORTFOLIO', variant: 'solid' },
+	{ file: 'btn-hire.svg', label: 'HIRE_ME', variant: 'solid' },
+	{ file: 'btn-profile.svg', label: 'VIEW_PROFILE', variant: 'outline' },
 	{ file: 'btn-cv.svg', label: 'VIEW_CV', variant: 'outline' },
 	{ file: 'btn-career.svg', label: 'FULL_CAREER_TRACE', variant: 'outline' },
 	{ file: 'btn-gigs.svg', label: 'ALL_GIGS', variant: 'outline' },

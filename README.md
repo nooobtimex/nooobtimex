@@ -3,7 +3,7 @@
 
 <div align="center">
 
-<img src=".github/assets/header.svg" alt="NOOOBTIMEX — Wongsaphat Puangsorn, Software Developer" width="100%" />
+<img src=".github/assets/header.svg" alt="NOOOBTIMEX — Wongsaphat Puangsorn, Freelance Software Engineer" width="100%" />
 
 <img src=".github/assets/chips.svg" alt="Pak Kret · Nonthaburi — Available — TH/EN" />
 
@@ -15,14 +15,15 @@
 
 <div align="center">
 
-**Forward-thinking Software Developer specializing in modern JavaScript/TypeScript
-ecosystems and high-performance system design.**
+**Freelance software engineer building production web apps end to end —
+scope, UI, API, database and deploy.**
 
-⚡ This repo is the source of my Cyberpunk-2077-themed portfolio → **[nooobtimex.me](https://nooobtimex.me)**
+⚡ This repo is the source of my Cyberpunk-2077-themed profile → **[nooobtimex.me](https://nooobtimex.me)** · hire me on **[Fastwork](https://fastwork.co/byob/DJpB7L1xWm?openExternalBrowser=1)**
 
 <br/>
 
-[<img src=".github/assets/btn-portfolio.svg" alt="View Portfolio" />](https://nooobtimex.me)
+[<img src=".github/assets/btn-hire.svg" alt="Hire me on Fastwork" />](https://fastwork.co/byob/DJpB7L1xWm?openExternalBrowser=1)
+[<img src=".github/assets/btn-profile.svg" alt="View Profile" />](https://nooobtimex.me)
 [<img src=".github/assets/btn-cv.svg" alt="View CV" />](https://nooobtimex.me/cv)
 
 </div>
@@ -35,7 +36,7 @@ ecosystems and high-performance system design.**
 
 <div align="center">
 
-[<img src=".github/assets/btn-career.svg" alt="Full career trace on nooobtimex.me" />](https://nooobtimex.me/experience)
+[<img src=".github/assets/btn-career.svg" alt="Full career trace on nooobtimex.me" />](https://nooobtimex.me/career)
 
 </div>
 
@@ -47,7 +48,7 @@ ecosystems and high-performance system design.**
 [<img src=".github/assets/gig-rs-trophy.svg" alt="RS TROPHY — e-commerce + AI shopping copilot for custom trophies and medals — rs-trophy.com" width="100%" />](https://rs-trophy.com)
 [<img src=".github/assets/gig-looklook-pet.svg" alt="LOOKLOOK PET — pet-parent community marketplace, 15+ microservices — looklook.pet" width="100%" />](https://looklook.pet)
 [<img src=".github/assets/gig-prettier-config.svg" alt="PRETTIER CONFIG — visual Prettier playground, fully client-side — prettier-config.dev" width="100%" />](https://prettier-config.dev)
-[<img src=".github/assets/gig-portfolio.svg" alt="PORTFOLIO V2.077 — this repo, Cyberpunk-2077-themed Next.js portfolio — nooobtimex.me" width="100%" />](https://nooobtimex.me)
+[<img src=".github/assets/gig-portfolio.svg" alt="PROFILE V2.077 — this repo, Cyberpunk-2077-themed Next.js profile — nooobtimex.me" width="100%" />](https://nooobtimex.me)
 
 <div align="center">
 
@@ -93,6 +94,8 @@ ecosystems and high-performance system design.**
 [<img src=".github/assets/comms-instagram.svg" alt="Instagram" />](https://www.instagram.com/nooobtimex)
 [<img src=".github/assets/comms-email.svg" alt="Email" />](mailto:nooobtimex@gmail.com)
 [<img src=".github/assets/comms-website.svg" alt="Website" />](https://nooobtimex.me)
+
+**Hire me for a web app → [Fastwork](https://fastwork.co/byob/DJpB7L1xWm?openExternalBrowser=1)**
 
 <br/>
 <br/>

@@ -15,7 +15,7 @@ paths:
 
 ## 1. Identity
 
-A personal portfolio with a **Cyberpunk 2077** visual theme — neon signal colors
+A personal profile (a freelance-hire funnel) with a **Cyberpunk 2077** visual theme — neon signal colors
 on dark surfaces, notched/HUD framing, glitch and scanline accents. The feeling is
 high-contrast and "in-world", not generic SaaS.
 

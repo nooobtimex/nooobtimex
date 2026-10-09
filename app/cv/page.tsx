@@ -2,7 +2,7 @@ import React from 'react'
 import { QRCodeSVG } from 'qrcode.react'
 import CvControls from '@/components/cv/CvControls'
 import CyberIcon from '@/components/cyber/CyberIcon'
-import { formatExperienceDuration } from '@/lib/utils'
+import { formatExperienceDuration, hireLinkLabel } from '@/lib/utils'
 import {
 	type Skill,
 	type SkillCategory,
@@ -206,7 +206,7 @@ export default function CVPage() {
 							<span
 								className='text-[8px] font-black tracking-widest uppercase opacity-60'
 								style={{ color: ACCENT, WebkitPrintColorAdjust: 'exact' }}>
-								Portfolio Scan
+								Profile Scan
 							</span>
 						</div>
 					</header>
@@ -335,6 +335,12 @@ export default function CVPage() {
 								<p className='text-[11px] leading-snug font-bold text-gray-700 uppercase'>
 									{personalData.contact.availability}
 								</p>
+								<a
+									href={personalData.hire.url}
+									className='mt-2 block text-[11px] font-black tracking-tight uppercase underline underline-offset-2'
+									style={{ color: ACCENT, WebkitPrintColorAdjust: 'exact' }}>
+									Hire → {hireLinkLabel(personalData.hire.url)}
+								</a>
 							</section>
 
 							<section>

@@ -8,7 +8,8 @@ Enthusiastic and dedicated technologist focused on transforming business require
 - Current role: Chief Technology Officer at RUAMSUK PLATING LIMITED PARTNERSHIP
 - Location: Pak Kret District, Nonthaburi
 - Contact: nooobtimex@gmail.com
-- Availability: Open for remote freelance web app software engineering work alongside my full-time role as CTO at RS Trophy
+- Availability: Open for remote freelance web app projects alongside my full-time role as CTO at RS Trophy — hire me through Fastwork
+- Hire: https://fastwork.co/byob/DJpB7L1xWm?openExternalBrowser=1 (Fastwork — the only way to hire for freelance work)
 - Languages: Thai (Native), English (Professional working)
 
 ## Highlights
@@ -17,6 +18,15 @@ Enthusiastic and dedicated technologist focused on transforming business require
 - Focused on building robust, high-performance systems
 - Committed to clean and sustainable architecture principles
 - Remote freelance software engineer for web app projects, alongside my full-time role
+
+## Freelance services
+
+Hire through Fastwork: https://fastwork.co/byob/DJpB7L1xWm?openExternalBrowser=1
+
+- Web apps & MVPs: A full-stack web app taken from idea to production — scoping, UI, API, database, auth and deploy, built by one engineer who owns all of it. Proof: WhenWe (https://nooobtimex.me/projects/whenwe); QR Food Platform (https://nooobtimex.me/projects/qr-food); Online Poker Game (https://nooobtimex.me/projects/online-poker-game)
+- Dashboards & internal tools: Admin consoles, data dashboards and role-based back-offices — maps, charts, CSV export and the permissions that keep each person on the right screen. Proof: Flood Project (https://nooobtimex.me/projects/flood-project); MONOMax EPL Licensing Portal (https://nooobtimex.me/projects/monomax-epl-portal)
+- Company & landing sites: Fast company and landing sites that render without JavaScript, index cleanly in search, and stay easy for your team to update. Proof: RS TROPHY (https://nooobtimex.me/projects/rs-trophy); 🚀 NooobtimeX — Profile Site (https://nooobtimex.me/projects/portfolio)
+- Deploy, infra & speed-ups: Docker and Railway deploys, build gates that stop a broken release, and fixes for apps that are slow or eat memory in production. Proof: 402 MB to 126 MB: what was actually in my Next.js container (https://nooobtimex.me/blog/container-rss-402-to-126); Build with Bun, serve with Node: dodging a standalone RSS leak (https://nooobtimex.me/blog/bun-builds-node-serves)
 
 ## Experience
 
@@ -131,9 +141,9 @@ A plaque and award showcase web app — first built on WordPress, later remade a
 - Live: https://www.rs-award.com
 - Details: https://nooobtimex.me/projects/rs-award
 
-### 🚀 Portfolio – Wongsaphat Puangsorn
+### 🚀 NooobtimeX — Profile Site
 
-This site — a Cyberpunk 2077–inspired portfolio built on Next.js (App Router, Turbopack) with a fully custom Tailwind v4 design system and shadcn/ui on Base UI. Features a ⌘K command palette, a gig-board project journal, a vertical career-trace timeline, and a print-ready CV with a slide-presentation mode. Deployed on Railway.
+This site — a Cyberpunk 2077–inspired profile that turns visitors into freelance clients, built on Next.js (App Router, Turbopack) with a fully custom Tailwind v4 design system and shadcn/ui on Base UI. Features a ⌘K command palette, a gig-board project journal, a vertical career-trace timeline, and a print-ready CV with a slide-presentation mode. Deployed on Railway.
 
 - Stack: Next.js, Tailwind CSS, SEO, React, Shadcn/ui, Bun.js, Railway, AEO, GEO, JSON-LD, Google Tag Manager, Base UI, Embla Carousel, TypeScript, Git/GitHub, Prettier, ESLint
 - Live: https://github.com/NooobtimeX/NooobtimeX
@@ -404,3 +414,4 @@ Read more: https://nooobtimex.me/blog/started-job-and-degree-same-month
 - instagram: https://www.instagram.com/nooobtimex
 - email: mailto:nooobtimex@gmail.com
 - website: https://nooobtimex.me
+- fastwork (hire): https://fastwork.co/byob/DJpB7L1xWm?openExternalBrowser=1

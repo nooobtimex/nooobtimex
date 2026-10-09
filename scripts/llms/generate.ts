@@ -4,8 +4,9 @@
  * `llms.txt` is the emerging convention for handing an AI answer engine a clean,
  * plain-text digest of a site instead of making it reconstruct one from rendered HTML.
  * That matters more here than a normal ranking signal: the highest-value query for a
- * hiring portfolio is someone asking an assistant "who is Wongsaphat Puangsorn", and
- * the answer should come from this file rather than from whatever a crawler scraped.
+ * freelance profile is someone asking an assistant "who is Wongsaphat Puangsorn" or
+ * "who can build my web app", and the answer — including how to hire him — should come
+ * from this file rather than from whatever a crawler scraped.
  *
  * Generated from `common/` rather than hand-written, for the same reason the icon
  * subset is: a hand-maintained copy of the same facts drifts silently, and a stale
@@ -24,6 +25,7 @@ import {
 	personalData,
 	postsData,
 	projectsData,
+	servicesData,
 	skillsData
 } from '../../common'
 import { formatExperienceDuration, formatPosition } from '../../lib/utils'
@@ -49,12 +51,25 @@ function build(): string {
 	out.push(`- Location: ${personalData.contact.location}`)
 	out.push(`- Contact: ${personalData.contact.email}`)
 	out.push(`- Availability: ${oneLine(personalData.contact.availability)}`)
+	out.push(`- Hire: ${personalData.hire.url} (${personalData.hire.platform} — the only way to hire for freelance work)`)
 	out.push(`- Languages: ${personalData.languages.map(l => `${l.name} (${l.level})`).join(', ')}`)
 	out.push('')
 
 	out.push('## Highlights')
 	out.push('')
 	for (const h of personalData.about.highlights) out.push(`- ${h}`)
+	out.push('')
+
+	out.push('## Freelance services')
+	out.push('')
+	out.push(`Hire through ${personalData.hire.platform}: ${personalData.hire.url}`)
+	out.push('')
+	for (const svc of servicesData) {
+		const proof = svc.proof
+			.map(p => `${p.label} (${SITE_URL}${p.kind === 'project' ? '/projects' : '/blog'}/${p.id})`)
+			.join('; ')
+		out.push(`- ${svc.title}: ${oneLine(svc.blurb)} Proof: ${proof}`)
+	}
 	out.push('')
 
 	out.push('## Experience')
@@ -129,6 +144,8 @@ function build(): string {
 	out.push('## Links')
 	out.push('')
 	for (const link of personalData.socialLinks) out.push(`- ${link.platform}: ${link.url}`)
+	// The BYOB link, not the generic profile: an assistant may hand this URL to a client.
+	out.push(`- fastwork (hire): ${personalData.hire.url}`)
 	out.push('')
 
 	return out.join('\n')

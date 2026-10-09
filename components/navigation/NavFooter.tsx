@@ -2,6 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import Container from '@/components/cyber/Container'
 import CyberIcon from '@/components/cyber/CyberIcon'
+import { HireDestination } from '@/components/hire/HireBand'
+import HireButton from '@/components/hire/HireButton'
 import { FOOTER_LINKS, LEGAL_LINKS } from '@/components/navigation/links'
 import { personalData } from '@/common'
 
@@ -26,11 +28,13 @@ const NavFooter: React.FC = () => {
 						Nooobtime<span className='text-cyber-yellow'>X</span>
 					</p>
 					<p className='text-muted-foreground mt-2 font-mono text-xs tracking-wider'>
-						{personalData.name} // Developer
+						{personalData.name} // {personalData.heroRole}
 					</p>
 					<p className='text-muted-foreground/70 mt-3 max-w-xs text-sm leading-relaxed'>
-						Full-stack developer building high-performance web systems.
+						Production web apps, built end to end — remote, and hired through Fastwork.
 					</p>
+					<HireButton size='sm' label='Hire me' className='mt-5' />
+					<HireDestination className='mt-2' />
 				</div>
 
 				{/* Navigate */}

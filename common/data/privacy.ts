@@ -29,7 +29,7 @@ export const privacyPolicy: { updatedAt: string; body: PostBlock[] } = {
 		{ kind: 'h2', text: 'Who runs this site' },
 		{
 			kind: 'p',
-			text: `nooobtimex.me is the personal portfolio and engineering journal of ${operator}, based in Thailand, who is responsible for the data practices described here. Questions or requests about your data go to [${email}](mailto:${email}).`
+			text: `nooobtimex.me is the personal profile and engineering journal of ${operator}, based in Thailand, who is responsible for the data practices described here. Questions or requests about your data go to [${email}](mailto:${email}).`
 		},
 		{ kind: 'h2', text: 'What the site collects itself' },
 		{

@@ -280,6 +280,50 @@ export interface SkillNote {
 	body: PostBlock[] // the Journal's typed blocks and inline format, rendered by PostBody
 }
 
+/**
+ * The site's single hire route. Every "Hire me" control reads `url` from here — the nav
+ * button, the home hero, the hire bands, /contact and the freelance org — so moving to a
+ * different platform is one edit.
+ */
+export interface Hire {
+	/** Fastwork BYOB link — it credits the client to this seller. Use it verbatim, query included. */
+	url: string
+	platform: 'Fastwork'
+	/**
+	 * Canonical public profile — JSON-LD `sameAs` ONLY. Never show it as text a person could
+	 * type or copy: a client who arrives through it instead of `url` is not credited to this
+	 * seller (Fastwork BYOB). For readable text use `hireLinkLabel(url)` from `lib/utils`.
+	 */
+	profileUrl: string
+	/** Button label, e.g. 'Hire me on Fastwork'. */
+	label: string
+}
+
+/** A freelance offering as authored in `common/data/services.ts`. */
+export interface ServiceDef {
+	id: string
+	title: string
+	/** One or two sentences in the client's terms — what they get, not the stack. */
+	blurb: string
+	icon: string
+	/** Projects that prove the offering — validated against `projectsData` at build time. */
+	proofProjectIds: string[]
+	/** Journal posts that prove it — validated against `postsData` at build time. */
+	proofPostIds?: string[]
+}
+
+/** One proof link on a service card, resolved so the card only maps. */
+export interface ServiceProof {
+	kind: 'project' | 'post'
+	id: string
+	label: string
+}
+
+/** A service with its proof ids resolved to labelled links. */
+export interface Service extends Omit<ServiceDef, 'proofProjectIds' | 'proofPostIds'> {
+	proof: ServiceProof[]
+}
+
 /** Global personal information */
 export interface PersonalData {
 	name: string
@@ -288,6 +332,9 @@ export interface PersonalData {
 	 *  decoupled from `title`/the career timeline's latest position (e.g. a C-suite
 	 *  title there reads as "not for hire" to a freelance client browsing the hero). */
 	heroRole: string
+	/** Client-facing hero line — what he builds for a client. `tagline` keeps the CTO +
+	 *  freelance framing for the CV, the manifest and meta descriptions. */
+	pitch: string
 	tagline: string
 	avatar: string
 	about: {
@@ -312,6 +359,7 @@ export interface PersonalData {
 	birthDate: string
 	languages: Language[]
 	socialLinks: SocialLink[]
+	hire: Hire
 	/** Direct messaging channels rendered on /contact. Optional — omit an entry to hide it. */
 	contactChannels?: ContactChannel[]
 }

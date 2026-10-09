@@ -7,9 +7,9 @@ import { personalData } from '@/common'
 
 export const metadata = pageMetadata({
 	path: '/contact',
-	title: 'Contact',
+	title: 'Hire me',
 	description:
-		'Get in touch — email, messaging channels with mainland-China availability marked, and a scannable contact card.'
+		'Hire me for a web app project through Fastwork — how it works, plus a scannable contact card and channels with mainland-China availability marked.'
 })
 
 const jsonLd = {

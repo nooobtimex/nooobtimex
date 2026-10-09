@@ -8,7 +8,8 @@ import { MOBILE_TABS, isActive } from '@/components/navigation/links'
 import { cn } from '@/lib/utils'
 
 /**
- * App-style bottom navigation, mobile only. Replaces the old hamburger Sheet.
+ * App-style bottom navigation below xl — phones and tablets, wherever NavBar's nine desktop
+ * links don't fit. Replaces the old hamburger Sheet.
  *
  * z-40 is deliberate: every overlay in this repo sits at z-50 (Sheet, Dialog, the ⌘K
  * CommandDialog, Tooltip, the loading splash) and the sticky header is z-50 too. Sitting
@@ -29,7 +30,7 @@ const MobileTabBar: React.FC = () => {
 			// a non-zero value because app/layout.tsx sets viewportFit to cover.
 			// NB: never write a bracket-utility example in a comment here — Tailwind v4 scans
 			// this file as plain text and will try to compile it into real (invalid) CSS.
-			className='border-cyber-cyan/25 bg-background/90 fixed inset-x-0 bottom-0 z-40 border-t pb-[env(safe-area-inset-bottom)] backdrop-blur-md md:hidden print:hidden'>
+			className='border-cyber-cyan/25 bg-background/90 fixed inset-x-0 bottom-0 z-40 border-t pb-[env(safe-area-inset-bottom)] backdrop-blur-md xl:hidden print:hidden'>
 			<ul className='grid h-14 grid-cols-4'>
 				{MOBILE_TABS.map(link => {
 					const active = isActive(pathname, link.href)

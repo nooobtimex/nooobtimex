@@ -1,18 +1,19 @@
 import React from 'react'
 import GithubStats from '@/components/github/GithubStats'
-import CvTeaser from '@/components/home/CvTeaser'
+import HireBand from '@/components/hire/HireBand'
 import HomeContent from '@/components/home/HomeContent'
 import JsonLd from '@/components/seo/JsonLd'
+import { yearsShipping } from '@/lib/profile-stats'
 import { PERSON_ID, WEBSITE_ID, personRef, websiteSchema } from '@/lib/schema'
-import { DISPLAY_NAME, SITE_URL, pageMetadata } from '@/lib/seo'
+import { DISPLAY_NAME, SITE_DESCRIPTION, SITE_NAME, SITE_URL, pageMetadata } from '@/lib/seo'
 import { formatPosition } from '@/lib/utils'
 import { currentEntryId, educationData, latestRole, personalData, skillsData, workExperienceData } from '@/common'
 
 export const metadata = pageMetadata({
 	path: '/',
-	title: 'Portfolio',
-	absoluteTitle: `${DISPLAY_NAME} — Full-Stack Software Engineer & CTO`,
-	description: personalData.tagline
+	title: 'Profile',
+	absoluteTitle: `${DISPLAY_NAME} — Freelance Full-Stack Software Engineer`,
+	description: SITE_DESCRIPTION
 })
 
 const alma = educationData[0]?.organization
@@ -36,7 +37,11 @@ const jsonLd = {
 		'addressLocality': personalData.contact.location,
 		'addressCountry': 'TH'
 	},
-	'sameAs': personalData.socialLinks.filter(s => s.platform !== 'email').map(s => s.url),
+	// The Fastwork profile, not the BYOB hire link: `sameAs` names an identity page.
+	'sameAs': [
+		...personalData.socialLinks.filter(s => s.platform !== 'email').map(s => s.url),
+		personalData.hire.profileUrl
+	],
 	'knowsLanguage': personalData.languages.map(l => ({
 		'@type': 'Language',
 		'name': l.name,
@@ -61,21 +66,26 @@ const profilePageLd = {
 	'@context': 'https://schema.org',
 	'@type': 'ProfilePage',
 	'url': SITE_URL,
-	'name': `${DISPLAY_NAME} — Portfolio`,
+	'name': SITE_NAME,
 	'isPartOf': { '@id': WEBSITE_ID },
 	'mainEntity': personRef(),
 	'inLanguage': 'en'
 }
 
 const Home: React.FC = () => {
+	// One "now" for every date-derived value on the page. Prerendered, so this is the build.
+	const now = new Date()
 	return (
 		<>
 			<JsonLd data={jsonLd} />
 			<JsonLd data={websiteSchema()} />
 			<JsonLd data={profilePageLd} />
-			<HomeContent nowId={currentEntryId(workExperienceData, new Date())} />
-			<GithubStats variant='home' />
-			<CvTeaser />
+			<HomeContent
+				nowId={currentEntryId(workExperienceData, now)}
+				yearsShipping={yearsShipping(workExperienceData, now)}
+			/>
+			<GithubStats variant='home' code='07' />
+			<HireBand code='08' />
 		</>
 	)
 }

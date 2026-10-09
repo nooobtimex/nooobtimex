@@ -1,9 +1,10 @@
 import type { MetadataRoute } from 'next'
+import { SITE_NAME } from '@/lib/seo'
 import { assets, personalData } from '@/common'
 
 export default function manifest(): MetadataRoute.Manifest {
 	return {
-		name: `${personalData.name} — Portfolio`,
+		name: SITE_NAME,
 		short_name: 'NooobtimeX',
 		description: personalData.tagline,
 		start_url: '/',

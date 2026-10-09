@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Icon } from '@iconify/react'
 import Container from '@/components/cyber/Container'
+import { cyberButtonVariants } from '@/components/cyber/CyberButton'
 import { NAV_LINKS, isActive } from '@/components/navigation/links'
 import { loadSearchIndex } from '@/components/search/loadSearchIndex'
 import { cn } from '@/lib/utils'
@@ -22,7 +23,12 @@ import { cn } from '@/lib/utils'
  */
 const GlobalSearch = dynamic(() => import('@/components/search/GlobalSearch'))
 
-const NavBar: React.FC = () => {
+interface NavBarProps {
+	/** `personalData.hire.url`, passed by the server layout — a client module cannot import `@/common`. */
+	hireUrl: string
+}
+
+const NavBar: React.FC<NavBarProps> = ({ hireUrl }) => {
 	const pathname = usePathname()
 	const [searchOpen, setSearchOpen] = React.useState(false)
 	// Latches on first open so the palette keeps its mounted state (and its chunk) after
@@ -63,7 +69,12 @@ const NavBar: React.FC = () => {
 					</Link>
 
 					{/* Desktop links */}
-					<nav className='hidden items-center gap-1 md:flex'>
+					{/* Desktop links from xl only: nine links plus search and the Hire button need
+					    ~1,150px, so at md/lg they overflowed and pushed Hire off-screen. Below xl,
+					    MobileTabBar + search carry navigation, as they do on phones. The "01"-style
+					    codes are dropped here for the same reason — Container caps the row at
+					    1,232px at every width, and with them it never fits. */}
+					<nav className='hidden items-center gap-1 xl:flex'>
 						{NAV_LINKS.map(link => {
 							const active = isActive(pathname, link.href)
 							return (
@@ -74,7 +85,6 @@ const NavBar: React.FC = () => {
 										'group relative px-3 py-2 font-mono text-xs tracking-widest uppercase transition-colors',
 										active ? 'text-cyber-yellow' : 'text-muted-foreground hover:text-foreground'
 									)}>
-									<span className='text-cyber-cyan/50 mr-1'>{link.code}</span>
 									{link.label}
 									{active && <span className='bg-cyber-yellow absolute right-3 -bottom-px left-3 h-px' />}
 								</Link>
@@ -82,10 +92,10 @@ const NavBar: React.FC = () => {
 						})}
 					</nav>
 
-					{/* Right controls. On mobile the search icon is the ONLY header control — the
+					{/* Right controls. Below xl, search and Hire are the only header controls — the
 					    hamburger is gone, replaced by MobileTabBar. Search is what keeps the
 					    non-tab routes (Career, Companies, GitHub, CV) one tap away. */}
-					<div className='flex items-center gap-2'>
+					<div className='flex shrink-0 items-center gap-2'>
 						<button
 							onClick={openSearch}
 							className='border-border text-muted-foreground hover:border-cyber-cyan/50 hover:text-cyber-cyan hidden items-center gap-2 border px-2.5 py-1.5 font-mono text-xs transition-colors sm:flex'>
@@ -99,6 +109,18 @@ const NavBar: React.FC = () => {
 							className='text-muted-foreground hover:text-cyber-cyan p-1.5 sm:hidden'>
 							<Icon icon='mdi:magnify' className='size-5' />
 						</button>
+						{/* The site's one ask, on every page and at every width — the header is the only
+						    control a visitor never scrolls past. */}
+						<a
+							href={hireUrl}
+							target='_blank'
+							rel='noopener noreferrer'
+							className={cn(cyberButtonVariants({ size: 'sm' }), 'shrink-0 whitespace-nowrap')}>
+							<Icon icon='mdi:handshake-outline' className='size-4' />
+							Hire me
+							<Icon icon='mdi:arrow-top-right' className='size-3.5' />
+							<span className='sr-only'> on Fastwork (opens in a new tab)</span>
+						</a>
 					</div>
 				</Container>
 			</header>

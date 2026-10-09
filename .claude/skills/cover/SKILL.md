@@ -2,7 +2,7 @@
 name: cover
 description: >-
   Generate on-brand Cyberpunk project cover images (the 16:9 `cover.webp` hero
-  used on project cards + detail pages) for the NooobtimeX portfolio, without a
+  used on project cards + detail pages) for the NooobtimeX profile site, without a
   screenshot. Renders a parameterized HTML template with headless Chrome and
   converts to webp. Use when adding a new project that has no cover, when a
   project's thumbnail is weak (a logo/placeholder), or when the user asks to
@@ -126,6 +126,6 @@ flood-project       accent #00F0FF  motif waves    title Flood|Project       kic
 prettier-config     accent #55B3B4  motif braces   title Prettier|Config     kicker // DEV TOOL             badge ● Live      tags Next.js,CodeMirror,Tailwind
 rs-medal            accent #8AD8FF  motif rings    title RS|Medal            kicker // E-COMMERCE           badge ● Live      tags Next.js,JSON-LD,SEO
 rs-award            accent #FFB020  motif shield   title RS|Award            kicker // E-COMMERCE           badge ● Live      tags Next.js,MongoDB,SEO
-portfolio           accent #FCEE0A  motif hex      title Portfolio|v2.077    kicker // PERSONAL SITE        badge ● Live      tags Next.js,Tailwind,shadcn,Railway
+portfolio           accent #FCEE0A  motif hex      title Profile|v2.077      kicker // PERSONAL SITE        badge ● Live      tags Next.js,Tailwind,shadcn,Railway
 qr-food             accent #39FF14  motif qr       title QR|Food             kicker // SENIOR THESIS        badge ● Thesis    tags Nuxt,Vue,Prisma,Supabase
 ```

@@ -6,6 +6,7 @@ import ScanlineOverlay from '@/components/cyber/ScanlineOverlay'
 import { ThemeProvider } from '@/components/theme-provider'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { ADSENSE_CLIENT_ID } from '@/lib/adsense'
+import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo'
 import { cn } from '@/lib/utils'
 import { assets } from '@/common'
 import './globals.css'
@@ -41,25 +42,25 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
 	metadataBase: new URL('https://nooobtimex.me'),
 	title: {
-		default: 'Portfolio | Wongsaphat Puangsorn',
+		default: 'Wongsaphat Puangsorn (NooobtimeX) — Freelance Software Engineer',
 		template: '%s | Wongsaphat Puangsorn'
 	},
 	authors: [{ name: 'Wongsaphat Puangsorn', url: 'https://nooobtimex.me' }],
 	creator: 'Wongsaphat Puangsorn',
 	publisher: 'Wongsaphat Puangsorn',
-	description:
-		'Portfolio | Wongsaphat Puangsorn - Specializing in modern web development, I turn ideas into seamless digital affiliations by building robust web applications using the latest skills.',
+	description: SITE_DESCRIPTION,
 	keywords: [
 		'Wongsaphat Puangsorn',
 		'NooobtimeX',
 		'Thammasat University',
-		'Software Developer',
+		'Freelance Software Engineer',
+		'Freelance Web Developer',
+		'Hire Web Developer Thailand',
+		'Fastwork',
 		'Thailand',
-		'Portfolio',
-		'Resume',
-		'Frontend',
-		'Fullstack',
-		'Web Developer'
+		'Full-Stack',
+		'Next.js',
+		'Web App Development'
 	],
 	/**
 	 * NOTE: no `alternates.canonical` here on purpose. `alternates` is inherited by
@@ -71,17 +72,15 @@ export const metadata: Metadata = {
 		type: 'website',
 		locale: 'en_US',
 		url: 'https://nooobtimex.me',
-		title: 'Wongsaphat Puangsorn - Portfolio',
-		description:
-			'Specializing in modern web development, I turn ideas into seamless digital affiliations by building robust web applications.',
-		siteName: 'Wongsaphat Puangsorn Portfolio'
+		title: 'Wongsaphat Puangsorn — Freelance Software Engineer',
+		description: SITE_DESCRIPTION,
+		siteName: SITE_NAME
 		// Social card is generated dynamically by app/opengraph-image.tsx (1200×630).
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'Wongsaphat Puangsorn - Portfolio',
-		description:
-			'Specializing in modern web development, I turn ideas into seamless digital affiliations by building robust web applications.',
+		title: 'Wongsaphat Puangsorn — Freelance Software Engineer',
+		description: SITE_DESCRIPTION,
 		creator: '@NooobtimeX' // Assuming this handle based on github, can be updated
 		// Twitter falls back to the dynamic app/opengraph-image.tsx card.
 	},

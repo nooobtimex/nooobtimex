@@ -1,4 +1,4 @@
-<svg viewBox="0 0 1000 120" width="1000" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PORTFOLIO V2.077 — THIS REPO · CYBERPUNK-2077-THEMED NEXT.JS PORTFOLIO — nooobtimex.me">
+<svg viewBox="0 0 1000 120" width="1000" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PROFILE V2.077 — THIS REPO · CYBERPUNK-2077-THEMED NEXT.JS PROFILE — nooobtimex.me">
 	<style>
 .display { font-family: 'Avenir Next Condensed', 'Bahnschrift', 'Arial Narrow', Impact, 'Liberation Sans Narrow', sans-serif; font-weight: 700; }
 .mono { font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
@@ -13,8 +13,8 @@
 	<g clip-path="url(#panel-clip)">
 		<rect x="0" y="0" width="6" height="120" fill="#FCEE0A" opacity="0.85" />
 		<text class="display" x="976" y="104" font-size="96" fill="#E6FBFF" text-anchor="end" opacity="0.07">05</text>
-		<text class="display" x="36" y="52" font-size="32" letter-spacing="2" fill="#FCEE0A">PORTFOLIO_V2.077</text>
-		<text class="mono" x="36" y="87" font-size="17" fill="#E6FBFF" opacity="0.55">THIS REPO · CYBERPUNK-2077-THEMED NEXT.JS PORTFOLIO</text>
+		<text class="display" x="36" y="52" font-size="32" letter-spacing="2" fill="#FCEE0A">PROFILE_V2.077</text>
+		<text class="mono" x="36" y="87" font-size="17" fill="#E6FBFF" opacity="0.55">THIS REPO · CYBERPUNK-2077-THEMED NEXT.JS PROFILE</text>
 		<circle cx="769.2" cy="41" r="4" fill="#39FF14" class="pulse" />
 		<text class="mono" x="781.2" y="46" font-size="14" fill="#39FF14">LIVE</text>
 		<text class="mono" x="964" y="46" font-size="16" fill="#00F0FF" text-anchor="end" font-weight="700">nooobtimex.me</text>

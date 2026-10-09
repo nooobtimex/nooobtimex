@@ -1,7 +1,8 @@
 # NooobtimeX
 
-Wongsaphat Puangsorn's personal portfolio — a content-driven marketing site with a
-**Cyberpunk 2077** visual theme. Deployed on **Railway** via `railway.toml` and the root
+Wongsaphat Puangsorn's personal profile — a content-driven site with a **Cyberpunk 2077**
+visual theme whose one job is winning freelance work: every "Hire me" control opens his
+Fastwork link (`personalData.hire.url`). Deployed on **Railway** via `railway.toml` and the root
 `Dockerfile` (Vercel is no longer a deploy target).
 
 - **Next.js 16** (App Router, Turbopack) · **React 19** · **TypeScript 7** (paired with TS 6 — see below)

@@ -21,6 +21,7 @@ import {
 } from '@/components/og/card-primitives'
 import { iconDataUri } from '@/lib/og-assets'
 import { OG } from '@/lib/og-palette'
+import { hireLinkLabel } from '@/lib/utils'
 import { featuredSkills, personalData } from '@/common'
 
 const PAD = 72
@@ -31,7 +32,11 @@ const STACK_SLOTS = 19
  * Card-only availability blurb. Mirrors `personalData.contact.availability` minus
  * its "as CTO at RS Trophy" clause — see the file header for why.
  */
-const AVAILABILITY = 'Open for remote freelance web app software engineering work — full-stack, shipped end to end.'
+const AVAILABILITY =
+	'Open for remote freelance web app projects — full-stack, shipped end to end, hired through Fastwork.'
+
+/** Where a card viewer goes to hire — the BYOB link as text, since a PNG cannot carry a link and a typed generic profile URL would not credit the client. */
+const HIRE_AT = hireLinkLabel(personalData.hire.url)
 
 const HireSquareCard: React.FC = () => {
 	// Leads with the engineering role, NOT the CTO title.
@@ -126,11 +131,7 @@ const HireSquareCard: React.FC = () => {
 			</div>
 
 			<CardFooter
-				right={
-					<div style={{ display: 'flex', color: OG.cyan, fontSize: 24, letterSpacing: 2 }}>
-						{personalData.contact.email}
-					</div>
-				}
+				right={<div style={{ display: 'flex', color: OG.cyan, fontSize: 24, letterSpacing: 2 }}>{HIRE_AT}</div>}
 			/>
 
 			<CornerBrackets color={OG.yellow} />

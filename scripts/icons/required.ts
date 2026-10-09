@@ -17,7 +17,7 @@
  * Imports only `@/common` (~112 KB), never `./collections` — `scripts/icons/check.ts`
  * runs on every build and must not pull in the 26.7 MB of collections.
  */
-import { categoryMetadata, personalData, projectsData, skillsData } from '@/common'
+import { categoryMetadata, personalData, projectsData, servicesData, skillsData } from '@/common'
 
 /**
  * Escape hatch for names a server-rendered surface hard-codes rather than reading from
@@ -48,6 +48,7 @@ const EXTRA_ICONS: string[] = [
 	'mdi:calendar-star',
 	'mdi:cancel',
 	'mdi:chart-line-variant',
+	'mdi:chat-outline',
 	'mdi:check-circle-outline',
 	'mdi:circle',
 	'mdi:clock-outline',
@@ -56,16 +57,19 @@ const EXTRA_ICONS: string[] = [
 	'mdi:download',
 	'mdi:email-outline',
 	'mdi:file-account-outline',
+	'mdi:file-document-edit-outline',
 	'mdi:file-document-outline',
 	'mdi:fire',
 	'mdi:flash',
 	'mdi:folder-multiple-outline',
+	'mdi:handshake-outline',
 	'mdi:home-variant-outline',
 	'mdi:map-marker-outline',
 	'mdi:office-building-outline',
 	'mdi:open-in-new',
 	'mdi:package-variant-closed',
 	'mdi:presentation',
+	'mdi:rocket-launch-outline',
 	'mdi:shape-outline',
 	'mdi:sitemap-outline',
 	'mdi:source-commit',
@@ -84,6 +88,7 @@ const EXTRA_ICONS: string[] = [
  *     README arsenal/gig cards
  *   - `categoryMetadata[*].icon` — the README arsenal card
  *   - `personalData.socialLinks[].icon` — the README comms card
+ *   - `servicesData[].icon` — the home "What I build" cards (server-rendered via CyberIcon)
  *
  * Included for headroom (client-rendered today, ~11 KB total): `contactChannels` and
  * project timeline milestones. Cheap insurance against a future card reaching for one.
@@ -94,6 +99,7 @@ export function requiredIcons(): string[] {
 		...Object.values(categoryMetadata).map(m => m.icon),
 		...personalData.socialLinks.map(s => s.icon),
 		...(personalData.contactChannels ?? []).map(c => c.icon),
+		...servicesData.map(s => s.icon),
 		...projectsData.flatMap(p => (p.timeline ?? []).flatMap(m => (m.icon ? [m.icon] : []))),
 		...EXTRA_ICONS
 	]

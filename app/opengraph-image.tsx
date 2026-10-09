@@ -32,7 +32,7 @@ export default function OpengraphImage() {
 				fontFamily: 'sans-serif'
 			}}>
 			<div style={{ display: 'flex', color: CYAN, fontSize: 26, letterSpacing: 8, fontWeight: 600 }}>
-				// PORTFOLIO_v2.077
+				// PROFILE_v2.077 · AVAILABLE FOR HIRE
 			</div>
 
 			<div style={{ display: 'flex', flexDirection: 'column' }}>

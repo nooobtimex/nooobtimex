@@ -27,6 +27,7 @@ const data: PresentationData = {
 		tagline: personalData.tagline,
 		about: personalData.about,
 		languages: personalData.languages,
+		hire: personalData.hire,
 		email: personalData.contact.email,
 		website: personalData.socialLinks.find(s => s.platform === 'website')?.username ?? 'nooobtimex.me'
 	},

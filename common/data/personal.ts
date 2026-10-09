@@ -59,6 +59,8 @@ export const personalData: PersonalData = {
 	name: 'WONGSAPHAT PUANGSORN',
 	title: 'Chief Technology Officer',
 	heroRole: 'Software Engineer',
+	pitch:
+		'I build production web apps end to end — scope, UI, API, database and deploy — as the one engineer who owns all of it. Remote from Thailand, hired through Fastwork.',
 	tagline:
 		'Chief Technology Officer at RS Trophy, owning full-stack engineering and infrastructure end to end — freelancing remotely as a software engineer on web app projects on the side.',
 	avatar: assets.personal.avatar,
@@ -77,7 +79,7 @@ export const personalData: PersonalData = {
 		phone: '+66855877024',
 		location: 'Pak Kret District, Nonthaburi',
 		availability:
-			'Open for remote freelance web app software engineering work alongside my full-time role as CTO at RS Trophy',
+			'Open for remote freelance web app projects alongside my full-time role as CTO at RS Trophy — hire me through Fastwork',
 		locality: 'Pak Kret, Nonthaburi',
 		country: 'Thailand',
 		givenName: 'Wongsaphat',
@@ -125,5 +127,11 @@ export const personalData: PersonalData = {
 			username: 'nooobtimex.me'
 		}
 	],
+	hire: {
+		url: 'https://fastwork.co/byob/DJpB7L1xWm?openExternalBrowser=1',
+		platform: 'Fastwork',
+		profileUrl: 'https://fastwork.co/user/nooobtimex',
+		label: 'Hire me on Fastwork'
+	},
 	contactChannels
 }

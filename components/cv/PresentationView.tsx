@@ -4,8 +4,9 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import { Icon } from '@iconify/react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { cyberButtonVariants } from '@/components/cyber/CyberButton'
 import GlitchText from '@/components/cyber/GlitchText'
-import { formatExperienceDuration } from '@/lib/utils'
+import { cn, formatExperienceDuration } from '@/lib/utils'
 import type { ExperienceItem, PersonalData, Project, Skill, SkillCategory } from '@/common'
 
 type SkillChip = Pick<Skill, 'name' | 'icon'>
@@ -20,7 +21,7 @@ type SkillChip = Pick<Skill, 'name' | 'icon'>
  * the cross-entity lookups (client and seconded-to names) already resolved.
  */
 export interface PresentationData {
-	personal: Pick<PersonalData, 'name' | 'tagline' | 'about' | 'languages'> & { email: string; website: string }
+	personal: Pick<PersonalData, 'name' | 'tagline' | 'about' | 'languages' | 'hire'> & { email: string; website: string }
 	/** The latest role's position id, humanized for the intro slide. */
 	latestPosition: string
 	roles: (Pick<ExperienceItem, 'id' | 'credential' | 'position' | 'startDate' | 'endDate' | 'description'> & {
@@ -54,7 +55,7 @@ const PresentationView: React.FC<{ data: PresentationData }> = ({ data }) => {
 			title: 'Intro',
 			render: () => (
 				<div className='text-center'>
-					<p className='text-cyber-cyan font-mono text-sm tracking-[0.4em] uppercase'>// Portfolio_v2.077</p>
+					<p className='text-cyber-cyan font-mono text-sm tracking-[0.4em] uppercase'>// Profile_v2.077</p>
 					<h1 className='font-display mt-4 text-5xl font-bold tracking-tight uppercase md:text-8xl'>
 						{data.personal.name}
 					</h1>
@@ -222,6 +223,16 @@ const PresentationView: React.FC<{ data: PresentationData }> = ({ data }) => {
 					<h2 className='font-display neon-text-yellow text-4xl font-bold tracking-wide uppercase md:text-6xl'>
 						Let&apos;s build
 					</h2>
+					{/* The deck's one ask — the same Fastwork link as every hire button on the site. */}
+					<a
+						href={data.personal.hire.url}
+						target='_blank'
+						rel='noopener noreferrer'
+						className={cn(cyberButtonVariants({ size: 'lg' }), 'mt-8')}>
+						<Icon icon='mdi:handshake-outline' className='size-5' />
+						{data.personal.hire.label}
+						<Icon icon='mdi:arrow-top-right' className='size-4' />
+					</a>
 					<div className='mt-8 flex flex-col items-center gap-3 font-mono text-sm'>
 						<span className='inline-flex items-center gap-2'>
 							<Icon icon='mdi:email-outline' className='text-cyber-cyan size-5' />

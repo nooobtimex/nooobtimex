@@ -12,6 +12,17 @@ export const DISPLAY_NAME =
 	[personalData.contact.givenName, personalData.contact.familyName].filter(Boolean).join(' ') || personalData.name
 
 /**
+ * The site's name wherever one is declared — `og:site_name`, the WebSite JSON-LD, the web
+ * manifest. One constant so the profile can't call itself three different things again
+ * (it said "Portfolio" in all three while the home page pitched freelance work).
+ */
+export const SITE_NAME = `${DISPLAY_NAME} (NooobtimeX)`
+
+/** Site-level description for the root metadata and the home page — written for a client, ≤155 chars. */
+export const SITE_DESCRIPTION =
+	'Freelance software engineer building production web apps end to end — scope, UI, API, database and deploy. Remote from Thailand; hire me through Fastwork.'
+
+/**
  * Google renders roughly 155–160 characters of a description and drops the rest, so an
  * untrimmed one wastes the snippet rather than enriching it. Live examples before this
  * clamp: `/career/ruamsuk-cto` shipped 1032 characters and `/projects/rs-trophy` 646.
@@ -104,7 +115,7 @@ export function pageMetadata({
 		...(!index && { robots: { index: false, follow: true, googleBot: { index: false, follow: true } } }),
 		openGraph: {
 			locale: 'en_US',
-			siteName: `${DISPLAY_NAME} Portfolio`,
+			siteName: SITE_NAME,
 			url,
 			title: socialTitle,
 			description: clamped,

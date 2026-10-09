@@ -120,7 +120,16 @@ const GithubUnavailable: React.FC = () => (
  * the data: the page draws `GithubIntro` itself, outside the Suspense boundary around
  * this component, so the heading and prose never stream behind the numbers.
  */
-const GithubStats = async ({ variant = 'page', year }: { variant?: 'home' | 'page'; year?: string }) => {
+const GithubStats = async ({
+	variant = 'page',
+	year,
+	code
+}: {
+	variant?: 'home' | 'page'
+	year?: string
+	/** HUD code for the home section header — its position in the home page's order. */
+	code?: string
+}) => {
 	const selectedYear = resolveGithubYear(variant, year)
 	const contrib = await getContributions(selectedYear)
 	if (!contrib) return variant === 'home' ? null : <GithubUnavailable />
@@ -210,7 +219,7 @@ const GithubStats = async ({ variant = 'page', year }: { variant?: 'home' | 'pag
 
 	return (
 		<Container as='section' className='mt-20 pb-4'>
-			<GithubIntro variant='home' year={selectedYear} />
+			<GithubIntro variant='home' year={selectedYear} code={code} />
 			{data}
 		</Container>
 	)

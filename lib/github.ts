@@ -15,7 +15,7 @@ export interface ContributionDay {
 /** Optional GITHUB_TOKEN (set in CI) raises rate limits; the site runs without it. */
 function ghHeaders(): Record<string, string> {
 	const headers: Record<string, string> = {
-		'User-Agent': `${USERNAME}-portfolio`,
+		'User-Agent': `${USERNAME}-profile`,
 		'Accept': 'application/vnd.github+json'
 	}
 	if (process.env.GITHUB_TOKEN) headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`

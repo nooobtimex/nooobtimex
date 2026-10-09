@@ -9,6 +9,7 @@ import PostToc from '@/components/blog/PostToc'
 import Container from '@/components/cyber/Container'
 import CyberIcon from '@/components/cyber/CyberIcon'
 import NeonPanel from '@/components/cyber/NeonPanel'
+import { HireStrip } from '@/components/hire/HireBand'
 import { InlineText } from '@/lib/inline'
 import { formatMilestoneDate } from '@/lib/utils'
 import { type Post, categoryMetadataPosts, chapterMetadata } from '@/common'
@@ -115,6 +116,8 @@ const PostDetail: React.FC<{ post: Post; adAfter?: Readonly<Record<number, strin
 					<PostChapterNav post={post} />
 				</aside>
 			</div>
+
+			<HireStrip heading='Want this kind of engineering on your app?' />
 		</Container>
 	)
 }

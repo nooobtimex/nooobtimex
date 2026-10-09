@@ -5,6 +5,7 @@ import Container from '@/components/cyber/Container'
 import CyberButton from '@/components/cyber/CyberButton'
 import CyberIcon from '@/components/cyber/CyberIcon'
 import NeonPanel from '@/components/cyber/NeonPanel'
+import { HireStrip } from '@/components/hire/HireBand'
 import ProjectGallery from '@/components/projects/ProjectGallery'
 import ProjectTimeline from '@/components/projects/ProjectTimeline'
 import { type ProjectStatus, formatExperienceDuration, projectStatus } from '@/lib/utils'
@@ -216,6 +217,9 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
 
 			{/* Journal entries that reference this project */}
 			<WrittenAbout posts={postsByProject[project.id]} />
+
+			{/* The reader has just seen the work — the best moment for the ask. */}
+			<HireStrip heading='Need something like this built?' />
 		</Container>
 	)
 }

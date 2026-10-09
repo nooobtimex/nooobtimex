@@ -1,6 +1,5 @@
 import React from 'react'
 import ChannelCard from '@/components/contact/ChannelCard'
-import CopyButton from '@/components/contact/CopyButton'
 import VCardPanel from '@/components/contact/VCardPanel'
 import WeChatPanel from '@/components/contact/WeChatPanel'
 import Container from '@/components/cyber/Container'
@@ -11,6 +10,8 @@ import GlitchText from '@/components/cyber/GlitchText'
 import MotionReveal from '@/components/cyber/MotionReveal'
 import NeonPanel from '@/components/cyber/NeonPanel'
 import SectionHeader from '@/components/cyber/SectionHeader'
+import { HIRE_LINK_LABEL, HireDestination, HireSteps } from '@/components/hire/HireBand'
+import HireButton from '@/components/hire/HireButton'
 import { buildVCard, vCardFilename } from '@/lib/vcard'
 import { latestRole, personalData } from '@/common'
 
@@ -37,11 +38,11 @@ const ContactContent: React.FC = () => {
 			    contingent on that, and the other pages render their headers eagerly too. */}
 			<p className='text-cyber-cyan font-mono text-xs tracking-[0.35em] uppercase'>// COMMS_CHANNEL</p>
 			<h1 className='font-display mt-3 text-5xl leading-[0.9] font-bold tracking-tight uppercase md:text-7xl'>
-				<GlitchText text='Get in touch' />
+				<GlitchText text='Hire me' />
 			</h1>
 			<p className='text-muted-foreground mt-5 max-w-2xl text-base leading-relaxed'>
-				Scan the card, save me in one tap. Channels are badged with whether they work inside mainland China — useful if
-				we&apos;re meeting somewhere the usual apps don&apos;t reach.
+				Every project starts with a message on Fastwork — chat, agree on scope, and pay through the platform. For
+				anything else, the card and channels further down reach me directly.
 			</p>
 
 			<div className='mt-6 flex flex-wrap gap-2'>
@@ -53,10 +54,37 @@ const ContactContent: React.FC = () => {
 				</CyberTag>
 			</div>
 
-			{/* Availability and scope. This is the block that answers the question someone
-			    actually arrives on this page with, so it renders eagerly above the channel
-			    list rather than waiting on a scroll reveal. */}
-			<div className='border-border/60 mt-10 border-t pt-8'>
+			{/* PRIMARY — FASTWORK. The page's one call to action, so it sits straight under the
+			    header and renders eagerly: never inside MotionReveal, which starts at opacity 0. */}
+			<NeonPanel variant='yellow' className='mt-10 p-6 md:p-8'>
+				<p className='text-cyber-yellow font-mono text-xs tracking-[0.3em] uppercase'>// Hire on Fastwork</p>
+				<a
+					href={personalData.hire.url}
+					target='_blank'
+					rel='noopener noreferrer'
+					className='font-display hover:text-cyber-yellow mt-3 block text-lg font-bold tracking-wide break-all transition-colors sm:text-2xl md:text-3xl'>
+					{HIRE_LINK_LABEL}
+				</a>
+				<p className='text-muted-foreground mt-3 flex items-start gap-2 text-sm'>
+					<CyberIcon icon='mdi:circle' className='text-cyber-green mt-1.5 size-2 shrink-0' />
+					{personalData.contact.availability}
+				</p>
+
+				<HireSteps className='mt-6' />
+
+				<div className='mt-6 flex flex-wrap gap-3'>
+					<HireButton size='lg' />
+					<CyberButton href='/card/hire' download='nooobtimex-hire-card.png' variant='outline' size='lg'>
+						<CyberIcon icon='mdi:download' />
+						Hire card (1:1)
+					</CyberButton>
+				</div>
+				<HireDestination className='mt-3' />
+			</NeonPanel>
+
+			{/* Availability and scope — the context behind the hire panel above, so it renders
+			    eagerly too, ahead of the channel list rather than waiting on a scroll reveal. */}
+			<div className='border-border/60 mt-12 border-t pt-8'>
 				<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Working together</h2>
 				<p className='text-muted-foreground mt-4 max-w-3xl text-base leading-relaxed'>
 					{personalData.contact.availability}. Based in {personalData.contact.location}, Thailand — that is UTC+7, so
@@ -72,38 +100,10 @@ const ContactContent: React.FC = () => {
 					and shipped through GitHub CI/CD.
 				</p>
 				<p className='text-muted-foreground mt-4 max-w-3xl text-base leading-relaxed'>
-					Email is the fastest route and the one that reaches me wherever I am. The channels below are badged with
-					whether they work inside mainland China.
+					Projects start on Fastwork, so the scope, the quote and the payment all live in one place. The card and
+					channels below are for everything else, badged with whether they work inside mainland China.
 				</p>
 			</div>
-
-			{/* PRIMARY — EMAIL. Also eager: it is the page's main call to action and sits
-			    above the fold, so it must not wait on a scroll observer. */}
-			<NeonPanel variant='yellow' className='mt-10 p-6 md:p-8'>
-				<p className='text-cyber-yellow font-mono text-xs tracking-[0.3em] uppercase'>// Preferred</p>
-				<div className='mt-3 flex flex-wrap items-center gap-3'>
-					<a
-						href={`mailto:${personalData.contact.email}`}
-						className='font-display hover:text-cyber-yellow text-2xl font-bold tracking-wide break-all transition-colors md:text-3xl'>
-						{personalData.contact.email}
-					</a>
-					<CopyButton value={personalData.contact.email} label='Copy email' />
-				</div>
-				<p className='text-muted-foreground mt-3 flex items-start gap-2 text-sm'>
-					<CyberIcon icon='mdi:circle' className='text-cyber-green mt-1.5 size-2 shrink-0' />
-					{personalData.contact.availability}
-				</p>
-				<div className='mt-5 flex flex-wrap gap-3'>
-					<CyberButton href={`mailto:${personalData.contact.email}`} external size='lg'>
-						<CyberIcon icon='mdi:email-outline' />
-						Send an email
-					</CyberButton>
-					<CyberButton href='/card/hire' download='nooobtimex-hire-card.png' variant='outline' size='lg'>
-						<CyberIcon icon='mdi:download' />
-						Hire card (1:1)
-					</CyberButton>
-				</div>
-			</NeonPanel>
 
 			{/* SCAN-ME PANELS */}
 			<MotionReveal delay={0.1}>

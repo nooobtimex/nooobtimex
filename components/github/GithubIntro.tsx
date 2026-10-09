@@ -13,12 +13,17 @@ import { USERNAME } from '@/lib/github'
  * outlines a completed boundary into a hidden segment once the response is large, so the
  * page's only prose would ship invisible to anything that doesn't run JavaScript.
  */
-const GithubIntro: React.FC<{ variant: 'home' | 'page'; year: string }> = ({ variant, year }) => (
+const GithubIntro: React.FC<{ variant: 'home' | 'page'; year: string; code?: string }> = ({
+	variant,
+	year,
+	// '05' is GitHub's nav code, which /github keeps; home passes its own section number.
+	code = '05'
+}) => (
 	<>
 		{/* On home the hero owns the h1; only the standalone /github page promotes this. */}
 		<SectionHeader
 			as={variant === 'home' ? 'h2' : 'h1'}
-			code='05'
+			code={code}
 			title='GitHub'
 			subtitle={year === 'last' ? 'Live contribution activity, refreshed daily.' : `Contribution activity in ${year}.`}
 			action={

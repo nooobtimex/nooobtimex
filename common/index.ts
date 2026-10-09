@@ -10,5 +10,7 @@ export * from './utils'
 export * from './data/posts'
 export * from './data/skill-notes'
 export * from './data/privacy'
+// After posts and projects: each service resolves its proof links against both.
+export * from './data/services'
 // Last: coverage reads the post, project and skill indexes above.
 export * from './data/coverage'

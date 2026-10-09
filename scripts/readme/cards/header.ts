@@ -49,7 +49,7 @@ export function renderHeader(): string {
 	<g clip-path="url(#panel-clip)">
 		<rect x="0" y="0" width="${W}" height="${H}" fill="url(#grid)" />
 
-		${monoText('// PORTFOLIO_V2.077', 60, 62, { size: 16, ls: 6, fill: C.cyan })}
+		${monoText('// PROFILE_V2.077', 60, 62, { size: 16, ls: 6, fill: C.cyan })}
 
 		<g>
 			<circle cx="744" cy="36" r="4" fill="${C.green}" class="blink" />

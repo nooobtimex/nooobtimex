@@ -38,6 +38,18 @@ export function formatMilestoneDate(date: string): string {
 	return new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
 }
 
+/**
+ * The hire link as text a person can read, copy or type — `fastwork.co/byob/DJpB7L1xWm`.
+ *
+ * Derived from the BYOB `url`, never from `hire.profileUrl`: Fastwork credits a client to
+ * this seller only when they arrive through the BYOB path, so a typed generic profile
+ * address (`fastwork.co/user/…`) silently drops them onto the normal commission. The
+ * query is dropped for legibility — the code in the path is what carries attribution.
+ */
+export function hireLinkLabel(url: string): string {
+	return url.replace(/^https?:\/\//, '').replace(/\?.*$/, '')
+}
+
 /** Format a kebab-case position id for display, e.g. 'chief-technology-officer' → 'Chief Technology Officer'. */
 export function formatPosition(position: string): string {
 	return position

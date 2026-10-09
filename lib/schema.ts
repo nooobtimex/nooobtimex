@@ -1,4 +1,4 @@
-import { DISPLAY_NAME, SITE_URL } from '@/lib/seo'
+import { DISPLAY_NAME, SITE_NAME, SITE_URL } from '@/lib/seo'
 import { personalData } from '@/common'
 
 /**
@@ -28,7 +28,7 @@ export const websiteSchema = () => ({
 	'@type': 'WebSite',
 	'@id': WEBSITE_ID,
 	'url': SITE_URL,
-	'name': `${DISPLAY_NAME} — Portfolio`,
+	'name': SITE_NAME,
 	'inLanguage': 'en',
 	'description': personalData.tagline,
 	'publisher': personRef(),
