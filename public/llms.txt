@@ -27,6 +27,7 @@ Hire through Fastwork: https://fastwork.co/byob/DJpB7L1xWm?openExternalBrowser=1
 - Dashboards & internal tools: Admin consoles, data dashboards and role-based back-offices — maps, charts, CSV export and the permissions that keep each person on the right screen. Proof: Flood Project (https://nooobtimex.me/projects/flood-project); MONOMax EPL Licensing Portal (https://nooobtimex.me/projects/monomax-epl-portal)
 - Company & landing sites: Fast company and landing sites that render without JavaScript, index cleanly in search, and stay easy for your team to update. Proof: RS TROPHY (https://nooobtimex.me/projects/rs-trophy); 🚀 NooobtimeX — Profile Site (https://nooobtimex.me/projects/portfolio)
 - Deploy, infra & speed-ups: Docker and Railway deploys, build gates that stop a broken release, and fixes for apps that are slow or eat memory in production. Proof: 402 MB to 126 MB: what was actually in my Next.js container (https://nooobtimex.me/blog/container-rss-402-to-126); Build with Bun, serve with Node: dodging a standalone RSS leak (https://nooobtimex.me/blog/bun-builds-node-serves)
+- AI coaching (1:1): One-to-one sessions for business owners: you leave with AI doing a real, repeated task in your own business, taught from systems running in production at a factory. Proof: RS TROPHY (https://nooobtimex.me/projects/rs-trophy); Most of my automation is failure handling (https://nooobtimex.me/blog/automation-is-mostly-failure-handling)
 
 ## Experience
 

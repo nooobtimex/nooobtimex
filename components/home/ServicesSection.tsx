@@ -6,18 +6,19 @@ import NeonPanel from '@/components/cyber/NeonPanel'
 import SectionHeader from '@/components/cyber/SectionHeader'
 import { HireDestination } from '@/components/hire/HireBand'
 import HireButton from '@/components/hire/HireButton'
-import { servicesData } from '@/common'
+import { personalData, servicesData } from '@/common'
 
 /**
  * Home "What I build" — the freelance offerings, each followed by the shipped work that
- * proves it. One hire button under the grid rather than one per card: four identical
- * buttons read as noise, and the decision is "hire him", not "buy service #3".
+ * proves it and the Fastwork service that sells it. Every card's link is the same BYOB
+ * profile link (a listing page would drop the 0% credit), so what makes each one worth
+ * having is the quoted service title: it tells the client which one to open on arrival.
  */
 const ServicesSection: React.FC = () => (
 	<section className='mt-20'>
 		<SectionHeader title='What I build' subtitle='Freelance work I take on — each with shipped proof.' />
 
-		<div className='mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4'>
+		<div className='mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3'>
 			{servicesData.map((s, i) => (
 				<MotionReveal key={s.id} delay={i * 0.08} className='h-full'>
 					<NeonPanel className='flex h-full flex-col p-5'>
@@ -40,6 +41,35 @@ const ServicesSection: React.FC = () => (
 								</li>
 							))}
 						</ul>
+
+						<div className='border-border/60 mt-5 border-t pt-4'>
+							<a
+								href={personalData.hire.url}
+								target='_blank'
+								rel='noopener'
+								className='text-cyber-yellow hover:text-cyber-cyan inline-flex items-center gap-1.5 font-mono text-xs font-bold tracking-[0.2em] uppercase transition-colors'>
+								Hire on Fastwork
+								<CyberIcon icon='mdi:arrow-top-right' className='size-3.5' />
+							</a>
+							{s.fastwork.main && (
+								<p className='mt-2 text-xs leading-snug'>
+									<span className='text-muted-foreground font-mono text-[0.65rem] tracking-wider uppercase'>Open </span>
+									<span lang='th' className='break-words'>
+										“{s.fastwork.main.title}”
+									</span>
+								</p>
+							)}
+							{s.fastwork.also && (
+								<p className='text-muted-foreground mt-1.5 text-xs leading-snug'>
+									<span className='font-mono text-[0.65rem] tracking-wider uppercase'>
+										{s.fastwork.main ? 'or ' : 'Related '}
+									</span>
+									<span lang='th' className='break-words'>
+										“{s.fastwork.also.title}”
+									</span>
+								</p>
+							)}
+						</div>
 					</NeonPanel>
 				</MotionReveal>
 			))}

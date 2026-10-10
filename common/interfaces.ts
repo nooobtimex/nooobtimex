@@ -3,6 +3,7 @@
  */
 // Type-only — erased at compile time, so the interfaces → data/skills → interfaces
 // cycle never exists at runtime. It buys `Post.skills` the same typo safety projects get.
+import type { FastworkId } from './data/services'
 import type { SkillId } from './data/skills'
 import {
 	EmploymentType,
@@ -299,6 +300,18 @@ export interface Hire {
 	label: string
 }
 
+/** One service published on the Fastwork profile, as a client sees it there. */
+export interface FastworkListing {
+	/** Fastwork's own title (Thai), shown on the card so the client knows which service to open. */
+	title: string
+	/**
+	 * The public listing page — deliberately never a link target. Fastwork credits BYOB only on
+	 * the profile page the BYOB link lands on; a client who chats from a listing page is a direct
+	 * lead at the normal commission. Absent while Fastwork is still reviewing the service.
+	 */
+	listingUrl?: string
+}
+
 /** A freelance offering as authored in `common/data/services.ts`. */
 export interface ServiceDef {
 	id: string
@@ -310,6 +323,10 @@ export interface ServiceDef {
 	proofProjectIds: string[]
 	/** Journal posts that prove it — validated against `postsData` at build time. */
 	proofPostIds?: string[]
+	/** The Fastwork services this card sells. Neither set → the card points at the profile alone. */
+	fastwork: { main?: FastworkId; also?: FastworkId }
+	/** Keep the card off the site — e.g. its Fastwork service is still under review. */
+	hidden?: boolean
 }
 
 /** One proof link on a service card, resolved so the card only maps. */
@@ -319,9 +336,10 @@ export interface ServiceProof {
 	label: string
 }
 
-/** A service with its proof ids resolved to labelled links. */
-export interface Service extends Omit<ServiceDef, 'proofProjectIds' | 'proofPostIds'> {
+/** A service with its proof ids resolved to labelled links and its Fastwork ids to listings. */
+export interface Service extends Omit<ServiceDef, 'proofProjectIds' | 'proofPostIds' | 'fastwork' | 'hidden'> {
 	proof: ServiceProof[]
+	fastwork: { main?: FastworkListing; also?: FastworkListing }
 }
 
 /** Global personal information */

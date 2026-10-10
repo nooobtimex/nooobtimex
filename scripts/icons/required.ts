@@ -17,7 +17,7 @@
  * Imports only `@/common` (~112 KB), never `./collections` — `scripts/icons/check.ts`
  * runs on every build and must not pull in the 26.7 MB of collections.
  */
-import { categoryMetadata, personalData, projectsData, servicesData, skillsData } from '@/common'
+import { categoryMetadata, personalData, projectsData, serviceIcons, skillsData } from '@/common'
 
 /**
  * Escape hatch for names a server-rendered surface hard-codes rather than reading from
@@ -88,7 +88,7 @@ const EXTRA_ICONS: string[] = [
  *     README arsenal/gig cards
  *   - `categoryMetadata[*].icon` — the README arsenal card
  *   - `personalData.socialLinks[].icon` — the README comms card
- *   - `servicesData[].icon` — the home "What I build" cards (server-rendered via CyberIcon)
+ *   - `serviceIcons` — the home "What I build" cards (server-rendered via CyberIcon), hidden ones included
  *
  * Included for headroom (client-rendered today, ~11 KB total): `contactChannels` and
  * project timeline milestones. Cheap insurance against a future card reaching for one.
@@ -99,7 +99,7 @@ export function requiredIcons(): string[] {
 		...Object.values(categoryMetadata).map(m => m.icon),
 		...personalData.socialLinks.map(s => s.icon),
 		...(personalData.contactChannels ?? []).map(c => c.icon),
-		...servicesData.map(s => s.icon),
+		...serviceIcons,
 		...projectsData.flatMap(p => (p.timeline ?? []).flatMap(m => (m.icon ? [m.icon] : []))),
 		...EXTRA_ICONS
 	]
