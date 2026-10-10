@@ -6,7 +6,7 @@ export const thaiLocalizationAndANewDesignSystem: PostDef = {
 	title: 'Localizing a storefront to Thai while replacing its design system',
 	happenedAt: '2026-01-30',
 	publishedAt: '2026-08-25',
-	updatedAt: '2026-09-05',
+	updatedAt: '2026-10-10',
 	chapter: 'scale',
 	category: 'nextjs',
 	description:
@@ -124,6 +124,9 @@ export const thaiLocalizationAndANewDesignSystem: PostDef = {
 	sources: [
 		{ title: 'Tailwind CSS — Theme configuration', url: 'https://tailwindcss.com/docs/theme' },
 		{ title: 'shadcn/ui — Theming', url: 'https://ui.shadcn.com/docs/theming' },
-		{ title: 'RS Award — the live site this post is about', url: 'https://www.rs-award.com' }
+		{
+			title: 'RS Award — rs-award.com as archived, Dec 2025',
+			url: 'https://web.archive.org/web/20251220161233/https://rs-award.com/'
+		}
 	]
 }

@@ -10,7 +10,7 @@ export const ruamsukPlating: Organization = {
 	type: 'company',
 	url: 'https://rs-trophy.com',
 	description:
-		'Thai awards manufacturer behind the RS TROPHY, RS Medal, and RS Award storefronts — custom trophies, plaques, and medals, with the entire technology stack built and run in house.',
+		'Thai awards manufacturer behind the RS TROPHY storefront, which absorbed its former RS Medal and RS Award sites — custom trophies, plaques, and medals, with the entire technology stack built and run in house.',
 	about:
 		'A Thai limited partnership (est. 2006) in Pathum Thani that designs and manufactures trophies, medals, and award plaques under the RS TROPHY brand, running an in-house facility for design, zinc casting, laser engraving, and metal electroplating. It sells nationwide and consolidated its former RS Medal and RS Award storefronts into rs-trophy.com.',
 	industry: 'Awards & trophy manufacturing · metal electroplating',

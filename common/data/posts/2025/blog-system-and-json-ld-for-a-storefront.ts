@@ -6,7 +6,7 @@ export const blogSystemAndJsonLdForAStorefront: PostDef = {
 	title: 'Adding a blog system and JSON-LD to a catalog storefront',
 	happenedAt: '2025-06-06',
 	publishedAt: '2026-08-25',
-	updatedAt: '2026-09-05',
+	updatedAt: '2026-10-10',
 	chapter: 'bridge',
 	category: 'seo-aeo',
 	description:
@@ -22,7 +22,10 @@ export const blogSystemAndJsonLdForAStorefront: PostDef = {
 			title: 'Google Search Central — Article structured data',
 			url: 'https://developers.google.com/search/docs/appearance/structured-data/article'
 		},
-		{ title: 'RS Medal', url: 'https://www.rs-medal.com' }
+		{
+			title: 'RS Medal — rs-medal.com as archived, Apr 2026',
+			url: 'https://web.archive.org/web/20260422021551/https://rs-medal.com/'
+		}
 	],
 	body: [
 		{

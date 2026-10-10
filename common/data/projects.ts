@@ -608,16 +608,19 @@ export const prettierConfig: ProjectDef = {
 export const rsMedal: ProjectDef = {
 	id: 'rs-medal',
 	accent: '#8AD8FF',
-	// Thin by nature — no DB, no auth. Next.js remake + structured data is the honest story.
+	// Thin by nature — no DB, no auth. Next.js remake + structured data was the honest story.
 	highlightSkills: ['next-js', 'json-ld', 'seo', 'vercel', 'react'],
 	title: 'RS Medal',
 	description:
-		'A medal showcase and catalog web app — first built on WordPress, later remade as a localized Next.js application with structured data and a reusable product data model.',
+		'A medal showcase and catalog web app — first built on WordPress, later remade as a localized Next.js application with structured data and a reusable product data model. Retired in May 2026, when its catalog moved into RS TROPHY.',
 	images: { cover: assets.projects.rsMedal.cover, photos: [...assets.projects.rsMedal.gallery] },
 	// Starting stack (2022 WordPress). The Next.js remake — and WordPress's retirement — are events.
 	skills: ['wordpress', 'seo', 'google-ads'],
-	links: { live: 'https://www.rs-medal.com' },
+	// No link: rs-medal.com now 308s to rs-trophy.com/medal, a different product. Without
+	// it the derived status reads "Archived", which is what the sunset milestone records.
+	links: {},
 	startDate: '2022-08-01',
+	endDate: '2026-05-13',
 	linkedExperienceIds: ['ruamsuk-software-engineer-part-time', 'ruamsuk-software-engineer-full-time'],
 	timeline: [
 		{
@@ -671,6 +674,13 @@ export const rsMedal: ProjectDef = {
 			title: 'Redesign — UI Overhaul + WebP Optimization',
 			description: 'Refreshed the UI design and moved imagery to WebP for faster loads.',
 			icon: 'mdi:palette-swatch-outline'
+		},
+		{
+			date: '2026-05-13',
+			title: 'Sunset — Catalog Folded into RS TROPHY',
+			description:
+				'Products and photos imported into rs-trophy.com; rs-medal.com now permanently redirects to its medal category.',
+			icon: 'mdi:call-merge'
 		}
 	]
 }
@@ -678,17 +688,20 @@ export const rsMedal: ProjectDef = {
 export const rsAward: ProjectDef = {
 	id: 'rs-award',
 	accent: '#FFB020',
-	// The Next.js remake is the current identity; SEO/AEO structured data is the differentiator.
+	// The Next.js remake was its last identity; SEO/AEO structured data is the differentiator.
 	highlightSkills: ['next-js', 'mongodb', 'aeo', 'json-ld', 'seo', 'vercel'],
 	title: 'RS Award',
 	description:
-		'A plaque and award showcase web app — first built on WordPress, later remade as a localized Next.js application with SEO/AEO structured data and client-side search.',
+		'A plaque and award showcase web app — first built on WordPress, later remade as a localized Next.js application with SEO/AEO structured data and client-side search. Retired in May 2026, when its catalog moved into RS TROPHY.',
 	images: { cover: assets.projects.rsAward.cover, photos: [...assets.projects.rsAward.gallery] },
 	// Starting stack (2022 WordPress). The Next.js remake, the Prisma/Postgres → MongoDB migration,
 	// and WordPress's retirement are all recorded as timeline events below.
 	skills: ['wordpress', 'seo', 'google-ads'],
-	links: { live: 'https://www.rs-award.com' },
+	// No link: rs-award.com now 308s to rs-trophy.com/plaque, a different product. Without
+	// it the derived status reads "Archived", which is what the sunset milestone records.
+	links: {},
 	startDate: '2022-03-01',
+	endDate: '2026-05-13',
 	linkedExperienceIds: ['ruamsuk-software-engineer-part-time', 'ruamsuk-software-engineer-full-time'],
 	timeline: [
 		{
@@ -753,6 +766,13 @@ export const rsAward: ProjectDef = {
 			description: 'Shipped product pages with SEO/AEO structured data, client-side search, and a Dockerized deploy.',
 			icon: 'mdi:magnify',
 			addedSkills: ['aeo', 'json-ld', 'docker']
+		},
+		{
+			date: '2026-05-13',
+			title: 'Sunset — Catalog Folded into RS TROPHY',
+			description:
+				'Products and photos imported into rs-trophy.com; rs-award.com now permanently redirects to its plaque category.',
+			icon: 'mdi:call-merge'
 		}
 	]
 }

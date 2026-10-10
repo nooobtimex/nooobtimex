@@ -6,7 +6,7 @@ export const prismaPostgresToMongodbMidBuild: PostDef = {
 	title: 'Switching from Prisma/Postgres to MongoDB mid-build',
 	happenedAt: '2026-01-28',
 	publishedAt: '2026-08-25',
-	updatedAt: '2026-09-05',
+	updatedAt: '2026-10-10',
 	chapter: 'scale',
 	category: 'engineering',
 	description:
@@ -17,7 +17,10 @@ export const prismaPostgresToMongodbMidBuild: PostDef = {
 	relatedEntityIds: ['ruamsuk-plating'],
 	sources: [
 		{ title: 'Prisma ORM — MongoDB connector', url: 'https://www.prisma.io/docs/orm/overview/databases/mongodb' },
-		{ title: 'RS Award', url: 'https://www.rs-award.com' }
+		{
+			title: 'RS Award — rs-award.com as archived, Dec 2025',
+			url: 'https://web.archive.org/web/20251220161233/https://rs-award.com/'
+		}
 	],
 	body: [
 		{

@@ -6,7 +6,7 @@ export const firstClientWorkWasWordpress: PostDef = {
 	title: 'My first client work was WordPress, and that was the right call',
 	happenedAt: '2022-03-01',
 	publishedAt: '2026-08-25',
-	updatedAt: '2026-09-05',
+	updatedAt: '2026-10-10',
 	chapter: 'student',
 	category: 'engineering',
 	description:
@@ -115,6 +115,9 @@ export const firstClientWorkWasWordpress: PostDef = {
 	relatedEntityIds: ['ruamsuk-plating'],
 	sources: [
 		{ title: 'WordPress Plugin Handbook — Hooks', url: 'https://developer.wordpress.org/plugins/hooks/' },
-		{ title: 'RS Award — the live site this post is about', url: 'https://www.rs-award.com' }
+		{
+			title: 'RS Award — rs-award.com as archived, Dec 2025',
+			url: 'https://web.archive.org/web/20251220161233/https://rs-award.com/'
+		}
 	]
 }

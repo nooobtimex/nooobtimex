@@ -6,6 +6,7 @@ export const threeStorefrontsTenMonths: PostDef = {
 	title: 'Three storefronts in ten months on the boring stack',
 	happenedAt: '2023-01-01',
 	publishedAt: '2026-08-25',
+	updatedAt: '2026-10-10',
 	chapter: 'student',
 	category: 'commerce',
 	description:
@@ -132,7 +133,13 @@ add_image_size('catalog-card', 480, 360, true);`
 	relatedEntityIds: ['ruamsuk-plating'],
 	sources: [
 		{ title: 'RS TROPHY', url: 'https://rs-trophy.com' },
-		{ title: 'RS Award', url: 'https://www.rs-award.com' },
-		{ title: 'RS Medal', url: 'https://www.rs-medal.com' }
+		{
+			title: 'RS Award — rs-award.com as archived, Dec 2025',
+			url: 'https://web.archive.org/web/20251220161233/https://rs-award.com/'
+		},
+		{
+			title: 'RS Medal — rs-medal.com as archived, Apr 2026',
+			url: 'https://web.archive.org/web/20260422021551/https://rs-medal.com/'
+		}
 	]
 }

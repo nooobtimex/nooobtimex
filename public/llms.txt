@@ -127,18 +127,16 @@ A unified e-commerce and management platform for custom trophies, plaques, and m
 
 ### RS Medal
 
-A medal showcase and catalog web app — first built on WordPress, later remade as a localized Next.js application with structured data and a reusable product data model.
+A medal showcase and catalog web app — first built on WordPress, later remade as a localized Next.js application with structured data and a reusable product data model. Retired in May 2026, when its catalog moved into RS TROPHY.
 
 - Stack: WordPress, SEO, Google Ads, Next.js, React, Tailwind CSS, Shadcn/ui, Vercel, Google Tag Manager, JSON-LD, TypeScript, Git/GitHub, Prettier, ESLint
-- Live: https://www.rs-medal.com
 - Details: https://nooobtimex.me/projects/rs-medal
 
 ### RS Award
 
-A plaque and award showcase web app — first built on WordPress, later remade as a localized Next.js application with SEO/AEO structured data and client-side search.
+A plaque and award showcase web app — first built on WordPress, later remade as a localized Next.js application with SEO/AEO structured data and client-side search. Retired in May 2026, when its catalog moved into RS TROPHY.
 
 - Stack: WordPress, SEO, Google Ads, Next.js, React, Tailwind CSS, Shadcn/ui, Vercel, Prisma, PostgreSQL, Google Tag Manager, MongoDB, AEO, JSON-LD, Docker, TypeScript, Git/GitHub, Prettier, ESLint
-- Live: https://www.rs-award.com
 - Details: https://nooobtimex.me/projects/rs-award
 
 ### 🚀 NooobtimeX — Profile Site
@@ -400,7 +398,7 @@ Read more: https://nooobtimex.me/blog/started-job-and-degree-same-month
 
 ## Organizations
 
-- RUAMSUK PLATING LIMITED PARTNERSHIP — Thai awards manufacturer behind the RS TROPHY, RS Medal, and RS Award storefronts — custom trophies, plaques, and medals, with the entire technology stack built and run in house. (https://nooobtimex.me/companies/ruamsuk-plating)
+- RUAMSUK PLATING LIMITED PARTNERSHIP — Thai awards manufacturer behind the RS TROPHY storefront, which absorbed its former RS Medal and RS Award sites — custom trophies, plaques, and medals, with the entire technology stack built and run in house. (https://nooobtimex.me/companies/ruamsuk-plating)
 - Jasmine Technology Solution — Software solutions company — home of the LOOKLOOK PET platform work: storefront, B2B partner console, microservices, and multi-vendor marketplace. (https://nooobtimex.me/companies/jasmine-technology-solution)
 - JAS TV — Jasmine International's internet-TV arm. Its parent group, JAS, holds the exclusive English Premier League & Emirates FA Cup rights for Thailand, Laos, and Cambodia (2025/26–2030/31), distributed via Mono. (https://nooobtimex.me/companies/jas-tv)
 - MONOMax — Mono Group's SVOD streaming platform (Mono Next PCL). MONOMax Sports Premium streams the English Premier League — the platform the EPL licensing portal provisions venue accounts for. (https://nooobtimex.me/companies/monomax)

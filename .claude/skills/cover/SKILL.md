@@ -124,8 +124,10 @@ looklook-pet        accent #FF7D5A  motif hex      title LOOKLOOK|Pet        kic
 online-poker-game   accent #FF003C  motif cards    title Online|Poker        kicker // REALTIME GAME        badge ● Archived  tags Next.js,SSE,PostgreSQL,Redis
 flood-project       accent #00F0FF  motif waves    title Flood|Project       kicker // WATER-LEVEL MONITORING                 tags Next.js,Prisma,Leaflet,Recharts,NextAuth
 prettier-config     accent #55B3B4  motif braces   title Prettier|Config     kicker // DEV TOOL             badge ● Live      tags Next.js,CodeMirror,Tailwind
-rs-medal            accent #8AD8FF  motif rings    title RS|Medal            kicker // E-COMMERCE           badge ● Live      tags Next.js,JSON-LD,SEO
-rs-award            accent #FFB020  motif shield   title RS|Award            kicker // E-COMMERCE           badge ● Live      tags Next.js,MongoDB,SEO
+rs-medal            accent #8AD8FF  motif rings    title RS|Medal            kicker // E-COMMERCE           badge ● Archived  tags Next.js,JSON-LD,SEO
+                    subtitle Medals Storefront  badgeSub Storefront  meta RS MEDAL // 2022–2026
+rs-award            accent #FFB020  motif shield   title RS|Award            kicker // E-COMMERCE           badge ● Archived  tags Next.js,MongoDB,SEO
+                    subtitle Awards Storefront  badgeSub Storefront  meta RS AWARD // 2022–2026
 portfolio           accent #FCEE0A  motif hex      title Profile|v2.077      kicker // PERSONAL SITE        badge ● Live      tags Next.js,Tailwind,shadcn,Railway
 qr-food             accent #39FF14  motif qr       title QR|Food             kicker // SENIOR THESIS        badge ● Thesis    tags Nuxt,Vue,Prisma,Supabase
 ```
