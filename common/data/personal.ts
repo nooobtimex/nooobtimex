@@ -128,9 +128,9 @@ export const personalData: PersonalData = {
 		}
 	],
 	hire: {
-		url: 'https://fastwork.co/byob/DJpB7L1xWm?openExternalBrowser=1',
+		url: 'https://fastwork.com/user/nooobtimex',
 		platform: 'Fastwork',
-		profileUrl: 'https://fastwork.co/user/nooobtimex',
+		profileUrl: 'https://fastwork.com/user/nooobtimex',
 		label: 'Hire me on Fastwork'
 	},
 	contactChannels

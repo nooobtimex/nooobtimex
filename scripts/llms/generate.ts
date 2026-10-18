@@ -144,7 +144,6 @@ function build(): string {
 	out.push('## Links')
 	out.push('')
 	for (const link of personalData.socialLinks) out.push(`- ${link.platform}: ${link.url}`)
-	// The BYOB link, not the generic profile: an assistant may hand this URL to a client.
 	out.push(`- fastwork (hire): ${personalData.hire.url}`)
 	out.push('')
 

@@ -8,7 +8,7 @@ import HireButton from '@/components/hire/HireButton'
 import { cn, hireLinkLabel } from '@/lib/utils'
 import { personalData } from '@/common'
 
-/** `fastwork.co/byob/…` — the hire link as text. Typed or copied, it still credits the client to this seller. */
+/** `fastwork.com/user/…` — the hire link as text. */
 export const HIRE_LINK_LABEL = hireLinkLabel(personalData.hire.url)
 
 /*

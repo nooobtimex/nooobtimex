@@ -35,7 +35,7 @@ const STACK_SLOTS = 19
 const AVAILABILITY =
 	'Open for remote freelance web app projects — full-stack, shipped end to end, hired through Fastwork.'
 
-/** Where a card viewer goes to hire — the BYOB link as text, since a PNG cannot carry a link and a typed generic profile URL would not credit the client. */
+/** Where a card viewer goes to hire — the hire link as text, since a PNG cannot carry a link. */
 const HIRE_AT = hireLinkLabel(personalData.hire.url)
 
 const HireSquareCard: React.FC = () => {

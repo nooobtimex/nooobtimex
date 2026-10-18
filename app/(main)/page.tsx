@@ -36,7 +36,7 @@ const jsonLd = {
 		'addressLocality': personalData.contact.location,
 		'addressCountry': 'TH'
 	},
-	// The Fastwork profile, not the BYOB hire link: `sameAs` names an identity page.
+	// The Fastwork profile: `sameAs` names an identity page.
 	'sameAs': [
 		...personalData.socialLinks.filter(s => s.platform !== 'email').map(s => s.url),
 		personalData.hire.profileUrl

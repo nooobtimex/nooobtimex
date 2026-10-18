@@ -3,10 +3,10 @@ import { postById } from './posts'
 import { projectsData } from './projects'
 
 /**
- * The services published on fastwork.co/user/nooobtimex, keyed by the id a card names them
+ * The services published on fastwork.com/user/nooobtimex, keyed by the id a card names them
  * by. Titles are Fastwork's own, verbatim — the card quotes one so a client landing on the
- * profile knows which service to open. Every card still links to `personalData.hire.url`:
- * BYOB credit survives only on the profile page that link lands on, never on a listing page.
+ * profile knows which service to open. Every card still links to `personalData.hire.url`,
+ * never to a listing page.
  */
 export const fastworkListings = {
 	'web-apps': {

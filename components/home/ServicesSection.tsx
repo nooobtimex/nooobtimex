@@ -10,9 +10,8 @@ import { personalData, servicesData } from '@/common'
 
 /**
  * Home "What I build" — the freelance offerings, each followed by the shipped work that
- * proves it and the Fastwork service that sells it. Every card's link is the same BYOB
- * profile link (a listing page would drop the 0% credit), so what makes each one worth
- * having is the quoted service title: it tells the client which one to open on arrival.
+ * proves it and the Fastwork service that sells it. Every card's link is the same
+ * profile link, so what makes each one worth having is the quoted service title: it tells the client which one to open on arrival.
  */
 const ServicesSection: React.FC = () => (
 	<section className='mt-20'>

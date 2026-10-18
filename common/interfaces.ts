@@ -287,13 +287,12 @@ export interface SkillNote {
  * different platform is one edit.
  */
 export interface Hire {
-	/** Fastwork BYOB link — it credits the client to this seller. Use it verbatim, query included. */
+	/** Fastwork profile link every "Hire me" control opens. Use it verbatim. */
 	url: string
 	platform: 'Fastwork'
 	/**
-	 * Canonical public profile — JSON-LD `sameAs` ONLY. Never show it as text a person could
-	 * type or copy: a client who arrives through it instead of `url` is not credited to this
-	 * seller (Fastwork BYOB). For readable text use `hireLinkLabel(url)` from `lib/utils`.
+	 * Canonical public profile — JSON-LD `sameAs`. Same address as `url`. For readable text
+	 * use `hireLinkLabel(url)` from `lib/utils`.
 	 */
 	profileUrl: string
 	/** Button label, e.g. 'Hire me on Fastwork'. */
@@ -305,9 +304,8 @@ export interface FastworkListing {
 	/** Fastwork's own title (Thai), shown on the card so the client knows which service to open. */
 	title: string
 	/**
-	 * The public listing page — deliberately never a link target. Fastwork credits BYOB only on
-	 * the profile page the BYOB link lands on; a client who chats from a listing page is a direct
-	 * lead at the normal commission. Absent while Fastwork is still reviewing the service.
+	 * The public listing page — deliberately never a link target; cards link to the profile.
+	 * Absent while Fastwork is still reviewing the service.
 	 */
 	listingUrl?: string
 }

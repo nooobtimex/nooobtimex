@@ -39,12 +39,8 @@ export function formatMilestoneDate(date: string): string {
 }
 
 /**
- * The hire link as text a person can read, copy or type — `fastwork.co/byob/DJpB7L1xWm`.
- *
- * Derived from the BYOB `url`, never from `hire.profileUrl`: Fastwork credits a client to
- * this seller only when they arrive through the BYOB path, so a typed generic profile
- * address (`fastwork.co/user/…`) silently drops them onto the normal commission. The
- * query is dropped for legibility — the code in the path is what carries attribution.
+ * The hire link as text a person can read, copy or type — `fastwork.com/user/nooobtimex`.
+ * Any query string is dropped for legibility.
  */
 export function hireLinkLabel(url: string): string {
 	return url.replace(/^https?:\/\//, '').replace(/\?.*$/, '')

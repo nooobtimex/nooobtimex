@@ -18,11 +18,11 @@
 **Freelance software engineer building production web apps end to end —
 scope, UI, API, database and deploy.**
 
-⚡ This repo is the source of my Cyberpunk-2077-themed profile → **[nooobtimex.me](https://nooobtimex.me)** · hire me on **[Fastwork](https://fastwork.co/byob/DJpB7L1xWm?openExternalBrowser=1)**
+⚡ This repo is the source of my Cyberpunk-2077-themed profile → **[nooobtimex.me](https://nooobtimex.me)** · hire me on **[Fastwork](https://fastwork.com/user/nooobtimex)**
 
 <br/>
 
-[<img src=".github/assets/btn-hire.svg" alt="Hire me on Fastwork" />](https://fastwork.co/byob/DJpB7L1xWm?openExternalBrowser=1)
+[<img src=".github/assets/btn-hire.svg" alt="Hire me on Fastwork" />](https://fastwork.com/user/nooobtimex)
 [<img src=".github/assets/btn-profile.svg" alt="View Profile" />](https://nooobtimex.me)
 [<img src=".github/assets/btn-cv.svg" alt="View CV" />](https://nooobtimex.me/cv)
 
@@ -95,7 +95,7 @@ scope, UI, API, database and deploy.**
 [<img src=".github/assets/comms-email.svg" alt="Email" />](mailto:nooobtimex@gmail.com)
 [<img src=".github/assets/comms-website.svg" alt="Website" />](https://nooobtimex.me)
 
-**Hire me for a web app → [Fastwork](https://fastwork.co/byob/DJpB7L1xWm?openExternalBrowser=1)**
+**Hire me for a web app → [Fastwork](https://fastwork.com/user/nooobtimex)**
 
 <br/>
 <br/>

@@ -13,9 +13,8 @@ interface HireButtonProps {
 
 /**
  * The one "Hire me" control on a server-rendered surface. Every instance opens
- * `personalData.hire.url` — the Fastwork BYOB link — in a new tab, so a client who arrives
- * from any page is credited to this seller. Client components (NavBar) cannot import
- * `@/common`, so they take the same URL as a prop from their server parent instead.
+ * `personalData.hire.url` — the Fastwork profile link — in a new tab. Client components (NavBar)
+ * cannot import `@/common`, so they take the same URL as a prop from their server parent instead.
  */
 const HireButton: React.FC<HireButtonProps> = ({ size = 'md', variant = 'solid', label, className }) => (
 	<CyberButton href={personalData.hire.url} external size={size} variant={variant} className={className}>
