@@ -1,5 +1,5 @@
 ---
-name: cover
+name: make-cover
 description: >-
   Generate on-brand Cyberpunk project cover images (the 16:9 `cover.webp` hero
   used on project cards + detail pages) for the NooobtimeX profile site, without a
@@ -20,10 +20,10 @@ covers for the look.
 
 ## Files (in `assets/`)
 
-- **`cover-template.html`** — the parameterized template. Reads its content from
+- **[`cover-template.html`](assets/cover-template.html)** — the parameterized template. Reads its content from
   URL query params (so one file renders every cover). Self-contained: system
   fonts only, inline SVG motifs, no network.
-- **`render.sh`** — render one cover: `render.sh <out.webp> "<url-encoded query>"`.
+- **[`render.sh`](assets/render.sh)** — render one cover: `render.sh <out.webp> "<url-encoded query>"`.
 
 ## Pipeline
 
@@ -85,7 +85,7 @@ Naming convention: the generated hero is always `cover.webp`; real screenshots a
 3. In `projects.ts` show the real screenshot(s) in the detail gallery:
    `images: { cover: assets.projects.foo.cover, photos: [...assets.projects.foo.gallery] }`
    (use `photos: []` for a cover-only project with no screenshot).
-4. `bun run lint && bun run build`, then eyeball `/projects` + `/projects/<id>`.
+4. `bun run gate`, then eyeball `/projects` + `/projects/<id>`.
 
 ## Notes
 

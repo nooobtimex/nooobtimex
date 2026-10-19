@@ -7,7 +7,7 @@ export default tseslint.config(
 	js.configs.recommended,
 	...tseslint.configs.recommended,
 	{
-		ignores: ['node_modules', '.next', 'dist', 'tailwind.config.ts', 'next-env.d.ts']
+		ignores: ['node_modules', '.next', 'dist', 'tailwind.config.ts', 'next-env.d.ts', '.claude/skills/update-docs/**']
 	},
 	{
 		files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],

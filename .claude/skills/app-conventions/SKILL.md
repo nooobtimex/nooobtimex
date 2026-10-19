@@ -7,6 +7,8 @@ description: >-
   layer. Use when adding or editing a route, page, layout, or the GitHub stats
   page, when wiring an external fetch, or when a reviewer asks how `app/` code
   "should" look here.
+paths:
+  - 'app/**'
 ---
 
 # App conventions (`app/`, Next.js 16 App Router, port 1000)
@@ -16,7 +18,7 @@ server runs on **port 1000**, and the whole site renders the `common/` data laye
 When these conflict with a quick fix, follow these. Cross-references: root
 [`CLAUDE.md`](../../../CLAUDE.md),
 [`/common-conventions`](../common-conventions/SKILL.md) (the data the pages render),
-[`/portfolio-content`](../portfolio-content/SKILL.md), and the UI rule
+[`/add-content`](../add-content/SKILL.md), and the UI rule
 [`.claude/rules/design-system.md`](../../rules/design-system.md).
 
 ## 1. Route groups & layouts
@@ -59,10 +61,10 @@ casts internally — prefer it for navigation (see the design-system rule).
 ## 4. Dynamic routes
 
 The detail routes are catch-alls: `projects/[...id]`, `skills/[...id]`,
-`experience/[...id]`. Map a slug back to its data object with `slugify` /
-`unslugify` from [`lib/utils.ts`](../../../lib/utils.ts) (which also holds `cn`
-and `formatExperienceDuration`). An item's `id` is already url-safe → it **is** the
-route segment.
+`career/[...id]`. An item's `id` is already url-safe → it **is** the route segment —
+never `slugify(name)` (the `seo-invariants` rule, invariant 4). `slugify` / `unslugify`
+still live in [`lib/utils.ts`](../../../lib/utils.ts) beside `cn` and
+`formatExperienceDuration`, but no route uses them.
 
 ## 5. GitHub data — token-free + ISR
 
@@ -96,7 +98,7 @@ targets or route types look wrong, `rm -rf .next` then rebuild.
 ## 7. Pre-PR checklist
 
 ```bash
-bun run lint && bun run build
+bun run gate
 ```
 
 `build` (~79 routes) is the type-check + prerender gate — an env or data-shape

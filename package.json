@@ -20,7 +20,9 @@
 		"readme:assets": "bun run scripts/readme/generate.ts",
 		"seo:check": "bun run scripts/seo/check.ts",
 		"start": "next start -p 1000",
-		"typecheck": "next typegen && tsc --noEmit"
+		"typecheck": "next typegen && tsc --noEmit",
+		"check:agents": "bun .claude/skills/update-docs/scripts/check-agent-docs.ts",
+		"gate": "bun run lint && bun run build && bun run check:agents"
 	},
 	"dependencies": {
 		"@base-ui/react": "^1.8.0",

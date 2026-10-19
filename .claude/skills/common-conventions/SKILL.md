@@ -8,6 +8,8 @@ description: >-
   the lint+build gate. Use when adding or editing a skill, project, experience,
   organization, social link, asset, or enum, or when a reviewer asks how the data
   layer "should" look here.
+paths:
+  - 'common/**'
 ---
 
 # Common conventions (`common/`, the data layer)
@@ -18,7 +20,7 @@ is almost always a data-file edit, never a component edit. When these conflict w
 a quick fix, follow these — they encode the type-safety invariants the build relies
 on. Cross-references: root [`CLAUDE.md`](../../../CLAUDE.md),
 [`/app-conventions`](../app-conventions/SKILL.md),
-[`/portfolio-content`](../portfolio-content/SKILL.md) (the task recipes), and the
+[`/add-content`](../add-content/SKILL.md) (the task recipes), and the
 UI rule [`.claude/rules/design-system.md`](../../rules/design-system.md).
 
 Match the existing style: **tabs** indentation and one `const` per item.
@@ -153,7 +155,7 @@ bun run icons:generate
 Then the usual gate:
 
 ```bash
-bun run lint && bun run build
+bun run gate
 ```
 
 `build` is the type gate — a bad `SkillId`, a missing `assets.*` key, a widened

@@ -154,7 +154,7 @@ export interface Project {
 	/**
 	 * The project's signal color, as hex. Sampled from the real product's brand — the
 	 * live site's logo/UI where there is one — NOT invented. Drives the generated
-	 * `cover.webp` (see the `/cover` skill) and the 1:1 share card's chrome, so the
+	 * `cover.webp` (see the `/make-cover` skill) and the 1:1 share card's chrome, so the
 	 * two always agree. Keep them distinct so the set reads as a family.
 	 */
 	accent: string
