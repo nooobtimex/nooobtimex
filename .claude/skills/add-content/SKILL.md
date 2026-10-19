@@ -1,11 +1,11 @@
 ---
-name: portfolio-content
+name: add-content
 description: >-
-  Use when adding or editing portfolio CONTENT in the NooobtimeX repo — a
-  project, skill, experience/role, organization, social link, or image asset.
-  Covers the common/ data layer recipes, the SkillId/asset invariants, and the
-  lint+build gate so the change ships clean. Use proactively whenever a request
-  is "add my new project/role/skill" or "update my … on the site".
+  Recipes for adding or editing portfolio content in the NooobtimeX repo — a
+  project, skill, experience/role, organization, social link, or image asset —
+  with the common/ data layer invariants (SkillId, assets) and the gate, so the
+  change ships clean. Use when a request is "add my new project/role/skill" or
+  "update my … on the site", or when adding or editing any portfolio content.
 ---
 
 # Portfolio content
@@ -86,7 +86,7 @@ The canonical rules live in [`/common-conventions`](../common-conventions/SKILL.
 Run both and confirm green before declaring done:
 
 ```bash
-bun run lint && bun run build
+bun run gate
 ```
 
 `build` is the type check; a bad `SkillId`, missing asset key, or union typo

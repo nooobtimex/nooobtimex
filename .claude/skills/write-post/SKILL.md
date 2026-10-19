@@ -1,13 +1,12 @@
 ---
-name: blog-post
+name: write-post
 description: >-
-  Use when writing, promoting or editing a post in the NooobtimeX Journal
-  (`/blog`, `common/data/posts/<year>/`) — promoting a `draft: true` stub to a full
-  post, adding citations to an existing one, or planning a series. Covers the
-  full-tier AEO contract, the outbound-citation rules (what to cite, how to verify
-  it, inline vs. `sources`), the series gap rule, the voice spec, and the ship gate.
-  Use proactively whenever a request is "write the next article", "เขียนบทความ",
-  "promote a stub", or "add references/sources to a post".
+  How to write, promote or edit a post in the NooobtimeX Journal (`/blog`,
+  `common/data/posts/<year>/`) — the full-tier AEO contract, the outbound-citation
+  rules (what to cite, how to verify it, inline vs. `sources`), the series gap rule,
+  the voice spec and the ship gate. Use when promoting a `draft: true` stub, adding
+  citations to a post, planning a series, or when a request is "write the next
+  article", "เขียนบทความ", "promote a stub" or "add references/sources to a post".
 ---
 
 # Writing a Journal post
@@ -174,7 +173,7 @@ In the same commit that removes `draft: true`, set `publishedAt` to that day's d
 Revising an already-published post? Set `updatedAt` to the day of the revision.
 
 ```bash
-bun run lint && bun run build && bun run links:external && bun run llms:generate
+bun run gate && bun run links:external && bun run llms:generate
 ```
 
 `build` is `icons:check` → `next build` → `links:check` → `seo:check` → `bundle:check`. `llms:generate` is
