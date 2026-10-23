@@ -54,7 +54,7 @@ const defs: ServiceDef[] = [
 		blurb:
 			'A full-stack web app taken from idea to production — scoping, UI, API, database, auth and deploy, built by one engineer who owns all of it.',
 		icon: 'mdi:application-brackets-outline',
-		proofProjectIds: ['whenwe', 'qr-food', 'online-poker-game'],
+		proofProjectIds: ['wangpa', 'qr-food', 'online-poker-game'],
 		fastwork: { main: 'web-apps' }
 	},
 	{

@@ -562,6 +562,15 @@ const woocommerce = skill({
 	category: 'growth-management'
 })
 
+const lineLiff = skill({
+	id: 'line-liff',
+	description:
+		"LINE's front-end framework: web apps that open inside the LINE chat with the person's LINE sign-in, plus a picker that shares cards back into a chat. Thai groups already live in LINE, so nobody installs anything.",
+	name: 'LINE LIFF',
+	icon: 'simple-icons:line',
+	category: 'frontend'
+})
+
 // Display order (grouped by category). The literal tuple is what derives SkillId.
 const allSkills = [
 	// frontend
@@ -586,6 +595,7 @@ const allSkills = [
 	eslint,
 	vue,
 	nuxtjs,
+	lineLiff,
 	// backend
 	nodejs,
 	nestjs,

@@ -23,7 +23,7 @@ Enthusiastic and dedicated technologist focused on transforming business require
 
 Hire through Fastwork: https://fastwork.com/user/nooobtimex
 
-- Web apps & MVPs: A full-stack web app taken from idea to production — scoping, UI, API, database, auth and deploy, built by one engineer who owns all of it. Proof: WhenWe (https://nooobtimex.me/projects/whenwe); QR Food Platform (https://nooobtimex.me/projects/qr-food); Online Poker Game (https://nooobtimex.me/projects/online-poker-game)
+- Web apps & MVPs: A full-stack web app taken from idea to production — scoping, UI, API, database, auth and deploy, built by one engineer who owns all of it. Proof: ว่างป่ะ · Wangpa (https://nooobtimex.me/projects/wangpa); QR Food Platform (https://nooobtimex.me/projects/qr-food); Online Poker Game (https://nooobtimex.me/projects/online-poker-game)
 - Dashboards & internal tools: Admin consoles, data dashboards and role-based back-offices — maps, charts, CSV export and the permissions that keep each person on the right screen. Proof: Flood Project (https://nooobtimex.me/projects/flood-project); MONOMax EPL Licensing Portal (https://nooobtimex.me/projects/monomax-epl-portal)
 - Company & landing sites: Fast company and landing sites that render without JavaScript, index cleanly in search, and stay easy for your team to update. Proof: RS TROPHY (https://nooobtimex.me/projects/rs-trophy); 🚀 NooobtimeX — Profile Site (https://nooobtimex.me/projects/portfolio)
 - Deploy, infra & speed-ups: Docker and Railway deploys, build gates that stop a broken release, and fixes for apps that are slow or eat memory in production. Proof: 402 MB to 126 MB: what was actually in my Next.js container (https://nooobtimex.me/blog/container-rss-402-to-126); Build with Bun, serve with Node: dodging a standalone RSS leak (https://nooobtimex.me/blog/bun-builds-node-serves)
@@ -51,7 +51,7 @@ Read more: https://nooobtimex.me/career/ruamsuk-software-engineer-full-time
 
 ### Developer — Freelance (Jan 2024 - Present)
 
-Remote freelance software engineering — building web and mobile apps end-to-end, from scoping and design through full-stack delivery and deployment. Recent freelance builds include WhenWe (a privacy-first group scheduling app, in development), a flood / water-level monitoring dashboard (interactive station map, historical charts, CSV export, and role-based accounts), a real-time multiplayer game, and a QR-code restaurant ordering & multi-branch management platform. Open to select freelance web-app projects alongside my full-time role.
+Remote freelance software engineering — building web and mobile apps end-to-end, from scoping and design through full-stack delivery and deployment. Recent freelance builds include ว่างป่ะ (Wangpa, a LINE-first group scheduling app, in development), a flood / water-level monitoring dashboard (interactive station map, historical charts, CSV export, and role-based accounts), a real-time multiplayer game, and a QR-code restaurant ordering & multi-branch management platform. Open to select freelance web-app projects alongside my full-time role.
 
 Read more: https://nooobtimex.me/career/freelance
 
@@ -67,12 +67,12 @@ Read more: https://nooobtimex.me/career/ruamsuk-software-engineer-part-time
 
 ## Projects
 
-### WhenWe
+### ว่างป่ะ · Wangpa
 
-A privacy-first group scheduling app that shows couples, families and friend groups when everyone is free, without anyone sharing what is on their calendar. Each phone scrubs its calendar events down to busy start and end times before anything is uploaded; the server folds every member's busy blocks into a heatmap of who is free in each 30-minute slot and suggests the best times, and the group proposes, votes on and confirms a plan, while friends without the app RSVP from a web link. Built as a Bun monorepo: an Expo (React Native) app with an offline vote queue and live WebSocket updates, an Elysia API on MongoDB and Redis with passwordless email sign-in and rotating refresh tokens, and Next.js guest and admin sites, all built on one shared TypeScript package that holds the overlap engine, the bilingual English/Thai copy and the design tokens. Currently in pre-beta, running on Railway.
+A LINE-first group scheduling app for Thailand that shows a friend group or family when everyone is free, without anyone sharing what fills their week. It opens inside the LINE chat as a LIFF web app: one tap signs in with LINE, each person paints a private weekly schedule, and the group sees only busy or free in a shared heatmap with the best times suggested, then proposes, votes on and confirms a plan, and shares invites and plan cards back into the chat. Built as a Bun monorepo: a Next.js 16 web app that runs in LINE and in any browser, an Elysia API on MongoDB and Redis whose types the web and admin apps import through Eden, and an admin app, under strict TypeScript, maximised ESLint, real-store tests and Playwright at phone width. In development for a public launch in November 2026, running on Railway.
 
-- Stack: Expo, React Native, Bun.js, Elysia.js, MongoDB, Redis, Next.js, React, Tailwind CSS, Resend, Railway, Docker, WebSocket, TypeScript, Git/GitHub, Prettier, ESLint
-- Details: https://nooobtimex.me/projects/whenwe
+- Stack: LINE LIFF, Next.js, React, Tailwind CSS, Bun.js, Elysia.js, MongoDB, Redis, Docker, Railway, TypeScript, Git/GitHub, Prettier, ESLint
+- Details: https://nooobtimex.me/projects/wangpa
 
 ### MONOMax EPL Licensing Portal
 
@@ -392,7 +392,7 @@ Read more: https://nooobtimex.me/blog/started-job-and-degree-same-month
 
 ## Skills
 
-- frontend: Next.js, React, TypeScript, Tailwind CSS, Shadcn/ui, Radix UI, Base UI, Embla Carousel, TanStack Query, Recharts, Flutter, React Native, Expo, Prettier, CodeMirror, React Hook Form, Leaflet, Vitest, ESLint, Vue.js, Nuxt.js
+- frontend: Next.js, React, TypeScript, Tailwind CSS, Shadcn/ui, Radix UI, Base UI, Embla Carousel, TanStack Query, Recharts, Flutter, React Native, Expo, Prettier, CodeMirror, React Hook Form, Leaflet, Vitest, ESLint, Vue.js, Nuxt.js, LINE LIFF
 - backend: Node.js, Nest.js, NATS, Elysia.js, SSE, WebSocket, Bun.js, PostgreSQL, MongoDB, Prisma, Redis, BullMQ, Medusa, Zod, Better Auth, Clerk, NextAuth, Firebase, Supabase, Mercur
 - infrastructure: Vercel, Railway, Docker, Render, Tencent Cloud, CircleCI, Git/GitHub, MinIO, Resend, Cloudflare R2, AWS S3, Mailgun, Omise, Algolia
 - growth-management: SEO, AEO, GEO, JSON-LD, Google Analytics, Google Ads, Google Tag Manager, WordPress, WooCommerce
