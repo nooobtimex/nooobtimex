@@ -105,6 +105,8 @@ Naming convention: the generated hero is always `cover.webp`; real screenshots a
 - The template's fonts fall back to macOS system fonts (Avenir Next Condensed /
   Menlo) since Rajdhani/JetBrains-Mono aren't installed — that's expected and looks
   right in raster.
+- A title with Thai in it gets looser lines automatically (tone marks rise above the cap
+  height); put the Thai line first so its marks clear the kicker.
 
 ## Per-project config used for the current set (reuse / tweak these)
 
@@ -116,8 +118,8 @@ project** — cross-check `activeSkills` in `common/data/projects.ts`, and prefe
 from that project's `highlightSkills`, which is already the curated signature list.
 
 ```
-whenwe              accent #3AD198  motif dots     title When|We             kicker // GROUP SCHEDULING     badge ● In Development  tags Expo,React Native,Elysia,MongoDB
-                    subtitle Free-time heatmap · No calendars shared  badgeSub Pre-Beta  meta FREELANCE // 2026
+wangpa              accent #5CCF95  motif dots     title ว่างป่ะ|Wangpa      kicker // GROUP SCHEDULING ON LINE  badge ● In Development  tags LINE LIFF,Next.js,Elysia,MongoDB
+                    subtitle Who is free, inside LINE · Busy-only privacy  badgeSub Launch Nov 2026  meta FREELANCE // 2026
 monomax-epl-portal  accent #EE5E25  motif qr       title MONOMax|EPL Portal  kicker // LICENSING SAAS       badge ● SaaS      tags Next.js,MongoDB,Better-Auth,Docker
 rs-trophy           accent #FCEE0A  motif trophy   title RS|Trophy           kicker // E-COMMERCE PLATFORM  badge ● Live      tags Bun,Next.js,Elysia,MongoDB,R2
 looklook-pet        accent #FF7D5A  motif hex      title LOOKLOOK|Pet        kicker // MARKETPLACE          badge ● Live      tags NestJS,Medusa,Omise,Next.js

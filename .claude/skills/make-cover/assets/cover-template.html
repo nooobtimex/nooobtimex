@@ -350,6 +350,8 @@
 			// Shrink title if it's a very long single line
 			const tEl = document.getElementById('title')
 			if (title.length === 1 && title[0].length > 12) tEl.style.fontSize = '112px'
+			// Thai tone marks rise above the cap height, so a Thai title needs looser lines
+			if (/[\u0E00-\u0E7F]/.test(title.join(''))) Object.assign(tEl.style, { lineHeight: '1', marginTop: '40px' })
 			document.title = 'ready'
 		</script>
 	</body>
