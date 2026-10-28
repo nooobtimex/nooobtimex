@@ -107,14 +107,11 @@ const MobileTabBar: React.FC<MobileTabBarProps> = ({ hireUrl }) => {
 					</ul>
 					<a
 						href={hireUrl}
-						target='_blank'
-						rel='noopener noreferrer'
 						onClick={closeMenu}
 						className={cn(cyberButtonVariants({ size: 'lg' }), 'w-full justify-center')}>
 						<Icon icon='mdi:handshake-outline' />
-						Hire me on Fastwork
+						Hire me by email
 						<Icon icon='mdi:arrow-top-right' />
-						<span className='sr-only'> (opens in a new tab)</span>
 					</a>
 					<div className='flex justify-center gap-4'>
 						{LEGAL_LINKS.map(l => (

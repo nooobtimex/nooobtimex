@@ -10,8 +10,7 @@ import { personalData, servicesData } from '@/common'
 
 /**
  * Home "What I build" — the freelance offerings, each followed by the shipped work that
- * proves it and the Fastwork service that sells it. Every card's link is the same
- * profile link, so what makes each one worth having is the quoted service title: it tells the client which one to open on arrival.
+ * proves it and the hire link.
  */
 const ServicesSection: React.FC = () => (
 	<section className='mt-20'>
@@ -44,30 +43,10 @@ const ServicesSection: React.FC = () => (
 						<div className='border-border/60 mt-5 border-t pt-4'>
 							<a
 								href={personalData.hire.url}
-								target='_blank'
-								rel='noopener'
 								className='text-cyber-yellow hover:text-cyber-cyan inline-flex items-center gap-1.5 font-mono text-xs font-bold tracking-[0.2em] uppercase transition-colors'>
-								Hire on Fastwork
+								Hire me
 								<CyberIcon icon='mdi:arrow-top-right' className='size-3.5' />
 							</a>
-							{s.fastwork.main && (
-								<p className='mt-2 text-xs leading-snug'>
-									<span className='text-muted-foreground font-mono text-[0.65rem] tracking-wider uppercase'>Open </span>
-									<span lang='th' className='break-words'>
-										“{s.fastwork.main.title}”
-									</span>
-								</p>
-							)}
-							{s.fastwork.also && (
-								<p className='text-muted-foreground mt-1.5 text-xs leading-snug'>
-									<span className='font-mono text-[0.65rem] tracking-wider uppercase'>
-										{s.fastwork.main ? 'or ' : 'Related '}
-									</span>
-									<span lang='th' className='break-words'>
-										“{s.fastwork.also.title}”
-									</span>
-								</p>
-							)}
 						</div>
 					</NeonPanel>
 				</MotionReveal>

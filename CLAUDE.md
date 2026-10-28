@@ -1,8 +1,8 @@
 # NooobtimeX — Claude Code guide
 
 > Wongsaphat Puangsorn's personal profile — a content-driven site with a **Cyberpunk 2077** visual theme
-> whose one job is winning freelance work: every "Hire me" control opens his Fastwork link
-> (`personalData.hire.url`). Next.js 16 (App Router, Turbopack) · React 19 · TypeScript 7 (paired with TS 6)
+> whose one job is winning freelance work: every "Hire me" control opens an email to him
+> (`personalData.hire.url`, a `mailto:`). Next.js 16 (App Router, Turbopack) · React 19 · TypeScript 7 (paired with TS 6)
 > · Tailwind v4 · shadcn/ui on Base UI · Bun. Fonts: Rajdhani (display), JetBrains Mono (mono), Noto Thai.
 > Deployed on **Railway** only. This repo is **public**.
 

@@ -45,10 +45,10 @@ const CyberButton: React.FC<CyberButtonProps> = ({ variant, size, className, chi
 			external?: boolean
 		} & React.AnchorHTMLAttributes<HTMLAnchorElement>
 
-		// A download must reach the browser's own download handler. next/link would
-		// intercept the click and route instead, and target='_blank' would flash a
-		// tab, so a save-file link gets a plain anchor.
-		if (rest.download !== undefined) {
+		// A download or a mailto:/tel: link must reach the browser's own handler. next/link
+		// would intercept the click and route instead, and target='_blank' would flash a
+		// tab, so these get a plain anchor.
+		if (rest.download !== undefined || /^(mailto|tel):/.test(href)) {
 			return (
 				<a href={href} className={classes} {...rest}>
 					{children}

@@ -28,7 +28,7 @@ import {
 	servicesData,
 	skillsData
 } from '../../common'
-import { formatExperienceDuration, formatPosition } from '../../lib/utils'
+import { formatExperienceDuration, formatPosition, hireLinkLabel } from '../../lib/utils'
 
 const SITE_URL = 'https://nooobtimex.me'
 const DISPLAY_NAME =
@@ -51,7 +51,7 @@ function build(): string {
 	out.push(`- Location: ${personalData.contact.location}`)
 	out.push(`- Contact: ${personalData.contact.email}`)
 	out.push(`- Availability: ${oneLine(personalData.contact.availability)}`)
-	out.push(`- Hire: ${personalData.hire.url} (${personalData.hire.platform} — the only way to hire for freelance work)`)
+	out.push(`- Hire: ${hireLinkLabel(personalData.hire.url)} (email — the way to hire for freelance work)`)
 	out.push(`- Languages: ${personalData.languages.map(l => `${l.name} (${l.level})`).join(', ')}`)
 	out.push('')
 
@@ -62,7 +62,7 @@ function build(): string {
 
 	out.push('## Freelance services')
 	out.push('')
-	out.push(`Hire through ${personalData.hire.platform}: ${personalData.hire.url}`)
+	out.push(`Hire by email: ${hireLinkLabel(personalData.hire.url)}`)
 	out.push('')
 	for (const svc of servicesData) {
 		const proof = svc.proof
@@ -144,7 +144,6 @@ function build(): string {
 	out.push('## Links')
 	out.push('')
 	for (const link of personalData.socialLinks) out.push(`- ${link.platform}: ${link.url}`)
-	out.push(`- fastwork (hire): ${personalData.hire.url}`)
 	out.push('')
 
 	return out.join('\n')

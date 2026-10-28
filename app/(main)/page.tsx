@@ -36,11 +36,7 @@ const jsonLd = {
 		'addressLocality': personalData.contact.location,
 		'addressCountry': 'TH'
 	},
-	// The Fastwork profile: `sameAs` names an identity page.
-	'sameAs': [
-		...personalData.socialLinks.filter(s => s.platform !== 'email').map(s => s.url),
-		personalData.hire.profileUrl
-	],
+	'sameAs': personalData.socialLinks.filter(s => s.platform !== 'email').map(s => s.url),
 	'knowsLanguage': personalData.languages.map(l => ({
 		'@type': 'Language',
 		'name': l.name,

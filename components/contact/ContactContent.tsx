@@ -41,8 +41,8 @@ const ContactContent: React.FC = () => {
 				<GlitchText text='Contact' />
 			</h1>
 			<p className='text-muted-foreground mt-5 max-w-2xl text-base leading-relaxed'>
-				Every project starts with a message on Fastwork — chat, agree on scope, and pay through the platform. For
-				anything else, the card and channels further down reach me directly.
+				Every project starts with an email — tell me what you need, and I reply with the scope, a timeline and a quote.
+				For anything else, the card and channels further down reach me directly.
 			</p>
 
 			<div className='mt-6 flex flex-wrap gap-2'>
@@ -54,14 +54,12 @@ const ContactContent: React.FC = () => {
 				</CyberTag>
 			</div>
 
-			{/* PRIMARY — FASTWORK. The page's one call to action, so it sits straight under the
+			{/* PRIMARY — EMAIL. The page's one call to action, so it sits straight under the
 			    header and renders eagerly: never inside MotionReveal, which starts at opacity 0. */}
 			<NeonPanel variant='yellow' className='mt-10 p-6 md:p-8'>
-				<p className='text-cyber-yellow font-mono text-xs tracking-[0.3em] uppercase'>// Hire on Fastwork</p>
+				<p className='text-cyber-yellow font-mono text-xs tracking-[0.3em] uppercase'>// Hire by email</p>
 				<a
 					href={personalData.hire.url}
-					target='_blank'
-					rel='noopener noreferrer'
 					className='font-display hover:text-cyber-yellow mt-3 block text-lg font-bold tracking-wide break-all transition-colors sm:text-2xl md:text-3xl'>
 					{HIRE_LINK_LABEL}
 				</a>
@@ -100,8 +98,8 @@ const ContactContent: React.FC = () => {
 					and shipped through GitHub CI/CD.
 				</p>
 				<p className='text-muted-foreground mt-4 max-w-3xl text-base leading-relaxed'>
-					Projects start on Fastwork, so the scope, the quote and the payment all live in one place. The card and
-					channels below are for everything else, badged with whether they work inside mainland China.
+					Projects start by email, so the scope and the quote live in one thread. The card and channels below are for
+					everything else, badged with whether they work inside mainland China.
 				</p>
 			</div>
 

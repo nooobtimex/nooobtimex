@@ -60,7 +60,7 @@ export const personalData: PersonalData = {
 	title: 'Chief Technology Officer',
 	heroRole: 'Software Engineer',
 	pitch:
-		'I build production web apps end to end — scope, UI, API, database and deploy — as the one engineer who owns all of it. Remote from Thailand, hired through Fastwork.',
+		'I build production web apps end to end — scope, UI, API, database and deploy — as the one engineer who owns all of it. Remote from Thailand.',
 	tagline:
 		'Chief Technology Officer at RS Trophy, owning full-stack engineering and infrastructure end to end — freelancing remotely as a software engineer on web app projects on the side.',
 	avatar: assets.personal.avatar,
@@ -78,8 +78,7 @@ export const personalData: PersonalData = {
 		email: 'nooobtimex@gmail.com',
 		phone: '+66855877024',
 		location: 'Pak Kret District, Nonthaburi',
-		availability:
-			'Open for remote freelance web app projects alongside my full-time role as CTO at RS Trophy — hire me through Fastwork',
+		availability: 'Open for remote freelance web app projects alongside my full-time role as CTO at RS Trophy',
 		locality: 'Pak Kret, Nonthaburi',
 		country: 'Thailand',
 		givenName: 'Wongsaphat',
@@ -128,10 +127,8 @@ export const personalData: PersonalData = {
 		}
 	],
 	hire: {
-		url: 'https://fastwork.com/user/nooobtimex',
-		platform: 'Fastwork',
-		profileUrl: 'https://fastwork.com/user/nooobtimex',
-		label: 'Hire me on Fastwork'
+		url: 'mailto:nooobtimex@gmail.com?subject=Web%20app%20project',
+		label: 'Hire me by email'
 	},
 	contactChannels
 }

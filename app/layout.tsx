@@ -56,7 +56,6 @@ export const metadata: Metadata = {
 		'Freelance Software Engineer',
 		'Freelance Web Developer',
 		'Hire Web Developer Thailand',
-		'Fastwork',
 		'Thailand',
 		'Full-Stack',
 		'Next.js',

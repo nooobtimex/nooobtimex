@@ -39,11 +39,11 @@ export function formatMilestoneDate(date: string): string {
 }
 
 /**
- * The hire link as text a person can read, copy or type — `fastwork.com/user/nooobtimex`.
- * Any query string is dropped for legibility.
+ * The hire link as text a person can read, copy or type — `nooobtimex@gmail.com`.
+ * The scheme and any query string (a prefilled subject) are dropped for legibility.
  */
 export function hireLinkLabel(url: string): string {
-	return url.replace(/^https?:\/\//, '').replace(/\?.*$/, '')
+	return url.replace(/^(https?:\/\/|mailto:)/, '').replace(/\?.*$/, '')
 }
 
 /** Format a kebab-case position id for display, e.g. 'chief-technology-officer' → 'Chief Technology Officer'. */

@@ -8,29 +8,28 @@ import HireButton from '@/components/hire/HireButton'
 import { cn, hireLinkLabel } from '@/lib/utils'
 import { personalData } from '@/common'
 
-/** `fastwork.com/user/…` — the hire link as text. */
+/** `nooobtimex@gmail.com` — the hire link as text. */
 export const HIRE_LINK_LABEL = hireLinkLabel(personalData.hire.url)
 
 /*
- * Kept to what is true of every Fastwork hire: chatting is free, the deal is agreed on
- * the platform, and payment runs through it. Nothing here promises a specific
- * buyer-protection term — those are Fastwork's to state, and they change.
+ * Kept to what is true of every hire: asking is free, and the scope and quote are agreed
+ * before any work starts. No payment terms here — those are set per project, in the quote.
  */
 const STEPS = [
 	{
 		icon: 'mdi:chat-outline',
-		title: 'Chat on Fastwork',
+		title: 'Email me',
 		body: 'Tell me what you need. Asking costs nothing and commits you to nothing.'
 	},
 	{
 		icon: 'mdi:file-document-edit-outline',
 		title: 'Agree on scope',
-		body: 'I reply with the scope, a timeline and a quote you accept on Fastwork.'
+		body: 'I reply with the scope, a timeline and a quote for you to accept.'
 	},
 	{
 		icon: 'mdi:rocket-launch-outline',
 		title: 'Build & ship',
-		body: 'Payment runs through Fastwork. I build, deploy and hand it over.'
+		body: 'I build, deploy and hand it over.'
 	}
 ] as const
 
@@ -53,7 +52,7 @@ export const HireSteps: React.FC<{ className?: string }> = ({ className }) => (
 /** Small print under a hire button: where it goes, before the click. */
 export const HireDestination: React.FC<{ className?: string }> = ({ className }) => (
 	<p className={cn('text-muted-foreground font-mono text-[0.65rem] tracking-wider uppercase', className)}>
-		Opens {HIRE_LINK_LABEL} in a new tab
+		Opens an email to {HIRE_LINK_LABEL}
 	</p>
 )
 
@@ -72,7 +71,7 @@ export const HireStrip: React.FC<{ heading: string; className?: string }> = ({ h
 			<p className='text-cyber-yellow font-mono text-[0.65rem] tracking-[0.3em] uppercase'>// Open for freelance</p>
 			<p className='font-display mt-1 text-xl font-bold tracking-wide uppercase md:text-2xl'>{heading}</p>
 			<p className='text-muted-foreground mt-1 text-sm'>
-				Remote web app work, scoped and shipped end to end — start with a message on Fastwork.
+				Remote web app work, scoped and shipped end to end — start with an email.
 			</p>
 		</div>
 		<HireButton className='shrink-0' />

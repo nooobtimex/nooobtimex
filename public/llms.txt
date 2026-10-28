@@ -8,8 +8,8 @@ Enthusiastic and dedicated technologist focused on transforming business require
 - Current role: Chief Technology Officer at RUAMSUK PLATING LIMITED PARTNERSHIP
 - Location: Pak Kret District, Nonthaburi
 - Contact: nooobtimex@gmail.com
-- Availability: Open for remote freelance web app projects alongside my full-time role as CTO at RS Trophy — hire me through Fastwork
-- Hire: https://fastwork.com/user/nooobtimex (Fastwork — the only way to hire for freelance work)
+- Availability: Open for remote freelance web app projects alongside my full-time role as CTO at RS Trophy
+- Hire: nooobtimex@gmail.com (email — the way to hire for freelance work)
 - Languages: Thai (Native), English (Professional working)
 
 ## Highlights
@@ -21,7 +21,7 @@ Enthusiastic and dedicated technologist focused on transforming business require
 
 ## Freelance services
 
-Hire through Fastwork: https://fastwork.com/user/nooobtimex
+Hire by email: nooobtimex@gmail.com
 
 - Web apps & MVPs: A full-stack web app taken from idea to production — scoping, UI, API, database, auth and deploy, built by one engineer who owns all of it. Proof: ว่างป่ะ · Wangpa (https://nooobtimex.me/projects/wangpa); QR Food Platform (https://nooobtimex.me/projects/qr-food); Online Poker Game (https://nooobtimex.me/projects/online-poker-game)
 - Dashboards & internal tools: Admin consoles, data dashboards and role-based back-offices — maps, charts, CSV export and the permissions that keep each person on the right screen. Proof: Flood Project (https://nooobtimex.me/projects/flood-project); MONOMax EPL Licensing Portal (https://nooobtimex.me/projects/monomax-epl-portal)
@@ -413,4 +413,3 @@ Read more: https://nooobtimex.me/blog/started-job-and-degree-same-month
 - instagram: https://www.instagram.com/nooobtimex
 - email: mailto:nooobtimex@gmail.com
 - website: https://nooobtimex.me
-- fastwork (hire): https://fastwork.com/user/nooobtimex

@@ -32,8 +32,7 @@ const STACK_SLOTS = 19
  * Card-only availability blurb. Mirrors `personalData.contact.availability` minus
  * its "as CTO at RS Trophy" clause — see the file header for why.
  */
-const AVAILABILITY =
-	'Open for remote freelance web app projects — full-stack, shipped end to end, hired through Fastwork.'
+const AVAILABILITY = 'Open for remote freelance web app projects — full-stack, shipped end to end.'
 
 /** Where a card viewer goes to hire — the hire link as text, since a PNG cannot carry a link. */
 const HIRE_AT = hireLinkLabel(personalData.hire.url)

@@ -108,15 +108,11 @@ const NavBar: React.FC<NavBarProps> = ({ hireUrl }) => {
 						</button>
 						{/* The site's one ask, on every page and at every width — the header is the only
 						    control a visitor never scrolls past. */}
-						<a
-							href={hireUrl}
-							target='_blank'
-							rel='noopener noreferrer'
-							className={cn(cyberButtonVariants({ size: 'sm' }), 'shrink-0 whitespace-nowrap')}>
+						<a href={hireUrl} className={cn(cyberButtonVariants({ size: 'sm' }), 'shrink-0 whitespace-nowrap')}>
 							<Icon icon='mdi:handshake-outline' className='size-4' />
 							Hire me
 							<Icon icon='mdi:arrow-top-right' className='size-3.5' />
-							<span className='sr-only'> on Fastwork (opens in a new tab)</span>
+							<span className='sr-only'> by email</span>
 						</a>
 					</div>
 				</Container>

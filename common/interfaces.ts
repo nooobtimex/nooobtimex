@@ -3,7 +3,6 @@
  */
 // Type-only — erased at compile time, so the interfaces → data/skills → interfaces
 // cycle never exists at runtime. It buys `Post.skills` the same typo safety projects get.
-import type { FastworkId } from './data/services'
 import type { SkillId } from './data/skills'
 import {
 	EmploymentType,
@@ -283,31 +282,17 @@ export interface SkillNote {
 
 /**
  * The site's single hire route. Every "Hire me" control reads `url` from here — the nav
- * button, the home hero, the hire bands, /contact and the freelance org — so moving to a
- * different platform is one edit.
+ * button, the home hero, the hire bands, /contact, the CV and the deck — so changing the
+ * route is one edit.
  */
 export interface Hire {
-	/** Fastwork profile link every "Hire me" control opens. Use it verbatim. */
+	/**
+	 * The `mailto:` link every "Hire me" control opens, subject prefilled. Use it verbatim;
+	 * for readable text use `hireLinkLabel(url)` from `lib/utils`.
+	 */
 	url: string
-	platform: 'Fastwork'
-	/**
-	 * Canonical public profile — JSON-LD `sameAs`. Same address as `url`. For readable text
-	 * use `hireLinkLabel(url)` from `lib/utils`.
-	 */
-	profileUrl: string
-	/** Button label, e.g. 'Hire me on Fastwork'. */
+	/** Button label, e.g. 'Hire me by email'. */
 	label: string
-}
-
-/** One service published on the Fastwork profile, as a client sees it there. */
-export interface FastworkListing {
-	/** Fastwork's own title (Thai), shown on the card so the client knows which service to open. */
-	title: string
-	/**
-	 * The public listing page — deliberately never a link target; cards link to the profile.
-	 * Absent while Fastwork is still reviewing the service.
-	 */
-	listingUrl?: string
 }
 
 /** A freelance offering as authored in `common/data/services.ts`. */
@@ -321,9 +306,7 @@ export interface ServiceDef {
 	proofProjectIds: string[]
 	/** Journal posts that prove it — validated against `postsData` at build time. */
 	proofPostIds?: string[]
-	/** The Fastwork services this card sells. Neither set → the card points at the profile alone. */
-	fastwork: { main?: FastworkId; also?: FastworkId }
-	/** Keep the card off the site — e.g. its Fastwork service is still under review. */
+	/** Keep the card off the site — e.g. no demo of it has shipped yet. */
 	hidden?: boolean
 }
 
@@ -334,10 +317,9 @@ export interface ServiceProof {
 	label: string
 }
 
-/** A service with its proof ids resolved to labelled links and its Fastwork ids to listings. */
-export interface Service extends Omit<ServiceDef, 'proofProjectIds' | 'proofPostIds' | 'fastwork' | 'hidden'> {
+/** A service with its proof ids resolved to labelled links. */
+export interface Service extends Omit<ServiceDef, 'proofProjectIds' | 'proofPostIds' | 'hidden'> {
 	proof: ServiceProof[]
-	fastwork: { main?: FastworkListing; also?: FastworkListing }
 }
 
 /** Global personal information */

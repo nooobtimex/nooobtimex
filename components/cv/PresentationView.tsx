@@ -217,12 +217,8 @@ const PresentationView: React.FC<{ data: PresentationData }> = ({ data }) => {
 					<h2 className='font-display neon-text-yellow text-4xl font-bold tracking-wide uppercase md:text-6xl'>
 						Let&apos;s build
 					</h2>
-					{/* The deck's one ask — the same Fastwork link as every hire button on the site. */}
-					<a
-						href={data.personal.hire.url}
-						target='_blank'
-						rel='noopener noreferrer'
-						className={cn(cyberButtonVariants({ size: 'lg' }), 'mt-8')}>
+					{/* The deck's one ask — the same email link as every hire button on the site. */}
+					<a href={data.personal.hire.url} className={cn(cyberButtonVariants({ size: 'lg' }), 'mt-8')}>
 						<Icon icon='mdi:handshake-outline' className='size-5' />
 						{data.personal.hire.label}
 						<Icon icon='mdi:arrow-top-right' className='size-4' />

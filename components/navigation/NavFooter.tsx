@@ -31,7 +31,7 @@ const NavFooter: React.FC = () => {
 						{personalData.name} // {personalData.heroRole}
 					</p>
 					<p className='text-muted-foreground mt-3 max-w-xs text-sm leading-relaxed'>
-						Production web apps, built end to end — remote, and hired through Fastwork.
+						Production web apps, built end to end — remote, from Thailand.
 					</p>
 					<HireButton size='sm' label='Hire me' className='mt-5' />
 					<HireDestination className='mt-2' />
