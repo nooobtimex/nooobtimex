@@ -23,8 +23,6 @@ import { droppingNextImageQualitiesTrap } from './dropping-next-image-qualities-
 import { eslintReactHooksV7CompilerRules } from './eslint-react-hooks-v7-compiler-rules'
 import { eventSourcingMyTechStack } from './event-sourcing-my-tech-stack'
 import { factoryBecameSearchable897Files } from './factory-became-searchable-897-files'
-import { fastworkPricingGapHole } from './fastwork-pricing-gap-hole'
-import { fastworkSellerCenterMechanics } from './fastwork-seller-center-mechanics'
 import { fieldsNoPhotographGivesYou } from './fields-no-photograph-gives-you'
 import { fifteenLocalesHreflangSitemap } from './fifteen-locales-hreflang-sitemap'
 import { files1621Kept35gbDeleted } from './files-1621-kept-3-5gb-deleted'
@@ -192,7 +190,6 @@ export const posts2026: PostDef[] = [
 	brokenTemplateLiteralShips,
 	cheapMakesYouInvisible,
 	factoryBecameSearchable897Files,
-	fastworkPricingGapHole,
 	fieldsNoPhotographGivesYou,
 	medalsAreAPortfolioNotACatalog,
 	scope81PercentNeverSayWhatsExcluded,
@@ -203,7 +200,6 @@ export const posts2026: PostDef[] = [
 	aiVerificationGateFailedOpen,
 	bullmqCustomIdColon,
 	eslintReactHooksV7CompilerRules,
-	fastworkSellerCenterMechanics,
 	iconifySpanUnderSsr,
 	lighthouse8862Published,
 	linksCheckBuildGate,
