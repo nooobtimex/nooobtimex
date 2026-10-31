@@ -5,7 +5,7 @@
  *
  * `[[kind:id]]` refs resolve their label from the data layer and link by `id` — the
  * exact value each detail route's `generateStaticParams` emits, so `links:check` can
- * never flag one (SEO invariant #3, held structurally). Unknown ids never reach here:
+ * never flag one (`seo-conventions` invariant 4, held structurally). Unknown ids never reach here:
  * `resolvePost` fails the build first.
  */
 import React from 'react'

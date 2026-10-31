@@ -10,8 +10,8 @@
  * in 26.7 MB of icon JSON to check 175 strings would reintroduce the cost this whole
  * pipeline exists to remove. It compares two key sets, nothing more.
  *
- * Compares PARSED CONTENT, not bytes: `bun run lint` runs `prettier . --write` with no
- * `.prettierignore`, so the artifact gets reformatted and a byte comparison would flap.
+ * Compares PARSED CONTENT, not bytes: `bun run lint` runs `bun fmt` with no `.prettierignore`
+ * entry for it, so the artifact gets reformatted and a byte comparison would flap.
  */
 import generated from '@/lib/og-icons.generated.json'
 import { requiredIcons } from './required'

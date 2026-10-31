@@ -6,13 +6,13 @@ const nextConfig: NextConfig = {
 	// Emits `.next/standalone` — a self-contained server.js plus only the traced
 	// node_modules. That is what lets the Railway image serve from a bare
 	// `node:26-slim` stage with no install step. Required by the deploy: see the
-	// Deployment section in CLAUDE.md before changing it.
+	// Docker bullet in AGENTS.md › Delivery contract before changing it.
 	output: 'standalone',
 	// No `next/image` anywhere — every asset in public/ is already WebP at a sane size,
 	// so the optimizer's main job was a no-op while it pulled sharp/libvips into the
 	// runtime container (~23 MB RSS on require, a 50 MB native cache, and a worker
 	// thread per HOST core — libvips reads the host, not the cgroup). Components use
-	// plain <img>; see the Images section in .claude/rules/design-system.md.
+	// plain <img>; see .agents/skills/design/references/images.md.
 	//
 	// This also retires a trap: `qualities: [100]` made every request near-lossless.
 	// No call site passed a `quality` prop, so Next defaulted to 75 and then snapped it
@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
 	// `next build`. Left on, Next would type-check a second time with TypeScript 6: the
 	// `typescript` package is aliased to @typescript/typescript6 because typescript-eslint
 	// still needs the compiler API TS 7 does not ship. Anything that calls `next build`
-	// directly must run `typecheck` first. See "TypeScript 6 + 7" in CLAUDE.md.
+	// directly must run `typecheck` first. See "TypeScript 6 + 7" in AGENTS.md.
 	typescript: { ignoreBuildErrors: true },
 	async redirects() {
 		// Only single-segment detail routes are redirected. Deeper paths (e.g.

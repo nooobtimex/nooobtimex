@@ -35,3 +35,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 package-lock.json
+
+# Claude Code session worktrees and per-machine settings
+.claude/worktrees/
+.claude/settings.local.json

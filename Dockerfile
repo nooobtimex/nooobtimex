@@ -3,7 +3,7 @@
 #
 # Bun installs dependencies; Node builds and serves.
 # ─── Stage 1: Install ────────────────────────────────────────────────────────
-FROM oven/bun:1.4.2-slim AS installer
+FROM oven/bun:1.4.4-slim AS installer
 WORKDIR /app
 
 # Manifests only, so this layer is cached until dependencies actually change.
@@ -25,7 +25,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # Bun runs the gates, Node runs the Next.js build. Same sequence as `bun run build`: the
 # repo has no CI, so this is the only place the post-build gates are guaranteed to run —
 # a broken internal link, content hidden in a streamed segment, or Journal post text in a
-# browser chunk fails the deploy. `typecheck` (TypeScript 7's native tsc) is the type
+# browser chunk fails the deploy. `typecheck` (`bun check`, Bun's built-in type checker) is the type
 # gate — next.config.ts sets `ignoreBuildErrors`, so `next build` alone checks nothing.
 RUN bun run icons:check && bun run typecheck && npx next build && bun run links:check && bun run seo:check && bun run bundle:check
 

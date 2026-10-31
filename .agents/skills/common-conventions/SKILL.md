@@ -18,10 +18,10 @@ The single source of truth for everything the site renders. It is barrel-exporte
 from `@/common`; pages/components only **map over** this data, so a content change
 is almost always a data-file edit, never a component edit. When these conflict with
 a quick fix, follow these — they encode the type-safety invariants the build relies
-on. Cross-references: root [`CLAUDE.md`](../../../CLAUDE.md),
-[`/app-conventions`](../app-conventions/SKILL.md),
-[`/add-content`](../add-content/SKILL.md) (the task recipes), and the
-UI rule [`.claude/rules/design-system.md`](../../rules/design-system.md).
+on. Cross-references: root [`AGENTS.md`](../../../AGENTS.md),
+the [`app-conventions`](../app-conventions/SKILL.md) skill,
+the [`add-content`](../add-content/SKILL.md) skill (the task recipes), and the
+[`design`](../design/SKILL.md) skill for UI.
 
 Match the existing style: **tabs** indentation and one `const` per item.
 
@@ -29,6 +29,7 @@ Match the existing style: **tabs** indentation and one `const` per item.
 
 Everything is re-exported through the barrel. Import the public surface, not a file.
 
+<!-- prettier-ignore -->
 ```ts
 // ✅ RIGHT
 import { skillById, projectsData, type SkillId } from '@/common'
@@ -96,55 +97,35 @@ the Satori social cards and the README SVGs — cannot fetch, so they read a cur
 subset committed at [`lib/og-icons.generated.json`](../../../lib/og-icons.generated.json)
 rather than the 26.7 MB `@iconify-json/*` packages. The same applies to any `icon:` in
 `personal.ts` (social links, contact channels) or a project's `timeline`. Forgetting
-fails `bun run build` with the missing name — see §8.
+fails `bun run build` with the missing name — see §6.
 
 ## 4. `assets.ts` is the single source of every image path
 
 [`common/data/assets.ts`](../../../common/data/assets.ts) is an `as const` map
-(`assets.site | personal | logos | projects`). Every image is **`.webp`** (except
-favicon / apple-touch / og-image). Put the file under `public/…`, add its path to
-the right group, and reference it as `assets.*` — never inline a string in a data
-file or component.
+(`assets.site | personal | logos | projects`). Every image is **`.webp`** — the favicon,
+apple-touch and manifest icons are `assets.site.logo`, and the social card is drawn by
+`app/opengraph-image.tsx`. Put the file under `public/…`, add its path to the right
+group, and reference it as `assets.*` — never inline a string in a data file or
+component.
 
 ```ts
 // ✅ RIGHT
-images: {
-	banner: assets.projects.rsTrophy.banner
-}
+images: { cover: assets.projects.rsTrophy.cover, photos: [...assets.projects.rsTrophy.gallery] }
 // ❌ WRONG — inline path, invisible to the asset map
-images: {
-	banner: '/issue/rs-trophy/banner.webp'
-}
+images: { cover: '/issue/rs-trophy/cover.webp', photos: [] }
 ```
 
-## 5. Projects — author a `ProjectDef`, ids resolve to `Skill`s
+## 5. Projects, experiences, entities, personal data
 
-In [`common/data/projects.ts`](../../../common/data/projects.ts) a project is a
-`ProjectDef` (`Omit<Project, 'skills'> & { skills: SkillId[] }`). List `skills` as
-**id strings** — they resolve to full `Skill`s via `skillById` when `projectsData`
-is built (and sorted newest-first by `sortByDateDesc`). Set `linkedOrganizationId`
-to an `EntityId` to tie a project to a company. Add the const to the `defs` array;
-feature it on the home page by adding its `id` to `featuredProjectIds`. `id` is
-url-safe → `/projects/<id>`.
+Author a project as a `ProjectDef` — `skills` and the timeline's `addedSkills` / `removedSkills` are `SkillId`
+strings, resolved to full `Skill`s when `projectsData` is built, and a role is an `ExperienceItem`. Both link to
+their roles and organisations by id (`linkedExperienceIds`, `EntityId`, `ExperienceId`), and a new id joins its
+union in `enums.ts` first. The authoring shapes, the resolver's rules and each file's lists
+(`defs`, `featuredProjectIds`, `entitiesData`, `personalData`) are in
+[`references/entities.md`](references/entities.md); the task recipes are in the
+[`add-content`](../add-content/SKILL.md) skill.
 
-## 6. Experiences & entities
-
-- [`common/data/experiences.ts`](../../../common/data/experiences.ts) — author
-  `ExperienceItem` consts (with `category: 'work' | 'education'`,
-  `YYYY-MM-DD` dates, omit `endDate` for a current role) and include each in the
-  source array → `experiencesData` (sorted desc) plus the
-  `workExperienceData` / `educationData` slices.
-- [`common/data/entities.ts`](../../../common/data/entities.ts) — `Organization`
-  consts → `entitiesData`, referenced by a project's `linkedOrganizationId`
-  (`EntityId`). Add the org **and** its `EntityId` to [`enums.ts`](../../../common/enums.ts) before linking.
-
-## 7. Personal data
-
-[`common/data/personal.ts`](../../../common/data/personal.ts) holds `personalData`
-(name, title, tagline, avatar, `socialLinks` keyed by `SocialPlatform`). Avatar/og
-paths come from `assets.*`.
-
-## 8. Pre-PR checklist
+## 6. Pre-PR checklist
 
 Touched an `icon:` anywhere in `common/data`? Regenerate the subset first:
 
