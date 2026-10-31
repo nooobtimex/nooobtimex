@@ -26,11 +26,15 @@
 ## Delivery contract
 
 - Base branch: `main`.
-- Gate: `bun run gate` = `lint` (`eslint . --fix && prettier . --write`) → `build` (`icons:check` →
+- Gate: `bun run gate` = `lint` (`eslint . --fix && bun fmt`) → `build` (`icons:check` →
   `typecheck` → `next build` → `links:check` → `seo:check` → `bundle:check`) → `check:agents`. Use
   `bun run build`, never `bun build` (Bun's own bundler builtin).
-- **Indentation is tabs** (Prettier `useTabs`).
-- **Docker:** bun installs (`oven/bun` slim image), node builds (`node:26-slim` with the bun binary copied in) and
+- **Indentation is tabs** (`useTabs` in `.prettierrc`, which `bun fmt` reads — import order and Tailwind class order
+  are built in, so no Prettier package is installed).
+- **Bun 1.4.4 is pinned** in `packageManager` and the Dockerfile's `oven/bun:1.4.4-slim` tag — move them together
+  (the `readme-assets` workflow's `setup-bun` reads `packageManager`). `bunfig.toml` holds `minimumReleaseAge = "3d"`,
+  so an install refuses a package version published less than 3 days ago.
+- **Docker:** bun installs (`oven/bun:1.4.4-slim`), node builds (`node:26-slim` with the bun binary copied in) and
   node serves — never serve on Bun (the standalone server leaks RSS, oven-sh/bun#27514). `MALLOC_ARENA_MAX`
   and `NODE_OPTIONS=--max-old-space-size` (0.6–0.75 × the service memory limit) are set in the runner only;
   the builder stays uncapped. Railway Root Directory stays `/`. Check a change the way Railway runs it:
@@ -39,8 +43,8 @@
   typescript-eslint caps `typescript` at `<6.1.0`, so `"typescript": "npm:@typescript/typescript6@…"` (bin
   `tsc6`) and `"@typescript/native": "npm:typescript@^7…"` (bin `tsc`). **Do not "fix" `typescript` back to
   `typescript@7`** until typescript-eslint supports TS 7 — that bump shipped once and was reverted (`f9d1f92`).
-  `next.config.ts` sets `typescript.ignoreBuildErrors`, so the type gate is `bun run typecheck` — never call
-  `next build` alone. If `node_modules/typescript/package.json` is not `@typescript/typescript6`,
+  `next.config.ts` sets `typescript.ignoreBuildErrors`, so the type gate is `bun run typecheck`
+  (`next typegen && bun check`, Bun's own checker, same errors as `tsc`) — never call `next build` alone. If `node_modules/typescript/package.json` is not `@typescript/typescript6`,
   `bun remove typescript` and re-add the alias.
 - Artifacts to regenerate and commit: `icons:generate` after an `icon:` change in `common/data`,
   `images:optimize` after adding to `public/`, `llms:generate` for `public/llms.txt`. `links:external` fetches
