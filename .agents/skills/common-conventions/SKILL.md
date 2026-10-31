@@ -29,6 +29,7 @@ Match the existing style: **tabs** indentation and one `const` per item.
 
 Everything is re-exported through the barrel. Import the public surface, not a file.
 
+<!-- prettier-ignore -->
 ```ts
 // ✅ RIGHT
 import { skillById, projectsData, type SkillId } from '@/common'

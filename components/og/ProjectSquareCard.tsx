@@ -139,7 +139,6 @@ const ProjectSquareCard: React.FC<ProjectSquareCardProps> = ({ project, cover })
 								{title}
 							</div>
 						</div>
-
 				}
 			</div>
 
