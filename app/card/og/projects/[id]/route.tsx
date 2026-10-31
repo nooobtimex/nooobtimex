@@ -18,7 +18,7 @@
  * reprints the same stack alongside what a static cover cannot carry: status and the URL.
  *
  * Prerendered for every project, so `pngDataUri`'s sharp import stays a build-time
- * cost and never reaches the runtime container. See the Deployment section in CLAUDE.md.
+ * cost and never reaches the runtime container. See AGENTS.md › Safety.
  */
 import { ImageResponse } from 'next/og'
 import { alpha, gridBackground, stripEmoji, truncate } from '@/components/og/card-primitives'

@@ -14,7 +14,7 @@ import { pageMetadata } from '@/lib/seo'
  */
 export const generateStaticParams = () => githubYears(new Date().getUTCFullYear() + 1).map(year => ({ year }))
 
-// An unknown year is a 404 at the routing layer, never a 200 "no data" page (CLAUDE.md, SEO #2).
+// An unknown year is a 404 at the routing layer, never a 200 "no data" page (the `seo-conventions` skill, invariant 2).
 export const dynamicParams = false
 
 /** Regenerated hourly, like `/github` — see the note there. */

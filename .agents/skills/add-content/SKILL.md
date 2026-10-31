@@ -17,9 +17,9 @@ so a content change is a data-file edit, almost never a component edit. Match th
 
 This skill is the "how do I add my new …" entry point. For the underlying type-safety
 rules (the `skill()`/`SkillId` invariant, the `assets` map, `ProjectDef` resolution),
-see [`/common-conventions`](../common-conventions/SKILL.md); for routing/pages see
-[`/app-conventions`](../app-conventions/SKILL.md); for UI components see the rule
-[`.claude/rules/design-system.md`](../../rules/design-system.md).
+see the [`common-conventions`](../common-conventions/SKILL.md) skill; for routing/pages see
+[`app-conventions`](../app-conventions/SKILL.md); for UI components see
+[`design`](../design/SKILL.md).
 
 ## Map: what lives where
 
@@ -48,7 +48,10 @@ see [`/common-conventions`](../common-conventions/SKILL.md); for routing/pages s
 1. Make sure every banner/photo path exists in `assets.ts` first (as `.webp`).
 2. In `projects.ts`, add `export const x: ProjectDef = { … }`. List `skills` as
    **`SkillId[]`** (string ids) — they resolve to full `Skill`s via `skillById`.
-   Set `linkedOrganizationId` to an `EntityId` if it ties to a company.
+   Link the role(s) it was delivered under with `linkedExperienceIds`, and set
+   `clientOrganizationId` / `viaOrganizationId` (an `EntityId`) if the client or delivering
+   company differs from the role's. The full shape is in
+   [`common-conventions`](../common-conventions/references/entities.md).
 3. Add `x` to the `defs` array. To feature it, add its id to `featuredProjectIds`.
 4. `id` is url-safe → `/projects/<id>`.
 
@@ -73,8 +76,8 @@ see [`/common-conventions`](../common-conventions/SKILL.md); for routing/pages s
 
 ## Invariants (do not skip)
 
-The canonical rules live in [`/common-conventions`](../common-conventions/SKILL.md)
-§3–4. The short version:
+The canonical rules live in the [`common-conventions`](../common-conventions/SKILL.md)
+skill, §3–4. The short version:
 
 - **Never** hardcode an image path outside `assets.ts` (§4).
 - **Never** widen the `skill()` literal — `SkillId` is derived from `allSkills` (§3).

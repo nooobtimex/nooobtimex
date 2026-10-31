@@ -16,10 +16,10 @@ paths:
 The canonical rules for `app/`. Routes are **typed** (`next` typedRoutes), the dev
 server runs on **port 1000**, and the whole site renders the `common/` data layer.
 When these conflict with a quick fix, follow these. Cross-references: root
-[`CLAUDE.md`](../../../CLAUDE.md),
-[`/common-conventions`](../common-conventions/SKILL.md) (the data the pages render),
-[`/add-content`](../add-content/SKILL.md), and the UI rule
-[`.claude/rules/design-system.md`](../../rules/design-system.md).
+[`AGENTS.md`](../../../AGENTS.md), the
+[`common-conventions`](../common-conventions/SKILL.md) skill (the data the pages render),
+the [`add-content`](../add-content/SKILL.md) skill, the [`design`](../design/SKILL.md) skill for UI and
+the [`seo-conventions`](../seo-conventions/SKILL.md) skill for what a route must declare.
 
 ## 1. Route groups & layouts
 
@@ -46,25 +46,26 @@ import type { Route } from 'next'
 ```
 
 Static literal hrefs (`/github`, `/skills`) need no cast. `CyberButton` already
-casts internally — prefer it for navigation (see the design-system rule).
+casts internally — prefer it for navigation (see the [`design`](../design/SKILL.md) skill).
 
 ## 3. Page composition
 
 - Wrap **every** page/section in `Container` — the one page-width wrapper. Never
   re-roll `max-w-… mx-auto px-…`; change width in one place.
 - Build UI from `components/cyber/` (`NeonPanel`, `SectionHeader`, `CyberButton`,
-  `GlitchText`, …), not raw markup — see [`.claude/rules/design-system.md`](../../rules/design-system.md).
+  `GlitchText`, …), not raw markup — see the [`design`](../design/SKILL.md) skill.
 - Use `MotionReveal` for scroll-in reveals.
 - Don't edit a page to show new content — add it to the `common/` data list the
-  page already maps over ([`/common-conventions`](../common-conventions/SKILL.md)).
+  page already maps over (the [`common-conventions`](../common-conventions/SKILL.md) skill).
 
 ## 4. Dynamic routes
 
 The detail routes are catch-alls: `projects/[...id]`, `skills/[...id]`,
-`career/[...id]`. An item's `id` is already url-safe → it **is** the route segment —
-never `slugify(name)` (the `seo-invariants` rule, invariant 4). `slugify` / `unslugify`
+`career/[...id]`, `companies/[...id]` and `blog/[...id]` (plus `github/[year]`). An item's
+`id` is already url-safe → it **is** the route segment — never `slugify(name)` (the
+[`seo-conventions`](../seo-conventions/SKILL.md) skill, invariant 4). `slugify` / `unslugify`
 still live in [`lib/utils.ts`](../../../lib/utils.ts) beside `cn` and
-`formatExperienceDuration`, but no route uses them.
+`formatExperienceDuration`, but no route uses them (the blog's `h2` anchors do).
 
 ## 5. GitHub data — token-free + ISR
 
@@ -101,5 +102,5 @@ targets or route types look wrong, `rm -rf .next` then rebuild.
 bun run gate
 ```
 
-`build` (~79 routes) is the type-check + prerender gate — an env or data-shape
-mistake surfaces there.
+`build` is the type-check + prerender gate (it ends with `links:check`, `seo:check` and
+`bundle:check`, which read the emitted pages) — an env or data-shape mistake surfaces there.

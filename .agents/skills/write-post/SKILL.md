@@ -59,31 +59,12 @@ on purpose: forcing a doc link into a narrative invents authority instead of sho
 
 Also enforced: `https` only, non-empty title, no duplicate URL within a post.
 
-### What to cite, in order of preference
+### What to cite, and how to link it
 
-1. **A real GitHub issue or PR** for a bug or upstream behaviour (`oven-sh/bun#27514`).
-   This is the strongest citation the Journal can carry — a named, dated, third-party
-   record that the problem was real and not a misconfiguration.
-2. **Official documentation**, deep-linked to the exact section
-   (`…/api-reference/components/image#qualities`). Fragments are wanted, not stripped.
-3. **A specification** — WHATWG, MDN, schema.org, ICU, RFC.
-4. **A canonical primary article** where the idea has one (Nygard on ADRs, Fowler on TDD).
-
-Never cite a blog aggregator, an SEO-farm rewrite, or a Stack Overflow answer when the
-doc it paraphrases exists.
-
-**Finding a real issue** — search the API, never guess a number:
-
-```bash
-curl -s "https://api.github.com/search/issues?q=$(python3 -c "import urllib.parse;print(urllib.parse.quote('repo:vercel/next.js notFound loading.tsx status 200 in:title,body type:issue'))")&per_page=5"
-```
-
-Then fetch the issue and read its title, body, state and author before citing it. An issue
-filed by **someone else** is worth more than one you filed: it is independent evidence the
-behaviour is real rather than a misconfiguration on this side, and it is worth saying so in
-the prose ("filed by someone I have never met"). If no issue matches the specific claim,
-cite nothing — an adjacent bug presented as the same one is a worse error than a missing
-link, because it reads as verified.
+In order of preference: a real GitHub issue or PR, official docs deep-linked to the section, a specification,
+a canonical primary article. Link inline in the sentence that makes the claim **and** list it in `sources`.
+How to find a real issue, the rules for the link text and the `nofollow` note are in
+[`references/citations.md`](references/citations.md).
 
 ### Verification is mandatory
 
@@ -104,24 +85,6 @@ Two rules that follow from this:
   `links:check` only validates hrefs starting with `/`.
 - **Cite the URL that answers, not the one that redirects.** Docs sites restructure
   constantly; the script prints `-> final` so you can record the destination.
-
-### Inline links vs. `sources`
-
-Do both. They are not the same job.
-
-- **Inline** `[plain text](https://…)` in the sentence that makes the claim. This is what
-  an answer engine reads as "this specific assertion is grounded". Anchor on words that
-  name the thing — `[Server-Sent Events](…) is exactly that shape`, `made it
-[a 200 instead of a 404](…)`.
-  **Link text must be plain.** The renderer does not tokenize inside link text, so
-  ``[`next-intl`](…)`` renders literal backticks.
-- **`sources`** is the reference list at the foot of the post, and feeds the
-  `citation` array of the `BlogPosting` JSON-LD (`lib/schema.ts`). Without it a reference
-  list is a visual footer only — a human sees the post is grounded and a machine sees an
-  unsourced opinion.
-
-Both render with `target="_blank" rel="noopener noreferrer"` automatically. Do not add
-`nofollow`: citing authoritative docs is the point.
 
 ## 4. The full-tier contract
 
@@ -163,9 +126,9 @@ each one a build error:
 - **Argue against your own case.** Every post carries a section that states the honest
   counterargument, the cost paid, or the thing the author got wrong. A post with no
   self-criticism is not finished.
-- English only. Respect the editorial risk rules in project memory (no ventures, no
-  private family matters, no money or health figures, no client names beyond what the
-  site already publishes).
+- English only. Respect Kwan's editorial risk rules: no ventures, no private family
+  matters, no money or health figures, no client names beyond what the site already
+  publishes.
 
 ## 6. Ship
 
@@ -176,8 +139,8 @@ Revising an already-published post? Set `updatedAt` to the day of the revision.
 bun run gate && bun run links:external && bun run llms:generate
 ```
 
-`build` is `icons:check` → `next build` → `links:check` → `seo:check` → `bundle:check`. `llms:generate` is
-**not** in the build — regenerate and commit `public/llms.txt`, or it goes stale silently.
+The `build` chain is in [`AGENTS.md`](../../../AGENTS.md) › Delivery contract. `llms:generate` is **not** in
+the build — regenerate and commit `public/llms.txt`, or it goes stale silently.
 
 Then verify what actually shipped: published count rose, the series strip reads
 "Part N of M", `/sitemap.xml` holds exactly the non-draft posts, and the new slugs render.
