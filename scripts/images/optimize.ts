@@ -23,7 +23,7 @@ import sharp from 'sharp'
 const PUBLIC = join(process.cwd(), 'public')
 
 /**
- * Matches `.claude/skills/make-cover/assets/render.sh` (`cwebp -q 88`), so generated covers
+ * Matches `.agents/skills/make-cover/assets/render.sh` (`cwebp -q 88`), so generated covers
  * and normalized ones stay consistent. Measured against the previous encodes at 39.0 dB
  * PSNR — indistinguishable from q92, which costs 15% more bytes for nothing.
  */
