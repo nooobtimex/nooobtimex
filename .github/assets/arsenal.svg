@@ -1,18 +1,18 @@
-<svg viewBox="0 0 1000 372" width="1000" height="372" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Skill arsenal: 64 skills across 4 categories">
+<svg viewBox="0 0 1000 372" width="1000" height="372" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Skill arsenal: 65 skills across 4 categories">
 	<defs>
 		<clipPath id="panel-clip"><polygon points="19,1 999,1 999,353 981,371 1,371 1,19" /></clipPath>
 		<pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1.5" fill="#000000" opacity="0.22" /></pattern>
 	</defs>
 	<polygon points="19,1 999,1 999,353 981,371 1,371 1,19" fill="#050507" />
 	<g clip-path="url(#panel-clip)">
-		<text class="mono" x="36" y="40" font-size="18" letter-spacing="3" fill="#00F0FF">PERK_DISTRIBUTION // 64 SKILLS</text>
-		<rect x="36" y="58" width="304.5" height="16" fill="#00F0FF" opacity="0.9" />
-		<rect x="340.5" y="58" width="290" height="16" fill="#FCEE0A" opacity="0.9" />
-		<rect x="630.5" y="58" width="203" height="16" fill="#39FF14" opacity="0.9" />
-		<rect x="833.5" y="58" width="130.5" height="16" fill="#B026FF" opacity="0.9" />
+		<text class="mono" x="36" y="40" font-size="18" letter-spacing="3" fill="#00F0FF">PERK_DISTRIBUTION // 65 SKILLS</text>
+		<rect x="36" y="58" width="314.09" height="16" fill="#00F0FF" opacity="0.9" />
+		<rect x="350.09" y="58" width="285.54" height="16" fill="#FCEE0A" opacity="0.9" />
+		<rect x="635.63" y="58" width="199.88" height="16" fill="#39FF14" opacity="0.9" />
+		<rect x="835.51" y="58" width="128.49" height="16" fill="#B026FF" opacity="0.9" />
 		<rect x="36" y="58" width="928" height="16" fill="none" stroke="#1B2A33" stroke-width="1" />
 		<rect x="36" y="88" width="11" height="11" fill="#00F0FF" />
-		<text class="mono" x="53" y="98" font-size="13" fill="#E6FBFF" opacity="0.6">FRONTEND [21]</text>
+		<text class="mono" x="53" y="98" font-size="13" fill="#E6FBFF" opacity="0.6">FRONTEND [22]</text>
 		<rect x="178.4" y="88" width="11" height="11" fill="#FCEE0A" />
 		<text class="mono" x="195.4" y="98" font-size="13" fill="#E6FBFF" opacity="0.6">BACKEND [20]</text>
 		<rect x="313" y="88" width="11" height="11" fill="#39FF14" />
@@ -27,7 +27,7 @@
 		<svg x="461.69" y="132" width="49.88" height="30" viewBox="0 0 256 154"><defs><linearGradient id="SVGJSB7ld0l" x1="-2.778%" x2="100%" y1="32%" y2="67.556%"><stop offset="0%" stop-color="#2298bd"/><stop offset="100%" stop-color="#0ed7b5"/></linearGradient></defs><path fill="url(#SVGJSB7ld0l)" d="M128 0Q76.8 0 64 51.2Q83.2 25.6 108.8 32c9.737 2.434 16.697 9.499 24.401 17.318C145.751 62.057 160.275 76.8 192 76.8q51.2 0 64-51.2q-19.2 25.6-44.8 19.2c-9.737-2.434-16.697-9.499-24.401-17.318C174.249 14.743 159.725 0 128 0M64 76.8q-51.2 0-64 51.2q19.2-25.6 44.8-19.2c9.737 2.434 16.697 9.499 24.401 17.318C81.751 138.857 96.275 153.6 128 153.6q51.2 0 64-51.2q-19.2 25.6-44.8 19.2c-9.737-2.434-16.697-9.499-24.401-17.318C110.249 91.543 95.725 76.8 64 76.8"/></svg>
 		<svg x="527.57" y="132" width="30" height="30" viewBox="0 0 24 24" style="color:#E6FBFF" fill="#E6FBFF"><path fill="currentColor" d="M22.219 11.784L11.784 22.219a1.045 1.045 0 0 0 1.476 1.476L23.695 13.26a1.045 1.045 0 0 0-1.476-1.476M20.132.305L.305 20.132a1.045 1.045 0 0 0 1.476 1.476L21.608 1.781A1.045 1.045 0 0 0 20.132.305"/></svg>
 		<svg x="573.57" y="132" width="30" height="30" viewBox="0 0 24 24" style="color:#E6FBFF" fill="#E6FBFF"><path fill="currentColor" d="M11.52 24a7.68 7.68 0 0 1-7.68-7.68a7.68 7.68 0 0 1 7.68-7.68zm0-24v7.68H3.84V0zm4.8 7.68a3.84 3.84 0 1 1 0-7.68a3.84 3.84 0 0 1 0 7.68"/></svg>
-		<text class="mono" x="621.57" y="152" font-size="14" fill="#00F0FF" opacity="0.8">+15 MORE</text>
+		<text class="mono" x="621.57" y="152" font-size="14" fill="#00F0FF" opacity="0.8">+16 MORE</text>
 		<svg x="36" y="196" width="18" height="18" viewBox="0 0 24 24" style="color:#FCEE0A" fill="#FCEE0A"><path fill="currentColor" d="M18.375 9.825Q21 8.65 21 7t-2.625-2.825T12 3T5.625 4.175T3 7t2.625 2.825T12 11t6.375-1.175m-3.812 3.463q1.537-.213 2.962-.688t2.45-1.237T21 9.5V12q0 1.1-1.025 1.863t-2.45 1.237t-2.962.688T12 16t-2.562-.213t-2.963-.687t-2.45-1.237T3 12V9.5q0 1.1 1.025 1.863t2.45 1.237t2.963.688T12 13.5t2.563-.213m0 5q1.537-.212 2.962-.687t2.45-1.237T21 14.5V17q0 1.1-1.025 1.863t-2.45 1.237t-2.962.688T12 21t-2.562-.213t-2.963-.687t-2.45-1.237T3 17v-2.5q0 1.1 1.025 1.863t2.45 1.237t2.963.688T12 18.5t2.563-.213"/></svg>
 		<text class="mono" x="62" y="210" font-size="15" fill="#E6FBFF">BACKEND</text>
 		<svg x="320" y="190" width="26.58" height="30" viewBox="0 0 256 289"><path fill="#539e43" d="M128 288.464c-3.975 0-7.685-1.06-11.13-2.915l-35.247-20.936c-5.3-2.915-2.65-3.975-1.06-4.505c7.155-2.385 8.48-2.915 15.9-7.156c.796-.53 1.856-.265 2.65.265l27.032 16.166c1.06.53 2.385.53 3.18 0l105.74-61.217c1.06-.53 1.59-1.59 1.59-2.915V83.08c0-1.325-.53-2.385-1.59-2.915l-105.74-60.953c-1.06-.53-2.385-.53-3.18 0L20.405 80.166c-1.06.53-1.59 1.855-1.59 2.915v122.17c0 1.06.53 2.385 1.59 2.915l28.887 16.695c15.636 7.95 25.44-1.325 25.44-10.6V93.68c0-1.59 1.326-3.18 3.181-3.18h13.516c1.59 0 3.18 1.325 3.18 3.18v120.58c0 20.936-11.396 33.126-31.272 33.126c-6.095 0-10.865 0-24.38-6.625l-27.827-15.9C4.24 220.885 0 213.465 0 205.515V83.346C0 75.396 4.24 67.976 11.13 64L116.87 2.783c6.625-3.71 15.635-3.71 22.26 0L244.87 64C251.76 67.975 256 75.395 256 83.346v122.17c0 7.95-4.24 15.37-11.13 19.345L139.13 286.08c-3.445 1.59-7.42 2.385-11.13 2.385m32.596-84.009c-46.377 0-55.917-21.2-55.917-39.221c0-1.59 1.325-3.18 3.18-3.18h13.78c1.59 0 2.916 1.06 2.916 2.65c2.12 14.045 8.215 20.936 36.306 20.936c22.261 0 31.802-5.035 31.802-16.96c0-6.891-2.65-11.926-37.367-15.372c-28.886-2.915-46.907-9.275-46.907-32.33c0-21.467 18.02-34.187 48.232-34.187c33.921 0 50.617 11.66 52.737 37.101q0 1.193-.795 2.385c-.53.53-1.325 1.06-2.12 1.06h-13.78c-1.326 0-2.65-1.06-2.916-2.385c-3.18-14.575-11.395-19.345-33.126-19.345c-24.38 0-27.296 8.48-27.296 14.84c0 7.686 3.445 10.07 36.306 14.31c32.597 4.24 47.967 10.336 47.967 33.127c-.265 23.321-19.345 36.571-53.002 36.571"/></svg>
