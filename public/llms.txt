@@ -1,14 +1,14 @@
 # Wongsaphat Puangsorn
 
-> Chief Technology Officer at RS Trophy, owning full-stack engineering and infrastructure end to end — freelancing remotely as a software engineer on web app projects on the side.
+> Chief Technology Officer at RS TROPHY, owning full-stack engineering and infrastructure end to end — freelancing remotely as a software engineer on web app projects on the side.
 
-Enthusiastic and dedicated technologist focused on transforming business requirements into clean, sustainable code. As CTO, I own every technology decision end-to-end — from technical strategy to single-handedly shipping software, infrastructure, and automation across the business. I am passionate about high-performance systems and modern infrastructure, and I freelance remotely as a software engineer building web apps alongside my full-time role.
+I'm Wongsaphat Puangsorn (วงศพัทธ์ พวงซ้อน), known as Kwan (ขวัญ) and online as NooobtimeX — CTO of RS TROPHY. Enthusiastic and dedicated technologist focused on transforming business requirements into clean, sustainable code. As CTO, I own every technology decision end-to-end — from technical strategy to single-handedly shipping software, infrastructure, and automation across the business. I am passionate about high-performance systems and modern infrastructure, and I freelance remotely as a software engineer building web apps alongside my full-time role.
 
 - Site: https://nooobtimex.me
 - Current role: Chief Technology Officer at RUAMSUK PLATING LIMITED PARTNERSHIP
-- Location: Pak Kret District, Nonthaburi
+- Location: Nonthaburi
 - Contact: nooobtimex@gmail.com
-- Availability: Open for remote freelance web app projects alongside my full-time role as CTO at RS Trophy
+- Availability: Open for remote freelance web app projects alongside my full-time role as CTO at RS TROPHY
 - Hire: nooobtimex@gmail.com (email — the way to hire for freelance work)
 - Languages: Thai (Native), English (Professional working)
 
@@ -57,7 +57,7 @@ Read more: https://nooobtimex.me/career/freelance
 
 ### Developer — RUAMSUK PLATING LIMITED PARTNERSHIP (Aug 2021 - May 2025)
 
-The first four years at RS Trophy, worked part-time alongside the Computer Science degree at Thammasat. Full Stack & SEO: built and iterated the company's web applications while integrating targeted SEO and online-marketing work. Digital Transformation: modernized legacy manual workflows into web-based systems, raising day-to-day operational efficiency.
+The first four years at RS TROPHY, worked part-time alongside the Computer Science degree at Thammasat. Full Stack & SEO: built and iterated the company's web applications while integrating targeted SEO and online-marketing work. Digital Transformation: modernized legacy manual workflows into web-based systems, raising day-to-day operational efficiency.
 
 Read more: https://nooobtimex.me/career/ruamsuk-software-engineer-part-time
 
@@ -224,7 +224,7 @@ Read more: https://nooobtimex.me/blog/social-publisher-false-success
 
 ### How I became CTO at 23 of the company that hired me as a part-time student
 
-On 2021-08-01 I started a part-time developer job and a computer science degree in the same month. On 2026-08-01 — five years later to the month — I became CTO of that same company, RS Trophy, at 23. The path ran through four years of part-time work while studying, a 45-day full-time bridge, and one year at a SET-listed telecom. A CTO title at a small limited partnership means owning every technology decision alone, not leading an engineering org — and saying that plainly is the point of this post.
+On 2021-08-01 I started a part-time developer job and a computer science degree in the same month. On 2026-08-01 — five years later to the month — I became CTO of that same company, RS TROPHY, at 23. The path ran through four years of part-time work while studying, a 45-day full-time bridge, and one year at a SET-listed telecom. A CTO title at a small limited partnership means owning every technology decision alone, not leading an engineering org — and saying that plainly is the point of this post.
 
 Read more: https://nooobtimex.me/blog/how-i-became-cto-at-23
 

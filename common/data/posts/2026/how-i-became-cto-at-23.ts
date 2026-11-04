@@ -9,7 +9,7 @@ export const howIBecameCtoAt23: PostDef = {
 	category: 'engineering',
 	description:
 		'Hired part-time in August 2021, CTO of the same company in August 2026 — five years to the month. What actually happened in between, honestly scoped.',
-	tldr: 'On 2021-08-01 I started a part-time developer job and a computer science degree in the same month. On 2026-08-01 — five years later to the month — I became CTO of that same company, RS Trophy, at 23. The path ran through four years of part-time work while studying, a 45-day full-time bridge, and one year at a SET-listed telecom. A CTO title at a small limited partnership means owning every technology decision alone, not leading an engineering org — and saying that plainly is the point of this post.',
+	tldr: 'On 2021-08-01 I started a part-time developer job and a computer science degree in the same month. On 2026-08-01 — five years later to the month — I became CTO of that same company, RS TROPHY, at 23. The path ran through four years of part-time work while studying, a 45-day full-time bridge, and one year at a SET-listed telecom. A CTO title at a small limited partnership means owning every technology decision alone, not leading an engineering org — and saying that plainly is the point of this post.',
 	skills: ['next-js', 'wordpress', 'seo', 'bun-js', 'railway'],
 	relatedProjectIds: ['rs-trophy', 'looklook-pet'],
 	relatedExperienceIds: [
@@ -50,7 +50,7 @@ export const howIBecameCtoAt23: PostDef = {
 		{ kind: 'h2', text: 'What "CTO" means at a small limited partnership' },
 		{
 			kind: 'p',
-			text: 'Here is the scoping a title like this owes you. RS Trophy is a small limited partnership, not a tech company. My CTO role has no engineering org under it — it is **total technology ownership by one person**: technical strategy, then also building every system myself, from architecture to deployment. It includes the unglamorous whole of it — IT support, hardware, networking, and technology procurement across an office and a factory floor. I am also the sole PM, PO and designer, which mostly means the person who writes the spec argues with the person who implements it inside one head.'
+			text: 'Here is the scoping a title like this owes you. RS TROPHY is a small limited partnership, not a tech company. My CTO role has no engineering org under it — it is **total technology ownership by one person**: technical strategy, then also building every system myself, from architecture to deployment. It includes the unglamorous whole of it — IT support, hardware, networking, and technology procurement across an office and a factory floor. I am also the sole PM, PO and designer, which mostly means the person who writes the spec argues with the person who implements it inside one head.'
 		},
 		{
 			kind: 'stat',

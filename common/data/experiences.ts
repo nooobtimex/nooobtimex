@@ -32,7 +32,7 @@ export const ruamsukPlatingDevelopereerPartTime: ExperienceItem = {
 	organization: ruamsukPlating,
 	position: 'developer',
 	description:
-		"The first four years at RS Trophy, worked part-time alongside the Computer Science degree at Thammasat. Full Stack & SEO: built and iterated the company's web applications while integrating targeted SEO and online-marketing work. Digital Transformation: modernized legacy manual workflows into web-based systems, raising day-to-day operational efficiency.",
+		"The first four years at RS TROPHY, worked part-time alongside the Computer Science degree at Thammasat. Full Stack & SEO: built and iterated the company's web applications while integrating targeted SEO and online-marketing work. Digital Transformation: modernized legacy manual workflows into web-based systems, raising day-to-day operational efficiency.",
 	type: 'part-time',
 	category: 'work',
 	startDate: '2021-08-01',

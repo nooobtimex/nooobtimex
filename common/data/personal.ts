@@ -55,18 +55,28 @@ const contactChannels: ContactChannel[] = [
 	}
 ]
 
+const AVAILABILITY_LEAD = 'Open for remote freelance web app projects alongside my full-time role as CTO at'
+const EMPLOYER_NAME = 'RS TROPHY'
+
 export const personalData: PersonalData = {
 	name: 'WONGSAPHAT PUANGSORN',
+	alternateNames: ['วงศพัทธ์ พวงซ้อน', 'NooobtimeX', 'Kwan', 'ขวัญ'],
+	employer: {
+		name: EMPLOYER_NAME,
+		url: 'https://rs-trophy.com',
+		entityId: 'https://rs-trophy.com/#organization',
+		// The About-page card on that site, which links back here.
+		profileUrl: 'https://rs-trophy.com/en/aboutus#cto'
+	},
 	title: 'Chief Technology Officer',
 	heroRole: 'Software Engineer',
 	pitch:
 		'I build production web apps end to end — scope, UI, API, database and deploy — as the one engineer who owns all of it. Remote from Thailand.',
 	tagline:
-		'Chief Technology Officer at RS Trophy, owning full-stack engineering and infrastructure end to end — freelancing remotely as a software engineer on web app projects on the side.',
+		'Chief Technology Officer at RS TROPHY, owning full-stack engineering and infrastructure end to end — freelancing remotely as a software engineer on web app projects on the side.',
 	avatar: assets.personal.avatar,
-	birthDate: '2003-04-19',
 	about: {
-		bio: 'Enthusiastic and dedicated technologist focused on transforming business requirements into clean, sustainable code. As CTO, I own every technology decision end-to-end — from technical strategy to single-handedly shipping software, infrastructure, and automation across the business. I am passionate about high-performance systems and modern infrastructure, and I freelance remotely as a software engineer building web apps alongside my full-time role.',
+		bio: "I'm Wongsaphat Puangsorn (วงศพัทธ์ พวงซ้อน), known as Kwan (ขวัญ) and online as NooobtimeX — CTO of RS TROPHY. Enthusiastic and dedicated technologist focused on transforming business requirements into clean, sustainable code. As CTO, I own every technology decision end-to-end — from technical strategy to single-handedly shipping software, infrastructure, and automation across the business. I am passionate about high-performance systems and modern infrastructure, and I freelance remotely as a software engineer building web apps alongside my full-time role.",
 		highlights: [
 			'Own end-to-end technology decisions, from strategy to shipped code',
 			'Focused on building robust, high-performance systems',
@@ -76,10 +86,10 @@ export const personalData: PersonalData = {
 	},
 	contact: {
 		email: 'nooobtimex@gmail.com',
-		phone: '+66855877024',
-		location: 'Pak Kret District, Nonthaburi',
-		availability: 'Open for remote freelance web app projects alongside my full-time role as CTO at RS Trophy',
-		locality: 'Pak Kret, Nonthaburi',
+		location: 'Nonthaburi',
+		availabilityLead: AVAILABILITY_LEAD,
+		availability: `${AVAILABILITY_LEAD} ${EMPLOYER_NAME}`,
+		locality: 'Nonthaburi',
 		country: 'Thailand',
 		givenName: 'Wongsaphat',
 		familyName: 'Puangsorn'

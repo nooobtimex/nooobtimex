@@ -48,8 +48,7 @@ const VCardPanel: React.FC<VCardPanelProps> = ({ name, qrPayload, filePayload, f
 			<div>
 				<h3 className='font-display text-2xl font-bold tracking-wide'>Digital Business Card</h3>
 				<p className='text-muted-foreground mt-1 text-sm'>
-					Scan to save me as a contact — name, title, company, phone, email and site. The .vcf download adds socials,
-					birthday and more.
+					Scan to save me as a contact — name, title, company, email and site. The .vcf download adds socials and more.
 				</p>
 			</div>
 

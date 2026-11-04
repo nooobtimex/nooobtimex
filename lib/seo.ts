@@ -20,7 +20,7 @@ export const SITE_NAME = `${DISPLAY_NAME} (NooobtimeX)`
 
 /** Site-level description for the root metadata and the home page — written for a client, ≤155 chars. */
 export const SITE_DESCRIPTION =
-	'Freelance software engineer building production web apps end to end — scope, UI, API, database and deploy. Remote from Thailand; hire me by email.'
+	'Freelance engineer and CTO of RS TROPHY, building production web apps end to end — UI, API, database, deploy. Remote from Thailand; hire me by email.'
 
 /**
  * Google renders roughly 155–160 characters of a description and drops the rest, so an

@@ -5,7 +5,7 @@
 
 <img src=".github/assets/header.svg" alt="NOOOBTIMEX — Wongsaphat Puangsorn, Freelance Software Engineer" width="100%" />
 
-<img src=".github/assets/chips.svg" alt="Pak Kret · Nonthaburi — Available — TH/EN" />
+<img src=".github/assets/chips.svg" alt="Nonthaburi — Available — TH/EN" />
 
 </div>
 
@@ -32,7 +32,7 @@ scope, UI, API, database and deploy.**
 
 <img src=".github/assets/section-01-career-trace.svg" alt="01 // CAREER TRACE" width="100%" />
 
-<img src=".github/assets/career.svg" alt="Career timeline 2021 to now: Chief Technology Officer at Ruamsuk Plating (RS Trophy), Developer at Jasmine Technology Solution, and freelance work" width="100%" />
+<img src=".github/assets/career.svg" alt="Career timeline 2021 to now: Chief Technology Officer at Ruamsuk Plating (RS TROPHY), Developer at Jasmine Technology Solution, and freelance work" width="100%" />
 
 <div align="center">
 

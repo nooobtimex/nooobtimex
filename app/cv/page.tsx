@@ -31,13 +31,6 @@ const humanize = (value: string) =>
 
 const stripProtocol = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/+$/, '')
 
-// E.164 Thai mobile → grouped display, e.g. +66855877024 → +66 85 587 7024.
-// The data layer keeps E.164 for the vCard/QR; this is presentation-only.
-const formatPhone = (e164?: string) => {
-	const m = e164?.match(/^\+66(\d{2})(\d{3})(\d{4})$/)
-	return m ? `+66 ${m[1]} ${m[2]} ${m[3]}` : (e164 ?? '')
-}
-
 const CvMeta: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
 	<div className='border-l-2 pl-2' style={{ borderColor: ACCENT, WebkitPrintColorAdjust: 'exact' }}>
 		<p className='text-[8px] font-black tracking-[0.2em] text-gray-400 uppercase'>{label}</p>
@@ -187,10 +180,6 @@ export default function CVPage() {
 								<div className='flex items-center gap-2 text-[12px] uppercase'>
 									<CyberIcon icon='material-symbols:mail' className='h-4 w-4' style={{ color: ACCENT }} />
 									{personalData.contact.email}
-								</div>
-								<div className='flex items-center gap-2 text-[12px] text-gray-700 uppercase'>
-									<CyberIcon icon='material-symbols:call' className='h-4 w-4' style={{ color: ACCENT }} />
-									{formatPhone(personalData.contact.phone)}
 								</div>
 								<div className='flex items-center gap-2 text-[12px] text-gray-700 uppercase'>
 									<CyberIcon icon='material-symbols:location-on' className='h-4 w-4' style={{ color: ACCENT }} />

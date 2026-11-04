@@ -548,7 +548,7 @@ const gtm = skill({
 const wordpress = skill({
 	id: 'wordpress',
 	description:
-		'The CMS a large share of the web still runs on. Relevant here as the platform the RS Trophy storefronts started on before being rebuilt.',
+		'The CMS a large share of the web still runs on. Relevant here as the platform the RS TROPHY storefronts started on before being rebuilt.',
 	name: 'WordPress',
 	icon: 'simple-icons:wordpress',
 	category: 'growth-management'
