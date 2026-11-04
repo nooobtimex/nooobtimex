@@ -4,14 +4,14 @@
 		{
 			"name": "dev",
 			"runtimeExecutable": "bun",
-			"runtimeArgs": ["run", "dev", "--", "-p", "3100"],
-			"port": 3100
+			"runtimeArgs": ["run", "dev"],
+			"port": 11000
 		},
 		{
 			"name": "start",
 			"runtimeExecutable": "bun",
-			"runtimeArgs": ["x", "next", "start", "-p", "3200"],
-			"port": 3200
+			"runtimeArgs": ["x", "next", "start", "-p", "11800"],
+			"port": 11800
 		}
 	]
 }
