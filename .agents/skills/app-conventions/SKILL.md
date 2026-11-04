@@ -11,10 +11,10 @@ paths:
   - 'app/**'
 ---
 
-# App conventions (`app/`, Next.js 16 App Router, port 1000)
+# App conventions (`app/`, Next.js 16 App Router, port 11000)
 
 The canonical rules for `app/`. Routes are **typed** (`next` typedRoutes), the dev
-server runs on **port 1000**, and the whole site renders the `common/` data layer.
+server runs on **port 11000**, and the whole site renders the `common/` data layer.
 When these conflict with a quick fix, follow these. Cross-references: root
 [`AGENTS.md`](../../../AGENTS.md), the
 [`common-conventions`](../common-conventions/SKILL.md) skill (the data the pages render),
