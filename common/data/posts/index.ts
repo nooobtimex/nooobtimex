@@ -40,7 +40,7 @@ export const chapterMetadata: Record<PostChapter, { label: string; span: string;
 	student: {
 		label: 'Student Years',
 		span: '2021–2025',
-		description: 'Part-time at RS Trophy while enrolled at Thammasat — WordPress storefronts and a thesis.'
+		description: 'Part-time at RS TROPHY while enrolled at Thammasat — WordPress storefronts and a thesis.'
 	},
 	bridge: {
 		label: 'The Bridge',
@@ -55,7 +55,7 @@ export const chapterMetadata: Record<PostChapter, { label: string; span: string;
 	ownership: {
 		label: 'Ownership',
 		span: '2026–',
-		description: 'CTO at RS Trophy — every technology decision, and the write-ups to prove it.'
+		description: 'CTO at RS TROPHY — every technology decision, and the write-ups to prove it.'
 	},
 	freelance: {
 		label: 'Freelance Thread',

@@ -17,16 +17,16 @@ export const planWas2030CameBack2026: PostDef = {
 	body: [
 		{
 			kind: 'p',
-			text: 'On 2026-08-01 I became CTO of [[company:ruamsuk-plating]] — RS Trophy, the trophy and medal company my family has run for twenty years, with my father, the CEO, at the head of it. That date was not the plan. The plan I actually carried into my year away said 2030, and it said Technical Lead or Architect, not CTO. I came back four years early and one level higher, and the interesting part is not that the plan lost. It is what the plan got wrong — and what it quietly got right.'
+			text: 'On 2026-08-01 I became CTO of [[company:ruamsuk-plating]] — RS TROPHY, the trophy and medal company my family has run for twenty years, with my father, the CEO, at the head of it. That date was not the plan. The plan I actually carried into my year away said 2030, and it said Technical Lead or Architect, not CTO. I came back four years early and one level higher, and the interesting part is not that the plan lost. It is what the plan got wrong — and what it quietly got right.'
 		},
 		{
 			kind: 'p',
-			text: "The plan had three steps. Get hired at [[company:jasmine-technology-solution]] — JTS, a real engineering organization. Climb to Senior there and build a serious web career at a scale my family's company could never provide. Then, around 2030, come back to RS Trophy as its Technical Lead or Architect — credentialed, finished, with nothing left to prove."
+			text: "The plan had three steps. Get hired at [[company:jasmine-technology-solution]] — JTS, a real engineering organization. Climb to Senior there and build a serious web career at a scale my family's company could never provide. Then, around 2030, come back to RS TROPHY as its Technical Lead or Architect — credentialed, finished, with nothing left to prove."
 		},
 		{ kind: 'h2', text: 'The 2030 plan, and why it made sense' },
 		{
 			kind: 'p',
-			text: 'The first step ran exactly on schedule. I took the JTS exam in April 2025 and did the take-home assignment at home over Songkran — the Thai New Year holiday. About two weeks before my last day at RS Trophy, the word came back that I had passed. I told my father, the CEO, and went.'
+			text: 'The first step ran exactly on schedule. I took the JTS exam in April 2025 and did the take-home assignment at home over Songkran — the Thai New Year holiday. About two weeks before my last day at RS TROPHY, the word came back that I had passed. I told my father, the CEO, and went.'
 		},
 		{
 			kind: 'p',

@@ -23,12 +23,12 @@ export const nextIntlThEnSharedUi: PostDef = {
 		},
 		{
 			kind: 'p',
-			text: 'Worth stating plainly, because the dates give it away: my day job at that point was still [[career:jasmine-tech]]. The CTO title at RS Trophy did not start until 2026-08-01. This was a rebuild I was doing for the company before I formally owned its technology, which is a specific kind of pressure — nothing was allowed to be a research project.'
+			text: 'Worth stating plainly, because the dates give it away: my day job at that point was still [[career:jasmine-tech]]. The CTO title at RS TROPHY did not start until 2026-08-01. This was a rebuild I was doing for the company before I formally owned its technology, which is a specific kind of pressure — nothing was allowed to be a research project.'
 		},
 		{ kind: 'h2', text: 'Thai is the default locale, not the translation' },
 		{
 			kind: 'p',
-			text: 'RS Trophy sells custom trophies, medals and award plaques nationwide across Thailand. Almost every customer reads Thai. So the routing config makes `th` the default and `en` the second locale — the opposite of the reflex where English is the source language and everything else is a translation layer bolted on later.'
+			text: 'RS TROPHY sells custom trophies, medals and award plaques nationwide across Thailand. Almost every customer reads Thai. So the routing config makes `th` the default and `en` the second locale — the opposite of the reflex where English is the source language and everything else is a translation layer bolted on later.'
 		},
 		{
 			kind: 'p',
@@ -102,7 +102,7 @@ export const nextIntlThEnSharedUi: PostDef = {
 			kind: 'stat',
 			value: '3 days',
 			label: 'from the first monorepo commit (2026-05-06) to bilingual routing plus a shared UI package (2026-05-09)',
-			source: "the RS Trophy timeline in this site's own project data"
+			source: "the RS TROPHY timeline in this site's own project data"
 		}
 	],
 	lessons: [

@@ -62,7 +62,7 @@ export const personalData: PersonalData = {
 	pitch:
 		'I build production web apps end to end — scope, UI, API, database and deploy — as the one engineer who owns all of it. Remote from Thailand.',
 	tagline:
-		'Chief Technology Officer at RS Trophy, owning full-stack engineering and infrastructure end to end — freelancing remotely as a software engineer on web app projects on the side.',
+		'Chief Technology Officer at RS TROPHY, owning full-stack engineering and infrastructure end to end — freelancing remotely as a software engineer on web app projects on the side.',
 	avatar: assets.personal.avatar,
 	about: {
 		bio: 'Enthusiastic and dedicated technologist focused on transforming business requirements into clean, sustainable code. As CTO, I own every technology decision end-to-end — from technical strategy to single-handedly shipping software, infrastructure, and automation across the business. I am passionate about high-performance systems and modern infrastructure, and I freelance remotely as a software engineer building web apps alongside my full-time role.',
@@ -76,7 +76,7 @@ export const personalData: PersonalData = {
 	contact: {
 		email: 'nooobtimex@gmail.com',
 		location: 'Nonthaburi',
-		availability: 'Open for remote freelance web app projects alongside my full-time role as CTO at RS Trophy',
+		availability: 'Open for remote freelance web app projects alongside my full-time role as CTO at RS TROPHY',
 		locality: 'Nonthaburi',
 		country: 'Thailand',
 		givenName: 'Wongsaphat',

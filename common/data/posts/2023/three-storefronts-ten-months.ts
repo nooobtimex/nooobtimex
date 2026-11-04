@@ -53,7 +53,7 @@ export const threeStorefrontsTenMonths: PostDef = {
 			value: '10 months',
 			label:
 				'from the first WordPress install for rs-award.com (March 2022) to breaking ground on rs-trophy.com (January 2023)',
-			source: 'RS Award / RS Medal / RS Trophy project timelines'
+			source: 'RS Award / RS Medal / RS TROPHY project timelines'
 		},
 		{ kind: 'h2', text: 'The playbook that made it repeatable' },
 		{
@@ -62,7 +62,7 @@ export const threeStorefrontsTenMonths: PostDef = {
 		},
 		{
 			kind: 'table',
-			head: ['Phase', 'RS Award', 'RS Medal', 'RS Trophy'],
+			head: ['Phase', 'RS Award', 'RS Medal', 'RS TROPHY'],
 			rows: [
 				['Discovery & setup', 'Mar 2022', 'Aug 2022', 'Jan 2023'],
 				['Design — brand-aligned theme', 'Apr 2022', 'Sep 2022', 'planned Feb 2023'],

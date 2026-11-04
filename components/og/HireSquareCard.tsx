@@ -30,7 +30,7 @@ const STACK_SLOTS = 19
 
 /**
  * Card-only availability blurb. Mirrors `personalData.contact.availability` minus
- * its "as CTO at RS Trophy" clause — see the file header for why.
+ * its "as CTO at RS TROPHY" clause — see the file header for why.
  */
 const AVAILABILITY = 'Open for remote freelance web app projects — full-stack, shipped end to end.'
 
