@@ -24,7 +24,7 @@ const jsonLd = {
 	// DISPLAY_NAME, not personalData.name — the latter is ALL CAPS for the HUD headings,
 	// and this string is what surfaces in a knowledge panel or an AI answer.
 	'name': DISPLAY_NAME,
-	'alternateName': 'NooobtimeX',
+	'alternateName': personalData.alternateNames,
 	'url': SITE_URL,
 	'image': `${SITE_URL}${personalData.avatar}`,
 	'jobTitle': formatPosition(latestRole.position),
@@ -35,7 +35,10 @@ const jsonLd = {
 		'addressLocality': personalData.contact.location,
 		'addressCountry': 'TH'
 	},
-	'sameAs': personalData.socialLinks.filter(s => s.platform !== 'email').map(s => s.url),
+	'sameAs': [
+		...personalData.socialLinks.filter(s => s.platform !== 'email' && s.platform !== 'website').map(s => s.url),
+		personalData.employer.profileUrl
+	],
 	'knowsLanguage': personalData.languages.map(l => ({
 		'@type': 'Language',
 		'name': l.name,
@@ -51,8 +54,10 @@ const jsonLd = {
 	}),
 	'worksFor': {
 		'@type': 'Organization',
-		'name': latestRole.organization.name,
-		...(latestRole.organization.url && { sameAs: latestRole.organization.url })
+		'@id': personalData.employer.entityId,
+		'name': personalData.employer.name,
+		'legalName': latestRole.organization.name,
+		'url': personalData.employer.url
 	}
 }
 

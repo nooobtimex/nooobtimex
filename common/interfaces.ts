@@ -342,6 +342,8 @@ export interface PersonalData {
 	contact: {
 		email: string
 		location: string
+		/** `availability` up to the employer's name, so the hero can link that name. */
+		availabilityLead: string
 		availability: string
 		/** Free-text locality for the vCard `ADR`, e.g. 'Nonthaburi'. */
 		locality?: string
@@ -351,6 +353,16 @@ export interface PersonalData {
 		givenName?: string
 		/** ASCII romanised family name. */
 		familyName?: string
+	}
+	/** JSON-LD `alternateName`. Google wants markup to match the page, so each one must also appear in visible text. */
+	alternateNames: string[]
+	employer: {
+		/** The brand; the legal name stays on the career entry. */
+		name: string
+		url: string
+		/** The employer site's own Organization `@id`, so both graphs name one node. */
+		entityId: string
+		profileUrl: string
 	}
 	languages: Language[]
 	socialLinks: SocialLink[]

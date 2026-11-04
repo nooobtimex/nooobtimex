@@ -124,7 +124,16 @@ const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
 
 						<p className='text-muted-foreground mt-4 flex items-start gap-2 font-mono text-xs tracking-wider'>
 							<CyberIcon icon='mdi:circle' className='text-cyber-green mt-1 size-2 shrink-0' />
-							{personalData.contact.availability}
+							<span>
+								{personalData.contact.availabilityLead}{' '}
+								<a
+									href={personalData.employer.profileUrl}
+									target='_blank'
+									rel='noopener noreferrer'
+									className='text-cyber-cyan hover:text-cyber-yellow underline underline-offset-2 transition-colors'>
+									{personalData.employer.name}
+								</a>
+							</span>
 						</p>
 
 						{/* The page's one ask. Never inside MotionReveal — it must paint with the hero. */}
