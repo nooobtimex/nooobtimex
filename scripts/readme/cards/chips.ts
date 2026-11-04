@@ -15,7 +15,7 @@ interface Chip {
 
 export function renderChips(): string {
 	const chips: Chip[] = [
-		{ label: 'LOC //', value: 'PAK KRET · NONTHABURI', color: C.cyan },
+		{ label: 'LOC //', value: 'NONTHABURI', color: C.cyan },
 		{ label: 'STATUS //', value: 'AVAILABLE', color: C.green, dot: true },
 		{ label: 'LANG //', value: 'TH / EN', color: C.magenta }
 	]
@@ -47,7 +47,7 @@ export function renderChips(): string {
 	return svgDoc({
 		w: W,
 		h: H,
-		label: 'Pak Kret · Nonthaburi — Available — TH/EN',
+		label: 'Nonthaburi — Available — TH/EN',
 		body: `	${styleBlock(['blink'])}\n\t${parts.join('\n\t')}`
 	})
 }

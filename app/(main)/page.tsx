@@ -30,7 +30,6 @@ const jsonLd = {
 	'jobTitle': formatPosition(latestRole.position),
 	'description': personalData.tagline,
 	'email': `mailto:${personalData.contact.email}`,
-	'birthDate': personalData.birthDate,
 	'address': {
 		'@type': 'PostalAddress',
 		'addressLocality': personalData.contact.location,

@@ -10,10 +10,10 @@ import type { PersonalData } from '@/common'
  *
  * Two payloads come out of `buildVCard`:
  *   - the CORE (default) is what the QR encodes — the fields people actually use
- *     (name, title, company, phone, email, site). Kept lean on purpose: QR
+ *     (name, title, company, email, site). Kept lean on purpose: QR
  *     scannability is the binding constraint, so ~≤300 chars and no photo/socials.
- *   - the RICH set (`rich: true`) is the downloadable .vcf — core plus address,
- *     nickname, birthday, labelled social links, a hosted photo URL and a note.
+ *   - the RICH set (`rich: true`) is the downloadable .vcf — core plus province,
+ *     nickname, labelled social links, a hosted photo URL and a note.
  *     Not size-constrained, but still curated: a photo is linked, never embedded
  *     (a base64 headshot adds ~10k chars and breaks the QR), and socials are real
  *     URLs (Apple item-labels degrade to a bare URL elsewhere) because Google
@@ -36,7 +36,7 @@ const SOCIAL_LABEL: Record<string, string> = {
 
 export interface VCardOptions {
 	/**
-	 * Include the rich extras (address, nickname, birthday, socials, photo, note).
+	 * Include the rich extras (province, nickname, socials, photo, note).
 	 * Leave off for the QR payload — every extra property pushes the symbol to a
 	 * higher version, and a denser code is harder to scan off a phone screen.
 	 */
@@ -49,8 +49,7 @@ export interface VCardOptions {
 const normalisePhone = (raw: string): string => raw.replace(/^tel:/, '').replace(/[^\d+]/g, '')
 
 const findPhone = (p: PersonalData): string | undefined => {
-	// The dedicated field wins; the messaging channels are a fallback.
-	const raw = p.contact.phone ?? p.contactChannels?.find(c => c.id === 'phone' || c.id === 'whatsapp')?.url ?? undefined
+	const raw = p.contactChannels?.find(c => c.id === 'phone' || c.id === 'whatsapp')?.url
 	if (!raw) return undefined
 	const normalised = normalisePhone(raw)
 	return normalised.length > 3 ? normalised : undefined
@@ -87,7 +86,6 @@ export function buildVCard(p: PersonalData, options: VCardOptions = {}): string 
 	if (rich) {
 		const nickname = p.socialLinks.find(s => s.platform === 'github')?.username
 		if (nickname) lines.push(`NICKNAME:${esc(nickname)}`)
-		if (p.birthDate) lines.push(`BDAY:${esc(p.birthDate)}`)
 
 		// ADR has seven components: PO box; extended; street; locality; region; postcode; country.
 		// City and country only — never a street address on a public page.

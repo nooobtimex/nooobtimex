@@ -343,8 +343,6 @@ export interface PersonalData {
 		email: string
 		location: string
 		availability: string
-		/** E.164 phone for the vCard `TEL`, e.g. '+66855877024'. Scoped to the vCard/QR. */
-		phone?: string
 		/** Free-text locality for the vCard `ADR`, e.g. 'Nonthaburi'. */
 		locality?: string
 		/** Free-text country for the vCard `ADR`, e.g. 'Thailand'. */
@@ -354,7 +352,6 @@ export interface PersonalData {
 		/** ASCII romanised family name. */
 		familyName?: string
 	}
-	birthDate: string
 	languages: Language[]
 	socialLinks: SocialLink[]
 	hire: Hire

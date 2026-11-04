@@ -5,7 +5,7 @@
 
 <img src=".github/assets/header.svg" alt="NOOOBTIMEX — Wongsaphat Puangsorn, Freelance Software Engineer" width="100%" />
 
-<img src=".github/assets/chips.svg" alt="Pak Kret · Nonthaburi — Available — TH/EN" />
+<img src=".github/assets/chips.svg" alt="Nonthaburi — Available — TH/EN" />
 
 </div>
 

@@ -64,7 +64,6 @@ export const personalData: PersonalData = {
 	tagline:
 		'Chief Technology Officer at RS Trophy, owning full-stack engineering and infrastructure end to end — freelancing remotely as a software engineer on web app projects on the side.',
 	avatar: assets.personal.avatar,
-	birthDate: '2003-04-19',
 	about: {
 		bio: 'Enthusiastic and dedicated technologist focused on transforming business requirements into clean, sustainable code. As CTO, I own every technology decision end-to-end — from technical strategy to single-handedly shipping software, infrastructure, and automation across the business. I am passionate about high-performance systems and modern infrastructure, and I freelance remotely as a software engineer building web apps alongside my full-time role.',
 		highlights: [
@@ -76,10 +75,9 @@ export const personalData: PersonalData = {
 	},
 	contact: {
 		email: 'nooobtimex@gmail.com',
-		phone: '+66855877024',
-		location: 'Pak Kret District, Nonthaburi',
+		location: 'Nonthaburi',
 		availability: 'Open for remote freelance web app projects alongside my full-time role as CTO at RS Trophy',
-		locality: 'Pak Kret, Nonthaburi',
+		locality: 'Nonthaburi',
 		country: 'Thailand',
 		givenName: 'Wongsaphat',
 		familyName: 'Puangsorn'
