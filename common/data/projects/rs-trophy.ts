@@ -8,9 +8,9 @@ export const rsTrophy: ProjectDef = {
 	highlightSkills: ['bun-js', 'elysia-js', 'next-js', 'mongodb', 'cloudflare-r2', 'railway', 'redis', 'docker'],
 	title: 'RS TROPHY',
 	description:
-		'A unified e-commerce and management platform for custom trophies, plaques, and medals — consolidating fragmented sibling brands into one high-performance system. Built as a Bun monorepo: a localized, SEO-optimized Next.js storefront, a real-time ElysiaJS API, and an admin console that share types through a common workspace package. Runs on MongoDB with Redis caching and Cloudflare R2 object storage, containerized with Docker and deployed on Railway — and ships an AI copilot for natural-language shopping assistance. The platform evolved from an original WordPress + WooCommerce storefront into this unified Bun monorepo.',
+		'The public storefront for custom trophies, plaques, and medals, and the shared platform behind it — consolidating fragmented sibling brands into one high-performance system. Built as a Bun monorepo: a localized, SEO-optimized Next.js storefront and a real-time ElysiaJS API that every app in the monorepo calls, sharing types through a common workspace package. Runs on MongoDB with Redis caching and Cloudflare R2 object storage, containerized with Docker and deployed on Railway — and ships an AI copilot for natural-language shopping assistance. The staff-facing RS TROPHY Admin console and the RS ESERVICE workspace run on the same API and are listed as projects of their own. The platform evolved from an original WordPress + WooCommerce storefront into this unified Bun monorepo.',
 	resumeSummary:
-		'Unified e-commerce + admin platform for a custom-awards manufacturer, consolidating fragmented brands into one Bun monorepo — SEO storefront, ElysiaJS API, and an AI shopping copilot. MongoDB / Redis on Railway.',
+		'Public e-commerce storefront and shared platform for a custom-awards manufacturer, consolidating fragmented brands into one Bun monorepo — SEO storefront, ElysiaJS API, and an AI shopping copilot. MongoDB / Redis on Railway.',
 	images: { cover: assets.projects.rsTrophy.cover, photos: [...assets.projects.rsTrophy.gallery] },
 	// Starting stack (2023) — the original WordPress + WooCommerce storefront. The 2026 Bun monorepo
 	// rebuild is introduced via timeline events, which also retire the legacy WordPress stack.
@@ -61,8 +61,6 @@ export const rsTrophy: ProjectDef = {
 				'bullmq',
 				'better-auth',
 				'zod',
-				'react-hook-form',
-				'recharts',
 				'embla-carousel',
 				'resend',
 				'docker',
@@ -107,19 +105,6 @@ export const rsTrophy: ProjectDef = {
 			removedSkills: ['wordpress', 'woocommerce']
 		},
 		{
-			date: '2026-05-19',
-			title: 'Content — Article Planning Calendar',
-			description: 'Turned the article calendar into a five-view planner with drag-to-reschedule and category colours.',
-			icon: 'mdi:calendar-edit'
-		},
-		{
-			date: '2026-05-30',
-			title: 'Editor — Shared Tiptap Module',
-			description:
-				'Moved the article editor onto one Tiptap module in the shared UI package, used by both the admin and the storefront.',
-			icon: 'mdi:file-document-edit-outline'
-		},
-		{
 			date: '2026-06-04',
 			title: 'Storage — MinIO → Cloudflare R2',
 			description:
@@ -150,13 +135,6 @@ export const rsTrophy: ProjectDef = {
 			icon: 'mdi:palette-swatch-outline',
 			addedSkills: ['base-ui'],
 			removedSkills: ['radix-ui']
-		},
-		{
-			date: '2026-06-09',
-			title: 'AI — Admin Assistant + Multimodal Core',
-			description:
-				'Shipped an admin AI assistant that answers with data charts, on a multimodal core behind a refactored AI service.',
-			icon: 'mdi:robot-happy-outline'
 		},
 		{
 			date: '2026-06-09',
@@ -193,19 +171,6 @@ export const rsTrophy: ProjectDef = {
 			icon: 'mdi:soccer'
 		},
 		{
-			date: '2026-06-22',
-			title: 'Social — Autopilot Multi-Channel Publishing Suite',
-			description:
-				'Built an autopilot social-media suite — OAuth channels for Facebook, Instagram, YouTube and TikTok, AI content generation with brand voice, a drag-to-schedule calendar, and engagement-metrics dashboards.',
-			icon: 'mdi:bullhorn-outline'
-		},
-		{
-			date: '2026-06-22',
-			title: 'Photos — Product Photo Re-Staging',
-			description: 'Added a tool that re-stages product photos by compositing them onto the display podium.',
-			icon: 'mdi:image-edit-outline'
-		},
-		{
 			date: '2026-06-24',
 			title: 'Performance — Responsive Image Variants',
 			description:
@@ -224,12 +189,6 @@ export const rsTrophy: ProjectDef = {
 			title: 'Catalog — One Filterable Product Catalog',
 			description: 'Put the products page and every category page on one filterable, paginated catalog.',
 			icon: 'mdi:view-grid-outline'
-		},
-		{
-			date: '2026-06-29',
-			title: 'Admin — Richer Dashboards + One Calendar',
-			description: 'Added richer admin dashboards and merged the separate admin calendars into one.',
-			icon: 'mdi:view-dashboard-outline'
 		},
 		{
 			date: '2026-06-30',
@@ -315,38 +274,6 @@ export const rsTrophy: ProjectDef = {
 			addedSkills: ['node-js']
 		},
 		{
-			date: '2026-08-05',
-			title: 'Admin — Installable PWA + Phone Layouts',
-			description:
-				'Made the admin dashboard an installable PWA and gave its lists, dialogs and calendars phone-width layouts.',
-			icon: 'mdi:cellphone-link'
-		},
-		{
-			date: '2026-08-05',
-			title: 'Social — Reliable Publishing + Approval Gate',
-			description:
-				'Repaired the publish pipeline and made review a two-way gate, so an unapproved post can never go live.',
-			icon: 'mdi:send-check-outline'
-		},
-		{
-			date: '2026-08-07',
-			title: 'Admin — Command Center Home',
-			description: 'Rebuilt the admin home as a seven-panel command center fed by one date-windowed calendar endpoint.',
-			icon: 'mdi:view-dashboard'
-		},
-		{
-			date: '2026-08-08',
-			title: 'Social — TikTok Posting Compliance',
-			description: "Added TikTok's content-posting compliance step and per-post publishing options to the composer.",
-			icon: 'simple-icons:tiktok'
-		},
-		{
-			date: '2026-08-08',
-			title: 'Social — Photo Presets + Caption Templates',
-			description: 'Added photo presets, caption templates and auto-post time slots to the composer.',
-			icon: 'mdi:text-box-multiple-outline'
-		},
-		{
 			date: '2026-08-09',
 			title: 'Quality — Playwright E2E + Accessibility in CI',
 			description:
@@ -365,13 +292,6 @@ export const rsTrophy: ProjectDef = {
 			description:
 				"Generated one house card design for every priced product, restaging each photo while keeping the product's own angle.",
 			icon: 'mdi:cards-outline'
-		},
-		{
-			date: '2026-08-22',
-			title: 'Social — Clean Plates in Place',
-			description:
-				'Cleaned product photo plates in place, so social posts reuse the product image without the text from the original photo.',
-			icon: 'mdi:eraser'
 		},
 		{
 			date: '2026-08-24',
@@ -399,12 +319,6 @@ export const rsTrophy: ProjectDef = {
 			icon: 'simple-icons:googletagmanager'
 		},
 		{
-			date: '2026-09-04',
-			title: 'Social — Publishing Restored',
-			description: 'Brought social publishing back after it was pulled on 31 August.',
-			icon: 'mdi:calendar-clock'
-		},
-		{
 			date: '2026-09-07',
 			title: 'Infra — Redirect Service Folded into the Web Apps',
 			description: 'Retired the standalone redirect service and moved its routing into the web apps themselves.',
@@ -429,24 +343,6 @@ export const rsTrophy: ProjectDef = {
 			icon: 'mdi:clipboard-text-outline'
 		},
 		{
-			date: '2026-09-14',
-			title: 'Social — Composer + Approve-and-Post',
-			description: 'Added a generation composer and an approve-and-post flow for social drafts.',
-			icon: 'mdi:check-circle-outline'
-		},
-		{
-			date: '2026-09-15',
-			title: 'Social — Video Posts',
-			description: 'Added MP4 video posts to the social composer.',
-			icon: 'mdi:video-outline'
-		},
-		{
-			date: '2026-09-22',
-			title: 'Social — House Poster Generator',
-			description: 'Generated house-style social posters from product photos, with a contact band on every poster.',
-			icon: 'mdi:image-frame'
-		},
-		{
 			date: '2026-09-30',
 			title: 'AI — Storefront Chat Kill Switch',
 			description: 'Added an admin switch that turns the storefront AI chat off instantly.',
@@ -463,24 +359,6 @@ export const rsTrophy: ProjectDef = {
 			title: 'Infra — Railway Service Config as Code',
 			description: 'Moved every Railway service setting into infrastructure as code.',
 			icon: 'simple-icons:railway'
-		},
-		{
-			date: '2026-10-21',
-			title: 'AI — Usage Dashboard',
-			description: 'Added an admin dashboard showing how each AI feature is used.',
-			icon: 'mdi:chart-line'
-		},
-		{
-			date: '2026-10-21',
-			title: 'Social — Posts by Product + Caption Options',
-			description: 'Added product-led posts, caption options and sports-news posts to the social composer.',
-			icon: 'mdi:newspaper-variant-outline'
-		},
-		{
-			date: '2026-10-23',
-			title: 'Social — Trending-Product Posts',
-			description: 'Added trending-product posts that end on a LINE call to action.',
-			icon: 'mdi:trending-up'
 		},
 		{
 			date: '2026-11-03',

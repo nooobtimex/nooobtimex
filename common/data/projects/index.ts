@@ -9,8 +9,10 @@ import { portfolio } from './portfolio'
 import { prettierConfig } from './prettier-config'
 import { qrFood } from './qr-food'
 import { rsAward } from './rs-award'
+import { rsEservice } from './rs-eservice'
 import { rsMedal } from './rs-medal'
 import { rsTrophy } from './rs-trophy'
+import { rsTrophyAdmin } from './rs-trophy-admin'
 import { wangpa } from './wangpa'
 
 /**
@@ -28,6 +30,8 @@ const defs: ProjectDef[] = [
 	wangpa,
 	monomaxEplPortal,
 	rsTrophy,
+	rsTrophyAdmin,
+	rsEservice,
 	looklookPet,
 	onlinePokerGame,
 	floodProject,

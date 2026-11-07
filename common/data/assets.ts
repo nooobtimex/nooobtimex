@@ -18,6 +18,8 @@ export const assets = {
 	projects: {
 		wangpa: { cover: '/issue/wangpa/cover.webp' },
 		rsTrophy: { cover: '/issue/rs-trophy/cover.webp', gallery: ['/issue/rs-trophy/photo-1.webp'] },
+		rsTrophyAdmin: { cover: '/issue/rs-trophy-admin/cover.webp' },
+		rsEservice: { cover: '/issue/rs-eservice/cover.webp' },
 		looklookPet: {
 			cover: '/issue/looklook-pet/cover.webp',
 			gallery: [

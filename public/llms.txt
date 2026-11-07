@@ -24,7 +24,7 @@ I'm Wongsaphat Puangsorn (วงศพัทธ์ พวงซ้อน), known
 Hire by email: nooobtimex@gmail.com
 
 - Web apps & MVPs: A full-stack web app taken from idea to production — scoping, UI, API, database, auth and deploy, built by one engineer who owns all of it. Proof: ว่างป่ะ · Wangpa (https://nooobtimex.me/projects/wangpa); QR Food Platform (https://nooobtimex.me/projects/qr-food); Online Poker Game (https://nooobtimex.me/projects/online-poker-game)
-- Dashboards & internal tools: Admin consoles, data dashboards and role-based back-offices — maps, charts, CSV export and the permissions that keep each person on the right screen. Proof: Flood Project (https://nooobtimex.me/projects/flood-project); MONOMax EPL Licensing Portal (https://nooobtimex.me/projects/monomax-epl-portal)
+- Dashboards & internal tools: Admin consoles, data dashboards and role-based back-offices — maps, charts, CSV export and the permissions that keep each person on the right screen. Proof: Flood Project (https://nooobtimex.me/projects/flood-project); MONOMax EPL Licensing Portal (https://nooobtimex.me/projects/monomax-epl-portal); RS TROPHY Admin (https://nooobtimex.me/projects/rs-trophy-admin); RS ESERVICE (https://nooobtimex.me/projects/rs-eservice)
 - Company & landing sites: Fast company and landing sites that render without JavaScript, index cleanly in search, and stay easy for your team to update. Proof: RS TROPHY (https://nooobtimex.me/projects/rs-trophy); 🚀 NooobtimeX — Profile Site (https://nooobtimex.me/projects/portfolio)
 - Deploy, infra & speed-ups: Docker and Railway deploys, build gates that stop a broken release, and fixes for apps that are slow or eat memory in production. Proof: 402 MB to 126 MB: what was actually in my Next.js container (https://nooobtimex.me/blog/container-rss-402-to-126); Build with Bun, serve with Node: dodging a standalone RSS leak (https://nooobtimex.me/blog/bun-builds-node-serves)
 - AI coaching (1:1): One-to-one sessions for business owners: you leave with AI doing a real, repeated task in your own business, taught from systems running in production at a factory. Proof: RS TROPHY (https://nooobtimex.me/projects/rs-trophy); Most of my automation is failure handling (https://nooobtimex.me/blog/automation-is-mostly-failure-handling)
@@ -74,12 +74,26 @@ A LINE-first group scheduling app for Thailand that shows a friend group or fami
 - Stack: LINE LIFF, Next.js, React, Tailwind CSS, Bun.js, Elysia.js, MongoDB, Redis, Docker, Railway, SSE, Base UI, TanStack Query, Google Tag Manager, TypeScript, Git/GitHub, Prettier, ESLint
 - Details: https://nooobtimex.me/projects/wangpa
 
+### RS ESERVICE
+
+RS TROPHY's login-only staff workspace, installable as a PWA with email one-time sign-in and native Web Push. Staff raise requests and move them through approval, sign documents electronically, and print them with a QR code that opens each document's live page; a task list and a dashboard hub sit on the home screen, and since November 2026 the article, product and playlist editors live here too. Laid out for every width — a tablet rail, desktop side panels and phone bottom sheets — on the shared RS TROPHY UI kit, as a Next.js app in the Bun monorepo that calls the shared ElysiaJS API. It began as a LINE LIFF app and became a standalone PWA within its first week.
+
+- Stack: Next.js, React, Tailwind CSS, Shadcn/ui, Base UI, Elysia.js, Bun.js, Docker, Railway, LINE LIFF, TypeScript, Git/GitHub, Prettier, ESLint
+- Details: https://nooobtimex.me/projects/rs-eservice
+
 ### MONOMax EPL Licensing Portal
 
 A full-stack SaaS platform that issues and verifies English Premier League commercial-broadcast licenses for Thai venues — restaurants, hotels, and pubs. Business owners sign in with email OTP, register their company and each physical venue with its screen count, and the system provisions the required MONOMax Sports Premium accounts while guaranteeing — enforced at the database level — that every account is bound to a single active venue. Admins review submissions in a dedicated console with its own auth realm and issue a verifiable digital certificate, complete with an in-house-generated QR code, for each approved venue. Built with Next.js 16 (App Router) and React 19 in strict TypeScript: two isolated better-auth realms for users and admins, MongoDB/Mongoose, zod schemas validated identically on client and server with react-hook-form, an interactive Leaflet venue-map picker, presigned document uploads to S3-compatible object storage, transactional email, and Tailwind v4 with shadcn/ui. Containerized with Docker and shipped through a GitHub Actions → GHCR → cloud-VM (Caddy) CI/CD pipeline, with PDPA-conscious data residency. Delivered as a focused 3-day sprint.
 
 - Stack: Next.js, React, MongoDB, Zod, React Hook Form, Tailwind CSS, Shadcn/ui, Leaflet, AWS S3, Mailgun, Recharts, Vitest, Docker, Firebase, NextAuth, Better Auth, TypeScript, Git/GitHub, Prettier, ESLint
 - Details: https://nooobtimex.me/projects/monomax-epl-portal
+
+### RS TROPHY Admin
+
+The login-only staff console of RS TROPHY, where the team runs marketing and the shop's day-to-day: a social publishing suite that drafts, approves and schedules posts to Facebook, Instagram, YouTube and TikTok with AI-written captions and generated posters; an AI assistant that answers with charts from the shop's own data; a LINE inbox; one calendar; and a seven-panel command-center home. Installable as a PWA with phone-width layouts. A Next.js app in the RS TROPHY Bun monorepo that reaches the shared ElysiaJS API through a same-origin proxy, with Better Auth sessions and rights-based access. Catalog editing moved to RS ESERVICE in November 2026.
+
+- Stack: Next.js, React, Tailwind CSS, Shadcn/ui, Elysia.js, Better Auth, React Hook Form, Recharts, Embla Carousel, Bun.js, Docker, Railway, Base UI, TypeScript, Git/GitHub, Prettier, ESLint
+- Details: https://nooobtimex.me/projects/rs-trophy-admin
 
 ### LOOKLOOK PET Platform
 
@@ -120,9 +134,9 @@ A senior thesis project from Thammasat University. Developed a full-stack QR-cod
 
 ### RS TROPHY
 
-A unified e-commerce and management platform for custom trophies, plaques, and medals — consolidating fragmented sibling brands into one high-performance system. Built as a Bun monorepo: a localized, SEO-optimized Next.js storefront, a real-time ElysiaJS API, and an admin console that share types through a common workspace package. Runs on MongoDB with Redis caching and Cloudflare R2 object storage, containerized with Docker and deployed on Railway — and ships an AI copilot for natural-language shopping assistance. The platform evolved from an original WordPress + WooCommerce storefront into this unified Bun monorepo.
+The public storefront for custom trophies, plaques, and medals, and the shared platform behind it — consolidating fragmented sibling brands into one high-performance system. Built as a Bun monorepo: a localized, SEO-optimized Next.js storefront and a real-time ElysiaJS API that every app in the monorepo calls, sharing types through a common workspace package. Runs on MongoDB with Redis caching and Cloudflare R2 object storage, containerized with Docker and deployed on Railway — and ships an AI copilot for natural-language shopping assistance. The staff-facing RS TROPHY Admin console and the RS ESERVICE workspace run on the same API and are listed as projects of their own. The platform evolved from an original WordPress + WooCommerce storefront into this unified Bun monorepo.
 
-- Stack: WordPress, WooCommerce, SEO, Google Analytics, Google Ads, Bun.js, Elysia.js, Next.js, React, MongoDB, Redis, BullMQ, Better Auth, Zod, React Hook Form, Recharts, Embla Carousel, Resend, Docker, Railway, Tailwind CSS, Shadcn/ui, Radix UI, MinIO, AEO, GEO, JSON-LD, Google Tag Manager, Cloudflare R2, Base UI, Expo, React Native, Node.js, TypeScript, Git/GitHub, Prettier, ESLint
+- Stack: WordPress, WooCommerce, SEO, Google Analytics, Google Ads, Bun.js, Elysia.js, Next.js, React, MongoDB, Redis, BullMQ, Better Auth, Zod, Embla Carousel, Resend, Docker, Railway, Tailwind CSS, Shadcn/ui, Radix UI, MinIO, AEO, GEO, JSON-LD, Google Tag Manager, Cloudflare R2, Base UI, Expo, React Native, Node.js, TypeScript, Git/GitHub, Prettier, ESLint
 - Live: https://rs-trophy.com
 - Details: https://nooobtimex.me/projects/rs-trophy
 
