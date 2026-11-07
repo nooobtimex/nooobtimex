@@ -39,6 +39,8 @@
   and `NODE_OPTIONS=--max-old-space-size` (0.6–0.75 × the service memory limit) are set in the runner only;
   the builder stays uncapped. Railway Root Directory stays `/`. Check a change the way Railway runs it:
   `docker build -t nooobtimex . && docker run --rm -e PORT=7788 -p 7788:7788 nooobtimex`.
+- **Ports:** this repo is `RR = 11`, so the web app is on `11000` (`bun run dev` and `bun run start` default to it) and the
+  preview `start` server on `11800`. A worktree `n` runs `PORT=1100n bun run dev`.
 - **TypeScript 6 + 7 — the alias pair is deliberate.** TS 7 ships `tsc` but no compiler API, and
   typescript-eslint caps `typescript` at `<6.1.0`, so `"typescript": "npm:@typescript/typescript6@…"` (bin
   `tsc6`) and `"@typescript/native": "npm:typescript@^7…"` (bin `tsc`). **Do not "fix" `typescript` back to
@@ -68,8 +70,12 @@ never here. The repo-specific half is the rest of this section.
 - **Production data, migrations, secrets, domains, CORS, auth:** state the blast radius and get Kwan's yes
   first.
 - **Never read, print or copy `.env*`, keys, tokens or credentials.**
+- **Ports are five digits and unique across every repo:** `RRSWW` is the repo (`RR`, handed out by the repo-kit
+  repo), the service (`S`, with `8` kept for test runs) and the worktree (`WW`, `00` for the main checkout). A
+  deployed service uses the same number for its `PORT` and its domain's target port. This repo's numbers are in
+  its `AGENTS.md`.
 
-<!-- repo-kit: version=2026.10.31 hash=9a19d2c92a7e -->
+<!-- repo-kit: version=2026.11.04 hash=2d69171cd02e -->
 
 ## Read before you edit
 
@@ -105,7 +111,7 @@ scripts/icons/     generates that subset · the ONLY place @iconify-json/* may b
 .claude/           Claude Code's launch.json and local settings
 ```
 
-Dev server: `bun run dev` on **port 1000**.
+Dev server: `bun run dev` on **port 11000**.
 
 ## Further reading
 
