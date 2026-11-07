@@ -13,7 +13,7 @@ export const imageModelMustNotRenderText: PostDef = {
 		'A bulk AI restyle of our price cards dropped rows, invented a code and turned LINE into LIME, and every card looked finished. What replaced it.',
 	tldr: 'On 11 August 2026 I moved my family\'s trophy-company ad cards onto a new navy/gold template. One bulk image-model prompt was tried first and failed silently: it dropped a size row and a price row, invented a product code, printed the LINE badge as "LIME" and deleted the red X that marks an item as excluded from a set — and every output looked finished. The replacement re-types nothing. A local sharp script lifts each card\'s own printed pixels as an alpha matte and composites them onto the new frame, so the text a customer reads is the text the operator printed.',
 	skills: ['typescript', 'bun-js'],
-	relatedProjectIds: ['rs-trophy'],
+	relatedProjectIds: ['rs-trophy', 'rs-trophy-admin'],
 	relatedExperienceIds: ['ruamsuk-cto'],
 	relatedEntityIds: ['ruamsuk-plating'],
 	body: [

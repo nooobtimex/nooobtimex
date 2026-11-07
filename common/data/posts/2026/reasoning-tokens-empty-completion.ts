@@ -13,7 +13,7 @@ export const reasoningTokensEmptyCompletion: PostDef = {
 		"Every AI caption call 500'd in production: a reasoning model spent max_tokens thinking, finish_reason was 'length', and my client returned ''.",
 	tldr: 'An LLM API call returns an empty string when a reasoning model spends its `max_tokens` budget thinking: the response is an HTTP 200 with `finish_reason: "length"`, no usable content, and the reasoning is still billed. My client returned `content ?? \'\'` without reading `finish_reason`, so every AI caption path in production failed as "No captions generated". The fix: treat `length` and empty as errors that name the tokens spent, the cap and the reasoning share, and size caps for reasoning plus answer.',
 	skills: ['typescript', 'bun-js', 'elysia-js', 'bullmq', 'redis', 'railway'],
-	relatedProjectIds: ['rs-trophy'],
+	relatedProjectIds: ['rs-trophy', 'rs-trophy-admin'],
 	relatedExperienceIds: ['ruamsuk-cto'],
 	relatedEntityIds: ['ruamsuk-plating'],
 	body: [

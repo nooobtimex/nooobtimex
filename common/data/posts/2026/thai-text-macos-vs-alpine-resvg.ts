@@ -13,7 +13,7 @@ export const thaiTextMacosVsAlpineResvg: PostDef = {
 		'SVG text through sharp asks fontconfig for fonts: hundreds on a Mac, none in Alpine. resvg with bundled static fonts gave byte-identical Thai on both.',
 	tldr: 'To render Thai text identically on macOS and in an Alpine container, take the host fonts out of the loop. SVG text through sharp resolves fonts via fontconfig, which finds hundreds of faces on a Mac and none in the Alpine image, so text can render locally and ship blank. I moved to resvg with two bundled static font files and `loadSystemFonts: false`, and the same Thai + Latin layer produced the same sha256 on darwin-arm64 and inside the image.',
 	skills: ['typescript', 'bun-js', 'docker', 'cloudflare-r2'],
-	relatedProjectIds: ['rs-trophy'],
+	relatedProjectIds: ['rs-trophy', 'rs-trophy-admin'],
 	relatedExperienceIds: ['ruamsuk-cto'],
 	relatedEntityIds: ['ruamsuk-plating'],
 	body: [
