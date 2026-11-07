@@ -83,7 +83,7 @@ export function excerpt(text: string, max = 180): string {
 }
 
 /** Where a build stands, as its card, dossier and share cards say it. */
-export type ProjectStatus = 'live' | 'in-development' | 'archived'
+export type ProjectStatus = 'live' | 'in-development' | 'internal' | 'archived'
 
 /**
  * The one place a project's status is decided. It used to be `links.live ? … : 'Archived'`
@@ -92,8 +92,9 @@ export type ProjectStatus = 'live' | 'in-development' | 'archived'
  */
 export function projectStatus(project: Pick<Project, 'links' | 'stage' | 'endDate'>): ProjectStatus {
 	// An explicit stage outranks the derived status — a public beta has a live link and is
-	// still in development — but never outlives the work: an `endDate` voids a stale flag.
-	if (project.stage === 'in-development' && !project.endDate) return 'in-development'
+	// still in development, a staff tool runs with no public link — but never outlives the
+	// work: an `endDate` voids a stale flag.
+	if (project.stage && !project.endDate) return project.stage
 	return project.links.live ? 'live' : 'archived'
 }
 
