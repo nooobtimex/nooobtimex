@@ -15,6 +15,7 @@
 		"links:check": "bun run scripts/links/check.ts",
 		"links:external": "bun run scripts/links/external.ts",
 		"llms:generate": "bun run scripts/llms/generate.ts",
+		"projects:check": "bun run scripts/projects/check.ts",
 		"images:optimize": "bun run scripts/images/optimize.ts",
 		"lint": "eslint . --fix && bun fmt",
 		"readme:assets": "bun run scripts/readme/generate.ts",
@@ -22,7 +23,7 @@
 		"start": "next start -p ${PORT:-11000}",
 		"typecheck": "next typegen && bun check",
 		"check:agents": "bun .agents/skills/update-docs/scripts/check-agent-docs.ts",
-		"gate": "bun run lint && bun run build && bun run check:agents"
+		"gate": "bun run lint && bun run projects:check && bun run build && bun run check:agents"
 	},
 	"dependencies": {
 		"@base-ui/react": "^1.8.0",
