@@ -19,7 +19,7 @@ export const bullmqCustomIdColon: PostDef = {
 		'BullMQ refuses a custom job id with a colon. Four of my five id builders used one, and 1,034 green tests spied on queue.add and never noticed.',
 	tldr: 'BullMQ throws `Custom Id cannot contain :` when a custom `jobId` holds a colon — it only lets exactly two through, for old repeatable jobs. Four of the five stable id builders in my family\'s trophy company\'s API were written `prefix:${id}`, so scheduled publishing, "Generate now", sample renders and plate cleans could not enqueue, while 1,034 unit tests stayed green: they spied on `queue.add`, which proves an id is stable, never that BullMQ accepts it. The fix was hyphens plus a test that scans the source for every id builder and was mutation-tested to prove it can fail.',
 	skills: ['bullmq', 'redis', 'typescript', 'bun-js', 'elysia-js'],
-	relatedProjectIds: ['rs-trophy'],
+	relatedProjectIds: ['rs-trophy', 'rs-trophy-admin'],
 	relatedExperienceIds: ['ruamsuk-cto'],
 	relatedEntityIds: ['ruamsuk-plating'],
 	body: [

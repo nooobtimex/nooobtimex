@@ -19,7 +19,7 @@ export const deleted38kLinesRestoredIn4Days: PostDef = {
 		"The code was done; launch waited on three platforms' review queues. I deleted 37,990 lines, then restored the feature four days later.",
 	tldr: "On 31 August 2026 I deleted a finished social auto-posting system — 37,990 lines across three commits — because its launch was gated on TikTok, YouTube and Meta review queues, and an MCP assistant plus each platform's own scheduler could replace it. Four days later I restored it: Meta never needed App Review to post to our own Page and Instagram; I had generalised TikTok's and YouTube's gates to it. Verify each platform's gate from its own docs before deleting, and treat schedulers, collections and OAuth grants as part of the deletion.",
 	skills: ['bullmq', 'redis', 'mongodb', 'typescript', 'elysia-js', 'cloudflare-r2', 'git-github'],
-	relatedProjectIds: ['rs-trophy'],
+	relatedProjectIds: ['rs-trophy', 'rs-trophy-admin'],
 	relatedExperienceIds: ['ruamsuk-cto'],
 	relatedEntityIds: ['ruamsuk-plating'],
 	body: [

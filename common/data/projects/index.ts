@@ -112,11 +112,16 @@ const resolveProject = (d: ProjectDef): Project => {
 		// Sorted for display; `skills` above stays in first-appearance (historical) order.
 		activeSkills: forDisplay(roster.filter(id => active.has(id))).map(toSkill),
 		retiredSkills: roster.filter(id => !active.has(id)).map(toSkill),
-		timeline: d.timeline?.map(m => ({
-			...m,
-			addedSkills: m.addedSkills?.map(toSkill),
-			removedSkills: m.removedSkills?.map(toSkill)
-		}))
+		// The date-sorted `events`, not the authored array: `ProjectTimeline` only reverses what
+		// it is given, so a milestone written out of order would otherwise render out of place.
+		// The sort is stable, so same-day milestones keep their authored order.
+		timeline:
+			d.timeline
+			&& events.map(m => ({
+				...m,
+				addedSkills: m.addedSkills?.map(toSkill),
+				removedSkills: m.removedSkills?.map(toSkill)
+			}))
 	}
 }
 

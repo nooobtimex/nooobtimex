@@ -46,7 +46,7 @@ see the [`common-conventions`](../common-conventions/SKILL.md) skill; for routin
 ### Add a project
 
 1. Make sure every banner/photo path exists in `assets.ts` first (as `.webp`).
-2. Create `common/data/projects/<id>.ts` (filename === `id`) exporting
+2. Create `common/data/projects/<id>.ts` (filename === `id`; `projects:check` fails otherwise) exporting
    `export const x: ProjectDef = { … }`. List `skills` as
    **`SkillId[]`** (string ids) — they resolve to full `Skill`s via `skillById`.
    Link the role(s) it was delivered under with `linkedExperienceIds`, and set

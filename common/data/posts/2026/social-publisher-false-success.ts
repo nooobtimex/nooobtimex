@@ -13,7 +13,7 @@ export const socialPublisherFalseSuccess: PostDef = {
 		'Before it ever touched a platform, our social publisher could go green for posts sent private, wrong or not at all. What we fixed, and what it cost.',
 	tldr: 'Before our social auto-posting system had ever been connected to a platform, a review on 5 August 2026 found it could report PUBLISHED for posts that went out privately, went out as the wrong media, or never went out: a TikTok privacy lookup that failed open to `SELF_ONLY`, a dry-run sandbox that answered for disabled channels with a synthetic success, and OAuth scopes stored as what we asked Meta for rather than what Meta granted. Every fix reduced to one rule — a status may only say what the platform confirmed — and keeping it cost us the sandbox.',
 	skills: ['bullmq', 'mongodb', 'elysia-js', 'typescript', 'bun-js'],
-	relatedProjectIds: ['rs-trophy'],
+	relatedProjectIds: ['rs-trophy', 'rs-trophy-admin'],
 	relatedExperienceIds: ['ruamsuk-cto'],
 	relatedEntityIds: ['ruamsuk-plating'],
 	body: [

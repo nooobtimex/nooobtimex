@@ -20,7 +20,7 @@ export const aiVerificationGateFailedOpen: PostDef = {
 		'My vision-model gate read each answer as parsed.x === true, so an empty {} reply counted as a pass. How it failed open, and why the feature died anyway.',
 	tldr: 'My vision-model gate checked an AI-cleaned image by asking three yes/no questions in JSON mode and reading each answer as `parsed.x === true`. JSON mode guarantees valid JSON, not the keys you asked for, so a reply of `{}` produced no problems and reported a pass — a gate that failed open at exactly the moment the model misbehaved. The fix requires every answer to be a real boolean and treats anything else as a refusal. The same afternoon, the feature it guarded was deleted for good.',
 	skills: ['typescript', 'bun-js', 'bullmq', 'cloudflare-r2', 'mongodb'],
-	relatedProjectIds: ['rs-trophy'],
+	relatedProjectIds: ['rs-trophy', 'rs-trophy-admin'],
 	relatedExperienceIds: ['ruamsuk-cto'],
 	relatedEntityIds: ['ruamsuk-plating'],
 	body: [
