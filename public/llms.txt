@@ -71,7 +71,7 @@ Read more: https://nooobtimex.me/career/ruamsuk-software-engineer-part-time
 
 A LINE-first group scheduling app for Thailand that shows a friend group or family when everyone is free, without anyone sharing what fills their week. It opens inside the LINE chat as a LIFF web app: one tap signs in with LINE, each person paints a private weekly schedule, and the group sees only busy or free in a shared heatmap with the best times suggested, then proposes, votes on and confirms a plan, and shares invites and plan cards back into the chat. Built as a Bun monorepo: a Next.js 16 web app that runs in LINE and in any browser, an Elysia API on MongoDB and Redis whose types the web and admin apps import through Eden, and an admin app, under strict TypeScript, maximised ESLint, real-store tests and Playwright at phone width. In development for a public launch in November 2026, running on Railway.
 
-- Stack: LINE LIFF, Next.js, React, Tailwind CSS, Bun.js, Elysia.js, MongoDB, Redis, Docker, Railway, TypeScript, Git/GitHub, Prettier, ESLint
+- Stack: LINE LIFF, Next.js, React, Tailwind CSS, Bun.js, Elysia.js, MongoDB, Redis, Docker, Railway, SSE, Base UI, TanStack Query, Google Tag Manager, TypeScript, Git/GitHub, Prettier, ESLint
 - Details: https://nooobtimex.me/projects/wangpa
 
 ### MONOMax EPL Licensing Portal
@@ -93,15 +93,15 @@ Architect and lead full-stack developer of the LOOKLOOK PET platform — a multi
 
 The fastest way to build, share, and try a Prettier configuration — visually, in the browser. Runs the official prettier/standalone fully client-side for instant live formatting, with a CodeMirror 6 editor spanning JS/TS, CSS, HTML, JSON, Markdown, Vue, and more, plus shareable URL-encoded configs and i18n. Built on Next.js, React, TypeScript, and Tailwind CSS v4 with shadcn/ui on Base UI.
 
-- Stack: Next.js, React, Tailwind CSS, Vercel, Google Tag Manager, Shadcn/ui, Base UI, CodeMirror, TypeScript, Git/GitHub, Prettier, ESLint
+- Stack: Next.js, React, Tailwind CSS, Vercel, Shadcn/ui, Radix UI, Google Tag Manager, SEO, Bun.js, Base UI, Docker, Railway, CodeMirror, Node.js, TypeScript, Git/GitHub, Prettier, ESLint
 - Live: https://prettier-config.dev
 - Details: https://nooobtimex.me/projects/prettier-config
 
 ### Online Poker Game
 
-A real-time multiplayer online poker game featuring Server-Sent Events for live updates. Built with Next.js and PostgreSQL for a seamless, interactive card gaming experience.
+A real-time multiplayer online poker game featuring Server-Sent Events for live updates. Built with Next.js, and since its 2026 scale-out runs on MongoDB with Redis and a BullMQ job queue.
 
-- Stack: Next.js, React, Prisma, Render, Tailwind CSS, PostgreSQL, SSE, Docker, BullMQ, Redis, TypeScript, Git/GitHub, Prettier, ESLint
+- Stack: Next.js, React, Prisma, Render, Tailwind CSS, PostgreSQL, SSE, Docker, BullMQ, Redis, MongoDB, TypeScript, Git/GitHub, Prettier, ESLint
 - Details: https://nooobtimex.me/projects/online-poker-game
 
 ### Flood Project
@@ -120,9 +120,9 @@ A senior thesis project from Thammasat University. Developed a full-stack QR-cod
 
 ### RS TROPHY
 
-A unified e-commerce and management platform for custom trophies, plaques, and medals — consolidating fragmented sibling brands into one high-performance system. Built as a Bun monorepo: a localized, SEO-optimized Next.js storefront, a real-time ElysiaJS API, and an admin console that share Mongoose schemas and types through a common workspace package. Runs on MongoDB with Redis caching and Cloudflare R2 object storage, containerized with Docker and deployed on Railway — and ships an AI copilot for natural-language shopping assistance. The platform evolved from an original WordPress + WooCommerce storefront into this unified Bun monorepo.
+A unified e-commerce and management platform for custom trophies, plaques, and medals — consolidating fragmented sibling brands into one high-performance system. Built as a Bun monorepo: a localized, SEO-optimized Next.js storefront, a real-time ElysiaJS API, and an admin console that share types through a common workspace package. Runs on MongoDB with Redis caching and Cloudflare R2 object storage, containerized with Docker and deployed on Railway — and ships an AI copilot for natural-language shopping assistance. The platform evolved from an original WordPress + WooCommerce storefront into this unified Bun monorepo.
 
-- Stack: WordPress, WooCommerce, SEO, Google Analytics, Google Ads, Bun.js, Elysia.js, Next.js, React, MongoDB, Redis, Docker, Railway, Tailwind CSS, Shadcn/ui, MinIO, AEO, GEO, JSON-LD, Google Tag Manager, Cloudflare R2, TypeScript, Git/GitHub, Prettier, ESLint
+- Stack: WordPress, WooCommerce, SEO, Google Analytics, Google Ads, Bun.js, Elysia.js, Next.js, React, MongoDB, Redis, BullMQ, Better Auth, Zod, React Hook Form, Recharts, Embla Carousel, Resend, Docker, Railway, Tailwind CSS, Shadcn/ui, Radix UI, MinIO, AEO, GEO, JSON-LD, Google Tag Manager, Cloudflare R2, Base UI, Expo, React Native, Node.js, TypeScript, Git/GitHub, Prettier, ESLint
 - Live: https://rs-trophy.com
 - Details: https://nooobtimex.me/projects/rs-trophy
 
@@ -144,7 +144,7 @@ A plaque and award showcase web app — first built on WordPress, later remade a
 
 This site — a Cyberpunk 2077–inspired profile that turns visitors into freelance clients, built on Next.js (App Router, Turbopack) with a fully custom Tailwind v4 design system and shadcn/ui on Base UI. Features a ⌘K command palette, a gig-board project journal, a vertical career-trace timeline, and a print-ready CV with a slide-presentation mode. Deployed on Railway.
 
-- Stack: Next.js, Tailwind CSS, SEO, React, Shadcn/ui, Bun.js, Railway, AEO, GEO, JSON-LD, Google Tag Manager, Base UI, Embla Carousel, TypeScript, Git/GitHub, Prettier, ESLint
+- Stack: Next.js, Tailwind CSS, SEO, React, Shadcn/ui, Bun.js, Embla Carousel, JSON-LD, Google Tag Manager, AEO, GEO, Docker, Railway, Vercel, Base UI, Node.js, TypeScript, Git/GitHub, Prettier, ESLint
 - Live: https://github.com/NooobtimeX/NooobtimeX
 - Details: https://nooobtimex.me/projects/portfolio
 
