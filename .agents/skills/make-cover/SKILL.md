@@ -117,6 +117,9 @@ has never used (copy-pasted from `rs-award`), and `looklook-pet` kept advertisin
 months after a milestone retired it. **Tags must name only skills that are ACTIVE for that
 project** — cross-check `activeSkills` from `common/data/projects/`, and prefer drawing them
 from that project's `highlightSkills`, which is already the curated signature list.
+`bun run projects:check` (in `gate`) enforces this table: a row per project, its `accent` equal to the
+project's, every tag an active skill, and a status badge that matches `projectStatus()`. A failure there
+means re-render the cover and update its row.
 
 ```
 wangpa              accent #5CCF95  motif dots     title ว่างป่ะ|Wangpa      kicker // GROUP SCHEDULING ON LINE  badge ● In Development  tags LINE LIFF,Next.js,Elysia,MongoDB

@@ -26,9 +26,10 @@
 ## Delivery contract
 
 - Base branch: `main`.
-- Gate: `bun run gate` = `lint` (`eslint . --fix && bun fmt`) → `build` (`icons:check` →
+- Gate: `bun run gate` = `lint` (`eslint . --fix && bun fmt`) → `projects:check` → `build` (`icons:check` →
   `typecheck` → `next build` → `links:check` → `seo:check` → `bundle:check`) → `check:agents`. Use
-  `bun run build`, never `bun build` (Bun's own bundler builtin).
+  `bun run build`, never `bun build` (Bun's own bundler builtin). `projects:check` is gate-only: it reads the
+  `make-cover` table, and `.dockerignore` keeps `.agents/` out of the Railway build.
 - **Indentation is tabs** (`useTabs` in `.prettierrc`, which `bun fmt` reads — import order and Tailwind class order
   are built in, so no Prettier package is installed).
 - **Bun 1.4.4 is pinned** in `packageManager` and the Dockerfile's `oven/bun:1.4.4-slim` tag — move them together
