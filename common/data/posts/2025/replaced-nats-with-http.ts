@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: the looklook-pet 2025-10-30 milestone + project description in common/data/projects.ts, and the jasmine-tech entry in common/data/experiences.ts. */
+/** Sources: the looklook-pet 2025-10-30 milestone + project description in common/data/projects/, and the jasmine-tech entry in common/data/experiences.ts. */
 export const replacedNatsWithHttp: PostDef = {
 	id: 'replaced-nats-with-http',
 	title: 'We replaced a NATS message bus with plain HTTP calls',

@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: RS Award timeline + description in common/data/projects.ts (2025-12-04, 2026-01-28, 2026-01-30, 2026-02-10), the career timeline in common/data/experiences.ts, and general Thai typography knowledge. */
+/** Sources: RS Award timeline + description in common/data/projects/ (2025-12-04, 2026-01-28, 2026-01-30, 2026-02-10), the career timeline in common/data/experiences.ts, and general Thai typography knowledge. */
 export const thaiLocalizationAndANewDesignSystem: PostDef = {
 	id: 'thai-localization-and-a-new-design-system',
 	title: 'Localizing a storefront to Thai while replacing its design system',
@@ -80,7 +80,7 @@ export const thaiLocalizationAndANewDesignSystem: PostDef = {
 			kind: 'stat',
 			value: '2 days',
 			label: 'between swapping the database and swapping the design system — 28 to 30 January 2026, on the same build',
-			source: 'RS Award project timeline, common/data/projects.ts'
+			source: 'RS Award project timeline, common/data/projects/'
 		},
 		{
 			kind: 'p',

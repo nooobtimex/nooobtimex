@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: the looklook-pet 2025-11-07 milestone + project description in common/data/projects.ts, and the jasmine-tech entry in common/data/experiences.ts. */
+/** Sources: the looklook-pet 2025-11-07 milestone + project description in common/data/projects/, and the jasmine-tech entry in common/data/experiences.ts. */
 export const vmFleetToRailway: PostDef = {
 	id: 'vm-fleet-to-railway',
 	title: 'Retiring self-managed VMs and CircleCI + SSH for Railway across a fleet',

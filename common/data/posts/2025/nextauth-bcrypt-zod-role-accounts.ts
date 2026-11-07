@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: the flood-project entry + its 2025-02-07 and 2025-02-13 milestones in common/data/projects.ts, the freelance role in common/data/experiences.ts, skill descriptions in common/data/skills.ts. */
+/** Sources: the flood-project entry + its 2025-02-07 and 2025-02-13 milestones in common/data/projects/, the freelance role in common/data/experiences.ts, skill descriptions in common/data/skills.ts. */
 export const nextauthBcryptZodRoleAccounts: PostDef = {
 	id: 'nextauth-bcrypt-zod-role-accounts',
 	title: 'Role-based accounts with NextAuth, bcrypt and Zod — the whole flow',

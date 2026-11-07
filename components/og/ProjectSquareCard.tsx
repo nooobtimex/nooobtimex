@@ -29,6 +29,7 @@ import { type Project, entitiesData, experiencesData } from '@/common'
 const STATUS_LABEL = {
 	'live': 'Active',
 	'in-development': 'In Development',
+	'internal': 'Internal',
 	'archived': 'Archived'
 } satisfies Record<ProjectStatus, string>
 

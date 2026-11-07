@@ -33,9 +33,10 @@ export type ExperienceId =
 /**
  * Where a project stands, for the one case its status can't be derived. Live/Archived comes
  * from `links.live`, so a private build with no public URL reads "Archived" — true for a
- * delivered job, false for one still being built.
+ * delivered job, false for one still being built, and false for a staff-only tool that is
+ * running today behind a login (`internal`).
  */
-export type ProjectStage = 'in-development'
+export type ProjectStage = 'in-development' | 'internal'
 
 /**
  * Blog journey chapters — the career phase a post belongs to. Spans mirror the exact

@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: the online-poker-game timeline in common/data/projects.ts (2025-06-09 kickoff, the 2025-06-11 test-driven hand evaluator, the 2025-06-12 showdown and deck logic), the project description, and common/data/experiences.ts for the roles that week. Poker combinatorics and TDD technique are general knowledge. */
+/** Sources: the online-poker-game timeline in common/data/projects/ (2025-06-09 kickoff, the 2025-06-11 test-driven hand evaluator, the 2025-06-12 showdown and deck logic), the project description, and common/data/experiences.ts for the roles that week. Poker combinatorics and TDD technique are general knowledge. */
 export const tddPokerHandEvaluator: PostDef = {
 	id: 'tdd-poker-hand-evaluator',
 	title: 'Test-driving a poker hand evaluator',

@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: common/data/projects.ts (rsAward, rsMedal, rsTrophy timelines), common/data/experiences.ts, common/data/entities.ts (ruamsukPlating). */
+/** Sources: common/data/projects/ (rsAward, rsMedal, rsTrophy timelines), common/data/experiences.ts, common/data/entities.ts (ruamsukPlating). */
 export const threeStorefrontsTenMonths: PostDef = {
 	id: 'three-storefronts-ten-months',
 	title: 'Three storefronts in ten months on the boring stack',

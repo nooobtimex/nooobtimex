@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: common/data/experiences.ts (freelance startDate 2024-01-01, thammasat-bs-cs, ruamsuk-software-engineer-part-time), common/data/entities.ts (freelance org, founded 2024), common/data/projects.ts (qrFood, floodProject, onlinePokerGame + linkedExperienceIds). */
+/** Sources: common/data/experiences.ts (freelance startDate 2024-01-01, thammasat-bs-cs, ruamsuk-software-engineer-part-time), common/data/entities.ts (freelance org, founded 2024), common/data/projects/ (qrFood, floodProject, onlinePokerGame + linkedExperienceIds). */
 export const startingToFreelanceInThirdYear: PostDef = {
 	id: 'starting-to-freelance-in-third-year',
 	title: 'Starting to freelance in my third year of university',

@@ -32,6 +32,7 @@ export const dynamic = 'force-static'
 const STATUS_LABEL = {
 	'live': 'LIVE',
 	'in-development': 'IN DEVELOPMENT',
+	'internal': 'INTERNAL',
 	'archived': 'ARCHIVED'
 } satisfies Record<ProjectStatus, string>
 

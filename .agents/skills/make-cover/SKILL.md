@@ -60,16 +60,17 @@ All optional; URL-encode values.
 | `meta`     | bottom-right, e.g. `FREELANCE // 2025`.                                                                                                                                                                        |
 
 **`accent` now lives in the data layer.** Each project carries an `accent` hex in
-`common/data/projects.ts`; it drives BOTH this cover and the 1:1 share card's chrome
+`common/data/projects/<id>.ts`; it drives BOTH this cover and the 1:1 share card's chrome
 (`components/og/`). Read it from there rather than re-picking a colour, and when a
 project has a real product behind it, sample the brand off the live site instead of
 inventing one — looklook-pet, prettier-config and monomax-epl-portal were corrected
-this way. Update both this table and `projects.ts` together.
+this way. Update both this table and the project file together.
 
 Keep `accent`/`motif` distinct per project so the set reads as a cohesive family,
 not clones. Match `badgeLvl` to the status the site derives (`projectStatus()` in
 `lib/utils.ts`): `● Live` for a live link, `● In Development` for a project with
-`stage: 'in-development'`, otherwise `● Archived`.
+`stage: 'in-development'`, `● Internal` for `stage: 'internal'` (a staff-only tool running
+behind a login), otherwise `● Archived`.
 
 ## Wiring it into the data (`common/data/`)
 
@@ -82,7 +83,7 @@ Naming convention: the generated hero is always `cover.webp`; real screenshots a
 2. In `assets.ts` set the project's `cover` to the new file and **keep the
    screenshot(s) in `gallery`** so nothing is lost:
    `foo: { cover: '/issue/foo/cover.webp', gallery: ['/issue/foo/photo-1.webp'] }`.
-3. In `projects.ts` show the real screenshot(s) in the detail gallery:
+3. In the project file (`common/data/projects/<id>.ts`) show the real screenshot(s) in the detail gallery:
    `images: { cover: assets.projects.foo.cover, photos: [...assets.projects.foo.gallery] }`
    (use `photos: []` for a cover-only project with no screenshot).
 4. `bun run gate`, then eyeball `/projects` + `/projects/<id>`.
@@ -114,7 +115,7 @@ Naming convention: the generated hero is always `cover.webp`; real screenshots a
 `cover.webp`, so nothing kept it honest — and it drifted: `rs-medal` advertised MongoDB it
 has never used (copy-pasted from `rs-award`), and `looklook-pet` kept advertising NATS for
 months after a milestone retired it. **Tags must name only skills that are ACTIVE for that
-project** — cross-check `activeSkills` in `common/data/projects.ts`, and prefer drawing them
+project** — cross-check `activeSkills` from `common/data/projects/`, and prefer drawing them
 from that project's `highlightSkills`, which is already the curated signature list.
 
 ```
@@ -122,8 +123,13 @@ wangpa              accent #5CCF95  motif dots     title ว่างป่ะ|W
                     subtitle Who is free, inside LINE · Busy-only privacy  badgeSub Launch Nov 2026  meta FREELANCE // 2026
 monomax-epl-portal  accent #EE5E25  motif qr       title MONOMax|EPL Portal  kicker // LICENSING SAAS       badge ● SaaS      tags Next.js,MongoDB,Better-Auth,Docker
 rs-trophy           accent #FCEE0A  motif trophy   title RS|Trophy           kicker // E-COMMERCE PLATFORM  badge ● Live      tags Bun,Next.js,Elysia,MongoDB,R2
+rs-trophy-admin     accent #C5A059  motif bars     title RS Trophy|Admin     kicker // STAFF CONSOLE        badge ● Internal  tags Next.js,Elysia,Better-Auth,Recharts
+                    subtitle Social publishing · AI data assistant  badgeSub Staff only  meta RS TROPHY // 2026
+rs-eservice         accent #ECD399  motif qr       title RS|eService         kicker // STAFF WORKSPACE      badge ● Internal  tags Next.js,Elysia,Base UI,Bun
+                    subtitle Requests · Approvals · E-signed documents  badgeSub PWA  meta RS TROPHY // 2026
 looklook-pet        accent #FF7D5A  motif hex      title LOOKLOOK|Pet        kicker // MARKETPLACE          badge ● Live      tags NestJS,Medusa,Omise,Next.js
-online-poker-game   accent #FF003C  motif cards    title Online|Poker        kicker // REALTIME GAME        badge ● Archived  tags Next.js,SSE,PostgreSQL,Redis
+online-poker-game   accent #FF003C  motif cards    title Online|Poker        kicker // REALTIME GAME        badge ● Archived  tags Next.js,SSE,MongoDB,Redis
+                    subtitle Multiplayer Texas Hold'em · SSE  badgeSub Realtime  meta FREELANCE // 2025
 flood-project       accent #00F0FF  motif waves    title Flood|Project       kicker // WATER-LEVEL MONITORING                 tags Next.js,Prisma,Leaflet,Recharts,NextAuth
 prettier-config     accent #55B3B4  motif braces   title Prettier|Config     kicker // DEV TOOL             badge ● Live      tags Next.js,CodeMirror,Tailwind
 rs-medal            accent #8AD8FF  motif rings    title RS|Medal            kicker // E-COMMERCE           badge ● Archived  tags Next.js,JSON-LD,SEO

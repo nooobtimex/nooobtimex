@@ -23,7 +23,7 @@ const defs: ServiceDef[] = [
 		blurb:
 			'Admin consoles, data dashboards and role-based back-offices — maps, charts, CSV export and the permissions that keep each person on the right screen.',
 		icon: 'mdi:view-dashboard-outline',
-		proofProjectIds: ['flood-project', 'monomax-epl-portal']
+		proofProjectIds: ['flood-project', 'monomax-epl-portal', 'rs-trophy-admin', 'rs-eservice']
 	},
 	{
 		id: 'sites',

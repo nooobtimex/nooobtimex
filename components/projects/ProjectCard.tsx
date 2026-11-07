@@ -7,6 +7,7 @@ import type { Project } from '@/common'
 const STATUS_LABEL = {
 	'live': 'Live',
 	'in-development': 'In Development',
+	'internal': 'Internal',
 	'archived': 'Archived'
 } satisfies Record<ProjectStatus, string>
 

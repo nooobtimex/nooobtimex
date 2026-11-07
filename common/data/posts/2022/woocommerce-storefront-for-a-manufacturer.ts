@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: common/data/projects.ts (rs-trophy, rs-medal, rs-award timelines), experiences.ts, entities.ts. */
+/** Sources: common/data/projects/ (rs-trophy, rs-medal, rs-award timelines), experiences.ts, entities.ts. */
 export const woocommerceStorefrontForAManufacturer: PostDef = {
 	id: 'woocommerce-storefront-for-a-manufacturer',
 	title: 'Launching a WooCommerce storefront for a Thai manufacturer',

@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: common/data/projects.ts (rsAward timeline; rsMedal, rsTrophy), common/data/experiences.ts (part-time role, Thammasat), common/data/entities.ts (ruamsukPlating). */
+/** Sources: common/data/projects/ (rsAward timeline; rsMedal, rsTrophy), common/data/experiences.ts (part-time role, Thammasat), common/data/entities.ts (ruamsukPlating). */
 export const firstClientWorkWasWordpress: PostDef = {
 	id: 'first-client-work-was-wordpress',
 	title: 'My first client work was WordPress, and that was the right call',

@@ -19,6 +19,7 @@ interface ProjectDetailProps {
 const STATUS_META = {
 	'live': { label: 'Active', className: 'text-cyber-cyan' },
 	'in-development': { label: 'In Development', className: 'text-cyber-yellow' },
+	'internal': { label: 'Internal', className: 'text-cyber-green' },
 	'archived': { label: 'Archived', className: 'text-muted-foreground' }
 } satisfies Record<ProjectStatus, { label: string; className: string }>
 

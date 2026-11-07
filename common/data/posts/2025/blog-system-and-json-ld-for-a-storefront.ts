@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: common/data/projects.ts (rsMedal timeline — 2025-05-30 remake, 2025-06-06 blog + JSON-LD, 2025-06-23 landing pages), experiences.ts (full-time bridge role), entities.ts (ruamsukPlating). */
+/** Sources: common/data/projects/ (rsMedal timeline — 2025-05-30 remake, 2025-06-06 blog + JSON-LD, 2025-06-23 landing pages), experiences.ts (full-time bridge role), entities.ts (ruamsukPlating). */
 export const blogSystemAndJsonLdForAStorefront: PostDef = {
 	id: 'blog-system-and-json-ld-for-a-storefront',
 	title: 'Adding a blog system and JSON-LD to a catalog storefront',
