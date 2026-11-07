@@ -60,11 +60,11 @@ All optional; URL-encode values.
 | `meta`     | bottom-right, e.g. `FREELANCE // 2025`.                                                                                                                                                                        |
 
 **`accent` now lives in the data layer.** Each project carries an `accent` hex in
-`common/data/projects.ts`; it drives BOTH this cover and the 1:1 share card's chrome
+`common/data/projects/<id>.ts`; it drives BOTH this cover and the 1:1 share card's chrome
 (`components/og/`). Read it from there rather than re-picking a colour, and when a
 project has a real product behind it, sample the brand off the live site instead of
 inventing one — looklook-pet, prettier-config and monomax-epl-portal were corrected
-this way. Update both this table and `projects.ts` together.
+this way. Update both this table and the project file together.
 
 Keep `accent`/`motif` distinct per project so the set reads as a cohesive family,
 not clones. Match `badgeLvl` to the status the site derives (`projectStatus()` in
@@ -82,7 +82,7 @@ Naming convention: the generated hero is always `cover.webp`; real screenshots a
 2. In `assets.ts` set the project's `cover` to the new file and **keep the
    screenshot(s) in `gallery`** so nothing is lost:
    `foo: { cover: '/issue/foo/cover.webp', gallery: ['/issue/foo/photo-1.webp'] }`.
-3. In `projects.ts` show the real screenshot(s) in the detail gallery:
+3. In the project file (`common/data/projects/<id>.ts`) show the real screenshot(s) in the detail gallery:
    `images: { cover: assets.projects.foo.cover, photos: [...assets.projects.foo.gallery] }`
    (use `photos: []` for a cover-only project with no screenshot).
 4. `bun run gate`, then eyeball `/projects` + `/projects/<id>`.
@@ -114,7 +114,7 @@ Naming convention: the generated hero is always `cover.webp`; real screenshots a
 `cover.webp`, so nothing kept it honest — and it drifted: `rs-medal` advertised MongoDB it
 has never used (copy-pasted from `rs-award`), and `looklook-pet` kept advertising NATS for
 months after a milestone retired it. **Tags must name only skills that are ACTIVE for that
-project** — cross-check `activeSkills` in `common/data/projects.ts`, and prefer drawing them
+project** — cross-check `activeSkills` from `common/data/projects/`, and prefer drawing them
 from that project's `highlightSkills`, which is already the curated signature list.
 
 ```

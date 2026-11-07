@@ -5,9 +5,10 @@ through `@/common`; the recipes for adding one are in the [`add-content`](../../
 
 ## Projects — author a `ProjectDef`, ids resolve to `Skill`s
 
-In [`common/data/projects.ts`](../../../../common/data/projects.ts) a project is a `ProjectDef`: the `Project`
-interface from [`common/interfaces.ts`](../../../../common/interfaces.ts) without the derived fields (`skills`,
-`activeSkills`, `retiredSkills`, `timeline`), plus
+Each project is one file, [`common/data/projects/<id>.ts`](../../../../common/data/projects/) (filename ===
+`id`), exporting a `ProjectDef`: the `Project` interface from
+[`common/interfaces.ts`](../../../../common/interfaces.ts) without the derived fields (`skills`, `activeSkills`,
+`retiredSkills`, `timeline`), plus
 
 - `skills: SkillId[]` — the **starting** stack, as id strings (typed and autocompleted);
 - `highlightSkills?: SkillId[]` — the signature tech, most representative first. It may name only skills that are
@@ -18,7 +19,8 @@ interface from [`common/interfaces.ts`](../../../../common/interfaces.ts) withou
 roster (`skills`), the display-ordered `activeSkills` and `retiredSkills`, and adds `commonTooling` (always active,
 never retired) to every project. Ids become full `Skill`s through `skillById`.
 
-- Add the const to the `defs` array; `projectsData` is `defs` resolved and sorted newest-first by
+- Import the const in [`common/data/projects/index.ts`](../../../../common/data/projects/index.ts) and add it to
+  the `defs` array there; `projectsData` is `defs` resolved and sorted newest-first by
   `sortByDateDesc`. Feature a project on the home page by adding its `id` to `featuredProjectIds`
   (→ `featuredProjects`). `id` is url-safe → `/projects/<id>`.
 - Besides the skills: `title`, `description`, `images` (`cover` and `photos`, both from `assets.*`), `accent`,

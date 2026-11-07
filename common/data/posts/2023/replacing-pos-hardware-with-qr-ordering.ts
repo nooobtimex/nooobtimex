@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: common/data/projects.ts (qrFood def + timeline), common/data/experiences.ts (thammasat-bs-cs, ruamsuk-software-engineer-part-time), common/data/entities.ts (ruamsukPlating, thammasatUniversity), commits 8f36e6c and 3047806. */
+/** Sources: common/data/projects/ (qrFood def + timeline), common/data/experiences.ts (thammasat-bs-cs, ruamsuk-software-engineer-part-time), common/data/entities.ts (ruamsukPlating, thammasatUniversity), commits 8f36e6c and 3047806. */
 export const replacingPosHardwareWithQrOrdering: PostDef = {
 	id: 'replacing-pos-hardware-with-qr-ordering',
 	title: 'Replacing restaurant POS hardware with QR ordering: scoping a senior thesis',

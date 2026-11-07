@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-// Sources: common/data/projects.ts (rs-trophy timeline 2026-05-06 / 2026-05-09) + common/data/entities.ts + common/data/experiences.ts (role dates).
+// Sources: common/data/projects/ (rs-trophy timeline 2026-05-06 / 2026-05-09) + common/data/entities.ts + common/data/experiences.ts (role dates).
 export const nextIntlThEnSharedUi: PostDef = {
 	id: 'next-intl-th-en-shared-ui',
 	title: 'next-intl Thai/English localization with a shared UI workspace',

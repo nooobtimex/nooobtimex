@@ -23,15 +23,15 @@ see the [`common-conventions`](../common-conventions/SKILL.md) skill; for routin
 
 ## Map: what lives where
 
-| Want to add/edit…      | File                         | Then it flows into…                         |
-| ---------------------- | ---------------------------- | ------------------------------------------- |
-| A skill/technology     | `common/data/skills.ts`      | `skillsData`, `skillById`, `featuredSkills` |
-| A project/build        | `common/data/projects.ts`    | `projectsData`, `featuredProjects`          |
-| A job/role/education   | `common/data/experiences.ts` | `experiencesData`, `workExperienceData`, …  |
-| A company/university   | `common/data/entities.ts`    | `entitiesData` (referenced by projects)     |
-| Name/title/socials     | `common/data/personal.ts`    | `personalData`                              |
-| An image path          | `common/data/assets.ts`      | `assets.*`                                  |
-| A new fixed value type | `common/enums.ts`            | the union (e.g. add a `Position`)           |
+| Want to add/edit…      | File                           | Then it flows into…                         |
+| ---------------------- | ------------------------------ | ------------------------------------------- |
+| A skill/technology     | `common/data/skills.ts`        | `skillsData`, `skillById`, `featuredSkills` |
+| A project/build        | `common/data/projects/<id>.ts` | `projectsData`, `featuredProjects`          |
+| A job/role/education   | `common/data/experiences.ts`   | `experiencesData`, `workExperienceData`, …  |
+| A company/university   | `common/data/entities.ts`      | `entitiesData` (referenced by projects)     |
+| Name/title/socials     | `common/data/personal.ts`      | `personalData`                              |
+| An image path          | `common/data/assets.ts`        | `assets.*`                                  |
+| A new fixed value type | `common/enums.ts`              | the union (e.g. add a `Position`)           |
 
 ## Recipes
 
@@ -46,13 +46,15 @@ see the [`common-conventions`](../common-conventions/SKILL.md) skill; for routin
 ### Add a project
 
 1. Make sure every banner/photo path exists in `assets.ts` first (as `.webp`).
-2. In `projects.ts`, add `export const x: ProjectDef = { … }`. List `skills` as
+2. Create `common/data/projects/<id>.ts` (filename === `id`) exporting
+   `export const x: ProjectDef = { … }`. List `skills` as
    **`SkillId[]`** (string ids) — they resolve to full `Skill`s via `skillById`.
    Link the role(s) it was delivered under with `linkedExperienceIds`, and set
    `clientOrganizationId` / `viaOrganizationId` (an `EntityId`) if the client or delivering
    company differs from the role's. The full shape is in
    [`common-conventions`](../common-conventions/references/entities.md).
-3. Add `x` to the `defs` array. To feature it, add its id to `featuredProjectIds`.
+3. Import `x` in `common/data/projects/index.ts` and add it to the `defs` array. To feature it,
+   add its id to `featuredProjectIds` there.
 4. `id` is url-safe → `/projects/<id>`.
 
 ### Add an experience/role

@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: common/data/projects.ts (rs-trophy, rs-medal, rs-award timelines + consolidation event), common/data/experiences.ts (ruamsuk-software-engineer-part-time), common/data/entities.ts (ruamsuk-plating). */
+/** Sources: common/data/projects/ (rs-trophy, rs-medal, rs-award timelines + consolidation event), common/data/experiences.ts (ruamsuk-software-engineer-part-time), common/data/entities.ts (ruamsuk-plating). */
 export const onpageSeoForAThaiB2bCatalog: PostDef = {
 	id: 'onpage-seo-for-a-thai-b2b-catalog',
 	title: 'On-page SEO for a bilingual Thai B2B catalog',

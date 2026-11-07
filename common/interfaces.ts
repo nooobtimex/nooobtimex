@@ -183,6 +183,32 @@ export interface Project {
 	timeline?: Milestone[]
 }
 
+/** Authoring shape for a milestone: skill deltas by id (resolved to Skill[] by `resolveProject`). */
+export type MilestoneDef = Omit<Milestone, 'addedSkills' | 'removedSkills'> & {
+	addedSkills?: SkillId[]
+	removedSkills?: SkillId[]
+}
+
+/**
+ * Authoring shape: list the STARTING stack by id (typed + autocompleted). The active/retired
+ * split and the full roster are derived from the timeline's add/remove events (see `resolveProject` in `data/projects/index.ts`).
+ */
+export type ProjectDef = Omit<Project, 'skills' | 'activeSkills' | 'retiredSkills' | 'timeline'> & {
+	skills: SkillId[]
+	/**
+	 * Signature tech, most representative FIRST — the technologies a reader should see to
+	 * understand what this project actually is. Ranked by array position.
+	 *
+	 * Display order is otherwise the order skills happen to be authored in, which nobody
+	 * chose: `rs-trophy` led with three retired-era marketing tools instead of Bun, and
+	 * `looklook-pet` led with Flutter instead of the NestJS its description opens on.
+	 *
+	 * Must name only skills that are ACTIVE for the project — the resolver throws otherwise.
+	 */
+	highlightSkills?: SkillId[]
+	timeline?: MilestoneDef[]
+}
+
 // --- Blog ---
 
 /**

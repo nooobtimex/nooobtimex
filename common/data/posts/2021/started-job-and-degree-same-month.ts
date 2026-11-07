@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: common/data/experiences.ts (both 2021-08-01 starts), entities.ts (company + Thammasat facts), projects.ts (rs-award 2022-03-01), personal.ts (birthDate), posts/2026/how-i-became-cto-at-23.ts and plan-was-2030-came-back-2026.ts. */
+/** Sources: common/data/experiences.ts (both 2021-08-01 starts), entities.ts (company + Thammasat facts), projects/rs-award.ts (2022-03-01), personal.ts (birthDate), posts/2026/how-i-became-cto-at-23.ts and plan-was-2030-came-back-2026.ts. */
 export const startedJobAndDegreeSameMonth: PostDef = {
 	id: 'started-job-and-degree-same-month',
 	title: 'I started my first dev job and my CS degree in the same month',

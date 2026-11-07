@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: rs-medal + rs-award timelines and descriptions in common/data/projects.ts (2022-09-01 milestone), ruamsuk-plating in common/data/entities.ts, ruamsuk-software-engineer-part-time in common/data/experiences.ts. */
+/** Sources: rs-medal + rs-award timelines and descriptions in common/data/projects/ (2022-09-01 milestone), ruamsuk-plating in common/data/entities.ts, ruamsuk-software-engineer-part-time in common/data/experiences.ts. */
 export const brandAlignedWordpressCatalogTheme: PostDef = {
 	id: 'brand-aligned-wordpress-catalog-theme',
 	title: 'Designing a brand-aligned WordPress catalog theme without a designer',

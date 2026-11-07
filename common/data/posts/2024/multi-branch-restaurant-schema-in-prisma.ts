@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: common/data/projects.ts (qrFood def, description + the 2023-08-01 inception and 2024-03-15 Phase 1 milestones), common/data/experiences.ts (thammasat-bs-cs), common/data/skills.ts (prisma, postgresql, supabase). */
+/** Sources: common/data/projects/ (qrFood def, description + the 2023-08-01 inception and 2024-03-15 Phase 1 milestones), common/data/experiences.ts (thammasat-bs-cs), common/data/skills.ts (prisma, postgresql, supabase). */
 export const multiBranchRestaurantSchemaInPrisma: PostDef = {
 	id: 'multi-branch-restaurant-schema-in-prisma',
 	title: 'Designing a multi-branch restaurant schema in Prisma',

@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: the online-poker-game timeline in common/data/projects.ts (2025-06-09 kickoff, 2025-06-11 "Realtime — Rooms over Server-Sent Events", 2026-02-03 scale-out), the project description, and common/data/experiences.ts for the dates around it. Transport tradeoffs are general knowledge. */
+/** Sources: the online-poker-game timeline in common/data/projects/ (2025-06-09 kickoff, 2025-06-11 "Realtime — Rooms over Server-Sent Events", 2026-02-03 scale-out), the project description, and common/data/experiences.ts for the dates around it. Transport tradeoffs are general knowledge. */
 export const sseGameRoomsNotWebsockets: PostDef = {
 	id: 'sse-game-rooms-not-websockets',
 	title: 'Server-Sent Events for realtime game rooms — why not WebSockets',

@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: common/data/projects.ts (qrFood def, highlightSkills comment + the 2024-03-15 Phase 1 milestone), common/data/skills.ts (nuxt-js, vue, next-js descriptions), common/data/experiences.ts (thammasat-bs-cs, freelance). */
+/** Sources: common/data/projects/ (qrFood def, highlightSkills comment + the 2024-03-15 Phase 1 milestone), common/data/skills.ts (nuxt-js, vue, next-js descriptions), common/data/experiences.ts (thammasat-bs-cs, freelance). */
 export const whyNuxtNotNextForMyThesis: PostDef = {
 	id: 'why-nuxt-not-next-for-my-thesis',
 	title: 'Why I built my thesis on Nuxt 3 instead of Next.js',

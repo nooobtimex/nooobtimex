@@ -1,6 +1,6 @@
 import type { PostDef } from '../../../interfaces'
 
-/** Sources: common/data/projects.ts (rsAward timeline — 2025-12-04 remake on Prisma/Postgres, 2026-01-28 MongoDB migration, 2026-01-30 design system + Thai, 2026-02-10 client-side search), experiences.ts, entities.ts. */
+/** Sources: common/data/projects/ (rsAward timeline — 2025-12-04 remake on Prisma/Postgres, 2026-01-28 MongoDB migration, 2026-01-30 design system + Thai, 2026-02-10 client-side search), experiences.ts, entities.ts. */
 export const prismaPostgresToMongodbMidBuild: PostDef = {
 	id: 'prisma-postgres-to-mongodb-mid-build',
 	title: 'Switching from Prisma/Postgres to MongoDB mid-build',
