@@ -69,7 +69,8 @@ this way. Update both this table and the project file together.
 Keep `accent`/`motif` distinct per project so the set reads as a cohesive family,
 not clones. Match `badgeLvl` to the status the site derives (`projectStatus()` in
 `lib/utils.ts`): `● Live` for a live link, `● In Development` for a project with
-`stage: 'in-development'`, otherwise `● Archived`.
+`stage: 'in-development'`, `● Internal` for `stage: 'internal'` (a staff-only tool running
+behind a login), otherwise `● Archived`.
 
 ## Wiring it into the data (`common/data/`)
 
@@ -122,8 +123,13 @@ wangpa              accent #5CCF95  motif dots     title ว่างป่ะ|W
                     subtitle Who is free, inside LINE · Busy-only privacy  badgeSub Launch Nov 2026  meta FREELANCE // 2026
 monomax-epl-portal  accent #EE5E25  motif qr       title MONOMax|EPL Portal  kicker // LICENSING SAAS       badge ● SaaS      tags Next.js,MongoDB,Better-Auth,Docker
 rs-trophy           accent #FCEE0A  motif trophy   title RS|Trophy           kicker // E-COMMERCE PLATFORM  badge ● Live      tags Bun,Next.js,Elysia,MongoDB,R2
+rs-trophy-admin     accent #C5A059  motif bars     title RS Trophy|Admin     kicker // STAFF CONSOLE        badge ● Internal  tags Next.js,Elysia,Better-Auth,Recharts
+                    subtitle Social publishing · AI data assistant  badgeSub Staff only  meta RS TROPHY // 2026
+rs-eservice         accent #ECD399  motif qr       title RS|eService         kicker // STAFF WORKSPACE      badge ● Internal  tags Next.js,Elysia,Base UI,Bun
+                    subtitle Requests · Approvals · E-signed documents  badgeSub PWA  meta RS TROPHY // 2026
 looklook-pet        accent #FF7D5A  motif hex      title LOOKLOOK|Pet        kicker // MARKETPLACE          badge ● Live      tags NestJS,Medusa,Omise,Next.js
-online-poker-game   accent #FF003C  motif cards    title Online|Poker        kicker // REALTIME GAME        badge ● Archived  tags Next.js,SSE,PostgreSQL,Redis
+online-poker-game   accent #FF003C  motif cards    title Online|Poker        kicker // REALTIME GAME        badge ● Archived  tags Next.js,SSE,MongoDB,Redis
+                    subtitle Multiplayer Texas Hold'em · SSE  badgeSub Realtime  meta FREELANCE // 2025
 flood-project       accent #00F0FF  motif waves    title Flood|Project       kicker // WATER-LEVEL MONITORING                 tags Next.js,Prisma,Leaflet,Recharts,NextAuth
 prettier-config     accent #55B3B4  motif braces   title Prettier|Config     kicker // DEV TOOL             badge ● Live      tags Next.js,CodeMirror,Tailwind
 rs-medal            accent #8AD8FF  motif rings    title RS|Medal            kicker // E-COMMERCE           badge ● Archived  tags Next.js,JSON-LD,SEO
