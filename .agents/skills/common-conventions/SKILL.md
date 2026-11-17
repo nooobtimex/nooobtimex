@@ -1,13 +1,6 @@
 ---
 name: common-conventions
-description: >-
-  Conventions for the `common/` data layer in the NooobtimeX repo — the single
-  source of truth for all site content. Covers barrel imports from `@/common`,
-  string-literal enums, the `skill()`/`SkillId` invariant, the central `assets`
-  map, the `ProjectDef`→`Project` resolution, experiences/entities/personal, and
-  the lint+build gate. Use when adding or editing a skill, project, experience,
-  organization, social link, asset, or enum, or when a reviewer asks how the data
-  layer "should" look here.
+description: 'Conventions for the common/ data layer, the single source of truth for site content — barrel imports from @/common, string-literal enums, the skill()/SkillId invariant, the central assets map, ProjectDef to Project resolution, and experiences, entities and personal data. Use when adding or editing a skill, project, experience, organization, social link, asset or enum, or when asked how the data layer should look here.'
 paths:
   - 'common/**'
 ---

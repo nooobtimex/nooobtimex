@@ -17,5 +17,7 @@ in `SKILL.md` §7, when this repo's code changes:
 - **A new SEO trap found live** → the [`seo-conventions`](../seo-conventions/SKILL.md) skill.
 - **A change to the Journal contract** (`resolvePost` in `common/data/posts/index.ts`) → the
   [`write-post`](../write-post/SKILL.md) skill and its [`references/citations.md`](../write-post/references/citations.md).
+- **A change to a script, the `Dockerfile`, `railway.toml`, `bunfig.toml` or the Bun/Node pins** → the
+  [`tooling-conventions`](../tooling-conventions/local.md) pins and Dockerfile sections.
 - Not ours: `next dev` upserts its "This is NOT the Next.js you know" block into the root `AGENTS.md` (this is a
   single-app repo). Keep it there; the checker does not count it.

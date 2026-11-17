@@ -34,20 +34,14 @@
 - **Bun 1.4.4 is pinned** in `packageManager` and the Dockerfile's `oven/bun:1.4.4-slim` tag — move them together
   (the `readme-assets` workflow's `setup-bun` reads `packageManager`). `bunfig.toml` holds `minimumReleaseAge = "3d"`,
   so an install refuses a package version published less than 3 days ago.
-- **Docker:** bun installs (`oven/bun:1.4.4-slim`), node builds (`node:26-slim` with the bun binary copied in) and
-  node serves — never serve on Bun (the standalone server leaks RSS, oven-sh/bun#27514). `MALLOC_ARENA_MAX`
-  and `NODE_OPTIONS=--max-old-space-size` (0.6–0.75 × the service memory limit) are set in the runner only;
-  the builder stays uncapped. Railway Root Directory stays `/`. Check a change the way Railway runs it:
-  `docker build -t nooobtimex . && docker run --rm -e PORT=7788 -p 7788:7788 nooobtimex`.
+- **Docker:** bun installs, node builds and node serves — never serve on Bun. Stages, memory caps, `.dockerignore`
+  and the local `docker build` check: [`tooling-conventions`](.agents/skills/tooling-conventions/local.md).
 - **Ports:** this repo is `RR = 11`, so the web app is on `11000` (`bun run dev` and `bun run start` default to it) and the
   preview `start` server on `11800`. A worktree `n` runs `PORT=1100n bun run dev`.
-- **TypeScript 6 + 7 — the alias pair is deliberate.** TS 7 ships `tsc` but no compiler API, and
-  typescript-eslint caps `typescript` at `<6.1.0`, so `"typescript": "npm:@typescript/typescript6@…"` (bin
-  `tsc6`) and `"@typescript/native": "npm:typescript@^7…"` (bin `tsc`). **Do not "fix" `typescript` back to
-  `typescript@7`** until typescript-eslint supports TS 7 — that bump shipped once and was reverted (`f9d1f92`).
-  `next.config.ts` sets `typescript.ignoreBuildErrors`, so the type gate is `bun run typecheck`
-  (`next typegen && bun check`, Bun's own checker, same errors as `tsc`) — never call `next build` alone. If `node_modules/typescript/package.json` is not `@typescript/typescript6`,
-  `bun remove typescript` and re-add the alias.
+- **TypeScript 6 + 7 — the alias pair is deliberate.** Do **not** "fix" `typescript` back to `typescript@7`; why, and
+  how to repair it: [`tooling-conventions`](.agents/skills/tooling-conventions/local.md). `next.config.ts` sets
+  `typescript.ignoreBuildErrors`, so the type gate is `bun run typecheck` (`next typegen && bun check`) — never call
+  `next build` alone.
 - Artifacts to regenerate and commit: `icons:generate` after an `icon:` change in `common/data`,
   `images:optimize` after adding to `public/`, `llms:generate` for `public/llms.txt`. `links:external` fetches
   every blog citation — run it before shipping a post; it is not in `build`.
@@ -70,27 +64,35 @@ never here. The repo-specific half is the rest of this section.
 - **Production data, migrations, secrets, domains, CORS, auth:** state the blast radius and get Kwan's yes
   first.
 - **Never read, print or copy `.env*`, keys, tokens or credentials.**
+- **Context costs money on every turn.** One task per session; start a fresh one for unrelated work and compact
+  at a natural break. Plan first only for multi-file work, then go. Choose the model and effort at the start —
+  switching mid-session drops the prompt cache.
+- **Delegate only what would flood the context:** a wide search, long logs, a test run. Read known files
+  yourself, never fan out parallel agents to write code, and give every subagent a `model:` that fits the job
+  (`update-docs` §6).
 - **Ports are five digits and unique across every repo:** `RRSWW` is the repo (`RR`, handed out by the repo-kit
   repo), the service (`S`, with `8` kept for test runs) and the worktree (`WW`, `00` for the main checkout). A
   deployed service uses the same number for its `PORT` and its domain's target port. This repo's numbers are in
   its `AGENTS.md`.
 
-<!-- repo-kit: version=2026.11.04 hash=2d69171cd02e -->
+<!-- repo-kit: version=2026.11.17 hash=7fb9e3c5777d -->
 
 ## Read before you edit
 
 Invoke the skill for the area before editing in it.
 
-| Skill in `.agents/skills/`                                         | Covers                                                                               | Purpose                                                                                                                                          |
-| :----------------------------------------------------------------- | :----------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`design`](.agents/skills/design/SKILL.md)                         | `**/*.tsx`, `**/*.css`, `components/cyber/**`                                        | the Cyberpunk design system — plain-English copy, signal colours, notch/HUD primitives, React Compiler rules, icons, images                      |
-| [`seo-conventions`](.agents/skills/seo-conventions/SKILL.md)       | `app/**`, `lib/seo.ts`, `common/data/posts/**`, `scripts/links/**`, `scripts/seo/**` | five SEO invariants that once failed silently — alternates, `dynamicParams`, citations, ids, Suspense                                            |
-| [`common-conventions`](.agents/skills/common-conventions/SKILL.md) | `common/**`                                                                          | the data layer — barrel imports, enums, `skill()`/`SkillId`, `assets`, projects                                                                  |
-| [`app-conventions`](.agents/skills/app-conventions/SKILL.md)       | `app/**`                                                                             | route groups, typed routes, page composition, `[...id]` routes, GitHub ISR                                                                       |
-| [`add-content`](.agents/skills/add-content/SKILL.md)               | adding or editing content                                                            | recipes: add a project, skill, role, organization, social link or image                                                                          |
-| [`write-post`](.agents/skills/write-post/SKILL.md)                 | a Journal post                                                                       | the AEO contract, citations, the series gap rule, voice                                                                                          |
-| [`make-cover`](.agents/skills/make-cover/SKILL.md)                 | a project cover image                                                                | an on-brand 16:9 project cover from the HTML template, without a screenshot                                                                      |
-| [`update-docs`](.agents/skills/update-docs/SKILL.md)               | `AGENTS.md`, `CLAUDE.md`, `README.md`, `.agents/**`, `.claude/**`                    | the repo-kit standard — where an instruction belongs, budgets, skills; this repo's sync map is [`local.md`](.agents/skills/update-docs/local.md) |
+- [`design`](.agents/skills/design/SKILL.md) — `**/*.tsx`, `**/*.css`, `components/cyber/**`
+- [`seo-conventions`](.agents/skills/seo-conventions/SKILL.md) — `app/**`, `lib/seo.ts`, `common/data/posts/**`,
+  `scripts/links/**`, `scripts/seo/**`
+- [`common-conventions`](.agents/skills/common-conventions/SKILL.md) — `common/**`
+- [`app-conventions`](.agents/skills/app-conventions/SKILL.md) — `app/**`
+- [`tooling-conventions`](.agents/skills/tooling-conventions/SKILL.md) — `**/package.json`, `scripts/**`,
+  `.github/workflows/**`, `**/Dockerfile`, `**/bunfig.toml`, `.gitattributes`
+- [`add-content`](.agents/skills/add-content/SKILL.md) — adding or editing content
+- [`write-post`](.agents/skills/write-post/SKILL.md) — a Journal post
+- [`make-cover`](.agents/skills/make-cover/SKILL.md) — a project cover image
+- [`update-docs`](.agents/skills/update-docs/SKILL.md) — `AGENTS.md`, `CLAUDE.md`, `README.md`, `.agents/**`,
+  `.claude/**`; this repo's sync map is [`local.md`](.agents/skills/update-docs/local.md)
 
 ## Repository map
 

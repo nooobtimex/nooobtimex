@@ -1,13 +1,6 @@
 ---
 name: make-cover
-description: >-
-  Generate on-brand Cyberpunk project cover images (the 16:9 `cover.webp` hero
-  used on project cards + detail pages) for the NooobtimeX profile site, without a
-  screenshot. Renders a parameterized HTML template with headless Chrome and
-  converts to webp. Use when adding a new project that has no cover, when a
-  project's thumbnail is weak (a logo/placeholder), or when the user asks to
-  "make a cover / banner / thumbnail like the flood-project one". Also documents
-  moving a real screenshot into the project's gallery so it isn't lost.
+description: 'Generates an on-brand 16:9 Cyberpunk project cover (cover.webp) from a parameterized HTML template rendered with headless Chrome, without a screenshot, and files a real screenshot into the project gallery. Use when adding a project that has no cover, when a project thumbnail is weak (a logo or placeholder), or when asked to "make a cover / banner / thumbnail like the flood-project one".'
 ---
 
 # Cover generator

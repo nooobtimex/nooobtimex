@@ -1,12 +1,6 @@
 ---
 name: write-post
-description: >-
-  How to write, promote or edit a post in the NooobtimeX Journal (`/blog`,
-  `common/data/posts/<year>/`) — the full-tier AEO contract, the outbound-citation
-  rules (what to cite, how to verify it, inline vs. `sources`), the series gap rule,
-  the voice spec and the ship gate. Use when promoting a `draft: true` stub, adding
-  citations to a post, planning a series, or when a request is "write the next
-  article", "เขียนบทความ", "promote a stub" or "add references/sources to a post".
+description: 'Covers writing, promoting and editing a Journal post under common/data/posts/<year>/ — the full-tier AEO contract, outbound-citation rules, the series gap rule, the voice spec and the ship gate. Use when promoting a draft: true stub, adding citations or sources to a post, planning a series, or when asked to "write the next article", "เขียนบทความ" or "promote a stub".'
 ---
 
 # Writing a Journal post
