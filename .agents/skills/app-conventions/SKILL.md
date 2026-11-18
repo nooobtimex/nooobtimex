@@ -1,12 +1,6 @@
 ---
 name: app-conventions
-description: >-
-  Conventions for the Next.js 16 App Router in the NooobtimeX repo (anything under
-  `app/`) — route groups & layouts, typed routes, page composition with the cyber
-  design system, dynamic `[...id]` routes, and the token-free + ISR GitHub data
-  layer. Use when adding or editing a route, page, layout, or the GitHub stats
-  page, when wiring an external fetch, or when a reviewer asks how `app/` code
-  "should" look here.
+description: 'Conventions for the Next.js 16 App Router code under app/ — route groups and layouts, typed routes, page composition with the cyber design system, dynamic [...id] routes, and the token-free ISR GitHub data layer. Use when adding or editing a route, page, layout or the GitHub stats page, when wiring an external fetch, or when asked how app/ code should look here.'
 paths:
   - 'app/**'
 ---

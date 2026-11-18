@@ -1,11 +1,6 @@
 ---
 name: add-content
-description: >-
-  Recipes for adding or editing portfolio content in the NooobtimeX repo — a
-  project, skill, experience/role, organization, social link, or image asset —
-  with the common/ data layer invariants (SkillId, assets) and the gate, so the
-  change ships clean. Use when a request is "add my new project/role/skill" or
-  "update my … on the site", or when adding or editing any portfolio content.
+description: 'Recipes for adding or editing portfolio content — a project, skill, role, organization, social link or image asset — with the common/ data-layer invariants (SkillId, assets) and the gate, so the change ships clean. Use when asked to "add my new project/role/skill" or "update my … on the site", or when adding or editing any portfolio content.'
 ---
 
 # Portfolio content
