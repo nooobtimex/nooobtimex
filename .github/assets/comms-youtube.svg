@@ -1,5 +1,0 @@
-<svg viewBox="0 0 139 50" width="139" height="50" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="YOUTUBE">
-	<polygon points="10,1 138,1 138,40 129,49 1,49 1,10" fill="#050507" stroke="#1B2A33" stroke-width="1.5" />
-	<svg x="18" y="14" width="22" height="22" viewBox="0 0 24 24" style="color:#FF003C" fill="#FF003C"><path fill="currentColor" d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814M9.545 15.568V8.432L15.818 12z"/></svg>
-	<text class="mono" x="52" y="30.4" font-size="15" letter-spacing="1" fill="#FF003C" font-weight="700">YOUTUBE</text>
-</svg>
