@@ -13,6 +13,8 @@ import { rsEservice } from './rs-eservice'
 import { rsMedal } from './rs-medal'
 import { rsTrophy } from './rs-trophy'
 import { rsTrophyAdmin } from './rs-trophy-admin'
+import { thaibotic } from './thaibotic'
+import { unitreeG1 } from './unitree-g1'
 import { wangpa } from './wangpa'
 
 /**
@@ -27,6 +29,8 @@ import { wangpa } from './wangpa'
 const commonTooling: SkillId[] = ['typescript', 'git-github', 'prettier', 'eslint']
 
 const defs: ProjectDef[] = [
+	unitreeG1,
+	thaibotic,
 	wangpa,
 	monomaxEplPortal,
 	rsTrophy,

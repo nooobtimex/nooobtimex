@@ -12,11 +12,22 @@ export const assets = {
 	},
 	logos: {
 		rsTrophy: '/logo/RSTROPHY.webp',
+		thaibotic: '/logo/THAIBOTIC.webp',
 		jasmineTech: '/logo/JTS.webp',
 		tuLogo: '/logo/tu-logo.webp'
 	},
 	projects: {
 		wangpa: { cover: '/issue/wangpa/cover.webp' },
+		unitreeG1: {
+			cover: '/issue/unitree-g1/cover.webp',
+			gallery: [
+				'/issue/unitree-g1/photo-1.webp',
+				'/issue/unitree-g1/photo-2.webp',
+				'/issue/unitree-g1/photo-3.webp',
+				'/issue/unitree-g1/photo-4.webp'
+			]
+		},
+		thaibotic: { cover: '/issue/thaibotic/cover.webp' },
 		rsTrophy: { cover: '/issue/rs-trophy/cover.webp', gallery: ['/issue/rs-trophy/photo-1.webp'] },
 		rsTrophyAdmin: { cover: '/issue/rs-trophy-admin/cover.webp' },
 		rsEservice: { cover: '/issue/rs-eservice/cover.webp' },

@@ -373,6 +373,47 @@ const mercur = skill({
 	category: 'backend'
 })
 
+const python = skill({
+	id: 'python',
+	description:
+		'A general-purpose language and the default for robotics SDKs, simulation and machine learning. Used for the Unitree G1 robot workspace: its SDK shim, CLI, safety gate and the on-robot agents.',
+	name: 'Python',
+	icon: 'logos:python',
+	category: 'backend'
+})
+const cpp = skill({
+	id: 'cpp',
+	description:
+		'A compiled systems language for code with hard real-time limits, such as a robot control loop. Used against the Unitree C++ SDK in a CMake project that builds natively on Linux and in a container on macOS.',
+	name: 'C++',
+	icon: 'logos:c-plusplus',
+	category: 'backend'
+})
+const fastapi = skill({
+	id: 'fastapi',
+	description:
+		'A Python web framework built on type hints, with WebSocket support. Runs the agent on the robot that the Hub control screen connects to.',
+	name: 'FastAPI',
+	icon: 'logos:fastapi-icon',
+	category: 'backend'
+})
+const ros2 = skill({
+	id: 'ros-2',
+	description:
+		'The Robot Operating System — a message bus and toolchain for robot software, from sensor drivers to mapping and navigation. Set up with the Unitree messages, rviz2 and a SLAM and navigation stack for the G1.',
+	name: 'ROS 2',
+	icon: 'simple-icons:ros',
+	category: 'backend',
+	whiteBg: true
+})
+const mujoco = skill({
+	id: 'mujoco',
+	description:
+		'A physics engine for robot simulation. Runs a Unitree G1 over the same DDS topics as the real robot, so code is tried in simulation before it touches hardware.',
+	name: 'MuJoCo',
+	icon: 'mdi:cube-scan',
+	category: 'backend'
+})
 // --- Infrastructure ---
 const vercel = skill({
 	id: 'vercel',
@@ -617,6 +658,11 @@ const allSkills = [
 	firebase,
 	supabase,
 	mercur,
+	python,
+	cpp,
+	fastapi,
+	ros2,
+	mujoco,
 	// infrastructure
 	vercel,
 	railway,

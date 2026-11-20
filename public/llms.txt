@@ -31,6 +31,12 @@ Hire by email: nooobtimex@gmail.com
 
 ## Experience
 
+### Founder — Thaibotic (Sep 2026 - Present)
+
+Co-founded Thaibotic, a software and robotics venture that brings a Unitree G1 humanoid robot to events, exhibitions and universities, alongside the CTO role. Run the robot at every job and build all of its software: a cross-platform G1 dev workspace with simulation and a two-key safety gate for the real robot, the Hub — an offline Thai-language screen that runs the robot at a show from a phone or iPad — a Thai/English voice assistant on the robot, and the bilingual website clients book through.
+
+Read more: https://nooobtimex.me/career/thaibotic-founder
+
 ### Chief Technology Officer — RUAMSUK PLATING LIMITED PARTNERSHIP (Aug 2026 - Present)
 
 Total Technology Ownership: As CTO, own every technology decision and system in the company end-to-end — from setting the technical strategy to single-handedly delivering each software project from architecture to deployment. Full-Stack & Infrastructure: Build and run all web applications, services, cloud infrastructure, CI/CD, and reliability. IT, Hardware & Systems: Handle all non-software technology as well — IT support, hardware, networking, device and equipment setup, and technology procurement and vendor management across the office and factory floor. Product & Design Leadership: Act as sole PM, PO, and UI/UX designer, authoring all product documentation and roadmaps. AI, Automation & Data: Build AI automation workflows, supply chain solutions, and internal tooling that streamline operations across the business. Cross-Functional Impact: Partner directly with finance and operations to digitize and optimize every process — the single point of ownership for everything technical the company runs on.
@@ -80,6 +86,21 @@ RS TROPHY's login-only staff workspace, installable as a PWA with email one-time
 
 - Stack: Next.js, React, Tailwind CSS, Shadcn/ui, Base UI, Elysia.js, Bun.js, Docker, Railway, LINE LIFF, TypeScript, Git/GitHub, Prettier, ESLint
 - Details: https://nooobtimex.me/projects/rs-eservice
+
+### Thaibotic — Robot Events Website
+
+The bilingual Thai/English website of Thaibotic, a venture that brings a Unitree G1 humanoid robot to events, exhibitions, universities and shoots. A client finds what the robot can do on a robots page with the full Unitree G1 EDU spec sheet, sees it on real jobs on the work pages — the clips and photos from the day, each job with its own page and share card — reads articles on planning an event with a robot and how the G1 models differ, and sends a date and venue through a contact form for a quotation. The robot's own footage plays on the home page, with every face blurred. Safety, privacy, terms and cookie pages are in both languages, and analytics load only after cookie consent.
+
+- Stack: Next.js, React, Tailwind CSS, Bun.js, SEO, Google Tag Manager, Docker, Railway, JSON-LD, Resend, TypeScript, Git/GitHub, Prettier, ESLint
+- Live: https://synaploop.up.railway.app
+- Details: https://nooobtimex.me/projects/thaibotic
+
+### Unitree G1 — Humanoid Robot Workspace
+
+The software behind a Unitree G1 EDU humanoid robot that Thaibotic runs at events. A cross-platform dev workspace for macOS, Ubuntu and Windows brings the Python and C++ SDKs, a MuJoCo simulation of the G1 over the same DDS topics as the real robot, and a check that runs a pretrained walking policy in simulation; nothing moves the real robot without two separate confirmations, and walking speeds are clamped for bring-up. On top of it sit the Hub — an offline Thai-language web app that runs the robot at a show from a phone, iPad or laptop through an agent on the robot, with PIN sign-in, one screen in control at a time, walking only while a dead-man button is held, and STOP from any signed-in screen — and a Thai/English voice assistant on the robot's own microphones and speaker that answers through speech-to-text, an LLM and text-to-speech, plus an event mode with arm gestures and announcements. Toolchains for reinforcement learning, ROS 2 mapping and navigation, and LeRobot are set up in the same workspace.
+
+- Stack: Python, C++, MuJoCo, Docker, ROS 2, FastAPI, WebSocket, Next.js, React, Bun.js, TypeScript, Git/GitHub, Prettier, ESLint
+- Details: https://nooobtimex.me/projects/unitree-g1
 
 ### MONOMax EPL Licensing Portal
 
@@ -407,13 +428,14 @@ Read more: https://nooobtimex.me/blog/started-job-and-degree-same-month
 ## Skills
 
 - frontend: Next.js, React, TypeScript, Tailwind CSS, Shadcn/ui, Radix UI, Base UI, Embla Carousel, TanStack Query, Recharts, Flutter, React Native, Expo, Prettier, CodeMirror, React Hook Form, Leaflet, Vitest, ESLint, Vue.js, Nuxt.js, LINE LIFF
-- backend: Node.js, Nest.js, NATS, Elysia.js, SSE, WebSocket, Bun.js, PostgreSQL, MongoDB, Prisma, Redis, BullMQ, Medusa, Zod, Better Auth, Clerk, NextAuth, Firebase, Supabase, Mercur
+- backend: Node.js, Nest.js, NATS, Elysia.js, SSE, WebSocket, Bun.js, PostgreSQL, MongoDB, Prisma, Redis, BullMQ, Medusa, Zod, Better Auth, Clerk, NextAuth, Firebase, Supabase, Mercur, Python, C++, FastAPI, ROS 2, MuJoCo
 - infrastructure: Vercel, Railway, Docker, Render, Tencent Cloud, CircleCI, Git/GitHub, MinIO, Resend, Cloudflare R2, AWS S3, Mailgun, Omise, Algolia
 - growth-management: SEO, AEO, GEO, JSON-LD, Google Analytics, Google Ads, Google Tag Manager, WordPress, WooCommerce
 
 ## Organizations
 
 - RUAMSUK PLATING LIMITED PARTNERSHIP — Thai awards manufacturer behind the RS TROPHY storefront, which absorbed its former RS Medal and RS Award sites — custom trophies, plaques, and medals, with the entire technology stack built and run in house. (https://nooobtimex.me/companies/ruamsuk-plating)
+- Thaibotic — Thai software and robotics venture that brings a Unitree G1 humanoid robot to events, exhibitions, universities and shoots. (https://nooobtimex.me/companies/thaibotic)
 - Jasmine Technology Solution — Software solutions company — home of the LOOKLOOK PET platform work: storefront, B2B partner console, microservices, and multi-vendor marketplace. (https://nooobtimex.me/companies/jasmine-technology-solution)
 - JAS TV — Jasmine International's internet-TV arm. Its parent group, JAS, holds the exclusive English Premier League & Emirates FA Cup rights for Thailand, Laos, and Cambodia (2025/26–2030/31), distributed via Mono. (https://nooobtimex.me/companies/jas-tv)
 - MONOMax — Mono Group's SVOD streaming platform (Mono Next PCL). MONOMax Sports Premium streams the English Premier League — the platform the EPL licensing portal provisions venue accounts for. (https://nooobtimex.me/companies/monomax)

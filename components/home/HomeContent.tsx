@@ -61,8 +61,7 @@ interface HomeContentProps {
  * (the hire band, rendered by the page after the GitHub section).
  */
 const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
-	// Show the most recent roles, including any future-dated (not-yet-started) one — data is
-	// sorted by startDate desc, so the latest role (e.g. an upcoming CTO) leads.
+	// The headline role (CTO) first, then the newest others — `workExperienceData` is ordered that way.
 	const latestRoles = workExperienceData.slice(0, 3)
 	const featured = featuredProjects
 	const homeSkills = featuredSkills

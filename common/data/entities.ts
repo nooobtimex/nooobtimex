@@ -31,6 +31,30 @@ export const ruamsukPlating: Organization = {
 	]
 }
 
+export const thaibotic: Organization = {
+	id: 'thaibotic',
+	name: 'Thaibotic',
+	logo: assets.logos.thaibotic,
+	location: 'pathumthani-thailand',
+	type: 'company',
+	url: 'https://synaploop.up.railway.app',
+	description:
+		'Thai software and robotics venture that brings a Unitree G1 humanoid robot to events, exhibitions, universities and shoots.',
+	about:
+		'Thaibotic (ไทยโบติก) is a software and robotics venture based in Pathum Thani, started in 2026 by two co-founders. It brings a Unitree G1 humanoid robot to events, exhibitions, universities and shoots, with a co-founder running the robot at every job, and builds its own software for it: a bilingual website for clients and a control screen and voice assistant for the robot. It is not yet a registered company.',
+	industry: 'Software & robotics · humanoid robots for events',
+	founded: '2026',
+	headquarters: 'Pathum Thani, Thailand',
+	size: 'Two co-founders',
+	parentGroup: 'Independent',
+	products: ['Unitree G1 humanoid robot for events', 'Robot show control (Hub)', 'Thai/English robot voice assistant'],
+	highlights: [
+		'Runs a Unitree G1 EDU humanoid robot at client events, exhibitions and universities.',
+		'Builds its own robot software: a show-control screen, a voice assistant and the robot dev workspace.',
+		'Bilingual Thai/English website with real client jobs, a robot spec page and articles.'
+	]
+}
+
 export const jasmineTechnologySolution: Organization = {
 	id: 'jasmine-technology-solution',
 	name: 'Jasmine Technology Solution',
@@ -172,4 +196,11 @@ export const thammasatUniversity: Organization = {
 	]
 }
 
-export const entitiesData: Organization[] = [ruamsukPlating, jasmineTechnologySolution, jasTv, monomax, freelance]
+export const entitiesData: Organization[] = [
+	ruamsukPlating,
+	thaibotic,
+	jasmineTechnologySolution,
+	jasTv,
+	monomax,
+	freelance
+]

@@ -1,6 +1,6 @@
 import type { ExperienceItem } from '../interfaces'
 import { sortByDateDesc } from '../utils'
-import { freelance, jasmineTechnologySolution, ruamsukPlating, thammasatUniversity } from './entities'
+import { freelance, jasmineTechnologySolution, ruamsukPlating, thaibotic, thammasatUniversity } from './entities'
 
 // --- Roles ---
 
@@ -62,6 +62,17 @@ export const ruamsukPlatingCto: ExperienceItem = {
 	startDate: '2026-08-01'
 }
 
+export const thaiboticFounder: ExperienceItem = {
+	id: 'thaibotic-founder',
+	organization: thaibotic,
+	position: 'founder',
+	description:
+		'Co-founded Thaibotic, a software and robotics venture that brings a Unitree G1 humanoid robot to events, exhibitions and universities, alongside the CTO role. Run the robot at every job and build all of its software: a cross-platform G1 dev workspace with simulation and a two-key safety gate for the real robot, the Hub — an offline Thai-language screen that runs the robot at a show from a phone or iPad — a Thai/English voice assistant on the robot, and the bilingual website clients book through.',
+	type: 'part-time',
+	category: 'work',
+	startDate: '2026-09-30'
+}
+
 // --- Education ---
 
 export const thammasatComputerScience: ExperienceItem = {
@@ -85,13 +96,22 @@ const all: ExperienceItem[] = [
 	ruamsukPlatingDevelopereerPartTime,
 	ruamsukPlatingDeveloperFullTime,
 	ruamsukPlatingCto,
+	thaiboticFounder,
 	thammasatComputerScience
 ]
 
 export const experiencesData: ExperienceItem[] = [...all].sort(sortByDateDesc)
 
-export const workExperienceData: ExperienceItem[] = all.filter(a => a.category === 'work').sort(sortByDateDesc)
+/**
+ * Work roles, the CTO role first — the main job — then the rest newest first. Every "latest role"
+ * reader (hero, home role list and its Now badge, OG image, `/cv`, JSON-LD) takes the head of this list, so
+ * Thaibotic, which started later, sits second instead of taking the headline.
+ */
+export const workExperienceData: ExperienceItem[] = [
+	ruamsukPlatingCto,
+	...all.filter(a => a.category === 'work' && a !== ruamsukPlatingCto).sort(sortByDateDesc)
+]
 export const educationData: ExperienceItem[] = all.filter(a => a.category === 'education').sort(sortByDateDesc)
 
-/** Most recent work role by start date — includes future-dated roles (e.g. an upcoming CTO role). */
+/** The headline role — the head of `workExperienceData`, the CTO role. */
 export const latestRole: ExperienceItem = workExperienceData[0]
