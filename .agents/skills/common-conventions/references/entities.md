@@ -36,8 +36,9 @@ never retired) to every project. Ids become full `Skill`s through `skillById`.
 - [`common/data/experiences.ts`](../../../../common/data/experiences.ts) — author `ExperienceItem` consts: the
   `organization` object, a `position`, a `type` (`EmploymentType`), `category: 'work' | 'education'`,
   `YYYY-MM-DD` dates (omit `endDate` for a current role) and, for education, a `credential` headline. Include each
-  in the `all` array → `experiencesData` (sorted desc) plus the `workExperienceData` / `educationData` slices
-  (and `latestRole`, the newest work item). Add the role's `id` to the `ExperienceId` union in
+  in the `all` array → `experiencesData` (sorted desc) plus the `workExperienceData` / `educationData` slices.
+  `workExperienceData` puts the CTO role first, then the rest newest first, and `latestRole` (the headline: hero,
+  OG image, `/cv`, JSON-LD) is its head — a newer side role never takes the headline. Add the role's `id` to the `ExperienceId` union in
   [`enums.ts`](../../../../common/enums.ts) before a project links it.
 - [`common/data/entities.ts`](../../../../common/data/entities.ts) — `Organization` consts; the ones listed in
   `entitiesData` get a `/companies/<id>` page. Add the org **and** its `EntityId` to

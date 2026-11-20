@@ -115,6 +115,10 @@ project's, every tag an active skill, and a status badge that matches `projectSt
 means re-render the cover and update its row.
 
 ```
+unitree-g1          accent #2EC4B6  motif hex      title Unitree|G1          kicker // HUMANOID ROBOTICS     badge ● In Development  tags Python,C++,MuJoCo,ROS 2,FastAPI,WebSocket
+                    subtitle Sim, safety gate, show control and a Thai/English voice  badgeSub Robotics  meta THAIBOTIC // 2026
+thaibotic           accent #2EC4B6  motif dots     title Thaibotic           kicker // ROBOT EVENTS WEBSITE  badge ● Live      tags Next.js,Tailwind,SEO,JSON-LD,Railway
+                    subtitle Bilingual site for a humanoid robot at your event  badgeSub TH / EN  meta THAIBOTIC // 2026
 wangpa              accent #5CCF95  motif dots     title ว่างป่ะ|Wangpa      kicker // GROUP SCHEDULING ON LINE  badge ● In Development  tags LINE LIFF,Next.js,Elysia,MongoDB
                     subtitle Who is free, inside LINE · Busy-only privacy  badgeSub Launch Nov 2026  meta FREELANCE // 2026
 monomax-epl-portal  accent #EE5E25  motif qr       title MONOMax|EPL Portal  kicker // LICENSING SAAS       badge ● SaaS      tags Next.js,MongoDB,Better-Auth,Docker
