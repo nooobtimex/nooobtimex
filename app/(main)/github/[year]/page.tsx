@@ -1,8 +1,8 @@
 import React from 'react'
 import type { Metadata } from 'next'
-import Container from '@/components/cyber/Container'
 import GithubIntro from '@/components/github/GithubIntro'
 import GithubStats from '@/components/github/GithubStats'
+import Container from '@/components/site/Container'
 import { type GithubPeriod, githubYears } from '@/lib/github'
 import { pageMetadata } from '@/lib/seo'
 

@@ -352,12 +352,9 @@ export interface Service extends Omit<ServiceDef, 'proofProjectIds' | 'proofPost
 export interface PersonalData {
 	name: string
 	title: string
-	/** Freelance-facing headline for the homepage hero — a hireable role, deliberately
-	 *  decoupled from `title`/the career timeline's latest position (e.g. a C-suite
-	 *  title there reads as "not for hire" to a freelance client browsing the hero). */
+	/** Short introduction on the personal homepage. */
 	heroRole: string
-	/** Client-facing hero line — what he builds for a client. `tagline` keeps the CTO +
-	 *  freelance framing for the CV, the manifest and meta descriptions. */
+	/** Plain-language introduction; tagline is used by metadata and the CV. */
 	pitch: string
 	tagline: string
 	avatar: string
@@ -392,7 +389,7 @@ export interface PersonalData {
 	}
 	languages: Language[]
 	socialLinks: SocialLink[]
-	hire: Hire
+	contactAction: Hire
 	/** Direct messaging channels rendered on /contact. Optional — omit an entry to hide it. */
 	contactChannels?: ContactChannel[]
 }

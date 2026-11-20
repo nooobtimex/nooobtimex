@@ -1,106 +1,20 @@
 ---
 name: make-cover
-description: 'Generates an on-brand 16:9 Cyberpunk project cover (cover.webp) from a parameterized HTML template rendered with headless Chrome, without a screenshot, and files a real screenshot into the project gallery. Use when adding a project that has no cover, when a project thumbnail is weak (a logo or placeholder), or when asked to "make a cover / banner / thumbnail like the flood-project one".'
+description: 'Generates an on-brand light 16:9 project cover (cover.webp) from a parameterized HTML template rendered with headless Chrome, without a screenshot, and files a real screenshot into the project gallery. Use when adding a project that has no cover, when a project thumbnail is weak (a logo or placeholder), or when asked to "make a cover / banner / thumbnail like the flood-project one".'
 ---
 
 # Cover generator
 
-Produces the stylized 1600×900 covers used as each project's `images.cover`
-(the card thumbnail + detail-page hero). Matches the site's Cyberpunk 2077 theme:
-dark base, neon signal colors, HUD frame, scanlines, a faint per-project motif,
-big glitch-glow title, and a mono stack strip. See the flood-project / rs-trophy
-covers for the look.
+Creates white Comic typographic 1600×900 WebP project covers. The shared template uses white/paper, thick ink frames, offset blue shadows,
+plain titles and active technology names. Real screenshots/photos are preferred in homepage work previews.
 
-## Files (in `assets/`)
+- [HTML template](assets/cover-template.html): `title`, `subtitle`, `tags`, and `badgeLvl` query parameters.
+- [Render helper](assets/render.sh): headless Chrome screenshot converted with `cwebp`.
 
-- **[`cover-template.html`](assets/cover-template.html)** — the parameterized template. Reads its content from
-  URL query params (so one file renders every cover). Self-contained: system
-  fonts only, inline SVG motifs, no network.
-- **[`render.sh`](assets/render.sh)** — render one cover: `render.sh <out.webp> "<url-encoded query>"`.
-
-## Pipeline
-
-Headless Chrome renders the template at 2× → PNG → `cwebp` resizes to 1600×900.
-Requires Google Chrome + `cwebp` (both present on this machine; no Pillow / magick /
-rsvg). One-liner per banner:
-
-```bash
-CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-"$CHROME" --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 \
-  --virtual-time-budget=2500 --window-size=1600,900 --default-background-color=ff06070d \
-  --screenshot=/tmp/b.png "file://<ABS_PATH>/cover-template.html?<QUERY>"
-cwebp -quiet -resize 1600 900 -q 88 /tmp/b.png -o public/issue/<id>/cover.webp
-```
-
-To batch many, loop in a Node/bun script building the query with
-`encodeURIComponent` per value (see the git history of this skill for a
-`gen-all.mjs` example). Prefer `render.sh` for one-offs.
-
-## Query params (the "prompt")
-
-All optional; URL-encode values.
-
-| param      | meaning                                                                                                                                                                                                        |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `accent`   | hex signal color, e.g. `#00F0FF` (cyan), `#FCEE0A` (yellow), `#FF003C` (red), `#B14FFF` (purple), `#39FF14` (green). Drives glow, tags, grid, motif tint.                                                      |
-| `kicker`   | mono eyebrow, e.g. `// DEV TOOL`, `// MARKETPLACE`.                                                                                                                                                            |
-| `title`    | big title. Use `\|` for a line break: `Online\|Poker`. Long single-word lines auto-shrink.                                                                                                                     |
-| `subtitle` | one-line descriptor under the title.                                                                                                                                                                           |
-| `tags`     | comma-separated stack, rendered as `STACK // a · b · c`.                                                                                                                                                       |
-| `motif`    | background graphic: `waves` (chart/water) · `bars` · `dots` (default) · `rings` (target/medal) · `hex` (mesh) · `qr` (matrix, seeded by title) · `cards` (♠♥♦♣) · `braces` (`{ }` code) · `trophy` · `shield`. |
-| `badgeLvl` | top-right line, e.g. `● Live`, `● Archived`, `● SaaS`.                                                                                                                                                         |
-| `badgeSub` | small line under the badge, e.g. `Realtime`.                                                                                                                                                                   |
-| `meta`     | bottom-right, e.g. `FREELANCE // 2025`.                                                                                                                                                                        |
-
-**`accent` now lives in the data layer.** Each project carries an `accent` hex in
-`common/data/projects/<id>.ts`; it drives BOTH this cover and the 1:1 share card's chrome
-(`components/og/`). Read it from there rather than re-picking a colour, and when a
-project has a real product behind it, sample the brand off the live site instead of
-inventing one — looklook-pet, prettier-config and monomax-epl-portal were corrected
-this way. Update both this table and the project file together.
-
-Keep `accent`/`motif` distinct per project so the set reads as a cohesive family,
-not clones. Match `badgeLvl` to the status the site derives (`projectStatus()` in
-`lib/utils.ts`): `● Live` for a live link, `● In Development` for a project with
-`stage: 'in-development'`, `● Internal` for `stage: 'internal'` (a staff-only tool running
-behind a login), otherwise `● Archived`.
-
-## Wiring it into the data (`common/data/`)
-
-Naming convention: the generated hero is always `cover.webp`; real screenshots are
-`photo-1.webp`, `photo-2.webp`, … (primary screenshot first). Everything is `.webp`.
-
-1. Save the generated file as `public/issue/<id>/cover.webp`. If a real screenshot
-   currently sits at `banner.webp`, rename it into the `photo-N.webp` sequence
-   (`git mv`, primary first) so no file is named `banner.webp`.
-2. In `assets.ts` set the project's `cover` to the new file and **keep the
-   screenshot(s) in `gallery`** so nothing is lost:
-   `foo: { cover: '/issue/foo/cover.webp', gallery: ['/issue/foo/photo-1.webp'] }`.
-3. In the project file (`common/data/projects/<id>.ts`) show the real screenshot(s) in the detail gallery:
-   `images: { cover: assets.projects.foo.cover, photos: [...assets.projects.foo.gallery] }`
-   (use `photos: []` for a cover-only project with no screenshot).
-4. `bun run gate`, then eyeball `/projects` + `/projects/<id>`.
-
-## Notes
-
-- **There is no image optimizer.** `next.config.ts` sets `images: { unoptimized: true }`
-  and the site uses plain `<img>` — `/issue/.../cover.webp` is served byte-for-byte, so
-  it is both the source of truth and what visitors download. (The old
-  `qualities: [100]` / `/_next/image` advice is gone.)
-- **1600×900 is a floor, not just a fit.** Three consumers pin it:
-  `pngDataUri(cover, 1080)` in `app/card/projects/[id]/route.tsx` uses
-  `withoutEnlargement: true`, so anything under 1080 gets stretched into the 1080×608
-  share card and goes quietly blurry; `app/cv/page.tsx` prints covers on A4 at 182 mm
-  (1600 px = 223 DPI); and JSON-LD `image` wants ≥1200. `bun run images:optimize`
-  deliberately leaves covers untouched for this reason — never hand-shrink one.
-- Cards crop `object-cover` on a 16:9 box (`ProjectCard.tsx`), but the **detail hero is
-  `aspect-[16/8]`** (`ProjectDetail.tsx`), which trims ~6% off the top and bottom of a
-  16:9 source. Keep anything load-bearing out of those bands.
-- The template's fonts fall back to macOS system fonts (Avenir Next Condensed /
-  Menlo) since Rajdhani/JetBrains-Mono aren't installed — that's expected and looks
-  right in raster.
-- A title with Thai in it gets looser lines automatically (tone marks rise above the cap
-  height); put the Thai line first so its marks clear the kicker.
+Use `assets/` paths from `common/data/assets.ts`, preserve the 1600×900 cover floor, run `bun run images:optimize`
+and `bun run gate` after regenerating. The table below records project brand accents and active cover tags;
+`projects:check` validates them against the data layer. Legacy motif fields are historical and ignored by the
+light template. Brand accents remain project metadata; the template itself uses the shared blue.
 
 ## Per-project config used for the current set (reuse / tweak these)
 
@@ -136,6 +50,6 @@ rs-medal            accent #8AD8FF  motif rings    title RS|Medal            kic
                     subtitle Medals Storefront  badgeSub Storefront  meta RS MEDAL // 2022–2026
 rs-award            accent #FFB020  motif shield   title RS|Award            kicker // E-COMMERCE           badge ● Archived  tags Next.js,MongoDB,SEO
                     subtitle Awards Storefront  badgeSub Storefront  meta RS AWARD // 2022–2026
-portfolio           accent #FCEE0A  motif hex      title Profile|v2.077      kicker // PERSONAL SITE        badge ● Live      tags Next.js,Tailwind,shadcn,Railway
+portfolio           accent #244C85  motif hex      title Profile|v2.077      kicker // PERSONAL SITE        badge ● Live      tags Next.js,Tailwind,shadcn,Railway
 qr-food             accent #39FF14  motif qr       title QR|Food             kicker // SENIOR THESIS        badge ● Thesis    tags Nuxt,Vue,Prisma,Supabase
 ```

@@ -10,7 +10,7 @@ export const metadata = pageMetadata({
 	path: '/cv',
 	title: 'CV',
 	description:
-		'Full curriculum vitae — roles, education, technical skills and shipped projects, printable to a single page.'
+		'Full curriculum vitae — roles, education, technical skills and shipped projects, with a print-friendly A4 layout.'
 })
 
 export default function CvLayout({ children }: { children: React.ReactNode }) {

@@ -2,9 +2,9 @@
 
 import React from 'react'
 import { Icon } from '@iconify/react'
-import CyberQR from '@/components/contact/CyberQR'
-import CyberButton from '@/components/cyber/CyberButton'
-import NeonPanel from '@/components/cyber/NeonPanel'
+import ContactQR from '@/components/contact/ContactQR'
+import Action from '@/components/site/Action'
+import Panel from '@/components/site/Panel'
 
 interface VCardPanelProps {
 	/** Display name, for the QR's accessible title. */
@@ -44,9 +44,9 @@ const VCardPanel: React.FC<VCardPanelProps> = ({ name, qrPayload, filePayload, f
 	}
 
 	return (
-		<NeonPanel corners className='flex flex-col items-center gap-5 p-6 text-center'>
+		<Panel corners className='flex flex-col items-center gap-5 p-6 text-center'>
 			<div>
-				<h3 className='font-display text-2xl font-bold tracking-wide'>Digital Business Card</h3>
+				<h3 className='font-display text-2xl font-bold tracking-normal'>Digital Business Card</h3>
 				<p className='text-muted-foreground mt-1 text-sm'>
 					Scan to save me as a contact — name, title, company, email and site. The .vcf download adds socials and more.
 				</p>
@@ -55,13 +55,13 @@ const VCardPanel: React.FC<VCardPanelProps> = ({ name, qrPayload, filePayload, f
 			{/* Larger than the WeChat code because a vCard needs far more modules. 248px is
 			    the widest that still fits a 375px viewport once Container, panel and plate
 			    padding are subtracted. */}
-			<CyberQR value={qrPayload} title={`Contact card QR for ${name}`} size={248} />
+			<ContactQR value={qrPayload} title={`Contact card QR for ${name}`} size={248} />
 
-			<CyberButton variant='outline' size='lg' onClick={handleDownload}>
+			<Action variant='outline' size='lg' onClick={handleDownload}>
 				<Icon icon='mdi:download' />
 				Download .vcf
-			</CyberButton>
-		</NeonPanel>
+			</Action>
+		</Panel>
 	)
 }
 

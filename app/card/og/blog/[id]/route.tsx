@@ -30,7 +30,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
 
 	if (!post) return new Response('Not found', { status: 404 })
 
-	const accent = post.accent
+	const accent = OG.cyan
 
 	return new ImageResponse(
 		<div
@@ -39,14 +39,14 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
 				height: '100%',
 				display: 'flex',
 				flexDirection: 'column',
-				...gridBackground(accent),
+				...gridBackground(),
 				color: OG.fg,
 				fontFamily: 'sans-serif'
 			}}>
 			<div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center', padding: '0 64px' }}>
-				<div style={{ display: 'flex', alignItems: 'center', gap: 14, fontSize: 22, letterSpacing: 4, color: accent }}>
+				<div style={{ display: 'flex', alignItems: 'center', gap: 14, fontSize: 22, letterSpacing: 0, color: accent }}>
 					<div style={{ display: 'flex', width: 34, height: 4, backgroundColor: accent }} />
-					{`JOURNAL // ${chapterMetadata[post.chapter].label.toUpperCase()}`}
+					{`Writing · ${chapterMetadata[post.chapter].label}`}
 				</div>
 				<div
 					style={{
@@ -81,17 +81,17 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
 							padding: '8px 18px',
 							fontSize: 20,
 							fontWeight: 700,
-							letterSpacing: 3,
+							letterSpacing: 0,
 							color: accent,
 							backgroundColor: alpha(accent, 0.16)
 						}}>
-						{categoryMetadataPosts[post.category].label.toUpperCase()}
+						{categoryMetadataPosts[post.category].label}
 					</div>
 					<div style={{ display: 'flex', fontSize: 22, color: OG.muted }}>
-						{`${formatMilestoneDate(post.happenedAt).toUpperCase()}  ·  ${post.readingMinutes} MIN`}
+						{`${formatMilestoneDate(post.happenedAt)}  ·  ${post.readingMinutes} min`}
 					</div>
 				</div>
-				<div style={{ display: 'flex', fontSize: 22, letterSpacing: 2, color: OG.muted }}>nooobtimex.me/blog</div>
+				<div style={{ display: 'flex', fontSize: 22, letterSpacing: 0, color: OG.muted }}>nooobtimex.me/blog</div>
 			</div>
 		</div>,
 		SIZE

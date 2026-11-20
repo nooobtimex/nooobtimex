@@ -20,7 +20,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ photos, title }) => {
 					<button
 						key={`${src}-${i}`}
 						onClick={() => setActive(src)}
-						className='neon-panel clip-notch-sm group relative aspect-video overflow-hidden'>
+						className='surface group relative aspect-video overflow-hidden rounded-lg'>
 						<img
 							src={src}
 							alt={`${title} screenshot ${i + 1}`}
@@ -37,7 +37,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ photos, title }) => {
 				    `sm:max-w-md`, and tailwind-merge keys max-width by modifier set, so a bare
 				    utility cannot displace a prefixed one. A plain `max-w-4xl` here was dead
 				    code above 640px and this "lightbox" opened at 448px on a desktop. */}
-				<DialogContent className='border-cyber-cyan/40 bg-popover rounded-none! border p-2 sm:max-w-4xl'>
+				<DialogContent className='border-brand/40 bg-popover rounded-none! border p-2 sm:max-w-4xl'>
 					<DialogTitle className='sr-only'>{title}</DialogTitle>
 					{/* No aspect-video wrapper: `object-contain` inside a fixed 16:9 box letterboxed
 					    the tall phone screenshots (665×1440) down to a ~112px sliver. Letting the

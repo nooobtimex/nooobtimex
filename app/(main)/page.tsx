@@ -1,17 +1,15 @@
 import React from 'react'
-import HireBand from '@/components/hire/HireBand'
 import HomeContent from '@/components/home/HomeContent'
 import JsonLd from '@/components/seo/JsonLd'
-import { yearsShipping } from '@/lib/profile-stats'
 import { PERSON_ID, WEBSITE_ID, personRef, websiteSchema } from '@/lib/schema'
 import { DISPLAY_NAME, SITE_DESCRIPTION, SITE_NAME, SITE_URL, pageMetadata } from '@/lib/seo'
 import { formatPosition } from '@/lib/utils'
-import { currentEntryId, educationData, latestRole, personalData, skillsData, workExperienceData } from '@/common'
+import { educationData, latestRole, personalData, skillsData } from '@/common'
 
 export const metadata = pageMetadata({
 	path: '/',
 	title: 'Profile',
-	absoluteTitle: `${DISPLAY_NAME} — Freelance Full-Stack Software Engineer`,
+	absoluteTitle: `${DISPLAY_NAME} — Software, Robotics & Things I Build`,
 	description: SITE_DESCRIPTION
 })
 
@@ -72,18 +70,12 @@ const profilePageLd = {
 }
 
 const Home: React.FC = () => {
-	// One "now" for every date-derived value on the page. Prerendered, so this is the build.
-	const now = new Date()
 	return (
 		<>
 			<JsonLd data={jsonLd} />
 			<JsonLd data={websiteSchema()} />
 			<JsonLd data={profilePageLd} />
-			<HomeContent
-				nowId={currentEntryId(workExperienceData, now)}
-				yearsShipping={yearsShipping(workExperienceData, now)}
-			/>
-			<HireBand />
+			<HomeContent />
 		</>
 	)
 }

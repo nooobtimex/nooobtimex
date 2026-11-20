@@ -1,7 +1,7 @@
 import React from 'react'
 import PostBody from '@/components/blog/PostBody'
-import Container from '@/components/cyber/Container'
-import SectionHeader from '@/components/cyber/SectionHeader'
+import Container from '@/components/site/Container'
+import SectionHeader from '@/components/site/SectionHeader'
 import { pageMetadata } from '@/lib/seo'
 import { privacyPolicy } from '@/common'
 
@@ -19,7 +19,7 @@ export const metadata = pageMetadata({
 const PrivacyPage: React.FC = () => (
 	<Container className='py-12 md:py-16'>
 		<SectionHeader as='h1' title='Privacy Policy' subtitle='How this site handles your data.' />
-		<p className='text-muted-foreground mt-4 font-mono text-xs tracking-widest uppercase'>
+		<p className='text-muted-foreground mt-4 font-sans text-xs tracking-normal'>
 			Last updated <time dateTime={privacyPolicy.updatedAt}>{privacyPolicy.updatedAt}</time>
 		</p>
 		<div className='mt-10 max-w-3xl'>

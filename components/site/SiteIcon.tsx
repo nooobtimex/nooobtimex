@@ -2,7 +2,7 @@ import React from 'react'
 import { iconToSVG } from '@iconify/utils'
 import { resolveIcon } from '@/lib/icon-data'
 
-interface CyberIconProps {
+interface SiteIconProps {
 	/** `collection:id`, e.g. `mdi:home-variant-outline`. Must be in the generated subset. */
 	icon: string
 	className?: string
@@ -29,12 +29,12 @@ interface CyberIconProps {
  * `lib/og-assets.ts`. A silently invisible icon is the failure mode the generate/check
  * pipeline was built to prevent, and `bun run icons:check` already gates the build.
  */
-const CyberIcon: React.FC<CyberIconProps> = ({ icon, className, style }) => {
+const SiteIcon: React.FC<SiteIconProps> = ({ icon, className, style }) => {
 	const data = resolveIcon(icon)
 
 	if (!data) {
 		throw new Error(
-			`[CyberIcon] unknown icon "${icon}" — not in lib/og-icons.generated.json. `
+			`[SiteIcon] unknown icon "${icon}" — not in lib/og-icons.generated.json. `
 				+ `If it comes from common/data, run \`bun run icons:generate\`; `
 				+ `if it is hard-coded in a server component, add it to EXTRA_ICONS in `
 				+ `scripts/icons/required.ts and regenerate.`
@@ -62,4 +62,4 @@ const CyberIcon: React.FC<CyberIconProps> = ({ icon, className, style }) => {
 	)
 }
 
-export default CyberIcon
+export default SiteIcon

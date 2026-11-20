@@ -39,7 +39,7 @@ export const NAV_LINKS: readonly NavLink[] = [
 		inFooter: true
 	},
 	{
-		label: 'Career',
+		label: 'About',
 		href: '/career',
 		icon: 'mdi:timeline-text-outline',
 		matches: ['/companies'],
@@ -47,8 +47,8 @@ export const NAV_LINKS: readonly NavLink[] = [
 		isMobileTab: true,
 		inFooter: true
 	},
-	{ label: 'Skills', href: '/skills', icon: 'mdi:chip', inHeader: true, isMobileTab: false, inFooter: true },
-	{ label: 'Journal', href: '/blog', icon: 'mdi:post-outline', inHeader: true, isMobileTab: true, inFooter: true },
+	{ label: 'Skills', href: '/skills', icon: 'mdi:chip', inHeader: false, isMobileTab: false, inFooter: true },
+	{ label: 'Writing', href: '/blog', icon: 'mdi:post-outline', inHeader: true, isMobileTab: true, inFooter: true },
 	{
 		label: 'Contact',
 		href: '/contact',

@@ -6,17 +6,15 @@ import PostFaq from '@/components/blog/PostFaq'
 import PostRefs from '@/components/blog/PostRefs'
 import PostTldr from '@/components/blog/PostTldr'
 import PostToc from '@/components/blog/PostToc'
-import Container from '@/components/cyber/Container'
-import CyberIcon from '@/components/cyber/CyberIcon'
-import NeonPanel from '@/components/cyber/NeonPanel'
-import { HireStrip } from '@/components/hire/HireBand'
+import Container from '@/components/site/Container'
+import SiteIcon from '@/components/site/SiteIcon'
 import { InlineText } from '@/lib/inline'
 import { formatMilestoneDate } from '@/lib/utils'
 import { type Post, categoryMetadataPosts, chapterMetadata } from '@/common'
 
 const StatCell: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
 	<div className='border-border/60 border-l-2 pl-3'>
-		<p className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>{label}</p>
+		<p className='text-muted-foreground font-sans text-xs tracking-normal'>{label}</p>
 		<p className='mt-0.5 text-sm font-semibold'>{children}</p>
 	</div>
 )
@@ -32,25 +30,25 @@ const PostDetail: React.FC<{ post: Post; adAfter?: Readonly<Record<number, strin
 		<Container className='py-10'>
 			<Link
 				href='/blog'
-				className='text-muted-foreground hover:text-cyber-cyan inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase transition-colors'>
-				<CyberIcon icon='mdi:arrow-left' className='size-4' /> Journal
+				className='text-muted-foreground hover:text-brand inline-flex items-center gap-2 font-sans text-xs tracking-normal transition-colors'>
+				<SiteIcon icon='mdi:arrow-left' className='size-4' /> Writing
 			</Link>
 
 			{/* Hero */}
-			<NeonPanel className='clip-notch relative mt-6 overflow-hidden p-6 md:p-8'>
-				<span className='text-cyber-cyan font-mono text-[0.65rem] tracking-[0.3em] uppercase'>
-					// {chapterMetadata[post.chapter].label} · {chapterMetadata[post.chapter].span}
+			<header className='comic-detail-heading'>
+				<span className='text-brand font-sans text-xs tracking-normal'>
+					{chapterMetadata[post.chapter].label} · {chapterMetadata[post.chapter].span}
 				</span>
-				<h1 className='font-display mt-3 text-3xl leading-tight font-bold tracking-wide normal-case md:text-4xl'>
+				<h1 className='font-display mt-3 text-3xl leading-tight font-bold tracking-normal normal-case md:text-4xl'>
 					{post.title}
 				</h1>
 				<p className='text-muted-foreground mt-3 max-w-3xl leading-relaxed'>{post.description}</p>
-			</NeonPanel>
+			</header>
 
 			{/* Meta strip. The event and the write-up are different dates, and only the second is
 			    the page's publication date — it matches `datePublished` in the JSON-LD. "Happened"
 			    is plain month text, not a <time>, so it is never read as the byline date. */}
-			<NeonPanel className='clip-notch-sm mt-6 grid grid-cols-2 gap-4 p-4 sm:grid-cols-3 lg:grid-cols-5'>
+			<div className='comic-detail-meta'>
 				<StatCell label='Happened'>{formatMilestoneDate(post.happenedAt)}</StatCell>
 				<StatCell label='Published'>
 					<time dateTime={post.publishedAt}>{post.publishedAt}</time>
@@ -62,24 +60,22 @@ const PostDetail: React.FC<{ post: Post; adAfter?: Readonly<Record<number, strin
 				</StatCell>
 				<StatCell label='Read Time'>{post.readingMinutes} min</StatCell>
 				<StatCell label='Category'>
-					<span style={{ color: post.accent }}>{categoryMetadataPosts[post.category].label}</span>
+					<span className='text-brand'>{categoryMetadataPosts[post.category].label}</span>
 				</StatCell>
-			</NeonPanel>
+			</div>
 
-			<div className='mt-8 grid gap-8 md:grid-cols-[1fr_260px]'>
+			<div className='reading-layout'>
 				{/* Article */}
-				<article className='min-w-0 space-y-8'>
+				<article className='comic-prose min-w-0 space-y-8'>
 					<PostTldr tldr={post.tldr} />
 					<PostBody body={post.body} adAfter={adAfter} />
 
 					{post.lessons && post.lessons.length > 0 && (
 						<section>
-							<h2 className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase md:text-xs'>
-								// What I'd Do Differently
-							</h2>
+							<h2 className='text-brand font-sans text-xs tracking-normal md:text-xs'>What I'd Do Differently</h2>
 							<ul className='mt-3 space-y-2'>
 								{post.lessons.map((lesson, i) => (
-									<li key={i} className='border-cyber-yellow/60 text-muted-foreground border-l-2 pl-3 leading-relaxed'>
+									<li key={i} className='border-brand/60 text-muted-foreground border-l-2 pl-3 leading-relaxed'>
 										<InlineText text={lesson} />
 									</li>
 								))}
@@ -91,7 +87,7 @@ const PostDetail: React.FC<{ post: Post; adAfter?: Readonly<Record<number, strin
 
 					{post.sources && post.sources.length > 0 && (
 						<section>
-							<h2 className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase md:text-xs'>// Sources</h2>
+							<h2 className='text-brand font-sans text-xs tracking-normal md:text-xs'>Sources</h2>
 							<ul className='mt-3 space-y-1.5'>
 								{post.sources.map(s => (
 									<li key={s.url}>
@@ -99,7 +95,7 @@ const PostDetail: React.FC<{ post: Post; adAfter?: Readonly<Record<number, strin
 											href={s.url}
 											target='_blank'
 											rel='noopener noreferrer'
-											className='text-muted-foreground hover:text-cyber-cyan text-sm underline underline-offset-4 transition-colors'>
+											className='text-muted-foreground hover:text-brand text-sm underline underline-offset-4 transition-colors'>
 											{s.title}
 										</a>
 									</li>
@@ -116,8 +112,6 @@ const PostDetail: React.FC<{ post: Post; adAfter?: Readonly<Record<number, strin
 					<PostChapterNav post={post} />
 				</aside>
 			</div>
-
-			<HireStrip heading='Want this kind of engineering on your app?' />
 		</Container>
 	)
 }

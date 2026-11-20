@@ -1,5 +1,5 @@
 /**
- * GET /card/hire — the downloadable 1080×1080 "available for hire" intro card.
+ * GET /card/hire — the downloadable 1080×1080 profile card at its existing URL.
  *
  * Sibling of `(main)` for the same reason as the project cards; see
  * `app/card/projects/[id]/route.tsx`.

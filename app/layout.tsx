@@ -1,8 +1,7 @@
 import React from 'react'
 import type { Metadata, Viewport } from 'next'
-import { JetBrains_Mono, Noto_Sans_Thai, Rajdhani } from 'next/font/google'
+import { Inter, JetBrains_Mono, Noto_Sans_Thai, Space_Grotesk } from 'next/font/google'
 import { GoogleTagManager } from '@next/third-parties/google'
-import ScanlineOverlay from '@/components/cyber/ScanlineOverlay'
 import { ThemeProvider } from '@/components/theme-provider'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { ADSENSE_CLIENT_ID } from '@/lib/adsense'
@@ -11,11 +10,12 @@ import { cn } from '@/lib/utils'
 import { assets } from '@/common'
 import './globals.css'
 
-const rajdhani = Rajdhani({
+const inter = Inter({
 	subsets: ['latin'],
-	weight: ['300', '400', '500', '600', '700'],
-	variable: '--font-rajdhani'
+	variable: '--font-inter'
 })
+
+const space = Space_Grotesk({ subsets: ['latin'], variable: '--font-space', display: 'swap' })
 
 const jetbrains = JetBrains_Mono({
 	subsets: ['latin'],
@@ -36,13 +36,13 @@ const notoThai = Noto_Sans_Thai({
  */
 export const viewport: Viewport = {
 	viewportFit: 'cover',
-	themeColor: '#FCEE0A'
+	themeColor: '#ffffff'
 }
 
 export const metadata: Metadata = {
 	metadataBase: new URL('https://nooobtimex.me'),
 	title: {
-		default: 'Wongsaphat Puangsorn (NooobtimeX) — Freelance Software Engineer',
+		default: 'Wongsaphat Puangsorn (NooobtimeX) — Software, Robotics & Things I Build',
 		template: '%s | Wongsaphat Puangsorn'
 	},
 	authors: [{ name: 'Wongsaphat Puangsorn', url: 'https://nooobtimex.me' }],
@@ -53,9 +53,7 @@ export const metadata: Metadata = {
 		'Wongsaphat Puangsorn',
 		'NooobtimeX',
 		'Thammasat University',
-		'Freelance Software Engineer',
-		'Freelance Web Developer',
-		'Hire Web Developer Thailand',
+		'Software, Robotics & Things I Build',
 		'Thailand',
 		'Full-Stack',
 		'Next.js',
@@ -71,14 +69,14 @@ export const metadata: Metadata = {
 		type: 'website',
 		locale: 'en_US',
 		url: 'https://nooobtimex.me',
-		title: 'Wongsaphat Puangsorn — Freelance Software Engineer',
+		title: 'Wongsaphat Puangsorn — Software, Robotics & Things I Build',
 		description: SITE_DESCRIPTION,
 		siteName: SITE_NAME
 		// Social card is generated dynamically by app/opengraph-image.tsx (1200×630).
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'Wongsaphat Puangsorn — Freelance Software Engineer',
+		title: 'Wongsaphat Puangsorn — Software, Robotics & Things I Build',
 		description: SITE_DESCRIPTION,
 		creator: '@NooobtimeX' // Assuming this handle based on github, can be updated
 		// Twitter falls back to the dynamic app/opengraph-image.tsx card.
@@ -117,7 +115,7 @@ export default function RootLayout({
 	return (
 		<html
 			lang='en'
-			className={cn('dark', rajdhani.variable, jetbrains.variable, notoThai.variable)}
+			className={cn(space.variable, inter.variable, jetbrains.variable, notoThai.variable)}
 			// globals.css sets `scroll-behavior: smooth` on <html>. Without this attribute Next
 			// leaves it on during route changes, and the smooth scroll to a `#fragment` target
 			// (e.g. /career#organizations) is interrupted, so the page stays at the top.
@@ -140,14 +138,12 @@ export default function RootLayout({
 				<link rel='dns-prefetch' href='https://api.iconify.design' />
 				<ThemeProvider
 					attribute='class'
-					defaultTheme='dark'
-					forcedTheme='dark'
+					defaultTheme='light'
+					forcedTheme='light'
 					enableSystem={false}
 					disableTransitionOnChange>
 					<TooltipProvider>{children}</TooltipProvider>
 				</ThemeProvider>
-				{/* Global cyberpunk scanline + vignette overlay */}
-				<ScanlineOverlay />
 			</body>
 		</html>
 	)

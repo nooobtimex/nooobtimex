@@ -1,126 +1,104 @@
 'use client'
 
-import React from 'react'
+import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Icon } from '@iconify/react'
-import Container from '@/components/cyber/Container'
-import { cyberButtonVariants } from '@/components/cyber/CyberButton'
-import { HEADER_LINKS, isActive } from '@/components/navigation/links'
+import { Menu, Search, X } from 'lucide-react'
 import { loadSearchIndex } from '@/components/search/loadSearchIndex'
+import Container from '@/components/site/Container'
 import { cn } from '@/lib/utils'
+import { HEADER_LINKS, isActive } from './links'
 
-/**
- * Loaded on demand, not with the nav.
- *
- * NavBar mounts on every page, and the palette is something most visitors never open, so
- * neither its code nor its rows belong in the first-load bundle. `mounted` below keeps the
- * chunk request off the initial load entirely, and the rows are not in any bundle at all:
- * they come from the prerendered `/search-index.json`, which `openSearch` starts fetching
- * alongside the chunk. (The palette used to import the `@/common` arrays itself, and that
- * put every Journal post's full body into a 436 KB chunk.)
- */
 const GlobalSearch = dynamic(() => import('@/components/search/GlobalSearch'))
 
-interface NavBarProps {
-	/** `personalData.hire.url`, passed by the server layout — a client module cannot import `@/common`. */
-	hireUrl: string
-}
-
-const NavBar: React.FC<NavBarProps> = ({ hireUrl }) => {
+export default function NavBar() {
 	const pathname = usePathname()
-	const [searchOpen, setSearchOpen] = React.useState(false)
-	// Latches on first open so the palette keeps its mounted state (and its chunk) after
-	// being closed, instead of re-fetching on every ⌘K. Set from the user-intent handlers
-	// rather than an effect on `searchOpen` — React Compiler rejects a synchronous setState
-	// inside an effect, and the effect bought nothing here anyway.
-	const [searchMounted, setSearchMounted] = React.useState(false)
-
+	const [menuOpen, setMenuOpen] = useState(false)
+	const [searchOpen, setSearchOpen] = useState(false)
+	const [searchMounted, setSearchMounted] = useState(false)
 	const openSearch = () => {
-		void loadSearchIndex() // race the palette chunk rather than wait behind it
+		void loadSearchIndex()
 		setSearchMounted(true)
 		setSearchOpen(true)
+		setMenuOpen(false)
 	}
-
-	React.useEffect(() => {
+	useEffect(() => {
 		const onKey = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') setMenuOpen(false)
 			if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
 				e.preventDefault()
 				void loadSearchIndex()
 				setSearchMounted(true)
 				setSearchOpen(o => !o)
+				setMenuOpen(false)
 			}
 		}
 		document.addEventListener('keydown', onKey)
 		return () => document.removeEventListener('keydown', onKey)
 	}, [])
-
 	return (
 		<>
-			<header className='border-cyber-cyan/25 bg-background/80 sticky top-0 z-50 border-b backdrop-blur-md'>
-				<Container className='flex h-14 items-center justify-between gap-4'>
-					{/* Handle */}
-					<Link href='/' className='group flex items-center gap-2'>
-						<span className='bg-cyber-yellow inline-block size-2.5 animate-pulse' />
-						<span className='font-display text-lg font-bold tracking-widest uppercase'>
-							Nooobtime<span className='text-cyber-yellow'>X</span>
-						</span>
+			<header
+				className={cn('border-border/80 bg-background/95 sticky top-0 z-50 border-b backdrop-blur-md', 'comic-nav')}>
+				<Container className={cn('flex h-20 items-center justify-between gap-4', 'w-full')}>
+					<Link
+						href='/'
+						onClick={() => setMenuOpen(false)}
+						className='flex items-center gap-2 text-base font-semibold tracking-tight'
+						aria-label='NooobtimeX home'>
+						<span className='text-brand'>n.</span>
+						<span>NooobtimeX</span>
 					</Link>
-
-					{/* Desktop links from lg. The header carries only the five `inHeader` sections —
-					    GitHub and CV live in the footer, the ⌘K palette and the mobile Menu sheet — so
-					    links + Search + Hire fit at 1,024px. When it carried all nine it needed
-					    ~1,150px and pushed Hire off-screen below xl. Below lg, MobileTabBar takes over. */}
-					<nav className='hidden items-center gap-1 lg:flex'>
-						{HEADER_LINKS.map(link => {
-							const active = isActive(pathname, link)
-							return (
+					<div className='flex items-center gap-3 md:gap-6'>
+						<nav aria-label='Main navigation' className='hidden items-center gap-7 md:flex'>
+							{HEADER_LINKS.map(link => (
 								<Link
 									key={link.href}
 									href={link.href}
+									aria-current={isActive(pathname, link) ? 'page' : undefined}
 									className={cn(
-										'group relative px-3 py-2 font-mono text-xs tracking-widest uppercase transition-colors',
-										active ? 'text-cyber-yellow' : 'text-muted-foreground hover:text-foreground'
+										'hover:text-brand py-3 text-sm transition-colors',
+										isActive(pathname, link) ? 'text-brand font-semibold' : 'text-muted-foreground'
 									)}>
 									{link.label}
-									{active && <span className='bg-cyber-yellow absolute right-3 -bottom-px left-3 h-px' />}
 								</Link>
-							)
-						})}
-					</nav>
-
-					{/* Right controls. Below lg, search and Hire are the only header controls —
-					    MobileTabBar and its Menu sheet carry navigation there. */}
-					<div className='flex shrink-0 items-center gap-2'>
+							))}
+						</nav>
 						<button
 							onClick={openSearch}
-							className='border-border text-muted-foreground hover:border-cyber-cyan/50 hover:text-cyber-cyan hidden items-center gap-2 border px-2.5 py-1.5 font-mono text-xs transition-colors sm:flex'>
-							<Icon icon='mdi:magnify' className='size-4' />
-							<span className='tracking-wider uppercase'>Search</span>
-							<kbd className='border-border bg-muted ml-1 border px-1 text-[0.65rem]'>⌘K</kbd>
+							aria-label='Search the site'
+							className='text-muted-foreground hover:bg-muted hover:text-brand flex size-11 items-center justify-center rounded-md'>
+							<Search className='size-5' />
 						</button>
 						<button
-							onClick={openSearch}
-							aria-label='Search'
-							className='text-muted-foreground hover:text-cyber-cyan p-1.5 sm:hidden'>
-							<Icon icon='mdi:magnify' className='size-5' />
+							onClick={() => setMenuOpen(o => !o)}
+							aria-expanded={menuOpen}
+							aria-controls='mobile-navigation'
+							aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+							className='hover:bg-muted flex size-11 items-center justify-center rounded-md md:hidden'>
+							{menuOpen ?
+								<X className='size-5' />
+							:	<Menu className='size-5' />}
 						</button>
-						{/* The site's one ask, on every page and at every width — the header is the only
-						    control a visitor never scrolls past. */}
-						<a href={hireUrl} className={cn(cyberButtonVariants({ size: 'sm' }), 'shrink-0 whitespace-nowrap')}>
-							<Icon icon='mdi:handshake-outline' className='size-4' />
-							Hire me
-							<Icon icon='mdi:arrow-top-right' className='size-3.5' />
-							<span className='sr-only'> by email</span>
-						</a>
 					</div>
 				</Container>
+				{menuOpen && (
+					<nav id='mobile-navigation' aria-label='Mobile navigation' className='border-t px-6 py-4 md:hidden'>
+						{HEADER_LINKS.map(link => (
+							<Link
+								key={link.href}
+								href={link.href}
+								onClick={() => setMenuOpen(false)}
+								aria-current={isActive(pathname, link) ? 'page' : undefined}
+								className='hover:bg-muted block rounded-md px-3 py-3 text-base'>
+								{link.label}
+							</Link>
+						))}
+					</nav>
+				)}
 			</header>
-
 			{searchMounted && <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />}
 		</>
 	)
 }
-
-export default NavBar

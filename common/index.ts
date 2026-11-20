@@ -14,3 +14,5 @@ export * from './data/privacy'
 export * from './data/services'
 // Last: coverage reads the post, project and skill indexes above.
 export * from './data/coverage'
+
+export * from './data/profile'

@@ -18,14 +18,8 @@ const rangeLabel = (r: LevelRange | undefined) =>
 	: r.min === r.max ? String(r.min)
 	: `${r.min}–${r.max}`
 
-// level 0–4 → cyber-yellow intensity scale (0 = faint cyan tint)
-const SCALE = [
-	'rgba(0, 240, 255, 0.08)',
-	'rgba(252, 238, 10, 0.28)',
-	'rgba(252, 238, 10, 0.5)',
-	'rgba(252, 238, 10, 0.72)',
-	'#FCEE0A'
-]
+// Sequential blue levels, from no activity to the highest contribution band.
+const SCALE = ['#e8ebef', '#c4d4ea', '#91aed3', '#5c82b1', '#244C85']
 
 const CELL = 12 // px
 const GAP = 4 // px
@@ -34,7 +28,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
 /**
  * GitHub-style contribution calendar: weeks as columns, weekdays as rows,
- * recolored to the cyberpunk palette. Pure render — native title tooltips.
+ * rendered in sequential blue shades. Pure render — native title tooltips.
  */
 const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ contributions, today, levels }) => {
 	if (!contributions.length) return null
@@ -62,12 +56,16 @@ const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ contributions
 	const gridWidth = weeks.length * STEP
 
 	return (
-		<div className='overflow-x-auto pb-1'>
+		<div
+			className='overflow-x-auto pb-1'
+			role='region'
+			aria-label='Contribution calendar, scroll horizontally'
+			tabIndex={0}>
 			{/* centers on desktop (when it fits); scrolls left-aligned on mobile */}
 			<div className='mx-auto w-fit'>
 				<div className='flex gap-2'>
 					{/* weekday labels */}
-					<div className='text-muted-foreground flex flex-col gap-1 pt-5 font-mono text-[0.65rem]'>
+					<div className='text-muted-foreground flex flex-col gap-1 pt-5 font-sans text-xs'>
 						{['', 'Mon', '', 'Wed', '', 'Fri', ''].map((d, i) => (
 							<span key={i} className='flex h-3 items-center leading-none'>
 								{d}
@@ -77,9 +75,7 @@ const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ contributions
 
 					<div>
 						{/* month labels */}
-						<div
-							className='text-muted-foreground relative mb-1 h-4 font-mono text-[0.65rem]'
-							style={{ width: gridWidth }}>
+						<div className='text-muted-foreground relative mb-1 h-4 font-sans text-xs' style={{ width: gridWidth }}>
 							{monthMarks.map(m => (
 								<span key={`${m.week}-${m.label}`} className='absolute top-0' style={{ left: m.week * STEP }}>
 									{m.label}
@@ -118,8 +114,8 @@ const ContributionHeatmap: React.FC<ContributionHeatmapProps> = ({ contributions
 						{/* Legend — centered under the grid. Each shade carries the daily counts it
 						    stands for: GitHub picks the thresholds per calendar, so "more" alone
 						    tells a reader nothing. */}
-						<div className='text-muted-foreground mt-3 flex items-start justify-center gap-2 font-mono text-[0.65rem] tracking-wider'>
-							<span className='pt-0.5 uppercase'>Per day</span>
+						<div className='text-muted-foreground mt-3 flex items-start justify-center gap-2 font-sans text-xs tracking-normal'>
+							<span className='pt-0.5'>Per day</span>
 							{SCALE.map((c, i) => (
 								<span key={i} className='flex flex-col items-center gap-1'>
 									<span className='size-3 rounded-[2px]' style={{ backgroundColor: c }} />

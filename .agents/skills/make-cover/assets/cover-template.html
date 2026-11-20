@@ -1,358 +1,76 @@
 <!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-			html,
-			body {
-				width: 1600px;
-				height: 900px;
-				overflow: hidden;
-			}
-			body {
-				position: relative;
-				background:
-					radial-gradient(120% 90% at 78% 16%, var(--glowA), transparent 55%),
-					radial-gradient(90% 80% at 8% 104%, var(--glowB), transparent 60%),
-					linear-gradient(160deg, #080a12 0%, #06070d 55%, #05060a 100%);
-				font-family: 'Rajdhani', 'Avenir Next Condensed', 'Arial Narrow', sans-serif;
-				color: #eaf6ff;
-			}
-			.grid {
-				position: absolute;
-				inset: 0;
-				background-image:
-					linear-gradient(var(--gridline) 1px, transparent 1px),
-					linear-gradient(90deg, var(--gridline) 1px, transparent 1px);
-				background-size: 56px 56px;
-				mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.22) 62%, transparent);
-			}
-			.motif {
-				position: absolute;
-				inset: 0;
-				width: 1600px;
-				height: 900px;
-			}
-			.scan {
-				position: absolute;
-				inset: 0;
-				pointer-events: none;
-				opacity: 0.32;
-				background: repeating-linear-gradient(180deg, transparent 0 2px, rgba(0, 0, 0, 0.35) 2px 3px);
-			}
-			.br {
-				position: absolute;
-				width: 62px;
-				height: 62px;
-				border: 3px solid var(--accentDim);
-			}
-			.br.tl {
-				top: 40px;
-				left: 40px;
-				border-right: 0;
-				border-bottom: 0;
-			}
-			.br.tr {
-				top: 40px;
-				right: 40px;
-				border-left: 0;
-				border-bottom: 0;
-			}
-			.br.bl {
-				bottom: 40px;
-				left: 40px;
-				border-right: 0;
-				border-top: 0;
-			}
-			.br.brr {
-				bottom: 40px;
-				right: 40px;
-				border-left: 0;
-				border-top: 0;
-			}
-
-			.content {
-				position: absolute;
-				left: 96px;
-				top: 150px;
-				max-width: 1180px;
-			}
-			.kicker {
-				font-family: 'JetBrains Mono', 'Menlo', monospace;
-				font-size: 26px;
-				letter-spacing: 10px;
-				text-transform: uppercase;
-				color: var(--accent);
-				font-weight: 600;
-			}
-			.title {
-				margin-top: 18px;
-				font-size: 150px;
-				line-height: 0.86;
-				font-weight: 700;
-				letter-spacing: 1px;
-				text-transform: uppercase;
-				color: #ffffff;
-				text-shadow:
-					0 0 34px var(--accentGlow),
-					0 0 4px var(--accentSoft);
-			}
-			.title .bar {
-				display: inline-block;
-				width: 22px;
-				height: 0.82em;
-				background: var(--accent);
-				margin-right: 26px;
-				vertical-align: -0.11em;
-				box-shadow: 0 0 26px var(--accentGlow);
-			}
-			.subtitle {
-				margin-top: 26px;
-				font-size: 44px;
-				font-weight: 600;
-				letter-spacing: 2px;
-				text-transform: uppercase;
-				color: #bfe9f2;
-			}
-
-			.tags {
-				position: absolute;
-				left: 100px;
-				bottom: 116px;
-				font-family: 'JetBrains Mono', 'Menlo', monospace;
-				font-size: 24px;
-				letter-spacing: 3px;
-				color: #9fd7e4;
-				text-transform: uppercase;
-			}
-			.tags b {
-				color: var(--accent);
-				font-weight: 600;
-			}
-			.badge {
-				position: absolute;
-				right: 96px;
-				top: 152px;
-				font-family: 'JetBrains Mono', 'Menlo', monospace;
-				text-align: right;
-			}
-			.badge .lvl {
-				font-size: 30px;
-				letter-spacing: 6px;
-				color: var(--accent);
-				text-transform: uppercase;
-			}
-			.badge .sub {
-				font-size: 22px;
-				letter-spacing: 5px;
-				color: #7fb9c6;
-				margin-top: 8px;
-				text-transform: uppercase;
-			}
-			.meta {
-				position: absolute;
-				right: 100px;
-				bottom: 120px;
-				font-family: 'JetBrains Mono', 'Menlo', monospace;
-				font-size: 22px;
-				letter-spacing: 4px;
-				color: #6f93a0;
-				text-transform: uppercase;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="grid"></div>
-		<svg class="motif" id="motif" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"></svg>
-		<div class="scan"></div>
-		<span class="br tl"></span><span class="br tr"></span><span class="br bl"></span><span class="br brr"></span>
-
-		<div class="content">
-			<div class="kicker" id="kicker"></div>
-			<div class="title" id="title"></div>
-			<div class="subtitle" id="subtitle"></div>
+<html lang="en">
+	<meta charset="utf-8" /><title>Project cover</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		body {
+			margin: 0;
+			background: #faf9f6;
+			color: #222a35;
+			font-family: Inter, Arial, sans-serif;
+		}
+		main {
+			height: 900px;
+			width: 1600px;
+			padding: 94px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		.top,
+		.bottom {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 26px;
+			color: #58616d;
+		}
+		.brand {
+			color: #2845ee;
+			font-weight: 600;
+		}
+		h1 {
+			max-width: 1300px;
+			font-size: 100px;
+			line-height: 1.08;
+			letter-spacing: -4px;
+			font-weight: 600;
+			margin: 0 0 28px;
+		}
+		p {
+			font-size: 34px;
+			line-height: 1.5;
+			max-width: 1150px;
+			color: #58616d;
+			margin: 0;
+		}
+		.bottom {
+			border-top: 1px solid #dcdedc;
+			padding-top: 30px;
+		}
+		.badge {
+			font-size: 24px;
+			color: #2845ee;
+		}
+		#tags {
+			max-width: 1100px;
+			font-size: 24px;
+		}
+	</style>
+	<main>
+		<div class="top"><span class="brand">NooobtimeX.</span><span id="badge" class="badge"></span></div>
+		<div>
+			<h1 id="title"></h1>
+			<p id="subtitle"></p>
 		</div>
-		<div class="badge">
-			<div class="lvl" id="badgeLvl"></div>
-			<div class="sub" id="badgeSub"></div>
-		</div>
-		<div class="tags" id="tags"></div>
-		<div class="meta" id="meta"></div>
-
-		<script>
-			const q = new URLSearchParams(location.search)
-			const g = (k, d = '') => q.get(k) ?? d
-			const accent = g('accent', '#00F0FF')
-
-			const hexA = (hex, a) => {
-				const h = hex.replace('#', '')
-				const n = parseInt(
-					h.length === 3 ?
-						h
-							.split('')
-							.map(c => c + c)
-							.join('')
-					:	h,
-					16
-				)
-				return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`
-			}
-			const r = document.documentElement.style
-			r.setProperty('--accent', accent)
-			r.setProperty('--accentDim', hexA(accent, 0.75))
-			r.setProperty('--accentGlow', hexA(accent, 0.55))
-			r.setProperty('--accentSoft', hexA(accent, 0.9))
-			r.setProperty('--glowA', hexA(accent, 0.12))
-			r.setProperty('--glowB', hexA(accent, 0.09))
-			r.setProperty('--gridline', hexA(accent, 0.06))
-
-			const A = accent,
-				Af = a => hexA(accent, a)
-			// ---- Motif presets: each returns SVG markup drawn faintly behind the text ----
-			const motifs = {
-				waves() {
-					const pts = [772, 760, 784, 742, 766, 700, 742, 690, 726, 662, 706, 636, 690, 628, 640]
-					const step = 1600 / (pts.length - 1)
-					let d = 'M0 ' + pts[0]
-					pts.forEach((y, i) => i && (d += ` L${Math.round(i * step)} ${y}`))
-					return `<defs><linearGradient id="wf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${A}" stop-opacity="0.30"/><stop offset="1" stop-color="${A}" stop-opacity="0.02"/></linearGradient></defs>
-        <path d="${d} L1600 900 L0 900 Z" fill="url(#wf)"/>
-        <path d="${d}" fill="none" stroke="${Af(0.85)}" stroke-width="4" stroke-linejoin="round" style="filter:drop-shadow(0 0 10px ${Af(0.7)})"/>
-        <circle cx="${Math.round(5 * step)}" cy="700" r="9" fill="${A}"/><circle cx="${Math.round(5 * step)}" cy="700" r="20" fill="none" stroke="${Af(0.5)}" stroke-width="2"/>
-        <circle cx="${Math.round(11 * step)}" cy="636" r="9" fill="${A}"/><circle cx="${Math.round(11 * step)}" cy="636" r="20" fill="none" stroke="${Af(0.5)}" stroke-width="2"/>`
-				},
-				bars() {
-					const h = [180, 120, 240, 150, 300, 210, 340, 260, 380, 300, 430]
-					let s = ''
-					h.forEach(
-						(v, i) =>
-							(s += `<rect x="${120 + i * 130}" y="${900 - v}" width="70" height="${v}" fill="${Af(0.1 + (i / h.length) * 0.14)}" stroke="${Af(0.4)}" stroke-width="1.5"/>`)
-					)
-					return s
-				},
-				dots() {
-					let s = ''
-					for (let y = 120; y < 900; y += 64)
-						for (let x = 80; x < 1600; x += 64) {
-							const d = Math.hypot(x - 1180, y - 460)
-							s += `<circle cx="${x}" cy="${y}" r="${d < 340 ? 3.2 : 2}" fill="${Af(d < 340 ? 0.5 : 0.16)}"/>`
-						}
-					return s
-				},
-				rings() {
-					let s = ''
-					const cx = 1230,
-						cy = 430
-					for (const rad of [90, 170, 250, 330, 410])
-						s += `<circle cx="${cx}" cy="${cy}" r="${rad}" fill="none" stroke="${Af(0.16)}" stroke-width="2"/>`
-					s += `<circle cx="${cx}" cy="${cy}" r="46" fill="none" stroke="${Af(0.7)}" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="10" fill="${A}"/>`
-					s += `<line x1="${cx - 460}" y1="${cy}" x2="${cx + 460}" y2="${cy}" stroke="${Af(0.12)}" stroke-width="1.5"/><line x1="${cx}" y1="${cy - 460}" x2="${cx}" y2="${cy + 460}" stroke="${Af(0.12)}" stroke-width="1.5"/>`
-					return s
-				},
-				hex() {
-					const hp = (cx, cy, s) => {
-						let p = ''
-						for (let i = 0; i < 6; i++) {
-							const a = (Math.PI / 180) * (60 * i - 30)
-							p += (i ? 'L' : 'M') + (cx + s * Math.cos(a)).toFixed(1) + ' ' + (cy + s * Math.sin(a)).toFixed(1) + ' '
-						}
-						return p + 'Z'
-					}
-					let s = ''
-					const S = 54,
-						W = S * 1.5,
-						H = S * Math.sqrt(3)
-					for (let row = 0; row < 9; row++)
-						for (let col = 0; col < 16; col++) {
-							const cx = 780 + col * W,
-								cy = 120 + row * H + (col % 2 ? H / 2 : 0)
-							const d = Math.hypot(cx - 1230, cy - 450)
-							if (cx < 1720)
-								s += `<path d="${hp(cx, cy, S - 6)}" fill="none" stroke="${Af(d < 360 ? 0.34 : 0.1)}" stroke-width="1.5"/>`
-						}
-					return s
-				},
-				qr() {
-					let s = ''
-					const ox = 1000,
-						oy = 250,
-						c = 28,
-						n = 13
-					const seed = [...g('title')].reduce((a, ch) => a + ch.charCodeAt(0), 7)
-					const on = (x, y) => {
-						const v = (x * 73856093) ^ (y * 19349663) ^ (seed * 83492791)
-						return ((v >>> 3) & 7) > 2
-					}
-					for (let y = 0; y < n; y++)
-						for (let x = 0; x < n; x++) {
-							const finder = (x < 3 && y < 3) || (x > n - 4 && y < 3) || (x < 3 && y > n - 4)
-							if (finder || on(x, y))
-								s += `<rect x="${ox + x * c}" y="${oy + y * c}" width="${c - 3}" height="${c - 3}" fill="${Af(finder ? 0.5 : 0.2)}"/>`
-						}
-					return s
-				},
-				cards() {
-					const suits = [
-						['♠', 1120, 300],
-						['♥', 1360, 420],
-						['♦', 1140, 560],
-						['♣', 1380, 660]
-					]
-					return suits
-						.map(
-							([ch, x, y], i) =>
-								`<text x="${x}" y="${y}" font-family="Arial" font-size="${150 - i * 8}" fill="${Af(i % 2 ? 0.16 : 0.28)}">${ch}</text>`
-						)
-						.join('')
-				},
-				braces() {
-					return `<text x="1000" y="640" font-family="'JetBrains Mono',Menlo,monospace" font-weight="700" font-size="560" fill="${Af(0.14)}">{ }</text>
-        <text x="1090" y="500" font-family="'JetBrains Mono',Menlo,monospace" font-size="40" fill="${Af(0.4)}">&lt;/&gt;</text>`
-				},
-				trophy() {
-					return `<g transform="translate(1180,250)" fill="none" stroke="${Af(0.4)}" stroke-width="6">
-        <path d="M60 30 H300 V90 Q300 210 180 250 Q60 210 60 90 Z"/>
-        <path d="M60 60 H20 Q-10 60 -10 110 Q-10 165 60 175"/>
-        <path d="M300 60 H340 Q370 60 370 110 Q370 165 300 175"/>
-        <path d="M150 250 V300 M210 250 V300 M110 300 H250 M130 340 H230 Q240 340 240 355 V370 H120 V355 Q120 340 130 340 Z"/>
-        </g><circle cx="1360" cy="150" r="6" fill="${A}"/>`
-				},
-				shield() {
-					return `<g transform="translate(1150,230)" fill="none" stroke="${Af(0.4)}" stroke-width="6">
-        <path d="M180 20 L340 80 V220 Q340 360 180 440 Q20 360 20 220 V80 Z"/>
-        <path d="M110 210 L165 270 L270 150" stroke="${Af(0.75)}" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></g>`
-				}
-			}
-			document.getElementById('motif').innerHTML = (motifs[g('motif', 'dots')] || motifs.dots)()
-
-			document.getElementById('kicker').textContent = g('kicker', '// PROJECT')
-			const title = g('title', 'Untitled').split('|')
-			document.getElementById('title').innerHTML =
-				`<span class="bar"></span>` + title.map((t, i) => (i ? '<br>' : '') + t).join('')
-			document.getElementById('subtitle').textContent = g('subtitle', '')
-			document.getElementById('badgeLvl').textContent = g('badgeLvl', '')
-			document.getElementById('badgeSub').textContent = g('badgeSub', '')
-			const tags = g('tags', '')
-			document.getElementById('tags').innerHTML =
-				tags ?
-					'STACK // '
-					+ tags
-						.split(',')
-						.map(t => `<b>${t.trim()}</b>`)
-						.join(' · ')
-				:	''
-			document.getElementById('meta').textContent = g('meta', '')
-			// Shrink title if it's a very long single line
-			const tEl = document.getElementById('title')
-			if (title.length === 1 && title[0].length > 12) tEl.style.fontSize = '112px'
-			// Thai tone marks rise above the cap height, so a Thai title needs looser lines
-			if (/[\u0E00-\u0E7F]/.test(title.join(''))) Object.assign(tEl.style, { lineHeight: '1', marginTop: '40px' })
-			document.title = 'ready'
-		</script>
-	</body>
+		<div class="bottom"><span id="tags"></span><span>Selected work</span></div>
+	</main>
+	<script>
+		const q = new URLSearchParams(location.search)
+		for (const k of ['title', 'subtitle', 'tags'])
+			document.getElementById(k).textContent = (q.get(k) || '').replaceAll('|', ' ').replaceAll(',', ' · ')
+		document.getElementById('badge').textContent = (q.get('badgeLvl') || '').replace('●', '').trim()
+	</script>
 </html>

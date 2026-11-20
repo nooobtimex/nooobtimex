@@ -133,7 +133,7 @@ const resolveProject = (d: ProjectDef): Project => {
 export const projectsData: Project[] = defs.map(resolveProject).sort(sortByDateDesc)
 
 /** Hand-picked projects for the home page (in this order). Edit to curate. */
-const featuredProjectIds = ['wangpa', 'monomax-epl-portal', 'rs-trophy', 'looklook-pet']
+const featuredProjectIds = ['rs-trophy', 'unitree-g1', 'looklook-pet']
 export const featuredProjects: Project[] = featuredProjectIds
 	.map(id => projectsData.find(p => p.id === id))
 	.filter((p): p is Project => Boolean(p))

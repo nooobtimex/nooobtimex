@@ -1,6 +1,6 @@
 import React from 'react'
-import CyberIcon from '@/components/cyber/CyberIcon'
-import SectionHeader from '@/components/cyber/SectionHeader'
+import SectionHeader from '@/components/site/SectionHeader'
+import SiteIcon from '@/components/site/SiteIcon'
 import { USERNAME } from '@/lib/github'
 
 /**
@@ -19,8 +19,8 @@ const GithubIntro: React.FC<{ year: string }> = ({ year }) => (
 					href={`https://github.com/${USERNAME}`}
 					target='_blank'
 					rel='noopener noreferrer'
-					className='text-cyber-cyan hover:text-cyber-yellow inline-flex shrink-0 items-center gap-1.5 font-mono text-xs tracking-widest uppercase transition-colors'>
-					<CyberIcon icon='simple-icons:github' className='size-4' /> @{USERNAME}
+					className='text-brand hover:text-brand inline-flex shrink-0 items-center gap-1.5 font-sans text-xs tracking-normal transition-colors'>
+					<SiteIcon icon='simple-icons:github' className='size-4' /> @{USERNAME}
 				</a>
 			}
 		/>

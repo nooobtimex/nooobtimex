@@ -12,7 +12,7 @@ in `SKILL.md` §7, when this repo's code changes:
   [`add-content`](../add-content/SKILL.md).
 - **A new icon, image or post** → regenerate and commit the artifact (`icons:generate`, `images:optimize`,
   `llms:generate`) — the list is in `AGENTS.md` under Delivery contract.
-- **A new design primitive in `components/cyber/`** → the [`design`](../design/SKILL.md) skill (its
+- **A new design primitive in `components/site/`** → the [`design`](../design/SKILL.md) skill (its
   `references/icons.md` and `references/images.md` for the icon and image rules).
 - **A new SEO trap found live** → the [`seo-conventions`](../seo-conventions/SKILL.md) skill.
 - **A change to the Journal contract** (`resolvePost` in `common/data/posts/index.ts`) → the

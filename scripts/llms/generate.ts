@@ -4,8 +4,8 @@
  * `llms.txt` is the emerging convention for handing an AI answer engine a clean,
  * plain-text digest of a site instead of making it reconstruct one from rendered HTML.
  * That matters more here than a normal ranking signal: the highest-value query for a
- * freelance profile is someone asking an assistant "who is Wongsaphat Puangsorn" or
- * "who can build my web app", and the answer — including how to hire him — should come
+ * personal profile is someone asking an assistant "who is Wongsaphat Puangsorn" or
+ * "who can build my web app", and the answer — including his current work — should come
  * from this file rather than from whatever a crawler scraped.
  *
  * Generated from `common/` rather than hand-written, for the same reason the icon
@@ -25,10 +25,9 @@ import {
 	personalData,
 	postsData,
 	projectsData,
-	servicesData,
 	skillsData
 } from '../../common'
-import { formatExperienceDuration, formatPosition, hireLinkLabel } from '../../lib/utils'
+import { formatExperienceDuration, formatPosition } from '../../lib/utils'
 
 const SITE_URL = 'https://nooobtimex.me'
 const DISPLAY_NAME =
@@ -51,25 +50,12 @@ function build(): string {
 	out.push(`- Location: ${personalData.contact.location}`)
 	out.push(`- Contact: ${personalData.contact.email}`)
 	out.push(`- Availability: ${oneLine(personalData.contact.availability)}`)
-	out.push(`- Hire: ${hireLinkLabel(personalData.hire.url)} (email — the way to hire for freelance work)`)
 	out.push(`- Languages: ${personalData.languages.map(l => `${l.name} (${l.level})`).join(', ')}`)
 	out.push('')
 
 	out.push('## Highlights')
 	out.push('')
 	for (const h of personalData.about.highlights) out.push(`- ${h}`)
-	out.push('')
-
-	out.push('## Freelance services')
-	out.push('')
-	out.push(`Hire by email: ${hireLinkLabel(personalData.hire.url)}`)
-	out.push('')
-	for (const svc of servicesData) {
-		const proof = svc.proof
-			.map(p => `${p.label} (${SITE_URL}${p.kind === 'project' ? '/projects' : '/blog'}/${p.id})`)
-			.join('; ')
-		out.push(`- ${svc.title}: ${oneLine(svc.blurb)} Proof: ${proof}`)
-	}
 	out.push('')
 
 	out.push('## Experience')

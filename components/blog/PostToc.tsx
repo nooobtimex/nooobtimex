@@ -8,17 +8,15 @@ const PostToc: React.FC<{ body: PostBlock[] }> = ({ body }) => {
 	if (headings.length < 2) return null
 
 	return (
-		<nav aria-label='Table of contents' className='neon-panel clip-notch-sm p-4'>
-			<h3 className='text-cyber-cyan mb-3 font-mono text-xs tracking-widest uppercase md:text-xs'>// Contents</h3>
+		<nav aria-label='Table of contents' className='surface rounded-lg p-4'>
+			<h3 className='text-brand mb-3 font-sans text-xs tracking-normal md:text-xs'>Contents</h3>
 			<ol className='space-y-2'>
 				{headings.map((h, i) => (
 					<li key={i}>
 						<a
 							href={`#${slugify(h.text)}`}
-							className='text-muted-foreground hover:text-cyber-yellow block text-sm leading-snug transition-colors'>
-							<span className='text-cyber-cyan/60 mr-1.5 font-mono text-[0.65rem]'>
-								{String(i + 1).padStart(2, '0')}
-							</span>
+							className='text-muted-foreground hover:text-brand block text-sm leading-snug transition-colors'>
+							<span className='text-brand mr-1.5 font-sans text-xs'>{String(i + 1).padStart(2, '0')}</span>
 							{h.text}
 						</a>
 					</li>

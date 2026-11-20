@@ -7,7 +7,7 @@ import { postsData } from '@/common'
 
 export const metadata = pageMetadata({
 	path: '/blog',
-	title: 'Journal',
+	title: 'Writing',
 	description:
 		'The engineering journey, written up with the numbers — from student part-timer to CTO, one real build at a time.'
 })

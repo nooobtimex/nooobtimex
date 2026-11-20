@@ -3,13 +3,13 @@ import { assets } from '../assets'
 
 export const portfolio: ProjectDef = {
 	id: 'portfolio',
-	accent: '#FCEE0A',
+	accent: '#244C85',
 	// Tailwind at #2 is deliberate: "a fully custom Tailwind v4 design system" is the product
 	// here, so the highlight overrides the usual demotion of Tailwind as generic scaffolding.
 	highlightSkills: ['next-js', 'tailwind-css', 'base-ui', 'shadcn-ui', 'bun-js', 'embla-carousel', 'railway'],
 	title: '🚀 NooobtimeX — Profile Site',
 	description:
-		'This site — a Cyberpunk 2077–inspired profile that turns visitors into freelance clients, built on Next.js (App Router, Turbopack) with a fully custom Tailwind v4 design system and shadcn/ui on Base UI. Features a ⌘K command palette, a gig-board project journal, a vertical career-trace timeline, and a print-ready CV with a slide-presentation mode. Deployed on Railway.',
+		'This personal site — a place to get to know Kwan, explore his work, and follow what he is building, built on Next.js (App Router, Turbopack) with a fully custom Tailwind v4 design system and shadcn/ui on Base UI. Features a ⌘K command palette, an illustrated project archive, a personal story and experience history, and a print-ready CV with a slide-presentation mode. Deployed on Railway.',
 	images: { cover: assets.projects.portfolio.cover, photos: [] },
 	// Starting stack — a static profile that grew into a full web app via the timeline events below.
 	skills: ['next-js', 'tailwind-css', 'seo'],

@@ -16,8 +16,8 @@ const humanize = (value: string) =>
 		.join(' ')
 
 const categoryAccent: Record<ExperienceCategory, string> = {
-	work: 'text-cyber-cyan border-cyber-cyan/55',
-	education: 'text-cyber-yellow border-cyber-yellow/55'
+	work: 'text-brand border-brand/55',
+	education: 'text-brand border-brand/55'
 }
 
 const TraceNode: React.FC<TraceNodeProps> = ({ item, side, isNow }) => {
@@ -27,7 +27,7 @@ const TraceNode: React.FC<TraceNodeProps> = ({ item, side, isNow }) => {
 			<span
 				className={cn(
 					'bg-background absolute top-4 left-5 z-10 flex size-9 -translate-x-1/2 items-center justify-center overflow-hidden rounded-full border lg:left-1/2',
-					isNow ? 'now-pulse border-cyber-yellow' : 'border-cyber-cyan/60'
+					isNow ? 'border-brand rounded-full' : 'border-brand/60'
 				)}>
 				{item.organization.logo ?
 					<img
@@ -39,36 +39,36 @@ const TraceNode: React.FC<TraceNodeProps> = ({ item, side, isNow }) => {
 						decoding='async'
 						className='size-full bg-white/90 object-contain p-1'
 					/>
-				:	<span className='bg-cyber-cyan size-2 rotate-45' />}
+				:	<span className='bg-brand size-2 rotate-45' />}
 			</span>
 
 			{/* Card on the chosen side */}
 			<div className={cn('lg:col-start-1', side === 'right' && 'lg:col-start-2')}>
 				<Link
 					href={`/career/${item.id}` as never}
-					className='group neon-panel clip-notch-sm hover:border-cyber-yellow/60 block p-4 transition-colors'>
+					className='group surface hover:border-brand/60 block rounded-lg p-4 transition-colors'>
 					<div className='flex items-start justify-between gap-2'>
 						<div className='min-w-0'>
-							<h3 className='group-hover:text-cyber-yellow text-base leading-tight font-bold tracking-wide uppercase transition-colors'>
+							<h3 className='group-hover:text-brand text-base leading-tight font-bold tracking-normal transition-colors'>
 								{item.credential ?? humanize(item.position)}
 							</h3>
-							<p className='text-cyber-cyan truncate text-sm'>{item.organization.name}</p>
+							<p className='text-brand truncate text-sm'>{item.organization.name}</p>
 						</div>
 						{isNow && (
-							<span className='bg-cyber-yellow shrink-0 px-2 py-0.5 font-mono text-[0.65rem] font-bold tracking-widest text-black uppercase'>
+							<span className='bg-brand text-primary-foreground shrink-0 px-2 py-0.5 font-sans text-xs font-bold tracking-normal'>
 								Now
 							</span>
 						)}
 					</div>
 
-					<p className='text-muted-foreground mt-2 font-mono text-[0.65rem] tracking-wider uppercase'>
+					<p className='text-muted-foreground mt-2 font-sans text-xs tracking-normal'>
 						{formatExperienceDuration(item.startDate, item.endDate)}
 					</p>
 					<p className='text-muted-foreground mt-2 line-clamp-2 text-sm leading-relaxed'>{item.description}</p>
 
 					<span
 						className={cn(
-							'mt-3 inline-block border px-2 py-0.5 font-mono text-[0.65rem] tracking-widest uppercase',
+							'mt-3 inline-block border px-2 py-0.5 font-sans text-xs tracking-normal',
 							categoryAccent[item.category]
 						)}>
 						{humanize(item.category)}

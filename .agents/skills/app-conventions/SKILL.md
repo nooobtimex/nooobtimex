@@ -1,6 +1,6 @@
 ---
 name: app-conventions
-description: 'Conventions for the Next.js 16 App Router code under app/ — route groups and layouts, typed routes, page composition with the cyber design system, dynamic [...id] routes, and the token-free ISR GitHub data layer. Use when adding or editing a route, page, layout or the GitHub stats page, when wiring an external fetch, or when asked how app/ code should look here.'
+description: 'Conventions for the Next.js 16 App Router code under app/ — route groups and layouts, typed routes, page composition with the shared white Comic design system, dynamic [...id] routes, and the token-free ISR GitHub data layer. Use when adding or editing a route, page, layout or the GitHub stats page, when wiring an external fetch, or when asked how app/ code should look here.'
 paths:
   - 'app/**'
 ---
@@ -21,8 +21,8 @@ the [`seo-conventions`](../seo-conventions/SKILL.md) skill for what a route must
   [`app/(main)/layout.tsx`](<../../../app/(main)/layout.tsx>). Home is `app/(main)/page.tsx`.
 - `app/cv/` and `app/cv/presentation/` are **standalone — deliberately outside**
   `(main)`, so they don't inherit the nav/footer chrome.
-- Root [`app/layout.tsx`](../../../app/layout.tsx) owns fonts (Rajdhani, JetBrains
-  Mono, Noto Thai), global metadata, and global overlays. Per-route metadata is set
+- Root [`app/layout.tsx`](../../../app/layout.tsx) owns fonts (Inter, Space Grotesk, JetBrains
+  Mono, Noto Thai), global metadata, and providers. Per-route metadata is set
   by each page's `metadata` export / `generateMetadata`.
 
 ## 2. Typed routes
@@ -39,16 +39,17 @@ import type { Route } from 'next'
 <Link href={`/projects/${id}`}>…</Link>
 ```
 
-Static literal hrefs (`/github`, `/skills`) need no cast. `CyberButton` already
+Static literal hrefs (`/github`, `/skills`) need no cast. `Action` already
 casts internally — prefer it for navigation (see the [`design`](../design/SKILL.md) skill).
 
 ## 3. Page composition
 
 - Wrap **every** page/section in `Container` — the one page-width wrapper. Never
   re-roll `max-w-… mx-auto px-…`; change width in one place.
-- Build UI from `components/cyber/` (`NeonPanel`, `SectionHeader`, `CyberButton`,
-  `GlitchText`, …), not raw markup — see the [`design`](../design/SKILL.md) skill.
-- Use `MotionReveal` for scroll-in reveals.
+- Build UI from `components/site/` (`Panel`, `SectionHeader`, `Action`,
+  `TitleText`, …), not raw markup — see the [`design`](../design/SKILL.md) skill.
+- `ContentBlock` renders visible server HTML, then adds a transform-only entrance. Scene motion is isolated in
+  `components/home/`; see the design skill.
 - Don't edit a page to show new content — add it to the `common/` data list the
   page already maps over (the [`common-conventions`](../common-conventions/SKILL.md) skill).
 

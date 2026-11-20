@@ -1,12 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 import WrittenAbout from '@/components/blog/WrittenAbout'
-import Container from '@/components/cyber/Container'
-import CyberIcon from '@/components/cyber/CyberIcon'
-import CyberTag from '@/components/cyber/CyberTag'
-import MotionReveal from '@/components/cyber/MotionReveal'
-import NeonPanel from '@/components/cyber/NeonPanel'
 import ProjectCard from '@/components/projects/ProjectCard'
+import Container from '@/components/site/Container'
+import ContentBlock from '@/components/site/ContentBlock'
+import Panel from '@/components/site/Panel'
+import SiteIcon from '@/components/site/SiteIcon'
+import Tag from '@/components/site/Tag'
 import { cn, formatExperienceDuration } from '@/lib/utils'
 import {
 	ExperienceCategory,
@@ -28,8 +28,8 @@ const humanize = (value: string) =>
 		.join(' ')
 
 const categoryAccent: Record<ExperienceCategory, string> = {
-	work: 'text-cyber-cyan',
-	education: 'text-cyber-yellow'
+	work: 'text-brand',
+	education: 'text-brand'
 }
 
 const ExperienceDetail: React.FC<ExperienceDetailProps> = ({ item }) => {
@@ -48,14 +48,14 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({ item }) => {
 		<Container className='py-10'>
 			<Link
 				href='/career'
-				className='text-muted-foreground hover:text-cyber-cyan inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase transition-colors'>
-				<CyberIcon icon='mdi:arrow-left' className='size-4' /> Career
+				className='text-muted-foreground hover:text-brand inline-flex items-center gap-2 font-sans text-xs tracking-normal transition-colors'>
+				<SiteIcon icon='mdi:arrow-left' className='size-4' /> About
 			</Link>
 
-			<NeonPanel
+			<Panel
 				className={cn(
-					'clip-notch mt-6 flex flex-col gap-5 p-6 sm:flex-row sm:items-center',
-					isNow && 'neon-panel-yellow'
+					'comic-detail-heading mt-6 flex flex-col gap-5 rounded-xl p-6 sm:flex-row sm:items-center',
+					isNow && 'surface-emphasis'
 				)}>
 				{item.organization.logo && (
 					<span className='relative size-16 shrink-0 overflow-hidden rounded-sm bg-white/90'>
@@ -69,50 +69,48 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({ item }) => {
 					</span>
 				)}
 				<div className='flex-1'>
-					<span className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// Role</span>
-					<h1 className='font-display text-3xl font-bold tracking-wide uppercase md:text-4xl'>
+					<span className='text-brand font-sans text-xs tracking-normal'>Role</span>
+					<h1 className='font-display text-3xl font-bold tracking-normal md:text-4xl'>
 						{item.credential ?? humanize(item.position)}
 					</h1>
 					{hasCompanyPage ?
 						<Link
 							href={`/companies/${item.organization.id}` as never}
-							className='text-cyber-yellow hover:text-cyber-cyan inline-block text-lg transition-colors'>
+							className='text-brand hover:text-brand inline-block text-lg transition-colors'>
 							{item.organization.name}
 						</Link>
-					:	<span className='text-cyber-yellow inline-block text-lg'>{item.organization.name}</span>}
-					<p className='text-muted-foreground mt-1 font-mono text-xs tracking-wider uppercase'>
+					:	<span className='text-brand inline-block text-lg'>{item.organization.name}</span>}
+					<p className='text-muted-foreground mt-1 font-sans text-xs tracking-normal'>
 						{formatExperienceDuration(item.startDate, item.endDate)}
 					</p>
 				</div>
 				{isNow && (
-					<span className='bg-cyber-yellow now-pulse self-start px-2 py-0.5 font-mono text-[0.65rem] font-bold tracking-widest text-black uppercase'>
+					<span className='bg-brand text-primary-foreground self-start rounded-full px-2 py-0.5 font-sans text-xs font-bold tracking-normal'>
 						Now
 					</span>
 				)}
-			</NeonPanel>
+			</Panel>
 
 			<div className='mt-6 flex flex-wrap gap-2'>
-				<CyberTag icon='mdi:briefcase-outline'>{humanize(item.type)}</CyberTag>
-				<CyberTag icon='mdi:map-marker-outline' tone='yellow'>
+				<Tag icon='mdi:briefcase-outline'>{humanize(item.type)}</Tag>
+				<Tag icon='mdi:map-marker-outline' tone='yellow'>
 					{humanize(item.organization.location)}
-				</CyberTag>
-				<CyberTag icon='mdi:shape-outline' tone='magenta'>
+				</Tag>
+				<Tag icon='mdi:shape-outline' tone='magenta'>
 					{humanize(item.category)}
-				</CyberTag>
+				</Tag>
 			</div>
 
 			<section className='mt-8'>
-				<h2 className={cn('font-mono text-xs tracking-[0.3em] uppercase', categoryAccent[item.category])}>
-					// Summary
-				</h2>
+				<h2 className={cn('font-sans text-xs tracking-normal', categoryAccent[item.category])}>Summary</h2>
 				<p className='text-muted-foreground mt-3 leading-relaxed'>{item.description}</p>
 				{item.organization.url && (
 					<a
 						href={item.organization.url}
 						target='_blank'
 						rel='noopener noreferrer'
-						className='text-cyber-cyan hover:text-cyber-yellow mt-4 inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase transition-colors'>
-						<CyberIcon icon='mdi:open-in-new' className='size-4' /> Visit Organization
+						className='text-brand hover:text-brand mt-4 inline-flex items-center gap-2 font-sans text-xs tracking-normal transition-colors'>
+						<SiteIcon icon='mdi:open-in-new' className='size-4' /> Visit Organization
 					</a>
 				)}
 			</section>
@@ -120,15 +118,15 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({ item }) => {
 			{relatedProjects.length > 0 && (
 				<section className='mt-10'>
 					<div className='mb-6 flex items-center gap-3'>
-						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Projects</h2>
+						<h2 className='font-display text-xl font-bold tracking-normal'>Projects</h2>
 						<span className='bg-border h-px flex-1' />
-						<span className='text-muted-foreground font-mono text-xs'>{relatedProjects.length}</span>
+						<span className='text-muted-foreground font-sans text-xs'>{relatedProjects.length}</span>
 					</div>
 					<div className='grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
 						{relatedProjects.map((p, i) => (
-							<MotionReveal key={p.id} delay={(i % 3) * 0.08}>
+							<ContentBlock key={p.id} delay={(i % 3) * 0.08}>
 								<ProjectCard project={p} index={i} />
-							</MotionReveal>
+							</ContentBlock>
 						))}
 					</div>
 				</section>

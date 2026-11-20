@@ -1,8 +1,8 @@
 import React from 'react'
 import PostCard from '@/components/blog/PostCard'
-import Container from '@/components/cyber/Container'
-import MotionReveal from '@/components/cyber/MotionReveal'
-import SectionHeader from '@/components/cyber/SectionHeader'
+import Container from '@/components/site/Container'
+import ContentBlock from '@/components/site/ContentBlock'
+import SectionHeader from '@/components/site/SectionHeader'
 import { type PostChapter, chapterMetadata, postsData } from '@/common'
 
 /**
@@ -23,16 +23,16 @@ const BlogContent: React.FC = () => {
 		<Container className='py-12 md:py-16'>
 			<SectionHeader
 				as='h1'
-				title='Journal'
+				title='Writing'
 				subtitle={`${postsData.length} entries — the engineering journey, written up with the numbers.`}
 			/>
 
 			<section aria-label='Chapters' className='mt-8 grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3'>
 				{chapters.map(c => (
 					<div key={c.id} className='border-border/60 border-l-2 pl-3'>
-						<p className='text-cyber-cyan font-mono text-[0.65rem] tracking-[0.3em] uppercase'>// {c.span}</p>
-						<p className='font-display mt-1 font-bold tracking-wide uppercase'>
-							{c.label} <span className='text-muted-foreground font-mono text-xs normal-case'>· {c.count}</span>
+						<p className='text-brand font-sans text-xs tracking-normal'>{c.span}</p>
+						<p className='font-display mt-1 font-bold tracking-normal'>
+							{c.label} <span className='text-muted-foreground font-sans text-xs normal-case'>· {c.count}</span>
 						</p>
 						<p className='text-muted-foreground mt-1 text-sm leading-relaxed'>{c.description}</p>
 					</div>
@@ -44,18 +44,16 @@ const BlogContent: React.FC = () => {
 				return (
 					<section key={year} className='mt-12'>
 						<div className='mb-5 flex items-center gap-3'>
-							<span className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>
-								{String(idx + 1).padStart(2, '0')}
-							</span>
-							<h2 className='font-display text-xl font-bold tracking-wide uppercase'>{year}</h2>
+							<span className='text-brand font-sans text-xs tracking-normal'>{String(idx + 1).padStart(2, '0')}</span>
+							<h2 className='comic-year font-display text-xl font-bold tracking-normal'>{year}</h2>
 							<span className='bg-border h-px flex-1' />
-							<span className='text-muted-foreground font-mono text-xs'>{items.length}</span>
+							<span className='text-muted-foreground font-sans text-xs'>{items.length}</span>
 						</div>
-						<div className='grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
+						<div className='grid gap-8 md:grid-cols-2 xl:grid-cols-3'>
 							{items.map((p, i) => (
-								<MotionReveal key={p.id} delay={(i % 3) * 0.08}>
+								<ContentBlock key={p.id} delay={(i % 3) * 0.08}>
 									<PostCard post={p} index={i} />
-								</MotionReveal>
+								</ContentBlock>
 							))}
 						</div>
 					</section>

@@ -2,10 +2,10 @@ import React from 'react'
 import type { Route } from 'next'
 import { PHASE_PRODUCTION_BUILD } from 'next/constants'
 import Link from 'next/link'
-import CyberIcon from '@/components/cyber/CyberIcon'
-import NeonPanel from '@/components/cyber/NeonPanel'
 import ContributionHeatmap from '@/components/github/ContributionHeatmap'
 import GithubInsights from '@/components/github/GithubInsights'
+import Panel from '@/components/site/Panel'
+import SiteIcon from '@/components/site/SiteIcon'
 import {
 	type GithubPeriod,
 	USERNAME,
@@ -29,12 +29,12 @@ interface TileSpec {
 }
 
 const Tile: React.FC<TileSpec> = ({ icon, label, value, sub }) => (
-	<NeonPanel className='clip-notch-sm flex flex-col gap-1 p-4'>
-		<CyberIcon icon={icon} className='text-cyber-cyan size-4' />
-		<span className='font-display neon-text-yellow text-2xl leading-none font-bold'>{value}</span>
-		<span className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>{label}</span>
-		{sub && <span className='text-muted-foreground text-[0.7rem] leading-snug'>{sub}</span>}
-	</NeonPanel>
+	<Panel className='flex flex-col gap-1 rounded-lg p-4'>
+		<SiteIcon icon={icon} className='text-brand size-4' />
+		<span className='font-display text-brand text-2xl leading-none font-bold'>{value}</span>
+		<span className='text-muted-foreground font-sans text-xs tracking-normal'>{label}</span>
+		{sub && <span className='text-muted-foreground text-xs leading-snug'>{sub}</span>}
+	</Panel>
 )
 
 /**
@@ -43,8 +43,8 @@ const Tile: React.FC<TileSpec> = ({ icon, label, value, sub }) => (
  * visitor and as empty to a reviewer.
  */
 const GithubUnavailable: React.FC = () => (
-	<NeonPanel className='mt-8 flex flex-col items-start gap-3 p-6'>
-		<span className='text-cyber-magenta font-mono text-xs tracking-[0.3em] uppercase'>// GitHub data unavailable</span>
+	<Panel className='mt-8 flex flex-col items-start gap-3 p-6'>
+		<span className='text-danger font-sans text-xs tracking-normal'>GitHub data unavailable</span>
 		<p className='text-muted-foreground max-w-2xl leading-relaxed'>
 			GitHub&apos;s contribution data didn&apos;t come back when this page was built, so there is nothing to chart right
 			now. The page tries again every hour — check back later, or read the activity straight from the profile.
@@ -53,10 +53,10 @@ const GithubUnavailable: React.FC = () => (
 			href={`https://github.com/${USERNAME}`}
 			target='_blank'
 			rel='noopener noreferrer'
-			className='text-cyber-cyan hover:text-cyber-yellow inline-flex items-center gap-1.5 font-mono text-xs tracking-widest uppercase transition-colors'>
-			<CyberIcon icon='simple-icons:github' className='size-4' /> github.com/{USERNAME}
+			className='text-brand hover:text-brand inline-flex items-center gap-1.5 font-sans text-xs tracking-normal transition-colors'>
+			<SiteIcon icon='simple-icons:github' className='size-4' /> github.com/{USERNAME}
 		</a>
-	</NeonPanel>
+	</Panel>
 )
 
 /**
@@ -73,10 +73,10 @@ const PeriodFilter: React.FC<{ period: GithubPeriod; thisYear: number }> = ({ pe
 					href={(p === 'last' ? '/github' : `/github/${p}`) as Route}
 					aria-current={active ? 'page' : undefined}
 					className={cn(
-						'clip-notch-sm border px-3 py-1 font-mono text-xs tracking-widest uppercase transition-colors',
+						'comic-tag inline-flex min-h-11 items-center border px-4 py-2 font-sans text-xs tracking-normal transition-colors',
 						active ?
-							'bg-cyber-yellow border-cyber-yellow text-black'
-						:	'border-border text-muted-foreground hover:border-cyber-cyan hover:text-cyber-cyan'
+							'bg-brand border-brand text-primary-foreground'
+						:	'border-border text-muted-foreground hover:border-brand hover:text-brand'
 					)}>
 					{p === 'last' ? 'Last 12 mo' : p}
 				</Link>
@@ -169,12 +169,12 @@ const GithubStats = async ({ period = 'last' }: { period?: GithubPeriod }) => {
 		stats.total === 0 && stats.elapsedDays > 0 ?
 			<>
 				{summaryLine}
-				<NeonPanel className='clip-notch-sm mt-6 p-5'>
+				<Panel className='mt-6 rounded-lg p-5'>
 					<p className='text-muted-foreground max-w-2xl text-sm leading-relaxed'>
 						This GitHub account recorded no contributions this year. The chart below shows every year side by side —
 						select one with activity to open it.
 					</p>
-				</NeonPanel>
+				</Panel>
 			</>
 		:	<>
 				{summaryLine}
@@ -185,9 +185,9 @@ const GithubStats = async ({ period = 'last' }: { period?: GithubPeriod }) => {
 					))}
 				</div>
 
-				<NeonPanel className='clip-notch mt-5 p-5'>
+				<Panel className='mt-5 rounded-xl p-5'>
 					<ContributionHeatmap contributions={contrib.days} today={today} levels={stats.levels} />
-				</NeonPanel>
+				</Panel>
 			</>
 
 	const [profile, repos, yearTotals] = await Promise.all([getProfile(), getRepos(), getYearTotals()])

@@ -12,7 +12,6 @@
 import { ImageResponse } from 'next/og'
 import ProjectSquareCard from '@/components/og/ProjectSquareCard'
 import { CARD_SIZE } from '@/components/og/card-primitives'
-import { pngDataUri } from '@/lib/og-assets'
 import { projectsData } from '@/common'
 
 export const dynamic = 'force-static'
@@ -27,10 +26,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
 
 	if (!project) return new Response('Not found', { status: 404 })
 
-	// Downscaled to the card width — a full-size 1600×900 cover inlines to ~1.5 MB.
-	const cover = await pngDataUri(project.images.cover, CARD_SIZE)
-
-	return new ImageResponse(<ProjectSquareCard project={project} cover={cover} />, {
+	return new ImageResponse(<ProjectSquareCard project={project} />, {
 		width: CARD_SIZE,
 		height: CARD_SIZE
 	})

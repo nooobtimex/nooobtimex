@@ -1,9 +1,9 @@
 # NooobtimeX — agent guide
 
-> Wongsaphat Puangsorn's personal profile — a content-driven site with a **Cyberpunk 2077** visual theme
-> whose one job is winning freelance work: every "Hire me" control opens an email to him
-> (`personalData.hire.url`, a `mailto:`). Next.js 16 (App Router, Turbopack) · React 19 · TypeScript 7 (paired with TS 6)
-> · Tailwind v4 · shadcn/ui on Base UI · Bun. Fonts: Rajdhani (display), JetBrains Mono (mono), Noto Thai.
+> Wongsaphat Puangsorn’s personal site — get to know Kwan, explore his work, and follow what he is building.
+> The site uses a white Comic design with ink borders, offset shadows and responsive panels.
+> The homepage combines a three-column profile/work/notes layout with interactive 3D. Next.js 16 · React 19 · TypeScript 7 (paired with TS 6) · Tailwind v4 · Base UI · Bun.
+> Fonts: Space Grotesk (display), Inter, JetBrains Mono (code), Noto Sans Thai.
 > Deployed on **Railway** only. This repo is **public**.
 
 ## Safety
@@ -82,7 +82,7 @@ never here. The repo-specific half is the rest of this section.
 
 Invoke the skill for the area before editing in it.
 
-- [`design`](.agents/skills/design/SKILL.md) — `**/*.tsx`, `**/*.css`, `components/cyber/**`
+- [`design`](.agents/skills/design/SKILL.md) — `**/*.tsx`, `**/*.css`, `components/site/**`
 - [`seo-conventions`](.agents/skills/seo-conventions/SKILL.md) — `app/**`, `lib/seo.ts`, `common/data/posts/**`,
   `scripts/links/**`, `scripts/seo/**`
 - [`common-conventions`](.agents/skills/common-conventions/SKILL.md) — `common/**`
@@ -104,9 +104,9 @@ app/
                    (+ [...id] detail routes, github/[year])
   cv/ · cv/presentation/   standalone, OUTSIDE the (main) layout
   card/            next/og share-card routes (hire, projects, og/blog, og/projects) · opengraph-image.tsx
-  layout.tsx       root (fonts, metadata, global overlays)
+  layout.tsx       root (fonts, metadata, providers)
 common/            the data layer — the single source of truth for all content
-components/cyber/  the design system · plus feature folders + ui/ (shadcn)
+components/site/  the shared design system · home/ owns the three-column homepage and 3D scene · plus feature folders + ui/ (shadcn)
 lib/utils.ts       cn() + slugify/unslugify/formatExperienceDuration · lib/github.ts (token-free ISR)
 lib/icon-data.ts   server-side icon lookup → lib/og-icons.generated.json (see scripts/icons/)
 scripts/icons/     generates that subset · the ONLY place @iconify-json/* may be imported
@@ -119,3 +119,13 @@ Dev server: `bun run dev` on **port 11000**.
 ## Further reading
 
 - [`README.md`](README.md) — the public face of the repo (regenerated assets in `.github/assets/`).
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

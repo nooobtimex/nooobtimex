@@ -1,7 +1,7 @@
 import React from 'react'
-import CyberIcon from '@/components/cyber/CyberIcon'
-import NeonPanel from '@/components/cyber/NeonPanel'
 import { BarList, ChartPanel, type Column, ColumnChart, DataTable } from '@/components/github/GithubCharts'
+import Panel from '@/components/site/Panel'
+import SiteIcon from '@/components/site/SiteIcon'
 import type { GithubPeriod, RepoSummary } from '@/lib/github'
 import type { PeriodStats, foldLanguages } from '@/lib/github-stats'
 
@@ -19,11 +19,11 @@ export interface GithubInsightsData {
 }
 
 const Tile: React.FC<{ icon: string; label: string; value: string }> = ({ icon, label, value }) => (
-	<NeonPanel className='clip-notch-sm flex flex-col gap-1 p-4'>
-		<CyberIcon icon={icon} className='text-cyber-cyan size-4' />
-		<span className='font-display neon-text-yellow text-2xl leading-none font-bold'>{value}</span>
-		<span className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>{label}</span>
-	</NeonPanel>
+	<Panel className='flex flex-col gap-1 rounded-lg p-4'>
+		<SiteIcon icon={icon} className='text-brand size-4' />
+		<span className='font-display text-brand text-2xl leading-none font-bold'>{value}</span>
+		<span className='text-muted-foreground font-sans text-xs tracking-normal'>{label}</span>
+	</Panel>
 )
 
 /** Monthly cadence: one series in cyan, the in-progress month dimmed, the average as a reference line. */
@@ -146,11 +146,9 @@ const GithubInsights: React.FC<{ data: GithubInsightsData }> = ({ data }) => {
 			{yearTotals && yearTotals.length > 0 && <YearsAtAGlance period={period} years={yearTotals} />}
 
 			<div className='flex items-center gap-3 pt-8'>
-				<h2 className='font-display text-2xl font-bold tracking-wide uppercase'>All time</h2>
+				<h2 className='font-display text-2xl font-bold tracking-normal'>All time</h2>
 				<span className='bg-border h-px flex-1' />
-				<span className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>
-					Not affected by the year filter
-				</span>
+				<span className='text-muted-foreground font-sans text-xs tracking-normal'>Not affected by the year filter</span>
 			</div>
 
 			<div className='grid grid-cols-3 gap-3'>
@@ -175,9 +173,9 @@ const GithubInsights: React.FC<{ data: GithubInsightsData }> = ({ data }) => {
 				)}
 
 				{topRepos.length > 0 && (
-					<NeonPanel className='clip-notch p-5'>
+					<Panel className='rounded-xl p-5'>
 						<div className='mb-4 flex items-center gap-3'>
-							<h3 className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// Top repositories</h3>
+							<h3 className='text-brand font-sans text-xs tracking-normal'>Top repositories</h3>
 							<span className='bg-border h-px flex-1' />
 						</div>
 						<div className='-mt-1'>
@@ -187,22 +185,22 @@ const GithubInsights: React.FC<{ data: GithubInsightsData }> = ({ data }) => {
 									href={r.url}
 									target='_blank'
 									rel='noopener noreferrer'
-									className='border-border/40 hover:text-cyber-cyan group flex items-center justify-between gap-3 border-b py-2.5 transition-colors last:border-0'>
+									className='border-border/40 hover:text-brand group flex items-center justify-between gap-3 border-b py-2.5 transition-colors last:border-0'>
 									<div className='min-w-0'>
 										<p className='truncate text-sm font-semibold'>{r.name}</p>
-										{r.description && <p className='text-muted-foreground truncate text-[0.7rem]'>{r.description}</p>}
+										{r.description && <p className='text-muted-foreground truncate text-xs'>{r.description}</p>}
 									</div>
-									<div className='flex shrink-0 items-center gap-3 font-mono text-xs'>
+									<div className='flex shrink-0 items-center gap-3 font-sans text-xs'>
 										{r.language && <span className='text-muted-foreground'>{r.language}</span>}
 										<span className='text-foreground flex items-center gap-1'>
-											<CyberIcon icon='mdi:star' className='text-cyber-yellow size-3' />
+											<SiteIcon icon='mdi:star' className='text-brand size-3' />
 											{r.stars}
 										</span>
 									</div>
 								</a>
 							))}
 						</div>
-					</NeonPanel>
+					</Panel>
 				)}
 			</div>
 		</div>

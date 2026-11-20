@@ -151,9 +151,9 @@ export const freelance: Organization = {
 	name: 'Freelance',
 	location: 'remote',
 	type: 'company',
-	description: 'Remote freelance web-app engineering, delivered end-to-end from scoping to deployment.',
+	description: 'Past independent software work, 2024–November 2026.',
 	about:
-		'Independent, remote freelance software engineering — building web apps end-to-end for clients, from scoping and design through full-stack build and deployment.',
+		'Independent software work from 2024 until 17 November 2026, building web apps from scoping and design through deployment.',
 	industry: 'Freelance web-app engineering',
 	founded: '2024',
 	headquarters: 'Remote',

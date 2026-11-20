@@ -7,11 +7,10 @@ import { personalData } from '@/common'
 
 export const metadata = pageMetadata({
 	path: '/contact',
-	// Matches the nav label. "Hire me" is the header button that opens an email directly —
 	// one label for two destinations was the confusion this page used to create.
 	title: 'Contact',
 	description:
-		'How to hire me for a web app project by email, plus a scannable contact card and channels with mainland-China availability marked.'
+		'Get in touch with Kwan, follow what he is building, or save his contact details. Email, social profiles, and a scannable contact card.'
 })
 
 const jsonLd = {

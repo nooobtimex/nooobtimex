@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Icon } from '@iconify/react'
-import CyberTooltip from '@/components/cyber/CyberTooltip'
+import Hint from '@/components/site/Hint'
 import { cn } from '@/lib/utils'
 
 interface CopyButtonProps {
@@ -35,19 +35,19 @@ const CopyButton: React.FC<CopyButtonProps> = ({ value, label = 'Copy', classNam
 	}
 
 	return (
-		<CyberTooltip label={copied ? 'Copied' : label}>
+		<Hint label={copied ? 'Copied' : label}>
 			<button
 				type='button'
 				onClick={handleCopy}
 				aria-label={`${label} ${value}`}
 				className={cn(
-					'text-muted-foreground hover:text-cyber-cyan flex size-9 shrink-0 items-center justify-center transition-colors',
-					copied && 'text-cyber-green',
+					'text-muted-foreground hover:text-brand flex size-9 shrink-0 items-center justify-center transition-colors',
+					copied && 'text-success',
 					className
 				)}>
 				<Icon icon={copied ? 'mdi:check' : 'mdi:content-copy'} className='size-4' />
 			</button>
-		</CyberTooltip>
+		</Hint>
 	)
 }
 

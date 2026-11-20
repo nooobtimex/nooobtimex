@@ -1,8 +1,8 @@
 import React from 'react'
+import ContactQR from '@/components/contact/ContactQR'
 import CopyButton from '@/components/contact/CopyButton'
-import CyberQR from '@/components/contact/CyberQR'
-import CyberIcon from '@/components/cyber/CyberIcon'
-import NeonPanel from '@/components/cyber/NeonPanel'
+import Panel from '@/components/site/Panel'
+import SiteIcon from '@/components/site/SiteIcon'
 import type { ContactChannel } from '@/common'
 
 interface WeChatPanelProps {
@@ -22,33 +22,31 @@ const WeChatPanel: React.FC<WeChatPanelProps> = ({ channel }) => {
 	if (!channel.qr) return null
 
 	return (
-		<NeonPanel variant='yellow' corners className='flex flex-col items-center gap-5 p-6 text-center'>
+		<Panel variant='yellow' corners className='flex flex-col items-center gap-5 p-6 text-center'>
 			<div>
-				<h3 className='font-display flex items-center justify-center gap-2 text-2xl font-bold tracking-wide'>
-					<CyberIcon icon={channel.icon} className='text-cyber-green size-6' />
+				<h3 className='font-display flex items-center justify-center gap-2 text-2xl font-bold tracking-normal'>
+					<SiteIcon icon={channel.icon} className='text-success size-6' />
 					WeChat
 				</h3>
 				<p className='text-muted-foreground mt-1 text-sm'>{channel.note}</p>
 			</div>
 
-			<CyberQR value={channel.qr} title='WeChat QR — scan in WeChat to add me as a friend' size={200} />
+			<ContactQR value={channel.qr} title='WeChat QR — scan in WeChat to add me as a friend' size={200} />
 
-			<p className='text-cyber-yellow font-mono text-xs tracking-[0.3em] uppercase'>Scan with WeChat</p>
+			<p className='text-brand font-sans text-xs tracking-normal'>Scan with WeChat</p>
 
 			{channel.value && (
 				<div className='border-border flex w-full items-center justify-center gap-2 border-t pt-4'>
-					<span className='text-muted-foreground font-mono text-xs tracking-wider uppercase'>ID</span>
-					<span className='font-mono text-sm'>{channel.value}</span>
+					<span className='text-muted-foreground font-sans text-xs tracking-normal'>ID</span>
+					<span className='font-sans text-sm'>{channel.value}</span>
 					<CopyButton value={channel.value} label='Copy WeChat ID' />
 				</div>
 			)}
 
 			{channel.verifiedOn && (
-				<p className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>
-					QR verified {channel.verifiedOn}
-				</p>
+				<p className='text-muted-foreground font-sans text-xs tracking-normal'>QR verified {channel.verifiedOn}</p>
 			)}
-		</NeonPanel>
+		</Panel>
 	)
 }
 

@@ -2,16 +2,13 @@ import React from 'react'
 import ChannelCard from '@/components/contact/ChannelCard'
 import VCardPanel from '@/components/contact/VCardPanel'
 import WeChatPanel from '@/components/contact/WeChatPanel'
-import Container from '@/components/cyber/Container'
-import CyberButton from '@/components/cyber/CyberButton'
-import CyberIcon from '@/components/cyber/CyberIcon'
-import CyberTag from '@/components/cyber/CyberTag'
-import GlitchText from '@/components/cyber/GlitchText'
-import MotionReveal from '@/components/cyber/MotionReveal'
-import NeonPanel from '@/components/cyber/NeonPanel'
-import SectionHeader from '@/components/cyber/SectionHeader'
-import { HIRE_LINK_LABEL, HireDestination, HireSteps } from '@/components/hire/HireBand'
-import HireButton from '@/components/hire/HireButton'
+import Action from '@/components/site/Action'
+import Container from '@/components/site/Container'
+import ContentBlock from '@/components/site/ContentBlock'
+import Panel from '@/components/site/Panel'
+import SectionHeader from '@/components/site/SectionHeader'
+import SiteIcon from '@/components/site/SiteIcon'
+import Tag from '@/components/site/Tag'
 import { buildVCard, vCardFilename } from '@/lib/vcard'
 import { latestRole, personalData } from '@/common'
 
@@ -32,79 +29,30 @@ const ContactContent: React.FC = () => {
 
 	return (
 		<Container className='py-12 md:py-16'>
-			{/* HEADER — deliberately NOT wrapped in MotionReveal. The reveal starts at
-			    opacity 0 and depends on an IntersectionObserver callback; if that never
-			    fires the content stays invisible. The page's identity block must not be
-			    contingent on that, and the other pages render their headers eagerly too. */}
-			<p className='text-cyber-cyan font-mono text-xs tracking-[0.35em] uppercase'>// Get in touch</p>
-			<h1 className='font-display mt-3 text-5xl leading-[0.9] font-bold tracking-tight uppercase md:text-7xl'>
-				<GlitchText text='Contact' />
-			</h1>
-			<p className='text-muted-foreground mt-5 max-w-2xl text-base leading-relaxed'>
-				Every project starts with an email — tell me what you need, and I reply with the scope, a timeline and a quote.
-				For anything else, the card and channels further down reach me directly.
+			<SectionHeader as='h1' title='Contact' subtitle='Follow what I’m building, swap ideas, or just say hello.' />
+			<p className='text-muted-foreground mt-6 max-w-2xl text-base'>
+				I’m based in Nonthaburi, Thailand. My work is focused on RS TROPHY, Thaibotic, and my own projects. Email is the
+				simplest way to reach me.
 			</p>
-
-			<div className='mt-6 flex flex-wrap gap-2'>
-				<CyberTag icon='mdi:map-marker-outline'>{personalData.contact.location}</CyberTag>
-				<CyberTag icon='mdi:home-outline'>Remote</CyberTag>
-				<CyberTag icon='mdi:clock-outline'>ICT · UTC+7</CyberTag>
-				<CyberTag icon='mdi:translate' tone='magenta'>
-					{personalData.languages.map(l => l.code.toUpperCase()).join(' / ')}
-				</CyberTag>
-			</div>
-
-			{/* PRIMARY — EMAIL. The page's one call to action, so it sits straight under the
-			    header and renders eagerly: never inside MotionReveal, which starts at opacity 0. */}
-			<NeonPanel variant='yellow' className='mt-10 p-6 md:p-8'>
-				<p className='text-cyber-yellow font-mono text-xs tracking-[0.3em] uppercase'>// Hire by email</p>
+			<Panel className='comic-contact-email mt-8 p-6 md:p-8'>
+				<p className='eyebrow'>Say hello</p>
 				<a
-					href={personalData.hire.url}
-					className='font-display hover:text-cyber-yellow mt-3 block text-lg font-bold tracking-wide break-all transition-colors sm:text-2xl md:text-3xl'>
-					{HIRE_LINK_LABEL}
+					href={personalData.contactAction.url}
+					className='text-brand mt-3 block text-xl font-semibold break-all md:text-3xl'>
+					{personalData.contact.email} ↗
 				</a>
-				<p className='text-muted-foreground mt-3 flex items-start gap-2 text-sm'>
-					<CyberIcon icon='mdi:circle' className='text-cyber-green mt-1.5 size-2 shrink-0' />
-					{personalData.contact.availability}
-				</p>
-
-				<HireSteps className='mt-6' />
-
-				<div className='mt-6 flex flex-wrap gap-3'>
-					<HireButton size='lg' />
-					<CyberButton href='/card/hire' download='nooobtimex-hire-card.png' variant='outline' size='lg'>
-						<CyberIcon icon='mdi:download' />
-						Hire card (1:1)
-					</CyberButton>
+				<div className='mt-5 flex flex-wrap gap-2'>
+					<Tag>Nonthaburi, Thailand</Tag>
+					<Tag>ICT · UTC+7</Tag>
+					<Tag>Thai / English</Tag>
 				</div>
-				<HireDestination className='mt-3' />
-			</NeonPanel>
-
-			{/* Availability and scope — the context behind the hire panel above, so it renders
-			    eagerly too, ahead of the channel list rather than waiting on a scroll reveal. */}
-			<div className='border-border/60 mt-12 border-t pt-8'>
-				<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Working together</h2>
-				<p className='text-muted-foreground mt-4 max-w-3xl text-base leading-relaxed'>
-					{personalData.contact.availability}. Based in {personalData.contact.location}, Thailand — that is UTC+7, so
-					mornings here overlap the working day across East Asia and Australia, while afternoons and early evenings
-					overlap a full European morning. Work is remote by default, in{' '}
-					{personalData.languages.map(l => l.name).join(' or ')}.
-				</p>
-				<p className='text-muted-foreground mt-4 max-w-3xl text-base leading-relaxed'>
-					The freelance work is web applications taken end to end — scoping and design through full-stack delivery,
-					deployment and the infrastructure underneath. Recent builds include a flood and water-level monitoring
-					dashboard, a real-time multiplayer game, and a QR-code restaurant ordering and multi-branch management
-					platform. Day to day the stack is Next.js and React on the front, Node and Postgres behind it, containerized
-					and shipped through GitHub CI/CD.
-				</p>
-				<p className='text-muted-foreground mt-4 max-w-3xl text-base leading-relaxed'>
-					Projects start by email, so the scope and the quote live in one thread. The card and channels below are for
-					everything else, badged with whether they work inside mainland China.
-				</p>
-			</div>
+				<Action href='/card/hire' download='nooobtimex-profile-card.png' variant='outline' className='mt-6'>
+					Download profile card
+				</Action>
+			</Panel>
 
 			{/* SCAN-ME PANELS */}
-			<MotionReveal delay={0.1}>
+			<ContentBlock delay={0.1}>
 				<SectionHeader
 					title='Scan me'
 					subtitle='Two codes: one saves me to your phone, one adds me on WeChat.'
@@ -120,11 +68,11 @@ const ContactContent: React.FC = () => {
 					/>
 					{wechat && <WeChatPanel channel={wechat} />}
 				</div>
-			</MotionReveal>
+			</ContentBlock>
 
 			{/* DIRECT CHANNELS */}
 			{listed.length > 0 && (
-				<MotionReveal delay={0.15}>
+				<ContentBlock delay={0.15}>
 					<SectionHeader
 						title='Direct channels'
 						subtitle='Messaging apps, with mainland-China availability marked.'
@@ -144,11 +92,11 @@ const ContactContent: React.FC = () => {
 							/>
 						))}
 					</div>
-				</MotionReveal>
+				</ContentBlock>
 			)}
 
 			{/* SOCIALS */}
-			<MotionReveal delay={0.2}>
+			<ContentBlock delay={0.2}>
 				<SectionHeader title='Elsewhere' subtitle='Profiles and long-form output.' className='mt-16' />
 				<div className='mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3'>
 					{personalData.socialLinks.map(social => (
@@ -157,21 +105,21 @@ const ContactContent: React.FC = () => {
 							href={social.url}
 							target={social.platform === 'email' ? undefined : '_blank'}
 							rel='noopener noreferrer'
-							className='group border-border hover:border-cyber-cyan/60 hover:bg-cyber-cyan/[0.04] clip-notch-sm flex items-center gap-3 border px-4 py-3 transition-colors'>
-							<CyberIcon
+							className='group border-border hover:border-brand/60 hover:bg-brand/[0.04] flex items-center gap-3 rounded-lg border px-4 py-3 transition-colors'>
+							<SiteIcon
 								icon={social.icon}
-								className='text-muted-foreground group-hover:text-cyber-cyan size-5 shrink-0 transition-colors'
+								className='text-muted-foreground group-hover:text-brand size-5 shrink-0 transition-colors'
 							/>
 							<span className='min-w-0'>
-								<span className='block text-xs font-semibold tracking-wide uppercase'>
+								<span className='block text-xs font-semibold tracking-normal'>
 									{PLATFORM_LABEL[social.platform] ?? social.platform}
 								</span>
-								<span className='text-muted-foreground block truncate font-mono text-[0.7rem]'>{social.username}</span>
+								<span className='text-muted-foreground block truncate font-sans text-xs'>{social.username}</span>
 							</span>
 						</a>
 					))}
 				</div>
-			</MotionReveal>
+			</ContentBlock>
 		</Container>
 	)
 }

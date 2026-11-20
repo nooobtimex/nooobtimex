@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import MotionReveal from '@/components/cyber/MotionReveal'
+import ContentBlock from '@/components/site/ContentBlock'
 import { formatMilestoneDate } from '@/lib/utils'
 import type { Post } from '@/common'
 
@@ -16,25 +16,25 @@ const WrittenAbout: React.FC<{ posts?: Post[] }> = ({ posts }) => {
 	return (
 		<section className='mt-10'>
 			<div className='mb-6 flex items-center gap-3'>
-				<h2 className='font-display text-xl font-bold tracking-wide uppercase md:text-xl'>Written About</h2>
+				<h2 className='font-display text-xl font-bold tracking-normal md:text-xl'>Written About</h2>
 				<span className='bg-border h-px flex-1' />
-				<span className='text-muted-foreground font-mono text-xs'>{posts.length}</span>
+				<span className='text-muted-foreground font-sans text-xs'>{posts.length}</span>
 			</div>
 			<div className='grid gap-4 sm:grid-cols-2'>
 				{posts.map((p, i) => (
-					<MotionReveal key={p.id} delay={(i % 2) * 0.06}>
+					<ContentBlock key={p.id} delay={(i % 2) * 0.06}>
 						<Link
 							href={`/blog/${p.id}` as never}
-							className='group neon-panel clip-notch-sm hover:border-cyber-yellow/60 block p-4 transition-colors'>
-							<h3 className='group-hover:text-cyber-yellow leading-tight font-bold tracking-wide transition-colors'>
+							className='group surface hover:border-brand/60 block rounded-lg p-4 transition-colors'>
+							<h3 className='group-hover:text-brand leading-tight font-bold tracking-normal transition-colors'>
 								{p.title}
 							</h3>
 							<p className='text-muted-foreground mt-2 line-clamp-2 text-sm leading-relaxed'>{p.description}</p>
-							<p className='text-muted-foreground mt-2 font-mono text-[0.65rem] tracking-wider uppercase'>
+							<p className='text-muted-foreground mt-2 font-sans text-xs tracking-normal'>
 								{formatMilestoneDate(p.happenedAt)} · {p.readingMinutes} min
 							</p>
 						</Link>
-					</MotionReveal>
+					</ContentBlock>
 				))}
 			</div>
 		</section>

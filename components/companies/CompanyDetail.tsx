@@ -1,12 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 import WrittenAbout from '@/components/blog/WrittenAbout'
-import Container from '@/components/cyber/Container'
-import CyberIcon from '@/components/cyber/CyberIcon'
-import CyberTag from '@/components/cyber/CyberTag'
-import MotionReveal from '@/components/cyber/MotionReveal'
-import NeonPanel from '@/components/cyber/NeonPanel'
 import ProjectCard from '@/components/projects/ProjectCard'
+import Container from '@/components/site/Container'
+import ContentBlock from '@/components/site/ContentBlock'
+import Panel from '@/components/site/Panel'
+import SiteIcon from '@/components/site/SiteIcon'
+import Tag from '@/components/site/Tag'
 import { formatExperienceDuration } from '@/lib/utils'
 import { type Organization, experiencesData, postsByEntity, projectsData } from '@/common'
 
@@ -22,16 +22,16 @@ const humanize = (value: string) =>
 
 const StatCell: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
 	<div className='border-border/60 border-l-2 pl-3'>
-		<p className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>{label}</p>
+		<p className='text-muted-foreground font-sans text-xs tracking-normal'>{label}</p>
 		<p className='mt-0.5 text-sm font-semibold'>{children}</p>
 	</div>
 )
 
 const InfoRow: React.FC<{ icon: string; label: string; children: React.ReactNode }> = ({ icon, label, children }) => (
-	<div className='border-cyber-cyan/40 bg-cyber-cyan/[0.04] flex items-start gap-3 border-l-2 p-3'>
-		<CyberIcon icon={icon} className='text-cyber-cyan mt-0.5 size-4 shrink-0' />
+	<div className='border-brand/40 bg-brand/[0.04] flex items-start gap-3 border-l-2 p-3'>
+		<SiteIcon icon={icon} className='text-brand mt-0.5 size-4 shrink-0' />
 		<div className='min-w-0'>
-			<p className='text-muted-foreground font-mono text-[0.65rem] tracking-widest uppercase'>{label}</p>
+			<p className='text-muted-foreground font-sans text-xs tracking-normal'>{label}</p>
 			<p className='mt-0.5 text-sm font-semibold'>{children}</p>
 		</div>
 	</div>
@@ -80,12 +80,12 @@ const CompanyDetail: React.FC<CompanyDetailProps> = ({ organization }) => {
 		<Container className='py-10'>
 			<Link
 				href={'/career#organizations' as never}
-				className='text-muted-foreground hover:text-cyber-cyan inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase transition-colors'>
-				<CyberIcon icon='mdi:arrow-left' className='size-4' /> Career
+				className='text-muted-foreground hover:text-brand inline-flex items-center gap-2 font-sans text-xs tracking-normal transition-colors'>
+				<SiteIcon icon='mdi:arrow-left' className='size-4' /> About
 			</Link>
 
 			{/* Company header */}
-			<NeonPanel className='clip-notch mt-6 flex flex-col gap-5 p-6 sm:flex-row sm:items-center'>
+			<Panel className='comic-detail-heading mt-6 flex flex-col gap-5 rounded-xl p-6 sm:flex-row sm:items-center'>
 				{organization.logo && (
 					<span className='relative size-16 shrink-0 overflow-hidden rounded-sm bg-white/90'>
 						<img
@@ -98,56 +98,56 @@ const CompanyDetail: React.FC<CompanyDetailProps> = ({ organization }) => {
 					</span>
 				)}
 				<div className='flex-1'>
-					<span className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// Company</span>
-					<h1 className='font-display text-3xl font-bold tracking-wide uppercase md:text-4xl'>{organization.name}</h1>
+					<span className='text-brand font-sans text-xs tracking-normal'>Company</span>
+					<h1 className='font-display text-3xl font-bold tracking-normal md:text-4xl'>{organization.name}</h1>
 					{organization.description && (
 						<p className='text-muted-foreground mt-2 max-w-3xl leading-relaxed'>{organization.description}</p>
 					)}
 				</div>
-			</NeonPanel>
+			</Panel>
 
 			<div className='mt-6 flex flex-wrap gap-2'>
-				<CyberTag icon='mdi:domain'>{humanize(organization.type)}</CyberTag>
-				<CyberTag icon='mdi:map-marker-outline' tone='yellow'>
+				<Tag icon='mdi:domain'>{humanize(organization.type)}</Tag>
+				<Tag icon='mdi:map-marker-outline' tone='yellow'>
 					{humanize(organization.location)}
-				</CyberTag>
+				</Tag>
 				{organization.url && (
 					<a href={organization.url} target='_blank' rel='noopener noreferrer'>
-						<CyberTag icon='mdi:open-in-new' tone='magenta'>
+						<Tag icon='mdi:open-in-new' tone='magenta'>
 							Website
-						</CyberTag>
+						</Tag>
 					</a>
 				)}
 			</div>
 
 			{dossier.length > 0 && (
 				<>
-					<h2 className='text-cyber-cyan mt-8 font-mono text-xs tracking-[0.3em] uppercase'>// Company facts</h2>
-					<NeonPanel className='clip-notch-sm mt-3 grid grid-cols-1 gap-3 p-4 sm:grid-cols-2'>
+					<h2 className='text-brand mt-8 font-sans text-xs tracking-normal'>Company facts</h2>
+					<Panel className='mt-3 grid grid-cols-1 gap-3 rounded-lg p-4 sm:grid-cols-2'>
 						{dossier.map(f => (
 							<InfoRow key={f.key} icon={f.icon} label={f.label}>
 								{organization[f.key]}
 							</InfoRow>
 						))}
-					</NeonPanel>
+					</Panel>
 				</>
 			)}
 
 			{organization.about && (
 				<section className='mt-8'>
-					<h2 className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// About</h2>
+					<h2 className='text-brand font-sans text-xs tracking-normal'>About</h2>
 					<p className='text-muted-foreground mt-3 leading-relaxed'>{organization.about}</p>
 				</section>
 			)}
 
 			{organization.products && organization.products.length > 0 && (
 				<section className='mt-8'>
-					<h2 className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// Products &amp; Brands</h2>
+					<h2 className='text-brand font-sans text-xs tracking-normal'>Products &amp; Brands</h2>
 					<div className='mt-3 flex flex-wrap gap-2'>
 						{organization.products.map(p => (
-							<CyberTag key={p} icon='mdi:package-variant-closed' tone='yellow'>
+							<Tag key={p} icon='mdi:package-variant-closed' tone='yellow'>
 								{p}
-							</CyberTag>
+							</Tag>
 						))}
 					</div>
 				</section>
@@ -155,11 +155,11 @@ const CompanyDetail: React.FC<CompanyDetailProps> = ({ organization }) => {
 
 			{organization.highlights && organization.highlights.length > 0 && (
 				<section className='mt-8'>
-					<h2 className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// Highlights</h2>
+					<h2 className='text-brand font-sans text-xs tracking-normal'>Highlights</h2>
 					<ul className='mt-3 space-y-2'>
 						{organization.highlights.map(h => (
 							<li key={h} className='text-muted-foreground flex items-start gap-2 text-sm leading-relaxed'>
-								<CyberIcon icon='mdi:star-four-points-outline' className='text-cyber-magenta mt-1 size-3.5 shrink-0' />
+								<SiteIcon icon='mdi:star-four-points-outline' className='text-danger mt-1 size-3.5 shrink-0' />
 								<span>{h}</span>
 							</li>
 						))}
@@ -168,42 +168,42 @@ const CompanyDetail: React.FC<CompanyDetailProps> = ({ organization }) => {
 			)}
 
 			{/* Stat readout */}
-			<NeonPanel className='clip-notch-sm mt-6 grid grid-cols-2 gap-4 p-4 sm:grid-cols-4'>
+			<Panel className='mt-6 grid grid-cols-2 gap-4 rounded-lg p-4 sm:grid-cols-4'>
 				<StatCell label='Roles'>{roles.length}</StatCell>
 				<StatCell label='Tenure'>
 					{tenureStart ?
-						<span className='text-cyber-yellow'>{formatExperienceDuration(tenureStart, tenureEnd)}</span>
+						<span className='text-brand'>{formatExperienceDuration(tenureStart, tenureEnd)}</span>
 					:	'—'}
 				</StatCell>
 				<StatCell label='Projects'>
-					<span className='text-cyber-cyan'>{gigs.length}</span>
+					<span className='text-brand'>{gigs.length}</span>
 				</StatCell>
 				<StatCell label='Skills used'>{skills.length}</StatCell>
-			</NeonPanel>
+			</Panel>
 
 			{/* Roles held here */}
 			{roles.length > 0 && (
 				<section className='mt-10'>
 					<div className='mb-6 flex items-center gap-3'>
-						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Roles</h2>
+						<h2 className='font-display text-xl font-bold tracking-normal'>Roles</h2>
 						<span className='bg-border h-px flex-1' />
-						<span className='text-muted-foreground font-mono text-xs'>{roles.length}</span>
+						<span className='text-muted-foreground font-sans text-xs'>{roles.length}</span>
 					</div>
 					<div className='grid gap-4 sm:grid-cols-2'>
 						{roles.map((role, i) => (
-							<MotionReveal key={role.id} delay={(i % 2) * 0.06}>
+							<ContentBlock key={role.id} delay={(i % 2) * 0.06}>
 								<Link
 									href={`/career/${role.id}` as never}
-									className='group neon-panel clip-notch-sm hover:border-cyber-yellow/60 block p-4 transition-colors'>
-									<h3 className='group-hover:text-cyber-yellow leading-tight font-bold tracking-wide uppercase transition-colors'>
+									className='group surface hover:border-brand/60 block rounded-lg p-4 transition-colors'>
+									<h3 className='group-hover:text-brand leading-tight font-bold tracking-normal transition-colors'>
 										{humanize(role.position)}
 									</h3>
-									<p className='text-muted-foreground mt-2 font-mono text-[0.65rem] tracking-wider uppercase'>
+									<p className='text-muted-foreground mt-2 font-sans text-xs tracking-normal'>
 										{formatExperienceDuration(role.startDate, role.endDate)} · {humanize(role.type)}
 									</p>
 									<p className='text-muted-foreground mt-2 line-clamp-2 text-sm leading-relaxed'>{role.description}</p>
 								</Link>
-							</MotionReveal>
+							</ContentBlock>
 						))}
 					</div>
 				</section>
@@ -213,15 +213,15 @@ const CompanyDetail: React.FC<CompanyDetailProps> = ({ organization }) => {
 			{gigs.length > 0 && (
 				<section className='mt-10'>
 					<div className='mb-6 flex items-center gap-3'>
-						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Projects</h2>
+						<h2 className='font-display text-xl font-bold tracking-normal'>Projects</h2>
 						<span className='bg-border h-px flex-1' />
-						<span className='text-muted-foreground font-mono text-xs'>{gigs.length}</span>
+						<span className='text-muted-foreground font-sans text-xs'>{gigs.length}</span>
 					</div>
 					<div className='grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
 						{gigs.map((p, i) => (
-							<MotionReveal key={p.id} delay={(i % 3) * 0.08}>
+							<ContentBlock key={p.id} delay={(i % 3) * 0.08}>
 								<ProjectCard project={p} index={i} />
-							</MotionReveal>
+							</ContentBlock>
 						))}
 					</div>
 				</section>
@@ -231,17 +231,17 @@ const CompanyDetail: React.FC<CompanyDetailProps> = ({ organization }) => {
 			{skills.length > 0 && (
 				<section className='mt-10'>
 					<div className='mb-6 flex items-center gap-3'>
-						<h2 className='font-display text-xl font-bold tracking-wide uppercase'>Tech used</h2>
+						<h2 className='font-display text-xl font-bold tracking-normal'>Tech used</h2>
 						<span className='bg-border h-px flex-1' />
-						<span className='text-muted-foreground font-mono text-xs'>{skills.length}</span>
+						<span className='text-muted-foreground font-sans text-xs'>{skills.length}</span>
 					</div>
 					<div className='flex flex-wrap gap-2'>
 						{skills.map(s => (
 							<Link
 								key={s.name}
 								href={`/skills/${s.id}` as never}
-								className='border-border hover:border-cyber-cyan/60 flex items-center gap-1.5 border px-2 py-1 text-xs transition-colors'>
-								<CyberIcon icon={s.icon} className='size-4' />
+								className='border-border hover:border-brand/60 flex items-center gap-1.5 border px-2 py-1 text-xs transition-colors'>
+								<SiteIcon icon={s.icon} className='size-4' />
 								{s.name}
 							</Link>
 						))}

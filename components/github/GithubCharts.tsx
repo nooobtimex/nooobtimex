@@ -10,7 +10,7 @@
 import React from 'react'
 import type { Route } from 'next'
 import Link from 'next/link'
-import NeonPanel from '@/components/cyber/NeonPanel'
+import Panel from '@/components/site/Panel'
 import { cn } from '@/lib/utils'
 
 /**
@@ -21,10 +21,10 @@ import { cn } from '@/lib/utils'
 export type MarkTone = 'base' | 'accent' | 'muted' | 'partial'
 
 const TONE: Record<MarkTone, string> = {
-	base: 'bg-cyber-cyan',
-	accent: 'bg-cyber-yellow',
+	base: 'bg-brand',
+	accent: 'bg-brand',
 	muted: 'bg-chart-muted',
-	partial: 'bg-cyber-cyan/45'
+	partial: 'bg-brand/45'
 }
 
 /** Hover/focus readout. The value leads; the label follows. */
@@ -41,8 +41,8 @@ const Readout: React.FC<{ value: string; detail: string; align: 'start' | 'cente
 			: align === 'end' ? 'right-0'
 			: 'left-1/2 -translate-x-1/2'
 		)}>
-		<span className='text-foreground block font-mono text-xs font-semibold'>{value}</span>
-		<span className='text-muted-foreground block text-[0.65rem]'>{detail}</span>
+		<span className='text-foreground block font-sans text-xs font-semibold'>{value}</span>
+		<span className='text-muted-foreground block text-xs'>{detail}</span>
 	</span>
 )
 
@@ -86,7 +86,7 @@ export const ColumnChart: React.FC<{
 						const body = (
 							<>
 								{c.labelled && c.value > 0 && (
-									<span className='text-foreground mb-1 font-mono text-[0.65rem]'>{c.valueText}</span>
+									<span className='text-foreground mb-1 font-sans text-xs'>{c.valueText}</span>
 								)}
 								<span
 									className={cn(
@@ -104,7 +104,7 @@ export const ColumnChart: React.FC<{
 								<Link key={c.key} href={c.href as Route} aria-label={`${c.valueText} — ${c.detail}`} className={cls}>
 									{body}
 								</Link>
-							:	<div key={c.key} tabIndex={0} aria-label={`${c.valueText} — ${c.detail}`} className={cls}>
+							:	<div key={c.key} role='img' tabIndex={0} aria-label={`${c.valueText} — ${c.detail}`} className={cls}>
 									{body}
 								</div>
 					})}
@@ -114,7 +114,7 @@ export const ColumnChart: React.FC<{
 				{reference && reference.value > 0 && (
 					<div className='pointer-events-none absolute inset-x-0' style={{ bottom: `${pct(reference.value)}%` }}>
 						<span className='bg-foreground/40 block h-px' />
-						<span className='bg-card text-muted-foreground absolute right-0 bottom-full mb-0.5 px-1 font-mono text-[0.65rem] tracking-wider uppercase'>
+						<span className='bg-card text-muted-foreground absolute right-0 bottom-full mb-0.5 px-1 font-sans text-xs tracking-normal'>
 							{reference.label}
 						</span>
 					</div>
@@ -123,7 +123,7 @@ export const ColumnChart: React.FC<{
 
 			<div aria-hidden className='mt-2 flex gap-1 sm:gap-2'>
 				{columns.map(c => (
-					<span key={c.key} className='text-muted-foreground flex-1 text-center font-mono text-[0.65rem] uppercase'>
+					<span key={c.key} className='text-muted-foreground flex-1 text-center font-sans text-xs'>
 						{c.label}
 					</span>
 				))}
@@ -154,7 +154,7 @@ export const BarList: React.FC<{ rows: BarRow[]; title: string }> = ({ rows, tit
 							// 80% at most, so the tip value always has room on the same line.
 							style={{ width: r.value > 0 ? `max(2px, ${(r.value / max) * 80}%)` : 0 }}
 						/>
-						<span className='text-foreground font-mono text-[0.65rem]'>{r.valueText}</span>
+						<span className='text-foreground font-sans text-xs'>{r.valueText}</span>
 					</span>
 				</li>
 			))}
@@ -169,13 +169,13 @@ export const DataTable: React.FC<{ caption: string; head: [string, string]; rows
 	rows
 }) => (
 	<details className='mt-5'>
-		<summary className='text-muted-foreground hover:text-cyber-cyan w-fit cursor-pointer font-mono text-[0.65rem] tracking-widest uppercase transition-colors'>
+		<summary className='text-muted-foreground hover:text-brand w-fit cursor-pointer font-sans text-xs tracking-normal transition-colors'>
 			Data table
 		</summary>
 		<table className='mt-3 w-full text-xs'>
 			<caption className='sr-only'>{caption}</caption>
 			<thead>
-				<tr className='border-border text-muted-foreground border-b font-mono text-[0.65rem] uppercase'>
+				<tr className='border-border text-muted-foreground border-b font-sans text-xs'>
 					<th scope='col' className='py-1.5 text-left font-normal'>
 						{head[0]}
 					</th>
@@ -190,7 +190,7 @@ export const DataTable: React.FC<{ caption: string; head: [string, string]; rows
 						<th scope='row' className='py-1.5 text-left font-normal'>
 							{label}
 						</th>
-						<td className='py-1.5 text-right font-mono tabular-nums'>{value}</td>
+						<td className='py-1.5 text-right font-sans tabular-nums'>{value}</td>
 					</tr>
 				))}
 			</tbody>
@@ -205,12 +205,12 @@ export const ChartPanel: React.FC<{
 	className?: string
 	children: React.ReactNode
 }> = ({ title, takeaway, className, children }) => (
-	<NeonPanel className={cn('clip-notch p-5', className)}>
+	<Panel className={cn('rounded-xl p-5', className)}>
 		<div className='flex items-center gap-3'>
-			<h3 className='text-cyber-cyan font-mono text-xs tracking-[0.3em] uppercase'>// {title}</h3>
+			<h3 className='text-brand font-sans text-xs tracking-normal'>{title}</h3>
 			<span className='bg-border h-px flex-1' />
 		</div>
 		{takeaway && <p className='text-muted-foreground mt-2 text-sm leading-relaxed'>{takeaway}</p>}
 		<div className='mt-5'>{children}</div>
-	</NeonPanel>
+	</Panel>
 )

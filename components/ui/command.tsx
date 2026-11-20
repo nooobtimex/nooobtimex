@@ -12,7 +12,7 @@ function Command({ className, ...props }: React.ComponentProps<typeof CommandPri
 		<CommandPrimitive
 			data-slot='command'
 			className={cn(
-				'bg-popover text-popover-foreground flex size-full flex-col overflow-hidden rounded-3xl p-1',
+				'bg-popover text-popover-foreground flex size-full flex-col overflow-hidden rounded-sm p-1',
 				className
 			)}
 			{...props}
@@ -41,7 +41,7 @@ function CommandDialog({
 				<DialogDescription>{description}</DialogDescription>
 			</DialogHeader>
 			<DialogContent
-				className={cn('top-1/3 translate-y-0 overflow-hidden rounded-3xl! p-0', className)}
+				className={cn('top-[15svh] translate-y-0 overflow-hidden rounded-sm! p-0', className)}
 				showCloseButton={showCloseButton}>
 				<Command className='rounded-none! bg-transparent'>{children}</Command>
 			</DialogContent>
@@ -52,7 +52,7 @@ function CommandDialog({
 function CommandInput({ className, ...props }: React.ComponentProps<typeof CommandPrimitive.Input>) {
 	return (
 		<div data-slot='command-input-wrapper' className='p-1 pb-0'>
-			<InputGroup className='bg-input/50 h-8!'>
+			<InputGroup className='bg-muted min-h-12'>
 				<CommandPrimitive.Input
 					data-slot='command-input'
 					className={cn('w-full text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50', className)}
@@ -129,7 +129,7 @@ function CommandShortcut({ className, ...props }: React.ComponentProps<'span'>) 
 		<span
 			data-slot='command-shortcut'
 			className={cn(
-				'text-muted-foreground group-data-selected/command-item:text-foreground ml-auto text-xs tracking-widest',
+				'text-muted-foreground group-data-selected/command-item:text-foreground ml-auto text-xs tracking-normal',
 				className
 			)}
 			{...props}

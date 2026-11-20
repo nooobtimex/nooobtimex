@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Route } from 'next'
 import Link from 'next/link'
-import CyberTag from '@/components/cyber/CyberTag'
+import Tag from '@/components/site/Tag'
 import { type Post, entitiesData, experiencesData, projectsData, skillById } from '@/common'
 
 /**
@@ -24,12 +24,12 @@ const PostRefs: React.FC<{ post: Post }> = ({ post }) => {
 	]
 
 	return (
-		<div className='neon-panel clip-notch-sm p-4'>
-			<h3 className='text-cyber-cyan mb-3 font-mono text-xs tracking-widest uppercase md:text-xs'>// Related</h3>
+		<div className='surface rounded-lg p-4'>
+			<h3 className='text-brand mb-3 font-sans text-xs tracking-normal md:text-xs'>Related</h3>
 			<div className='flex flex-wrap gap-1.5'>
 				{rows.map(row => (
 					<Link key={row.href} href={row.href as Route}>
-						<CyberTag icon={row.icon}>{row.label}</CyberTag>
+						<Tag icon={row.icon}>{row.label}</Tag>
 					</Link>
 				))}
 			</div>

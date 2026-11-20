@@ -55,11 +55,11 @@ const contactChannels: ContactChannel[] = [
 	}
 ]
 
-const AVAILABILITY_LEAD = 'Open for remote freelance web app projects alongside my full-time role as CTO at'
+const AVAILABILITY_LEAD = 'Building and running technology at'
 const EMPLOYER_NAME = 'RS TROPHY'
 
 export const personalData: PersonalData = {
-	name: 'WONGSAPHAT PUANGSORN',
+	name: 'Wongsaphat Puangsorn',
 	alternateNames: ['วงศพัทธ์ พวงซ้อน', 'NooobtimeX', 'Kwan', 'ขวัญ'],
 	employer: {
 		name: EMPLOYER_NAME,
@@ -69,19 +69,19 @@ export const personalData: PersonalData = {
 		profileUrl: 'https://rs-trophy.com/en/aboutus#cto'
 	},
 	title: 'Chief Technology Officer',
-	heroRole: 'Software Engineer',
+	heroRole: 'Software, robots, and things that work.',
 	pitch:
-		'I build production web apps end to end — scope, UI, API, database and deploy — as the one engineer who owns all of it. Remote from Thailand.',
+		'I’m Kwan, a software engineer and CTO at RS TROPHY. I build the systems behind our family business, work on humanoid robots at Thaibotic, and make games in Roblox.',
 	tagline:
-		'Chief Technology Officer at RS TROPHY, owning full-stack engineering and infrastructure end to end — freelancing remotely as a software engineer on web app projects on the side.',
+		'CTO at RS TROPHY and co-founder of Thaibotic. Building software, working with robots, and making a Roblox game in Thailand.',
 	avatar: assets.personal.avatar,
 	about: {
-		bio: "I'm Wongsaphat Puangsorn (วงศพัทธ์ พวงซ้อน), known as Kwan (ขวัญ) and online as NooobtimeX — CTO of RS TROPHY. Enthusiastic and dedicated technologist focused on transforming business requirements into clean, sustainable code. As CTO, I own every technology decision end-to-end — from technical strategy to single-handedly shipping software, infrastructure, and automation across the business. I am passionate about high-performance systems and modern infrastructure, and I freelance remotely as a software engineer building web apps alongside my full-time role.",
+		bio: "I'm Wongsaphat Puangsorn (วงศพัทธ์ พวงซ้อน), known as Kwan (ขวัญ) and online as NooobtimeX. I grew up around our family trophy business and now lead its technology as CTO of RS TROPHY. I take systems from the first idea through design, code, deployment, and the work of keeping them running. Alongside that, I co-founded Thaibotic, where I build software for a Unitree G1 humanoid robot. I’m also making a Roblox game — something I enjoy building for myself.",
 		highlights: [
-			'Own end-to-end technology decisions, from strategy to shipped code',
-			'Focused on building robust, high-performance systems',
-			'Committed to clean and sustainable architecture principles',
-			'Remote freelance software engineer for web app projects, alongside my full-time role'
+			'CTO at RS TROPHY, responsible for technology across the business',
+			'Co-founder of Thaibotic, building software for a humanoid robot',
+			'Previously a full-stack developer at JTS, July 2025–July 2026',
+			'Building a Roblox game and writing about what I learn'
 		]
 	},
 	contact: {
@@ -136,9 +136,9 @@ export const personalData: PersonalData = {
 			username: 'nooobtimex.me'
 		}
 	],
-	hire: {
-		url: 'mailto:nooobtimex@gmail.com?subject=Web%20app%20project',
-		label: 'Hire me by email'
+	contactAction: {
+		url: 'mailto:nooobtimex@gmail.com',
+		label: 'Say hello'
 	},
 	contactChannels
 }

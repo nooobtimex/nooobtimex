@@ -28,7 +28,11 @@ export const assets = {
 			]
 		},
 		thaibotic: { cover: '/issue/thaibotic/cover.webp' },
-		rsTrophy: { cover: '/issue/rs-trophy/cover.webp', gallery: ['/issue/rs-trophy/photo-1.webp'] },
+		rsTrophy: {
+			preview: '/issue/rs-trophy/home-preview.webp',
+			cover: '/issue/rs-trophy/cover.webp',
+			gallery: ['/issue/rs-trophy/photo-1.webp']
+		},
 		rsTrophyAdmin: { cover: '/issue/rs-trophy-admin/cover.webp' },
 		rsEservice: { cover: '/issue/rs-eservice/cover.webp' },
 		looklookPet: {

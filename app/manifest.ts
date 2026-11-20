@@ -10,7 +10,7 @@ export default function manifest(): MetadataRoute.Manifest {
 		start_url: '/',
 		display: 'standalone',
 		background_color: '#0a0a0a',
-		theme_color: '#FCEE0A',
+		theme_color: '#2845ee',
 		icons: [
 			{
 				// Must match the real file. `logo.webp` is a true 640×640 square, sized by

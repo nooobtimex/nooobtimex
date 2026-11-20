@@ -19,7 +19,7 @@ export const InlineText: React.FC<{ text: string }> = ({ text }) => (
 			switch (t.type) {
 				case 'code':
 					return (
-						<code key={i} className='bg-muted text-cyber-cyan px-1 py-0.5 font-mono text-[0.85em]'>
+						<code key={i} className='bg-muted text-brand px-1 py-0.5 font-sans text-[0.85em]'>
 							{t.text}
 						</code>
 					)
@@ -34,7 +34,7 @@ export const InlineText: React.FC<{ text: string }> = ({ text }) => (
 							<Link
 								key={i}
 								href={t.href as Route}
-								className='text-cyber-cyan hover:text-cyber-yellow underline underline-offset-4 transition-colors'>
+								className='text-brand hover:text-brand underline underline-offset-4 transition-colors'>
 								{t.text}
 							</Link>
 						:	<a
@@ -42,7 +42,7 @@ export const InlineText: React.FC<{ text: string }> = ({ text }) => (
 								href={t.href}
 								target='_blank'
 								rel='noopener noreferrer'
-								className='text-cyber-cyan hover:text-cyber-yellow underline underline-offset-4 transition-colors'>
+								className='text-brand hover:text-brand underline underline-offset-4 transition-colors'>
 								{t.text}
 							</a>
 				case 'ref':
@@ -50,7 +50,7 @@ export const InlineText: React.FC<{ text: string }> = ({ text }) => (
 						<Link
 							key={i}
 							href={refHref(t.kind, t.id) as Route}
-							className='text-cyber-yellow hover:text-cyber-cyan underline decoration-dotted underline-offset-4 transition-colors'>
+							className='text-brand hover:text-brand underline decoration-dotted underline-offset-4 transition-colors'>
 							{refLabel(t.kind, t.id)}
 						</Link>
 					)

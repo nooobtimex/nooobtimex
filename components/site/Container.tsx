@@ -10,7 +10,7 @@ interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
  * page. Pass extra spacing (e.g. py) via className. Change the width here once.
  */
 const Container: React.FC<ContainerProps> = ({ as: Tag = 'div', className, ...props }) => (
-	<Tag className={cn('mx-auto w-full max-w-7xl px-4 md:px-6', className)} {...props} />
+	<Tag className={cn('comic-page mx-auto w-full max-w-[1600px] px-5 md:px-10 xl:px-14', className)} {...props} />
 )
 
 export default Container

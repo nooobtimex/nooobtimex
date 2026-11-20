@@ -39,14 +39,14 @@ const Row: React.FC<{ item: SearchItem }> = ({ item }) => {
 		case 'post':
 			return (
 				<>
-					<Icon icon='mdi:post-outline' className='text-cyber-cyan size-4' />
+					<Icon icon='mdi:post-outline' className='text-brand size-4' />
 					<span className='truncate'>{item.title}</span>
 				</>
 			)
 		case 'project':
 			return (
 				<>
-					<Icon icon='mdi:folder-outline' className='text-cyber-yellow size-4' />
+					<Icon icon='mdi:folder-outline' className='text-brand size-4' />
 					<span>{item.title}</span>
 				</>
 			)
@@ -60,7 +60,7 @@ const Row: React.FC<{ item: SearchItem }> = ({ item }) => {
 		case 'career':
 			return (
 				<>
-					<Icon icon='mdi:briefcase-outline' className='text-cyber-cyan size-4' />
+					<Icon icon='mdi:briefcase-outline' className='text-brand size-4' />
 					<span className='truncate'>
 						{item.title}
 						<span className='text-muted-foreground'> — {item.detail}</span>
@@ -70,7 +70,7 @@ const Row: React.FC<{ item: SearchItem }> = ({ item }) => {
 		case 'company':
 			return (
 				<>
-					<Icon icon='mdi:domain' className='text-cyber-yellow size-4' />
+					<Icon icon='mdi:domain' className='text-brand size-4' />
 					<span className='truncate'>{item.title}</span>
 				</>
 			)
@@ -118,18 +118,21 @@ const GlobalSearch: React.FC<GlobalSearchProps> = ({ open, onOpenChange }) => {
 		<CommandDialog
 			open={open}
 			onOpenChange={onOpenChange}
-			className='border-cyber-cyan/40 bg-popover rounded-none! border'
+			className='border-brand/40 bg-popover rounded-none! border'
 			title='Search'
 			description='Jump to a section, project, skill, or role.'>
-			<CommandInput placeholder='> search projects, skills, experience…' />
+			<CommandInput
+				aria-label='Search projects, skills, and experience'
+				placeholder='Search projects, skills, experience…'
+			/>
 			<CommandList>
-				<CommandEmpty className='font-mono text-sm'>No matches found.</CommandEmpty>
+				<CommandEmpty className='font-sans text-sm'>No matches found.</CommandEmpty>
 
 				<CommandGroup heading='Navigate'>
 					{NAV_LINKS.map(item => (
 						<CommandItem key={item.href} value={`nav ${item.label}`} onSelect={() => go(item.href)}>
-							<Icon icon={item.icon} className='text-cyber-cyan size-4' />
-							<span className='font-mono uppercase'>{item.label}</span>
+							<Icon icon={item.icon} className='text-brand size-4' />
+							<span className='font-sans'>{item.label}</span>
 						</CommandItem>
 					))}
 				</CommandGroup>

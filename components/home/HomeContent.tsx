@@ -1,310 +1,175 @@
-/**
- * A server component. It was `'use client'` only to call `new Date()` for the NOW badge;
- * that moved to the server (see `currentEntryId`), leaving no hooks, handlers or browser
- * APIs here. The interactive children — MotionReveal, Icon, CyberTooltip — carry their own
- * `'use client'`, so the above-the-fold hero no longer drags framer-motion and the whole
- * data layer into the first-load bundle just to render static markup.
- */
-import React from 'react'
 import type { Route } from 'next'
 import Link from 'next/link'
-import PostCard from '@/components/blog/PostCard'
-import Container from '@/components/cyber/Container'
-import CyberButton from '@/components/cyber/CyberButton'
-import CyberIcon from '@/components/cyber/CyberIcon'
-import CyberTag from '@/components/cyber/CyberTag'
-import CyberTooltip from '@/components/cyber/CyberTooltip'
-import GlitchText from '@/components/cyber/GlitchText'
-import MotionReveal from '@/components/cyber/MotionReveal'
-import SectionHeader from '@/components/cyber/SectionHeader'
-import { HireDestination } from '@/components/hire/HireBand'
-import HireButton from '@/components/hire/HireButton'
-import AboutSection from '@/components/home/AboutSection'
-import ProofStrip from '@/components/home/ProofStrip'
-import ServicesSection from '@/components/home/ServicesSection'
-import ProjectCard from '@/components/projects/ProjectCard'
-import type { ProfileStat } from '@/lib/profile-stats'
-import { cn, formatExperienceDuration, formatPosition } from '@/lib/utils'
-import {
-	featuredProjects,
-	featuredSkills,
-	personalData,
-	postsData,
-	projectsData,
-	skillsData,
-	workExperienceData
-} from '@/common'
+import Action from '@/components/site/Action'
+import ContentBlock from '@/components/site/ContentBlock'
+import { formatMilestoneDate } from '@/lib/utils'
+import { assets, currentFocus, featuredProjects, heroModes, personalData, postsData, workStories } from '@/common'
+import HeroExperience from './HeroExperience'
+import WorkImage from './WorkImage'
+import styles from './home.module.css'
 
-/**
- * A home section's link to its full page. Visible at every width: it used to be
- * `md:block` only, so on a phone the sole routes from a section onward were its own cards.
- */
-const SeeAll: React.FC<{ href: Route }> = ({ href }) => (
-	<Link
-		href={href}
-		className='text-cyber-cyan hover:text-cyber-yellow shrink-0 font-mono text-xs tracking-widest whitespace-nowrap uppercase transition-colors'>
-		See all →
-	</Link>
-)
-
-interface HomeContentProps {
-	/** Resolved on the server — see `currentEntryId` for why it is not computed here. */
-	nowId?: string
-	/** Resolved on the server with the same "now" — see `yearsShipping`. */
-	yearsShipping: number
-}
-
-/**
- * The home page is a profile with one job: turn a visitor into a client. Order follows
- * the questions a client asks — who is this (hero, about), what can he do for me
- * (services), can he really (work, career, stack, writing, GitHub), how do I start
- * (the hire band, rendered by the page after the GitHub section).
- */
-const HomeContent: React.FC<HomeContentProps> = ({ nowId, yearsShipping }) => {
-	// The headline role (CTO) first, then the newest others — `workExperienceData` is ordered that way.
-	const latestRoles = workExperienceData.slice(0, 3)
-	const featured = featuredProjects
-	const homeSkills = featuredSkills
-
-	const stats: ProfileStat[] = [
-		{ value: `${yearsShipping}+`, label: 'Years shipping', icon: 'mdi:calendar-check', href: '/career' },
-		{
-			value: String(projectsData.length),
-			label: 'Projects built',
-			icon: 'mdi:package-variant-closed',
-			href: '/projects'
-		},
-		{ value: String(postsData.length), label: 'Journal write-ups', icon: 'mdi:file-document-outline', href: '/blog' },
-		{ value: String(skillsData.length), label: 'Technologies', icon: 'mdi:shape-outline', href: '/skills' }
-	]
-
+export default function HomeContent() {
 	return (
-		<Container>
-			{/* HERO */}
-			<section className='relative overflow-hidden py-16 md:py-24'>
-				<div className='cyber-grid pointer-events-none absolute inset-0 -z-10 opacity-40' />
-				<div className='from-background absolute inset-0 -z-10 bg-gradient-to-b to-transparent' />
-
-				<div className='grid items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-16'>
-					{/* Left: identity */}
-					<div>
-						<p className='text-cyber-cyan font-mono text-xs tracking-[0.35em] uppercase'>
-							// Freelance software engineer
-						</p>
-
-						<h1 className='font-display mt-4 text-5xl leading-[0.9] font-bold tracking-tight uppercase md:text-8xl'>
-							Wongsaphat
-							<br />
-							Puangsorn
-						</h1>
-
-						<div className='mt-4 flex items-center gap-3'>
-							<span className='bg-cyber-yellow h-6 w-1' />
-							<GlitchText
-								text={personalData.heroRole}
-								className='neon-text-yellow font-display text-2xl font-bold tracking-widest uppercase md:text-3xl'
-							/>
-						</div>
-
-						<p className='text-muted-foreground mt-6 max-w-2xl text-base leading-relaxed md:text-lg'>
-							{personalData.pitch}
-						</p>
-
-						<div className='mt-6 flex flex-wrap gap-2'>
-							<CyberTag icon='mdi:map-marker-outline'>{personalData.contact.location}</CyberTag>
-							<CyberTag icon='mdi:home-outline'>Remote</CyberTag>
-							<CyberTag icon='mdi:circle' tone='yellow'>
-								Available for freelance
-							</CyberTag>
-							<CyberTag icon='mdi:translate' tone='magenta'>
-								{personalData.languages.map(l => l.code.toUpperCase()).join(' / ')}
-							</CyberTag>
-						</div>
-
-						<p className='text-muted-foreground mt-4 flex items-start gap-2 font-mono text-xs tracking-wider'>
-							<CyberIcon icon='mdi:circle' className='text-cyber-green mt-1 size-2 shrink-0' />
-							<span>
-								{personalData.contact.availabilityLead}{' '}
-								<a
-									href={personalData.employer.profileUrl}
-									target='_blank'
-									rel='noopener noreferrer'
-									className='text-cyber-cyan hover:text-cyber-yellow underline underline-offset-2 transition-colors'>
-									{personalData.employer.name}
-								</a>
-							</span>
-						</p>
-
-						{/* The page's one ask. Never inside MotionReveal — it must paint with the hero. */}
-						<div className='mt-8 flex flex-wrap items-center gap-3'>
-							<HireButton size='lg' />
-							<CyberButton href='/projects' variant='outline' size='lg'>
-								<CyberIcon icon='mdi:folder-multiple-outline' />
-								View work
-							</CyberButton>
-						</div>
-						<HireDestination className='mt-3' />
-
-						{/* Socials */}
-						<div className='mt-6 flex flex-wrap items-center gap-2'>
-							{personalData.socialLinks.map(s => (
-								<CyberTooltip key={s.platform} label={s.platform}>
-									<a
-										href={s.url}
-										target={s.platform === 'email' ? undefined : '_blank'}
-										rel='noopener noreferrer'
-										aria-label={s.platform}
-										className='border-border text-muted-foreground hover:border-cyber-cyan/60 hover:text-cyber-cyan hover:bg-cyber-cyan/[0.06] flex size-11 items-center justify-center border transition-colors'>
-										<CyberIcon icon={s.icon} className='size-5' />
-									</a>
-								</CyberTooltip>
-							))}
-						</div>
-					</div>
-
-					{/* Right: portrait */}
-					<div className='relative order-first mx-auto lg:order-none lg:mx-0'>
-						<div className='neon-panel clip-notch relative size-56 overflow-hidden sm:size-72 lg:size-80'>
-							<img
-								src={personalData.avatar}
-								alt={personalData.name}
-								loading='eager'
-								fetchPriority='high'
-								decoding='async'
-								className='absolute inset-0 size-full object-cover'
-							/>
-							<div className='scanlines pointer-events-none absolute inset-0 opacity-30' />
-							<div className='from-background/50 pointer-events-none absolute inset-0 bg-gradient-to-t to-transparent' />
-							<span className='border-cyber-cyan/60 absolute top-2 left-2 size-4 border-t-2 border-l-2' />
-							<span className='border-cyber-cyan/60 absolute right-2 bottom-2 size-4 border-r-2 border-b-2' />
-						</div>
-						<span className='bg-cyber-yellow absolute -bottom-3 left-4 px-2 py-0.5 font-mono text-[0.65rem] font-bold tracking-widest text-black uppercase'>
-							@NooobtimeX
-						</span>
-					</div>
-				</div>
-			</section>
-
-			{/* PROOF — numbers at the fold, before the scroll-revealed sections. */}
-			<ProofStrip stats={stats} />
-
-			<AboutSection />
-			<ServicesSection />
-
-			{/* SELECTED WORK */}
-			<section className='mt-20'>
-				<SectionHeader
-					title='Selected work'
-					subtitle='Shipped builds — the proof behind the services above.'
-					action={<SeeAll href='/projects' />}
-				/>
-				{/* Four featured: 2×2 until the row is wide enough to hold all four. */}
-				<div className='mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4'>
-					{featured.map((p, i) => (
-						<MotionReveal key={p.id} delay={i * 0.08}>
-							<ProjectCard project={p} index={i} />
-						</MotionReveal>
-					))}
-				</div>
-				{/* The GitHub heatmap used to be a home section of its own. A link keeps the proof one
-				    tap away without letting a GitHub API outage change the home page. */}
-				<Link
-					href='/github'
-					className='text-muted-foreground hover:text-cyber-cyan mt-6 inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase transition-colors'>
-					<CyberIcon icon='simple-icons:github' className='size-4' /> GitHub activity →
-				</Link>
-			</section>
-
-			{/* CAREER */}
-			<section className='mt-20'>
-				<SectionHeader title='Career' subtitle='Current role and recent history.' action={<SeeAll href='/career' />} />
-				<div className='mt-8 space-y-3'>
-					{latestRoles.map((role, i) => (
-						<MotionReveal key={role.id} delay={i * 0.06}>
-							<Link
-								href={`/career/${role.id}` as never}
-								className='group neon-panel clip-notch-sm hover:border-cyber-yellow/60 flex items-center gap-4 p-4 transition-colors'>
-								{role.organization.logo && (
-									<span className='relative size-11 shrink-0 overflow-hidden rounded-sm bg-white/90'>
-										<img
-											src={role.organization.logo}
-											alt={role.organization.name}
-											loading='lazy'
-											decoding='async'
-											className='absolute inset-0 size-full object-contain p-1'
-										/>
-									</span>
-								)}
-								<div className='min-w-0 flex-1'>
-									<h3 className='font-display group-hover:text-cyber-yellow text-lg font-bold tracking-wide transition-colors'>
-										{formatPosition(role.position)}
-										<span className='text-cyber-yellow'> @ {role.organization.name}</span>
-									</h3>
-									<p className='text-muted-foreground mt-0.5 font-mono text-xs tracking-wider uppercase'>
-										{formatExperienceDuration(role.startDate, role.id === nowId ? undefined : role.endDate)}
-									</p>
-								</div>
-								{role.id === nowId && (
-									<span className='bg-cyber-yellow now-pulse shrink-0 px-2 py-0.5 font-mono text-[0.65rem] font-bold tracking-widest text-black uppercase'>
-										Now
-									</span>
-								)}
-								<CyberIcon
-									icon='mdi:arrow-right'
-									className='text-muted-foreground group-hover:text-cyber-yellow size-5 shrink-0 transition-colors'
+		<div className={styles.home}>
+			<div className={styles.shell}>
+				<div className={styles.lobby}>
+					<aside className={styles.profile} aria-label='Meet Kwan'>
+						<ContentBlock>
+							<div className={styles.portraitFrame}>
+								<img
+									src={personalData.avatar}
+									alt='Kwan, Wongsaphat Puangsorn'
+									width={640}
+									height={640}
+									loading='eager'
+									fetchPriority='high'
 								/>
-							</Link>
-						</MotionReveal>
-					))}
-				</div>
-			</section>
+								<span className={styles.portraitTag}>Hi, I’m Kwan.</span>
+							</div>
+						</ContentBlock>
+						<div className={styles.profileText}>
+							<p className={styles.handle}>NooobtimeX</p>
+							<h2>
+								Kwan<span>.</span>
+							</h2>
+							<p className={styles.fullName}>
+								Wongsaphat Puangsorn
+								<br />
+								วงศพัทธ์ พวงซ้อน
+							</p>
+							<p className={styles.bio}>
+								CTO at{' '}
+								<a href={personalData.employer.profileUrl} target='_blank' rel='noopener noreferrer'>
+									RS TROPHY
+								</a>{' '}
+								and co-founder of <Link href='/companies/thaibotic'>Thaibotic</Link>. I build software, work with
+								robots, and make games.
+							</p>
+							<p className={styles.location}>Nonthaburi, Thailand · Thai / English</p>
+							<Action href='/career' variant='outline' className='mt-5 w-full'>
+								Get to know me ↗
+							</Action>
+						</div>
+						<div className={styles.socials}>
+							{personalData.socialLinks
+								.filter(s => ['github', 'linkedin', 'youtube', 'instagram'].includes(s.platform))
+								.map(s => (
+									<a key={s.platform} href={s.url} target='_blank' rel='noopener noreferrer'>
+										{s.platform === 'github' ?
+											'GitHub'
+										: s.platform === 'linkedin' ?
+											'LinkedIn'
+										: s.platform === 'youtube' ?
+											'YouTube'
+										:	'Instagram'}{' '}
+										↗
+									</a>
+								))}
+						</div>
+					</aside>
 
-			{/* CORE STACK */}
-			<section className='mt-20'>
-				<SectionHeader title='Stack' subtitle='Core tools in active rotation.' action={<SeeAll href='/skills' />} />
-				<div className='mt-8 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7'>
-					{homeSkills.map((s, i) => (
-						<MotionReveal key={s.id} delay={(i % 7) * 0.04}>
-							<Link
-								href={`/skills/${s.id}` as never}
-								className='group neon-panel clip-notch-sm hover:border-cyber-yellow/60 flex aspect-square flex-col items-center justify-center gap-2 p-3 text-center transition-colors'>
-								<span className={cn('flex size-9 items-center justify-center', s.whiteBg && 'rounded-sm bg-white/90')}>
-									<CyberIcon icon={s.icon} className='size-8' />
-								</span>
-								<span className='group-hover:text-cyber-yellow text-[0.7rem] leading-tight font-semibold transition-colors'>
-									{s.name}
-								</span>
-							</Link>
-						</MotionReveal>
-					))}
-					<Link
-						href='/skills'
-						className='border-cyber-cyan/30 text-muted-foreground hover:border-cyber-yellow/60 hover:text-cyber-yellow clip-notch-sm flex aspect-square flex-col items-center justify-center gap-1 border border-dashed text-center transition-colors'>
-						<CyberIcon icon='mdi:dots-horizontal' className='size-6' />
-						<span className='font-mono text-[0.65rem] tracking-widest uppercase'>All</span>
-					</Link>
-				</div>
-			</section>
+					<section className={styles.center} aria-labelledby='home-title'>
+						<div className={styles.heroCaption}>
+							<span className={styles.spark} aria-hidden='true'>
+								✳
+							</span>
+							<span>Software. Robots. A little room to play.</span>
+						</div>
+						<h1 id='home-title' className={styles.title}>
+							Always
+							<br />
+							<span>building.</span>
+						</h1>
+						<p className={styles.lead}>
+							A personal collection of the things I make, the problems I work on, and what I learn along the way.
+						</p>
+						<div className={styles.stage}>
+							<HeroExperience modes={heroModes} />
+						</div>
+						<div className={styles.stageFoot}>
+							<span>Different things. The same curiosity.</span>
+							<a href='#selected-work'>See the work ↓</a>
+						</div>
+					</section>
 
-			{/* JOURNAL — the site's long-form writing. Without this the home page, which is where
-			    a visitor or a reviewer lands first, carried no link-level sign that the site
-			    publishes anything beyond a CV: the Journal was reachable only from the nav. */}
-			<section className='mt-20'>
-				<SectionHeader
-					title='Journal'
-					subtitle={`${postsData.length} entries — the engineering journey, written up with the numbers.`}
-					action={<SeeAll href='/blog' />}
-				/>
-				<div className='mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
-					{postsData.slice(0, 3).map((p, i) => (
-						<MotionReveal key={p.id} delay={i * 0.08}>
-							<PostCard post={p} index={i} />
-						</MotionReveal>
-					))}
+					<aside className={styles.intel} aria-label='Current work and latest writing'>
+						<section className={styles.now}>
+							<h2>On my workbench</h2>
+							{currentFocus.map(item => (
+								<article key={item.title}>
+									<p>{item.role}</p>
+									<h3>
+										{'href' in item ?
+											<Link href={item.href as Route}>{item.title} ↗</Link>
+										:	item.title}
+									</h3>
+									<p className={styles.focusDescription}>{item.description}</p>
+								</article>
+							))}
+						</section>
+						<section className={styles.notes}>
+							<h2>Fresh from the notes</h2>
+							{postsData.slice(0, 2).map(post => (
+								<Link key={post.id} href={`/blog/${post.id}` as Route}>
+									<span>
+										{formatMilestoneDate(post.happenedAt)} · {post.readingMinutes} min
+									</span>
+									<h3>{post.title}</h3>
+								</Link>
+							))}
+							<Link className={styles.allNotes} href='/blog'>
+								All writing ↗
+							</Link>
+						</section>
+					</aside>
 				</div>
-			</section>
-		</Container>
+
+				<section id='selected-work' className={styles.work} aria-labelledby='work-title'>
+					<div className={styles.sectionTop}>
+						<h2 id='work-title'>
+							Selected work<span aria-hidden='true'>↗</span>
+						</h2>
+						<Link href='/projects'>Explore all projects →</Link>
+					</div>
+					<div className={styles.workGrid}>
+						{featuredProjects.map((project, index) => {
+							const story = workStories[project.id]
+							const image =
+								project.id === 'unitree-g1' ? assets.projects.unitreeG1.gallery[0]
+								: project.id === 'looklook-pet' ? assets.projects.looklookPet.gallery[1]
+								: assets.projects.rsTrophy.preview
+							return (
+								<ContentBlock key={project.id} delay={index * 0.06}>
+									<Link href={`/projects/${project.id}` as Route} className={styles.workCard}>
+										<WorkImage>
+											<img src={image} alt={project.title} loading='lazy' decoding='async' />
+										</WorkImage>
+										<div className={styles.workBody}>
+											<p className={styles.workStatus}>{story.status}</p>
+											<h3>{project.id === 'unitree-g1' ? 'A robot, made usable.' : project.title}</h3>
+											<p>
+												{story.context} {story.responsibility}
+											</p>
+										</div>
+									</Link>
+								</ContentBlock>
+							)
+						})}
+					</div>
+				</section>
+
+				<section className={styles.contact}>
+					<div>
+						<p>Ideas, questions, or just a hello.</p>
+						<h2>
+							Keep in touch<span>.</span>
+						</h2>
+					</div>
+					<Action href='/contact' size='lg'>
+						Say hello ↗
+					</Action>
+				</section>
+			</div>
+		</div>
 	)
 }
-
-export default HomeContent

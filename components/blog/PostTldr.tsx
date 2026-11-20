@@ -7,8 +7,8 @@ import { InlineText } from '@/lib/inline'
  * most LLM citations come from the first third of a page.
  */
 const PostTldr: React.FC<{ tldr: string }> = ({ tldr }) => (
-	<section className='neon-panel neon-panel-yellow clip-notch p-5'>
-		<h2 className='text-cyber-yellow font-mono text-xs tracking-[0.3em] uppercase md:text-xs'>// TL;DR</h2>
+	<section className='surface surface-emphasis rounded-xl p-5'>
+		<h2 className='text-brand font-sans text-xs tracking-normal md:text-xs'>TL;DR</h2>
 		<p className='text-foreground/90 mt-3 text-base leading-relaxed'>
 			<InlineText text={tldr} />
 		</p>

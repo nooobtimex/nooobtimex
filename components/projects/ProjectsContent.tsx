@@ -1,8 +1,8 @@
 import React from 'react'
-import Container from '@/components/cyber/Container'
-import MotionReveal from '@/components/cyber/MotionReveal'
-import SectionHeader from '@/components/cyber/SectionHeader'
 import ProjectCard from '@/components/projects/ProjectCard'
+import Container from '@/components/site/Container'
+import ContentBlock from '@/components/site/ContentBlock'
+import SectionHeader from '@/components/site/SectionHeader'
 import { projectsData } from '@/common'
 
 const ProjectsContent: React.FC = () => {
@@ -14,11 +14,11 @@ const ProjectsContent: React.FC = () => {
 				subtitle={`${projectsData.length} builds — systems architected, shipped, and maintained.`}
 			/>
 
-			<div className='mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
+			<div className='mt-10 grid gap-8 md:grid-cols-2 xl:grid-cols-3'>
 				{projectsData.map((p, i) => (
-					<MotionReveal key={p.id} delay={(i % 3) * 0.08}>
+					<ContentBlock key={p.id} delay={(i % 3) * 0.08}>
 						<ProjectCard project={p} index={i} />
-					</MotionReveal>
+					</ContentBlock>
 				))}
 			</div>
 		</Container>
