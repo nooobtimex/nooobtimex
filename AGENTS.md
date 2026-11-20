@@ -107,6 +107,7 @@ app/
   layout.tsx       root (fonts, metadata, providers)
 common/            the data layer — the single source of truth for all content
 components/site/  the shared design system · home/ owns the three-column homepage and 3D scene · plus feature folders + ui/ (shadcn)
+components/3d/    modular Three.js procedural models (G1, systems, play, trophy) and interactive viewer
 lib/utils.ts       cn() + slugify/unslugify/formatExperienceDuration · lib/github.ts (token-free ISR)
 lib/icon-data.ts   server-side icon lookup → lib/og-icons.generated.json (see scripts/icons/)
 scripts/icons/     generates that subset · the ONLY place @iconify-json/* may be imported

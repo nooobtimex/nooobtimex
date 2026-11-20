@@ -1,5 +1,7 @@
 import type { Route } from 'next'
 import Link from 'next/link'
+import { hasProject3D } from '@/components/3d/registry'
+import Project3DCardButton from '@/components/projects/Project3DCardButton'
 import { excerpt, projectStatus } from '@/lib/utils'
 import { type Project, assets, workStories } from '@/common'
 
@@ -20,6 +22,7 @@ export default function ProjectCard({ project }: { project: Project; index?: num
 					decoding='async'
 					className='size-full object-cover transition-transform duration-300 group-hover:scale-[1.025]'
 				/>
+				{hasProject3D(project.id) && <Project3DCardButton projectId={project.id} projectTitle={project.title} />}
 			</div>
 			<div className='comic-card-body flex flex-1 flex-col'>
 				<p className='text-muted-foreground mb-3 text-xs'>

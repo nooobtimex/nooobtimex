@@ -2,6 +2,7 @@ import type { Route } from 'next'
 import Link from 'next/link'
 import WrittenAbout from '@/components/blog/WrittenAbout'
 import ProjectGallery from '@/components/projects/ProjectGallery'
+import ProjectMediaHero from '@/components/projects/ProjectMediaHero'
 import ProjectTimeline from '@/components/projects/ProjectTimeline'
 import Action from '@/components/site/Action'
 import Container from '@/components/site/Container'
@@ -67,14 +68,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
 					</div>
 				)}
 			</dl>
-			<img
-				src={image}
-				alt={project.title}
-				loading='eager'
-				fetchPriority='high'
-				decoding='async'
-				className='comic-detail-image mt-8'
-			/>
+			<ProjectMediaHero projectId={project.id} title={project.title} image={image} />
 			<div className='reading-layout'>
 				<div className='space-y-12'>
 					{story && (
